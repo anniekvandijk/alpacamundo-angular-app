@@ -25,11 +25,6 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.userService.isUserLoggedIn
-    .pipe(
-      tap(value => {  
-        console.log('HeaderComponent.ngOnInit: value = ' + value);
-      }
-    ))
     .subscribe(value => {
       this.isUserLoggedIn = value;
     });

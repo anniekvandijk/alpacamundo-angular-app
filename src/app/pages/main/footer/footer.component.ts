@@ -18,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
   <div class="footer-text">© Copyright 2023 Alpacamundo - 
     <a mat-button *ngIf="!isUserLoggedIn" (click)="login()" title="Login" rel="login">login here</a>
     <a mat-button *ngIf="isUserLoggedIn" (click)="logout()" title="Logout" rel="logout">logout</a>
+
+    <button mat-button  (click)="login()" title="Login" rel="login">login here</button>
+    <button mat-button  (click)="logout()" title="Logout" rel="logout">logout</button>
   </div>
   `,
   

@@ -27,6 +27,7 @@ export class AppComponent {
       takeUntilDestroyed(this.destroyRef)
     ).subscribe(() => {
       this.isUserLoggedIn = this.authService.instance.getAllAccounts.length > 0;
+      console.log('AppComponent.ngOnInit: this.isUserLoggedIn = ' + this.isUserLoggedIn);
       this.userService.isUserLoggedIn.next(this.isUserLoggedIn);
     }
     );
