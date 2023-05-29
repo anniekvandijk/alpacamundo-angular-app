@@ -12,6 +12,8 @@ import localeNl from '@angular/common/locales/nl';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './app/mocks/in-memory-data.service';
+import { MsalModule } from '@azure/msal-angular';
+import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 
@@ -35,6 +37,32 @@ fetch('/assets/config.json')
           withDebugTracing(),
           withInMemoryScrolling({scrollPositionRestoration: 'enabled'})
         ),
+        importProvidersFrom(MsalModule.forRoot(new PublicClientApplication(
+          { 
+            auth: {
+              clientId: configuration.msal.clientId,
+              redirectUri: 'http://localhost:4200/',
+              authority: `https://login.microsoftonline.com/${configuration.msal.tenantId}`
+            },
+            cache: {
+              cacheLocation: 'localStorage',
+              storeAuthStateInCookie: true
+            }
+          }
+        ),
+        {
+          interactionType: InteractionType.Redirect,
+          authRequest: {
+            scopes: ['user.read']
+          }
+        },
+        {
+          interactionType: InteractionType.Redirect,
+          protectedResourceMap: new Map([
+            ['https://graph.microsoft.com/v1.0/me', ['user.read']] 
+          ])
+        }      
+        )),
         provideHttpClient(),
         importProvidersFrom(
           HttpClientInMemoryWebApiModule.forRoot(
