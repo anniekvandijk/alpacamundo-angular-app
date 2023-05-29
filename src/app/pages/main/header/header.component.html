@@ -1,6 +1,9 @@
 <div *ngIf="!environment.production" class="environment">
   {{environment.name}}
 </div>
+<div *ngIf="!isUserLoggedIn">
+  <app-usermenu></app-usermenu>
+</div>
 <a routerLink="/" title="Home" rel="home">
   <img id="logo" src="/assets/images/logo.svg" alt="Home">
 </a>
