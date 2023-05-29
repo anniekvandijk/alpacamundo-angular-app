@@ -1,0 +1,23 @@
+.alpaca-header {
+    display: flex; 
+    justify-content: left;
+    align-items: center; 
+}
+
+.alpaca-longName {
+    color: var(--secondary-color);
+}
+
+img.alpaca-main-image{
+    object-fit: cover;
+    width: 175px;
+    height: 175px;
+}
+
+.alpaca-image {
+    max-width: 630px;
+} 
+
+.header-text {
+    margin-left: 20px;
+}

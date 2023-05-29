@@ -1,0 +1,22 @@
+table {
+    margin-right: 16px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    border-color: var(--mdc-elevated-card-container-color, transparent);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+th {
+    background-color: var(--background-color-light);
+}
+
+td {
+//    border-bottom-style: none;
+    font-size: small;
+}
+
+mat-icon {
+    color: var(--primary-color);
+}

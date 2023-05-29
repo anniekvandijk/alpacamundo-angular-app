@@ -1,0 +1,296 @@
+export const ALPACASHOWS =[
+  {
+    "id": "c82f748b-eba1-40da-80c2-9989fef92fef",
+    "title": "Nationale Alpacashow Assen 2017",
+    "location": "Assen",
+    "showYear": 2017,
+    "showDates": [
+      "2017-04-13"
+    ],
+    "showName": "Nationale Alpacashow",
+    "judge": "Robin Nasemann",
+    "showresults": null
+  },
+  {
+    "id": "30e1e331-3f29-4869-8030-48fb7babea28",
+    "title": "Internationale Alpaca Fleeceshow Boekel 2016",
+    "location": "Boekel",
+    "showYear": 2016,
+    "showDates": [
+      "2016-10-02"
+    ],
+    "showName": "Internationale Alpaca Fleeceshow",
+    "judge": "Catherine Lloyd",
+    "showresults": null
+  },
+  {
+    "id": "33a97461-1e10-4381-a237-9a9bd1589cee",
+    "title": "Internationale Alpacashow Meppel 2015",
+    "location": "Meppel",
+    "showYear": 2015,
+    "showDates": [
+      "2015-04-19"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Shirley Bettinson",
+    "showresults": null
+  },
+  {
+    "id": "9a13b494-7d1d-4dc4-b832-100fa97ac97b",
+    "title": "Internationale Alpaca Fleeceshow Rutten 2015",
+    "location": "Rutten",
+    "showYear": 2015,
+    "showDates": [],
+    "showName": "Internationale Alpaca Fleeceshow",
+    "judge": "Robin Nasemann",
+    "showresults": null
+  },
+  {
+    "id": "1ebf2c52-3374-4a55-84ad-5b02568f6516",
+    "title": "Heart of England Spring Fiesta Warwickshire 2013",
+    "location": "Warwickshire",
+    "showYear": 2013,
+    "showDates": [
+      "2013-04-27",
+      "2013-04-28"
+    ],
+    "showName": "Heart of England Spring Fiesta",
+    "judge": null,
+    "showresults": null
+  },
+  {
+    "id": "1c7da0c5-d7b2-4d7d-b1e8-ffcd73569fcc",
+    "title": "Internationale Alpacashow Hapert 2015",
+    "location": "Hapert",
+    "showYear": 2015,
+    "showDates": [
+      "2015-05-21",
+      "2015-05-22"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Wade Gease",
+    "showresults": null
+  },
+  {
+    "id": "575f4ab7-b094-4e20-bc0a-912fb39e4aa2",
+    "title": "South West Group Spring Show Engeland 2012",
+    "location": "Engeland",
+    "showYear": 2012,
+    "showDates": [
+      "2012-04-14"
+    ],
+    "showName": "South West Group Spring Show",
+    "judge": null,
+    "showresults": null
+  },
+  {
+    "id": "4bf0cd95-f3b3-4f25-a91b-7619d97b8039",
+    "title": "Alpaca Futurity Birmingham 2013",
+    "location": "Birmingham",
+    "showYear": 2013,
+    "showDates": [
+      "2013-03-15",
+      "2013-03-16"
+    ],
+    "showName": "Alpaca Futurity",
+    "judge": "Amanda Vandenbosch",
+    "showresults": null
+  },
+  {
+    "id": "e567c5e1-2db7-4590-88f8-542dac580aa9",
+    "title": "Internationale Alpacashow Hapert 2013",
+    "location": "Hapert",
+    "showYear": 2013,
+    "showDates": [
+      "2013-03-24"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Amanda Vandenbosch",
+    "showresults": null
+  },
+  {
+    "id": "41aecbce-7ffc-4971-b2f2-e9800bc8265c",
+    "title": "Internationale Alpacashow Westerlee 2014",
+    "location": "Westerlee",
+    "showYear": 2014,
+    "showDates": [
+      "2014-04-20"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Robin Nasemann",
+    "showresults": null
+  },
+  {
+    "id": "02fd20eb-efb5-4d9a-8f71-b6d07aaaecfb",
+    "title": "Nationale Alpacashow Westerlee 2013",
+    "location": "Westerlee",
+    "showYear": 2013,
+    "showDates": [
+      "2013-04-21"
+    ],
+    "showName": "Nationale Alpacashow",
+    "judge": "Matthew Lloyd",
+    "showresults": null
+  },
+  {
+    "id": "96bb424c-5371-4265-8fdf-9c37e5cd8203",
+    "title": "Internationale Alpacashow Hapert 2014",
+    "location": "Hapert",
+    "showYear": 2014,
+    "showDates": [
+      "2014-03-22",
+      "2014-03-23"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Wendy Billington",
+    "showresults": null
+  },
+  {
+    "id": "332d1e14-347e-4c3b-ac71-e21f3e067d4e",
+    "title": "Heart of England Spring Fiesta Engeland 2014",
+    "location": "Engeland",
+    "showYear": 2014,
+    "showDates": [
+      "2014-04-26",
+      "2014-04-27"
+    ],
+    "showName": "Heart of England Spring Fiesta",
+    "judge": "Cathy Lloyd",
+    "showresults": null
+  },
+  {
+    "id": "c82d7240-84fa-4dd3-b02e-9819e02c7104",
+    "title": "Alpaca Showtime Engeland 2014",
+    "location": "Engeland",
+    "showYear": 2014,
+    "showDates": [
+      "2014-03-29",
+      "2014-03-30"
+    ],
+    "showName": "Alpaca Showtime",
+    "judge": "Peter Jackson",
+    "showresults": null
+  },
+  {
+    "id": "2c335514-32d7-4b7d-99e9-db59f982dc4b",
+    "title": "BAS National Show Shropshire 2014",
+    "location": "Shropshire",
+    "showYear": 2014,
+    "showDates": [
+      "2014-03-15",
+      "2014-03-16"
+    ],
+    "showName": "BAS National Show",
+    "judge": "Jenny Jackson",
+    "showresults": null
+  },
+  {
+    "id": "13f5cbcf-694a-43e4-be93-ee68b7839345",
+    "title": "Royal Tree Countries Worcestershire 2013",
+    "location": "Worcestershire",
+    "showYear": 2013,
+    "showDates": [
+      "2013-06-14",
+      "2013-06-15",
+      "2013-06-16"
+    ],
+    "showName": "Royal Tree Countries",
+    "judge": "Nick Harrington Smith",
+    "showresults": null
+  },
+  {
+    "id": "4f09f82b-de36-4564-8e01-b5d0a208f062",
+    "title": "Internationale Fleeceshow Baarle Nassau 2014",
+    "location": "Baarle Nassau",
+    "showYear": 2014,
+    "showDates": [
+      "2014-10-19"
+    ],
+    "showName": "Internationale Fleeceshow",
+    "judge": "Tim Hey",
+    "showresults": null
+  },
+  {
+    "id": "407f6b99-d384-475b-9870-9e619c6b4b19",
+    "title": "Internationale Alpacashow  Meppel 2016",
+    "location": " Meppel",
+    "showYear": 2016,
+    "showDates": [
+      "2016-04-24"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Tim Hey",
+    "showresults": null
+  },
+  {
+    "id": "78ea8ac5-23de-4384-a1c9-8ee9dc5a0fd6",
+    "title": "Internationale Alpacashow Drachten 2020",
+    "location": "Drachten",
+    "showYear": 2020,
+    "showDates": [
+      "2020-02-08",
+      "2020-02-09"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Jude Anderson",
+    "showresults": {
+      "id": "37627c74-0382-4c1c-be15-9deaaa8668ea",
+      "oldUrl": "/sites/default/files/alpacashow-uitslagen/Uitslagen-Alpacashow-Drachten-2020.pdf",
+      "name": "Uitslagen-Alpacashow-Drachten-2020.pdf",
+      "fileType": "application/pdf"
+    }
+  },
+  {
+    "id": "afeb0a55-b961-4ae0-80e3-2c7ea78d7f44",
+    "title": "Internationale Alpacashow Boekel 2019",
+    "location": "Boekel",
+    "showYear": 2019,
+    "showDates": [
+      "2019-03-09",
+      "2019-03-10"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Natasha Clark",
+    "showresults": {
+      "id": "bda47089-7df5-4e84-ac4e-5f54d37b0949",
+      "oldUrl": "/sites/default/files/alpacashow-uitslagen/Uitslagen-Alpacashow-Boekel-2019.pdf",
+      "name": "Uitslagen-Alpacashow-Boekel-2019.pdf",
+      "fileType": "application/pdf"
+    }
+  },
+  {
+    "id": "186aaf01-5dfa-4018-94df-a67bb9bf15c7",
+    "title": "Internationale Alpacashow Assen 2018",
+    "location": "Assen",
+    "showYear": 2018,
+    "showDates": [
+      "2018-04-15"
+    ],
+    "showName": "Internationale Alpacashow",
+    "judge": "Barbara Hetherington",
+    "showresults": {
+      "id": "919e7fed-cff7-480e-8a79-969eeca05a04",
+      "oldUrl": "/sites/default/files/alpacashow-uitslagen/Uitslag-Alpacashow-Assen%202018%20uitslagen.pdf",
+      "name": "Uitslag-Alpacashow-Assen 2018 uitslagen.pdf",
+      "fileType": "application/pdf"
+    }
+  },
+  {
+    "id": "95c05b91-e070-48d7-bf5b-4b32200ceed0",
+    "title": "Internationale Fleeceshow Frederiksoord 2021",
+    "location": "Frederiksoord",
+    "showYear": 2021,
+    "showDates": [
+      "2021-09-18",
+      "2021-09-19"
+    ],
+    "showName": "Internationale Fleeceshow",
+    "judge": "Tim Hey",
+    "showresults": {
+      "id": "cc950964-6e23-4f68-af7f-511687fde919",
+      "oldUrl": "/sites/default/files/alpacashow-uitslagen/2021-09-Fleeceshow-RESULTS.pdf",
+      "name": "2021-09-Fleeceshow-RESULTS.pdf",
+      "fileType": "application/pdf"
+    }
+  }
+];

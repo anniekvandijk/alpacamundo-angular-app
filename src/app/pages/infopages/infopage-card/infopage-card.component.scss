@@ -1,0 +1,52 @@
+mat-card {
+    margin: 0px 20px 20px 0px;
+}
+
+mat-card-header {
+    padding-top: 5px;
+    padding-left: 10px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+mat-card-header, mat-card-actions{
+    background-color: var(--background-color-light);
+}
+
+mat-card-title {
+    font-size: 1.2em;
+}
+
+mat-card-actions {
+    display: flex; 
+    justify-content: right; 
+    align-items: center;
+}
+
+mat-card-content {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.infopage-category {
+    color: var(--secondary-color);
+}
+
+.link-image {
+  width: 200px;
+  min-width: 200px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+img {
+   width: 200px;
+}
+
+a {
+    text-decoration: none;
+}

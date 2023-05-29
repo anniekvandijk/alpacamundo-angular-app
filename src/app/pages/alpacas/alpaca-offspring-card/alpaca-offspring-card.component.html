@@ -1,0 +1,55 @@
+<ng-template [ngIf]="alpaca" [ngIfElse]="loading">
+  <mat-card id="offspring-card" (click)="navigateToDetails(alpaca)" style="cursor: pointer;">
+    <mat-card-header>
+      <mat-card-title>
+        <h3>{{ alpaca.shortName }}</h3>
+      </mat-card-title>
+        <div class="alpaca-fullname">{{alpaca.longName}}</div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="card-body">
+        <table>
+          <tr>
+            <td class="label">Geboortejaar:</td>
+            <td>{{ alpaca.dateOfBirth | date: 'yyyy' }}</td>
+          </tr>
+          <tr>
+            <td class="label">Vader:</td>
+            <td>
+              <div *ngIf="alpaca.sire">{{ alpaca.sire.longName }}</div>
+              <div *ngIf="alpaca.sireName">{{ alpaca.sireName }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Moeder:</td>
+            <td>
+              <div *ngIf="alpaca.dam">{{ alpaca.dam.longName }}</div>
+              <div *ngIf="alpaca.damName">{{ alpaca.damName }}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-body">
+        <table>
+          <tr>
+            <td class="label">Soort:</td>
+            <td>{{ alpaca.breed }}</td>
+          </tr>
+          <tr>
+            <td class="label">Geslacht:</td>
+            <td>{{ alpaca.gender }}</td>
+          </tr>
+          <tr>
+            <td class="label">Kleur:</td>
+            <td>{{ alpaca.color }}</td>
+          </tr>
+        </table>
+      </div>
+      <img loading="lazy" src="{{alpacaMainImageUrl}}{{alpaca.mainImage.name}}" alt="{{alpaca.longName}}" class="alpaca-image"/>
+    </mat-card-content>
+  </mat-card>
+</ng-template>  
+
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

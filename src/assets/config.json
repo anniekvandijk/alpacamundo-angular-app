@@ -1,0 +1,19 @@
+{
+  "msal": {
+  "clientId": "some client id",
+  "tenantId": "some tenant id",
+  "audienceId": "some audience id",
+  "apiHostName": "localhost:5001",
+  "spaHostName": "localhost:4200"
+  },
+  "storage": {
+    "linkImagesUrl": "https://alpacamundostorage.blob.core.windows.net/links/",
+    "pageImagesUrl": "",
+    "infopageImagesUrl": "https://alpacamundostorage.blob.core.windows.net/infopages-images/",
+    "alpacaImagesUrl": "https://alpacamundostorage.blob.core.windows.net/alpaca-images/",
+    "alpacaMainImageUrl": "https://alpacamundostorage.blob.core.windows.net/alpaca-images/",
+    "alpacaPedigreeUrl": "https://alpacamundostorage.blob.core.windows.net/alpaca-pedigree/",
+    "alpacaFleeceResultsUrl": "https://alpacamundostorage.blob.core.windows.net/alpaca-fleeceresults/",
+    "showResultsUrl": "https://alpacamundostorage.blob.core.windows.net/alpacashow-results/"
+  }
+}

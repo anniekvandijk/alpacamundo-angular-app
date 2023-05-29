@@ -1,0 +1,54 @@
+mat-card {
+    margin: 0px 0px 20px 0px;
+}
+
+mat-card-header {
+    padding-top: 5px;
+    padding-left: 10px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+mat-card-header, mat-card-actions{
+    background-color: var(--background-color-light);
+}
+
+mat-card-title {
+    font-size: 1.2em;
+}
+
+mat-card-actions {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+
+mat-card-content {
+    display: flex; 
+    justify-content: left;
+    align-items: center; 
+}
+
+.icon-button {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.alpaca-fullname, .extra-info {
+    color: var(--secondary-color);
+}
+
+.extra-info {
+    padding-left: 10px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+img {
+    object-fit: cover;
+    width: 175px;
+    height: 175px;
+  }
