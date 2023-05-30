@@ -1,2 +1,4 @@
-<h2>Hello {{ user.name }} </h2>
+<div *ngIf="isUserLoggedIn$ | async">
+<h2 *ngIf="user">Hello {{ user.username }} </h2>
 <button mat-raised-button routerLink="/profile">Profile</button>
+</div>
