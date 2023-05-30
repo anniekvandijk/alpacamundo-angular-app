@@ -12,7 +12,7 @@ const GRAPH_ENDPOINT_PHOTO = 'https://graph.microsoft.com/v1.0/me/photo/$value';
 })
 export class UserService {
   isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
-  account: Subject<AccountInfo> = new Subject<AccountInfo>();
+  activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
   private readonly http = inject(HttpClient);
 
   getUserProfile() {

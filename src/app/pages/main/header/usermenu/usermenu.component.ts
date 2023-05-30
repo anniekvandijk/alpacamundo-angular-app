@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AccountInfo } from '@azure/msal-browser';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,19 +19,25 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./usermenu.component.scss']
 })
 export class UsermenuComponent {
-  private destroyRef = inject(DestroyRef);
   isUserLoggedIn$!: Observable<boolean>;
-  user!: AccountInfo;
+  activeAccount$!: Observable<AccountInfo>;
+  account!: AccountInfo;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.isUserLoggedIn$ = this.userService.isUserLoggedIn;
-    this.userService.account
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(account => {
-        this.user = account;
-    });
+    this.activeAccount$ = this.userService.activeAccount;
+    this.userService.activeAccount.pipe(
+      tap((activeAccount: AccountInfo) => { 
+        console.log('activeAccount', activeAccount);
+      }),
+    ).subscribe(
+      (activeAccount: AccountInfo) => {
+        this.account = activeAccount;
+      }
+    );
   }
+
 
 }

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Observable, tap } from 'rxjs';
 import { Profile } from 'src/app/models/profile';
 import { UserService } from 'src/app/services/user.service';
 
@@ -18,19 +19,19 @@ export class ProfileComponent {
   readonly destroyRef = inject(DestroyRef);
   private userService = inject(UserService);
   private domSanitizer = inject(DomSanitizer);
-  profile!: Profile;
+  profile$!: Observable<Profile>;
   profilePhoto!: SafeResourceUrl;
 
   ngOnInit(): void {
-  }
-
-  getProfile() {
-    return this.userService.getUserProfile()
+    this.profile$ = this.userService.getUserProfile();
+    this.userService.getUserProfile()
     .pipe(
-      takeUntilDestroyed(this.destroyRef)
-    )
-    .subscribe(profile => this.profile = profile);
-  } 
+      tap((profile: Profile) => { 
+        console.log('profile', profile);
+      } 
+    ))
+    .subscribe();
+  }
 
   getProfilePhoto() {
     return this.userService.getUserProfilePhoto()

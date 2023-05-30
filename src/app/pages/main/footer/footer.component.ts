@@ -43,11 +43,8 @@ export class FooterComponent {
       const activeAccount = this.authService.instance.getActiveAccount();
       if (activeAccount) {
         this.isUserLoggedIn = true;
-        this.userService.account.next(activeAccount);
         this.userService.isUserLoggedIn.next(this.isUserLoggedIn);
-        this.userService.isUserLoggedIn
-          .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe(value => { this.isUserLoggedIn = value; })
+        this.userService.activeAccount.next(activeAccount);
       }
     });
   }

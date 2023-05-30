@@ -1,6 +1,6 @@
 <h1>Profile</h1>
 
-<ng-template *ngIf="profile">
-<h2>Hello {{ profile.displayName }} </h2>
+<ng-container *ngIf="profile$ | async as profile">
+<h2>Hello {{ profile }} </h2>
 {{ profile.displayName }}
-</ng-template>
+</ng-container>
