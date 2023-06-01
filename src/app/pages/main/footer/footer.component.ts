@@ -19,8 +19,8 @@ import { UserService } from 'src/app/services/user.service';
   ],
   template: `
   <div class="footer-text">© Copyright 2023 Alpacamundo - 
-    <a *ngIf="!isUserLoggedIn" (click)="login()" title="Login" rel="login">login here</a>
-    <a *ngIf="isUserLoggedIn" (click)="logout()" title="Logout" rel="logout">logout</a>
+    <a *ngIf="!isUserLoggedIn" (click)="login()" title="Login" rel="login" style="cursor: pointer;">login here</a>
+    <a *ngIf="isUserLoggedIn" (click)="logout()" title="Logout" rel="logout" style="cursor: pointer;">logout</a>
   </div>
   `,
   
