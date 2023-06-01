@@ -69,7 +69,7 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "testing": {
+            "test": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -95,7 +95,7 @@
             "development": {
               "browserTarget": "alpacamundo-angular-app:build:development"
             },
-            "testing": {
+            "test": {
               "browserTarget": "alpacamundo-angular-app:build:testing"
             }
           },
