@@ -1,5 +1,12 @@
 {
   "name": "alpacamundo-angular-app",
+  "description": "Angular frontend for Alpacamundo website",
+  "author": "Anniek van Dijk, Animundo", 
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anniekvandijk/alpacamundo-angular-app"
+  },
+  "license": "MIT",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
