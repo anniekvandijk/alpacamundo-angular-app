@@ -1,6 +1,12 @@
-<h1>Profile</h1>
-
 <ng-container *ngIf="profile$ | async as profile">
-<h2>Hello {{ profile }} </h2>
-{{ profile.displayName }}
+    <h1>Profiel {{ profile.displayName }} </h1>
+
+    <p>Naam: {{ profile.displayName }}</p>
+    <p>Email: {{ profile?.mail }}</p>
+    <p>Telefoon: {{ profile?.mobilePhone }}</p>
+
+
+
+
+
 </ng-container>
