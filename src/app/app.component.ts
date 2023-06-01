@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from './pages/main/header/header.component';
-import { FooterComponent } from './pages/main/footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { UserService } from './services/user.service';
+import { AuthenticationResult, EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
+import { filter } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    RouterModule
-  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'Alpacamundo';
+  private destroyRef = inject(DestroyRef);
+
+  constructor(
+    private authService: MsalService,
+    private msalBroadcastService: MsalBroadcastService) { }
+
+  ngOnInit() {
+    this.msalBroadcastService.msalSubject$
+    .pipe(
+      filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS),
+      takeUntilDestroyed(this.destroyRef)
+    )
+    .subscribe((result: EventMessage) => {
+      const payload = result.payload as AuthenticationResult;
+      this.authService.instance.setActiveAccount(payload.account);
+    });
+  }
 }

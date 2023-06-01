@@ -1,11 +1,18 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './pages/other/not-found/not-found.component';
 import { HomeSidebarComponent } from './pages/home/home-sidebar/home-sidebar.component';
+import { MsalGuard } from '@azure/msal-angular';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const ROUTES: Routes = [
     {
       path: '',
       loadChildren: () => import('./pages/home/home.routes')
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
+      canActivate: [MsalGuard]
     },
     { 
       path: 'about',
