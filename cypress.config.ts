@@ -11,7 +11,7 @@ export default defineConfig({
     },
     setupNodeEvents(on, config) {
       const environmentName = config.env['environmentName'] || 'local'
-      const environmentFilename = `./${environmentName}.cypress.settings.json`
+      const environmentFilename = `./${environmentName}.settings.json`
       console.log('loading %s', environmentFilename)
       const settings = require(environmentFilename)
       if (settings.baseUrl) {
