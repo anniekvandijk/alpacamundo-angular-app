@@ -40,7 +40,7 @@ export function loginViaAAD(username: string, password: string) {
     cy.url().should('equal', 'http://localhost:4200/')
     cy.get('#welcome-div').should(
       'contain',
-      `Welcome ${Cypress.env('USERNAME')}!`
+      `${Cypress.env('AD_USERNAME')}!`
     )
   }
     

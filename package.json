@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:open:local": "cypress open --env environmentName=local",
-    "cypress:run:local": "cypress run --env environmentName=local",
+    "cypress:open:local": "cypress open --env environment=local",
+    "cypress:run:local": "cypress run --env environment=local",
     "test": "ng test"
   },
   "private": true,

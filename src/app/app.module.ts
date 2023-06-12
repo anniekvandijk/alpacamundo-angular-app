@@ -46,8 +46,7 @@ registerLocaleData(localeNl, 'nl-NL');
             authority: `https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75`
         },
         cache: {
-            //cacheLocation: 'localStorage',
-            cacheLocation: 'sessionStorage',
+            cacheLocation: 'localStorage',
             storeAuthStateInCookie: true
         }
         }
