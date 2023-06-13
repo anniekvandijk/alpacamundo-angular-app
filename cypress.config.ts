@@ -2,11 +2,11 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
+    baseUrl: "http://localhost:4300",
     experimentalModifyObstructiveThirdPartyCode: true,
     env: {
-      AD_USERNAME: '',
-      AD_PASSWORD: '',
-      BASE_URL: 'http://localhost:4200/'
+      AD_USERNAME: "",
+      AD_PASSWORD: "",
     },
     setupNodeEvents(on, config) {
       if (config.env['environment'] = 'local') {  
