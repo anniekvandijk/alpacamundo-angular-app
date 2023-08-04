@@ -2,28 +2,24 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
+    baseUrl: "http://localhost:4300",
     experimentalModifyObstructiveThirdPartyCode: true,
     env: {
-      environmentName: 'local',
-      AD_USERNAME: '',
-      AD_PASSWORD: '',
-      BASE_URL: 'http://localhost:4200/'
+      AD_USERNAME: "",
+      AD_PASSWORD: "",
     },
     setupNodeEvents(on, config) {
-      const environmentName = config.env['environmentName'] || 'local'
-      const environmentFilename = `./${environmentName}.settings.json`
-      console.log('loading %s', environmentFilename)
-      const settings = require(environmentFilename)
-      if (settings.baseUrl) {
-        config.baseUrl = settings.baseUrl
-      }
-      if (settings.env) {
-        config.env = {
-          ...config.env,
-          ...settings.env,
+      if (config.env['environment'] = 'local') {  
+        const settings = require(`./local.settings.json`)
+        if (settings.env) {
+          config.env = {
+            ...config.env,
+            ...settings.env,
+          }
         }
+        console.log('loaded local settings:')
+        console.log(config.env)
       }
-      console.log('loaded settings for environment %s', environmentName)
       return config
     },
   }

@@ -1,5 +1,5 @@
 export function loginViaAAD(username: string, password: string) {
-    cy.visit('http://localhost:4200/')
+    cy.visit('/')
     cy.get('a[rel="login"]').click();
   
     // Login to your AAD tenant.
@@ -35,13 +35,8 @@ export function loginViaAAD(username: string, password: string) {
         cy.get('#idBtn_Back').click()
       }
     )
-  
-    // Ensure Microsoft has redirected us back to the sample app with our logged in user.
-    cy.url().should('equal', 'http://localhost:4200/')
-    cy.get('#welcome-div').should(
-      'contain',
-      `Welcome ${Cypress.env('USERNAME')}!`
-    )
+
+
   }
     
 

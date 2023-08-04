@@ -42,12 +42,11 @@ registerLocaleData(localeNl, 'nl-NL');
         { 
         auth: {
             clientId: '13f9d129-96e3-4d32-9199-1786494d46ec',
-            redirectUri: 'http://localhost:4200',
+            redirectUri: 'http://localhost:4300',
             authority: `https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75`
         },
         cache: {
-            //cacheLocation: 'localStorage',
-            cacheLocation: 'sessionStorage',
+            cacheLocation: 'localStorage',
             storeAuthStateInCookie: true
         }
         }
