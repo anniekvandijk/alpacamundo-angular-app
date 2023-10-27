@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Local settings
+local.cypress.settings.json
+
 # Compiled output
 /dist
 /tmp
