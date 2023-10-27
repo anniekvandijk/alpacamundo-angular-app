@@ -10,7 +10,7 @@ export default defineConfig({
     },
     setupNodeEvents(on, config) {
       if (config.env['environment'] = 'local') {  
-        const settings = require(`./local.settings.json`)
+        const settings = require(`./local.cypress.settings.json`)
         if (settings.env) {
           config.env = {
             ...config.env,
