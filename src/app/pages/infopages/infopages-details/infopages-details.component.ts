@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Infopage } from 'src/app/models/infopage';
-import { InfopagesService } from 'src/app/services/infopages.service';
+import { InfopagesService } from 'src/app/services/api/infopages.service';
 import { CONFIGURATION } from 'src/app/utilities/configuration.token';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';

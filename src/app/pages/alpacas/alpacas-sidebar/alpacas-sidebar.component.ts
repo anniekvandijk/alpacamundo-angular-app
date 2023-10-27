@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/models/alpaca';
-import { AlpacaService } from 'src/app/services/alpaca.service';
+import { AlpacaService } from 'src/app/services/api/alpaca.service';
 import { RouterModule } from '@angular/router';
 
 @Component({

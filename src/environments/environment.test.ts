@@ -3,4 +3,5 @@ export const environment = {
     name: 'test',
     loginRedirectUri: 'https://tst.alpacamundo.eu',
     postLogoutRedirectUrl: 'http://tst.alpacamundo.eu',
+    apiBaseUrl: 'https://localhost:7248',
   };

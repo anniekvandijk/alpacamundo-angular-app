@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/models/alpaca';
 import { Configuration } from 'src/app/models/configuration';
 import { CONFIGURATION } from 'src/app/utilities/configuration.token';
-import { AlpacaService } from 'src/app/services/alpaca.service';
+import { AlpacaService } from 'src/app/services/api/alpaca.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

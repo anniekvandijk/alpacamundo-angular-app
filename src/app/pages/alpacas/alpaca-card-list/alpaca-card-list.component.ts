@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { Alpaca } from '../../../models/alpaca';
-import { AlpacaService } from 'src/app/services/alpaca.service';
+import { AlpacaService } from 'src/app/services/api/alpaca.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AlpacaCardComponent } from '../alpaca-card/alpaca-card.component';

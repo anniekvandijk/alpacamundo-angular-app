@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Link } from 'src/app/models/link';
-import { LinkService } from 'src/app/services/link.service';
+import { LinkService } from 'src/app/services/api/link.service';
 import { Configuration } from 'src/app/models/configuration';
 import { CONFIGURATION } from 'src/app/utilities/configuration.token';
 import { Observable, map, tap } from 'rxjs';

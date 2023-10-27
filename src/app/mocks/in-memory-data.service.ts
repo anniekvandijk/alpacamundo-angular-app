@@ -20,6 +20,13 @@ export class InMemoryDataService implements InMemoryDbService {
     const fleeces = FLEECES;
     const infopages = INFOPAGES;
     const showresults = SHOWRESULTS;
-    return {links, alpacas, alpacashows, fleeces, infopages, showresults};
+    return {
+      links, 
+      alpacas, 
+      alpacashows, 
+      fleeces, 
+      infopages, 
+      showresults
+    };
   }
 }

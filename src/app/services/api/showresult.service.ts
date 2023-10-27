@@ -1,12 +1,13 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
 import { Observable, filter, map, take, tap } from 'rxjs';
-import { HttpService } from './http.service';
-import { Showresult } from '../models/showresult';
+import { HttpService } from '../http.service';
+import { Showresult } from '../../models/showresult';
 import { AlpacashowService } from './alpacashow.service';
-import { Alpacashow } from '../models/alpacashow';
+import { Alpacashow } from '../../models/alpacashow';
 import { AlpacaService } from './alpaca.service';
-import { Alpaca } from '../models/alpaca';
+import { Alpaca } from '../../models/alpaca';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ShowresultService {
     private alpacaService: AlpacaService
     ) { }
 
-  private url = 'api/showresults';
+  private url = `${environment.apiBaseUrl}/api/showresults`;
 
   getShowresults(): Observable<Showresult[]> {
     return this.http.get<Showresult[]>(this.url);

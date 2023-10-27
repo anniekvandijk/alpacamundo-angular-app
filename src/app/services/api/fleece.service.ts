@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, filter, map } from 'rxjs';
-import { HttpService } from './http.service';
-import { Fleece } from '../models/fleece';
+import { HttpService } from '../http.service';
+import { Fleece } from '../../models/fleece';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,7 @@ export class FleeceService {
   constructor(
     private http: HttpService) { }
 
-  private url = 'api/fleeces';
-
+  private url = `${environment.apiBaseUrl}/api/fleeces`;
   getFleeces(): Observable<Fleece[]> {
     return this.http.get<Fleece[]>(this.url);
   }
