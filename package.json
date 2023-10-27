@@ -1,7 +1,7 @@
 {
   "name": "alpacamundo-angular-app",
   "description": "Angular frontend for Alpacamundo website",
-  "author": "Anniek van Dijk, Animundo", 
+  "author": "Anniek van Dijk, Animundo",
   "repository": {
     "type": "git",
     "url": "https://github.com/anniekvandijk/alpacamundo-angular-app"
@@ -12,6 +12,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:test": "ng build --configuration test",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
@@ -34,6 +36,7 @@
     "@azure/msal-angular": "^3.0.0-alpha.2",
     "@azure/msal-browser": "^3.0.0-alpha.2",
     "@ng-bootstrap/ng-bootstrap": "^15.0.0",
+    "@types/node": "^20.8.9",
     "angular-in-memory-web-api": "^0.16.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

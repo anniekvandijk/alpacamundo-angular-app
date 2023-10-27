@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserService } from 'src/app/services/user.service';
+const project = require('../../../../../package.json');
 
 @Component({
   selector: 'footer',
@@ -18,7 +19,7 @@ import { UserService } from 'src/app/services/user.service';
     RouterModule
   ],
   template: `
-  <div class="footer-text">© Copyright 2023 Alpacamundo - 
+  <div class="footer-text">© Copyright 2023 Alpacamundo - v{{getProjectVersion()}} -  
     <a *ngIf="!isUserLoggedIn" (click)="login()" title="Login" rel="login" style="cursor: pointer;">login here</a>
     <a *ngIf="isUserLoggedIn" (click)="logout()" title="Logout" rel="logout" style="cursor: pointer;">logout</a>
   </div>
@@ -47,6 +48,10 @@ export class FooterComponent {
         this.userService.activeAccount.next(activeAccount);
       }
     });
+  }
+
+  getProjectVersion() {
+    return project.version;
   }
 
   login() {
