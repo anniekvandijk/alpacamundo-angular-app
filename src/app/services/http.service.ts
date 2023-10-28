@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { MessageService } from './message.service';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { ErrorService } from './error.service';
+import { HttpStatusService } from './http-status.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,45 +11,63 @@ import { ErrorService } from './error.service';
 export class HttpService {
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
+    private status: HttpStatusService,
     private errorService: ErrorService
   ) {}
 
-  get<T>(url: string, headers?: HttpHeaders): Observable<T> {
+  public get<T>(url: string, headers?: HttpHeaders): Observable<T> {
+    this.status.startRequest(url);
     return this.http.get<T>(url, { headers }).pipe(
-      tap(_ => this.messageService.add(``)),
       catchError((error) => {
-        console.error('Error in GET request:', error);
-        this.errorService.handleError<T>('get')
-        return throwError(() => new Error(error))
-      })
+        this.errorService.handleError('GET request', error);
+        return of([] as T);	
+      }),
+      finalize(() => this.status.endRequest(url))
     );
   }
 
-  post<T>(url: string, data: any, headers?: HttpHeaders): Observable<T> {
+  public getbyId<T>(url: string, id: string, headers?: HttpHeaders): Observable<T> {
+    const fullUrl = url + '/' + id;
+    this.status.startRequest(url);
+    return this.http.get<T>(fullUrl, { headers }).pipe(
+      catchError((error) => {
+        this.errorService.handleError('GET request', error);
+        return of({} as T);	
+      }),
+      finalize(() => this.status.endRequest(fullUrl))
+    );
+  }
+
+  public post<T>(url: string, data: any, headers?: HttpHeaders): Observable<T> {
+    this.status.startRequest(url);
     return this.http.post<T>(url, data, { headers }).pipe(
       catchError((error) => {
-        console.error('Error in POST request:', error);
-        return throwError(() => new Error(error))
-      })
+        this.errorService.handleError('POST request', error);
+        return of({} as T);	
+      }),
+      finalize(() => this.status.endRequest(url))
     );
   }
 
-  put<T>(url: string, data: any, headers?: HttpHeaders): Observable<T> {
+  public put<T>(url: string, data: any, headers?: HttpHeaders): Observable<T> {
+    this.status.startRequest(url);
     return this.http.put<T>(url, data, { headers }).pipe(
       catchError((error) => {
-        console.error('Error in PUT request:', error);
-        return throwError(() => new Error(error))
-      })
+        this.errorService.handleError('PUT request', error);
+        return of({} as T);	
+      }),
+      finalize(() => this.status.endRequest(url))
     );
   }
 
-  delete<T>(url: string, headers?: HttpHeaders): Observable<T> {
+  public delete<T>(url: string, headers?: HttpHeaders): Observable<T> {
+    this.status.startRequest(url);
     return this.http.delete<T>(url, { headers }).pipe(
       catchError((error) => {
-        console.error('Error in DELETE request:', error);
-        return throwError(() => new Error(error))
-      })
+        this.errorService.handleError('DELETE request', error);
+        return of({} as T);	
+      }),
+      finalize(() => this.status.endRequest(url))
     );
   }
 }

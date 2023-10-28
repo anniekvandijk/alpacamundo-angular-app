@@ -19,6 +19,6 @@ export class AlpacaService {
   }
 
   getAlpaca(id : string): Observable<Alpaca> {
-    return this.http.get<Alpaca>(this.url.concat('/', id));
+    return this.http.getbyId<Alpaca>(this.url, id);
   } 
 }

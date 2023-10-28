@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpStatusService } from 'src/app/services/http-status.service';
 
 
 @Component({
@@ -25,10 +26,18 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./links-main.component.scss']
 })
 export class LinksMainComponent {
-  private readonly linkService = inject(LinkService);
   private readonly configuration: Configuration = inject(CONFIGURATION);
+  public isLoading!: boolean;
   groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   linkImagesUrl!: string;
+
+  constructor(private linkService: LinkService, 
+    private httpStatus: HttpStatusService) { 
+    this.httpStatus.loading.subscribe((status) => {
+      console.log('status', status);
+      this.isLoading = status.loading;
+    });
+  }
 
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
