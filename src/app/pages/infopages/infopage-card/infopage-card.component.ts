@@ -22,7 +22,7 @@ export class InfopageCardComponent {
   private readonly navigationService = inject(NavigationService);
   @Input() infopage!: Infopage;
 
-  navigateToDetails(infopage: Infopage) {
+  public navigateToDetails(infopage: Infopage) {
     this.navigationService.goToInfoDetailPage(infopage);
   }
 }

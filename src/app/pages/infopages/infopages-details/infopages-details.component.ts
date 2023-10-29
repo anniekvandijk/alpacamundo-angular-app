@@ -23,8 +23,12 @@ export class InfopagesDetailsComponent {
   private readonly infopagesService = inject(InfopagesService);
   private readonly route = inject(ActivatedRoute);
   private readonly sanitizer = inject(DomSanitizer);
-  infopage$!: Observable<Infopage>;
-  infopageImagesUrl! : string;
+  public infopage$!: Observable<Infopage>;
+  public infopageImagesUrl! : string;
+
+  constructor(
+    
+  ) { }
 
   ngOnInit(): void {
     this.infopage$ = this.route.params.pipe(
@@ -36,7 +40,7 @@ export class InfopagesDetailsComponent {
     this.infopageImagesUrl = this.configuration.storage.infopageImagesUrl;
     }
 
-    getSafeHtml(html: string) {
+    public getSafeHtml(html: string) {
       return this.sanitizer.bypassSecurityTrustHtml(html);
     }
 }
