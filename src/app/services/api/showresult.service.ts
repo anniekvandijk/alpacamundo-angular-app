@@ -23,11 +23,11 @@ export class ShowresultService {
 
   private url = `${environment.apiBaseUrl}/api/showresults`;
 
-  getShowresults(): Observable<Showresult[]> {
+  public getShowresults(): Observable<Showresult[]> {
     return this.http.get<Showresult[]>(this.url);
   }
 
-  getShowresultsByAlpacaId(alpacaId: string): Observable<Showresult[]> {
+  public getShowresultsByAlpacaId(alpacaId: string): Observable<Showresult[]> {
     return this.getShowresults().pipe(
       takeUntilDestroyed(this.destroyRef),
       map(f => f.filter(f => f.alpacaId === alpacaId)),
@@ -45,7 +45,7 @@ export class ShowresultService {
     );
   }
 
-  getShowresultsByAlpacashowId(showId: string): Observable<Showresult[]> {
+  public getShowresultsByAlpacashowId(showId: string): Observable<Showresult[]> {
     return this.getShowresults().pipe(
       takeUntilDestroyed(this.destroyRef),
       map(f => f.filter(f => f.alpacashowId === showId)),

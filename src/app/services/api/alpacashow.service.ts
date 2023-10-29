@@ -13,11 +13,11 @@ export class AlpacashowService {
     private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/alpacashows`;
-  getAlpacashows(): Observable<Alpacashow[]> {
+  public getAlpacashows(): Observable<Alpacashow[]> {
     return this.http.get<Alpacashow[]>(this.url);
   }
 
-  getAlpacashowById(id: string): Observable<Alpacashow> {
+  public getAlpacashowById(id: string): Observable<Alpacashow> {
     return this.getAlpacashows().pipe(
       map(f => f.find(f => f.id === id)),
       filter(f => !!f),

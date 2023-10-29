@@ -17,7 +17,7 @@ export class FleeceService {
     return this.http.get<Fleece[]>(this.url);
   }
 
-  getFleecesByAlpacaId(alpacaId: string): Observable<Fleece[]> {
+  public getFleecesByAlpacaId(alpacaId: string): Observable<Fleece[]> {
     return this.getFleeces().pipe(
       map(f => f.filter(f => f.alpacaId === alpacaId))
     );

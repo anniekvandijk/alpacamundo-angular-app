@@ -11,15 +11,17 @@ const GRAPH_ENDPOINT_PHOTO = 'https://graph.microsoft.com/v1.0/me/photo/$value';
   providedIn: 'root'
 })
 export class UserService {
-  isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
-  activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
-  private readonly http = inject(HttpClient);
+  public isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
+  public activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
 
-  getUserProfile() {
+  constructor(private http: HttpClient) { }
+
+
+  public getUserProfile() {
     return this.http.get<Profile>(GRAPH_ENDPOINT);
   }
 
-  getUserProfilePhoto() {
+  public getUserProfilePhoto() {
     return this.http.get(GRAPH_ENDPOINT_PHOTO, { responseType: 'blob' });
   }
 

@@ -14,14 +14,14 @@ import { SHOWRESULTS } from './showresults';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-   // const links = LINKS;
+   const links = LINKS;
     const alpacas = ALPACAS;
     const alpacashows = ALPACASHOWS;
     const fleeces = FLEECES;
     const infopages = INFOPAGES;
     const showresults = SHOWRESULTS;
     return {
-   //   links, 
+      links, 
       alpacas, 
       alpacashows, 
       fleeces, 

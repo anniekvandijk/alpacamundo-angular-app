@@ -13,11 +13,11 @@ export class InfopagesService {
 
   private url = `${environment.apiBaseUrl}/api/infopages`;
 
-  getInfopages(): Observable<Infopage[]> {
+  public getInfopages(): Observable<Infopage[]> {
     return this.http.get<Infopage[]>(this.url);
   }
 
-  getInfopage(id : string): Observable<Infopage> {
+  public getInfopage(id : string): Observable<Infopage> {
     return this.http.get<Infopage>(this.url.concat('/', id));
   } 
 }

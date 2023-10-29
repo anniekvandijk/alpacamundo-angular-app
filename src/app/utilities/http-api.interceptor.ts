@@ -14,7 +14,7 @@ import { ErrorService } from '../services/error.service';
 export class HttpApiInterceptor implements HttpInterceptor {
   constructor(private status: HttpStatusService, private errorService: ErrorService) {}
 
-  intercept(
+  public intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {

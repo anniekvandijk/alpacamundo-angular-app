@@ -7,11 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class HttpStatusService {  
   public loading = new BehaviorSubject<{ loading: boolean, url: string }>({ loading: false, url: '' });
 
-  startRequest(url: string) {
+  public startRequest(url: string) {
     this.loading.next({ loading: true, url });
   }
 
-  endRequest(url: string) {
+  public endRequest(url: string) {
     this.loading.next({ loading: false, url });
   }
 }

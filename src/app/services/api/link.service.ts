@@ -13,7 +13,7 @@ export class LinkService {
 
   private url = `${environment.apiBaseUrl}/api/links`;
 
-  getLinks(): Observable<Link[]> {
+  public getLinks(): Observable<Link[]> {
     return this.http.get<Link[]>(this.url);
   }
 }

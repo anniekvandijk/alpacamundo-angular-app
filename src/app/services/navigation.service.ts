@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Alpaca } from '../models/alpaca';
 import { Infopage } from '../models/infopage';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +12,11 @@ export class NavigationService {
     private router: Router 
     ) { }
 
-  goToAlpacaDetailPage(alpaca: Alpaca): void {
+  public goToAlpacaDetailPage(alpaca: Alpaca): void {
     this.router.navigate(['/alpacas/detail', alpaca.id]);
   }
 
-  goToInfoDetailPage(infopage: Infopage): void {
+  public goToInfoDetailPage(infopage: Infopage): void {
     this.router.navigate(['/info/detail', infopage.id]);
   }
 }

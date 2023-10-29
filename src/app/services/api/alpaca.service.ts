@@ -14,11 +14,11 @@ export class AlpacaService {
 
   private url = `${environment.apiBaseUrl}/api/alpacas`;
 
-  getAlpacas(): Observable<Alpaca[]> {
+  public getAlpacas(): Observable<Alpaca[]> {
     return this.http.get<Alpaca[]>(this.url);
   }
 
-  getAlpaca(id : string): Observable<Alpaca> {
+  public getAlpaca(id : string): Observable<Alpaca> {
     return this.http.get<Alpaca>(this.url.concat('/', id));
   } 
 }

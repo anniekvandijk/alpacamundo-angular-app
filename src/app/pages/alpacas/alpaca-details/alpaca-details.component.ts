@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { AlpacaShowresultsComponent } from '../alpaca-showresults/alpaca-showresults.component';
 import { AlpacaFleeceresultsComponent } from '../alpaca-fleeceresults/alpaca-fleeceresults.component';
 import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-offspring-card.component';
+import { HttpStatusService } from 'src/app/services/http-status.service';
 
 @Component({
   selector: 'app-alpaca-details',
@@ -31,13 +32,14 @@ import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-of
   templateUrl: './alpaca-details.component.html',
   styleUrls: ['./alpaca-details.component.scss']
 })
-export class AlpacaDetailsComponent implements OnInit {
-  readonly destroyRef = inject(DestroyRef);
-  alpaca!: Alpaca;
-  alpacaMainImageUrl!: string;
-  alpacaImagesUrl! : string;
-  alpacaPedigreeUrl! : string;
-  alpacaFleeceResultsUrl! : string;
+export class AlpacaDetailsComponent {
+  private readonly destroyRef = inject(DestroyRef);
+  public isLoading: boolean | undefined;
+  public alpaca!: Alpaca;
+  public alpacaMainImageUrl!: string;
+  public alpacaImagesUrl! : string;
+  public alpacaPedigreeUrl! : string;
+  public alpacaFleeceResultsUrl! : string;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,7 @@ export class AlpacaDetailsComponent implements OnInit {
     private fleeceService: FleeceService,
     private navigationService: NavigationService,
     private sanitizer: DomSanitizer,
+    private httpStatus: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
     
     ) { }
@@ -58,7 +61,15 @@ export class AlpacaDetailsComponent implements OnInit {
     this.alpacaFleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
   }
 
-  getAlpaca(): void {
+  ngOnViewInit(): void {
+    this.httpStatus.loading
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((status) => {
+      this.isLoading = status.loading;
+    });
+  }
+
+  private getAlpaca(): void {
   // Get the alpaca id from the route parameters
   this.route.params
   .pipe(
@@ -141,15 +152,15 @@ export class AlpacaDetailsComponent implements OnInit {
   } 
 
 
-  getSafeHtml(html: string) {
+  public getSafeHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  navigateToPedegree(name: string): void {
+  public navigateToPedegree(name: string): void {
     window.open(this.alpacaPedigreeUrl+name, '_blank');
   }
 
-  navigateToDetails(alpaca: Alpaca) {
+  public navigateToDetails(alpaca: Alpaca) {
     this.navigationService.goToAlpacaDetailPage(alpaca);
   }
 }
