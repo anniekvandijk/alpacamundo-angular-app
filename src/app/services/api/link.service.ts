@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Link } from '../../models/link';
-import { HttpService } from '../http.service';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LinkService {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/links`;
 

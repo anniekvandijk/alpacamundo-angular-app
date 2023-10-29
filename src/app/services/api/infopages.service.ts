@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '../http.service';
+import { HttpClient } from '@angular/common/http';
 import { Infopage } from '../../models/infopage';
 import { environment } from 'src/environments/environment';
 
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class InfopagesService {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/infopages`;
 

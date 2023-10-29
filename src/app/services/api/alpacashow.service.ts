@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, filter, map, tap } from 'rxjs';
-import { HttpService } from '../http.service';
+import { Observable, filter, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Alpacashow } from '../../models/alpacashow';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AlpacashowService {
 
   constructor(
-    private http: HttpService) { }
+    private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/alpacashows`;
   getAlpacashows(): Observable<Alpacashow[]> {

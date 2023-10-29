@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, filter, map } from 'rxjs';
-import { HttpService } from '../http.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Alpaca } from '../../models/alpaca';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AlpacaService {
 
   constructor(
-    private http: HttpService) { }
+    private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/alpacas`;
 
@@ -19,6 +19,6 @@ export class AlpacaService {
   }
 
   getAlpaca(id : string): Observable<Alpaca> {
-    return this.http.getbyId<Alpaca>(this.url, id);
+    return this.http.get<Alpaca>(this.url.concat('/', id));
   } 
 }

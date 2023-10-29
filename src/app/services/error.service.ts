@@ -17,16 +17,24 @@ export class ErrorService {
   * @param operation - name of the operation that failed
   * @param result - optional value to return as the observable result
   */
-    handleError(operation: string, error: any) {
+    public handleError(operation: string, error: any) {
    
+      this.log(operation, error);
+      this.addMessage(operation, error);
+    };
+
+    private log(operation: string, error: any) {
+      console.log(operation, error);
+    }
+
+    private addMessage(operation: string, error: any) {
+
       const message: Message = {
         operation: operation,
         technicalMessage: error.message,
         userMessage: 'An error occurred. Please try again later.',
         messageType: MessageType.Error
       };
-
       this.messageService.add(message);
-    };
   }
-
+}

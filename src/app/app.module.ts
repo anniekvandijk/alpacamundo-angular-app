@@ -7,18 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './mocks/in-memory-data.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from './pages/main/header/header.component';
-import { MenuComponent } from './pages/main/header/menu/menu.component';
 import { FooterComponent } from './pages/main/footer/footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { ROUTES } from './app.routes';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
-import { UserService } from './services/user.service';
-import { UsermenuComponent } from './pages/main/header/usermenu/usermenu.component';
 import { environment } from 'src/environments/environment';
+import { HttpApiInterceptor } from './utilities/http-api.interceptor';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 
@@ -29,6 +27,7 @@ registerLocaleData(localeNl, 'nl-NL');
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     RouterModule.forRoot(ROUTES, {scrollPositionRestoration: 'enabled'}),
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -71,6 +70,11 @@ registerLocaleData(localeNl, 'nl-NL');
         provide: HTTP_INTERCEPTORS,
         useClass: MsalInterceptor,
         multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpApiInterceptor,
+      multi: true
     },
     MsalGuard,
     {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, filter, map } from 'rxjs';
-import { HttpService } from '../http.service';
+import { HttpClient } from '@angular/common/http';
 import { Fleece } from '../../models/fleece';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class FleeceService {
 
   constructor(
-    private http: HttpService) { }
+    private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/fleeces`;
   getFleeces(): Observable<Fleece[]> {

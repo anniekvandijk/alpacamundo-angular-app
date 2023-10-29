@@ -1,13 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { Link } from 'src/app/models/link';
 import { LinkService } from 'src/app/services/api/link.service';
 import { Configuration } from 'src/app/models/configuration';
 import { CONFIGURATION } from 'src/app/utilities/configuration.token';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpStatusService } from 'src/app/services/http-status.service';
 
@@ -26,18 +26,14 @@ import { HttpStatusService } from 'src/app/services/http-status.service';
   styleUrls: ['./links-main.component.scss']
 })
 export class LinksMainComponent {
-  private readonly configuration: Configuration = inject(CONFIGURATION);
-  public isLoading!: boolean;
-  groupedLinks$!: Observable<{ [key: string]: Link[] }>;
-  linkImagesUrl!: string;
+  public isLoading: boolean | undefined;
+  public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
+  public linkImagesUrl!: string;
 
-  constructor(private linkService: LinkService, 
-    private httpStatus: HttpStatusService) { 
-    this.httpStatus.loading.subscribe((status) => {
-      console.log('status', status);
-      this.isLoading = status.loading;
-    });
-  }
+  constructor(
+    @Inject(CONFIGURATION) private readonly configuration: Configuration,
+    private linkService: LinkService, 
+    private httpStatus: HttpStatusService) {}
 
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
@@ -46,7 +42,13 @@ export class LinksMainComponent {
     );
   }
 
-  groupLinksByType(links: Link[]): { [key: string]: Link[] } {
+  ngOnViewInit(): void {
+    this.httpStatus.loading.subscribe((status) => {
+      this.isLoading = status.loading;
+    });
+  }
+
+  public groupLinksByType(links: Link[]): { [key: string]: Link[] } {
     return links.reduce<{ [key: string]: Link[] }>((acc, link) => {
       if (!acc[link.linkType]) {
         acc[link.linkType] = [];
@@ -56,8 +58,7 @@ export class LinksMainComponent {
     }, {});
   }
 
-  navigateTo(link: Link): void {
+  public navigateTo(link: Link): void {
     window.open(link.url, '_blank');
   }
-
 }
