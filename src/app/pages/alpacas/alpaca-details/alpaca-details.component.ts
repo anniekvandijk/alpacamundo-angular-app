@@ -34,7 +34,6 @@ import { HttpStatusService } from 'src/app/services/http-status.service';
 })
 export class AlpacaDetailsComponent {
   private readonly destroyRef = inject(DestroyRef);
-  public isLoading: boolean | undefined;
   public alpaca!: Alpaca;
   public alpacaMainImageUrl!: string;
   public alpacaImagesUrl! : string;
@@ -48,7 +47,7 @@ export class AlpacaDetailsComponent {
     private fleeceService: FleeceService,
     private navigationService: NavigationService,
     private sanitizer: DomSanitizer,
-    private httpStatus: HttpStatusService,
+    public httpStatus: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
     
     ) { }
@@ -59,14 +58,6 @@ export class AlpacaDetailsComponent {
     this.alpacaImagesUrl = this.configuration.storage.alpacaImagesUrl;
     this.alpacaPedigreeUrl = this.configuration.storage.alpacaPedigreeUrl;
     this.alpacaFleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
-  }
-
-  ngOnViewInit(): void {
-    this.httpStatus.loading
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((status) => {
-      this.isLoading = status.loading;
-    });
   }
 
   private getAlpaca(): void {
@@ -161,6 +152,6 @@ export class AlpacaDetailsComponent {
   }
 
   public navigateToDetails(alpaca: Alpaca) {
-    this.navigationService.goToAlpacaDetailPage(alpaca);
+    this.navigationService.goToAlpacaDetail(alpaca);
   }
 }

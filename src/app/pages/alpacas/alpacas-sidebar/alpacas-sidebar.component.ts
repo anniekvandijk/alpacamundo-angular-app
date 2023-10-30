@@ -4,6 +4,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/models/alpaca';
 import { AlpacaService } from 'src/app/services/api/alpaca.service';
 import { RouterModule } from '@angular/router';
+import { HttpStatusService } from 'src/app/services/http-status.service';
+import { SpinnerComponent } from 'src/app/components/spinner.component';
 
 @Component({
   selector: 'app-alpacas-sidebar',
@@ -11,16 +13,20 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    SpinnerComponent
   ],
   templateUrl: './alpacas-sidebar.component.html',
   styleUrls: ['./alpacas-sidebar.component.scss']
 })
 export class AlpacasSidebarComponent {
   readonly destroyRef = inject(DestroyRef);
-  alpacas : Alpaca[] = [];
-  groupedAlpacas: { [key: string]: Alpaca[] } = {};
+  public alpacas : Alpaca[] = [];
+  public groupedAlpacas: { [key: string]: Alpaca[] } = {};
 
-  constructor(private alpacaService: AlpacaService) { }
+  constructor(
+    private alpacaService: AlpacaService,
+    public httpStatus: HttpStatusService,
+    ) { }
 
   ngOnInit(): void {
     this.alpacaService.getAlpacas()
@@ -34,7 +40,7 @@ export class AlpacasSidebarComponent {
     });
   }
 
-  groupAlpacasByCategory(alpacas: Alpaca[]): { [key: string]: Alpaca[] } {
+  private groupAlpacasByCategory(alpacas: Alpaca[]): { [key: string]: Alpaca[] } {
     return alpacas.reduce<{ [key: string]: Alpaca[] }>((acc, alpaca) => {
       if (!acc[alpaca.category]) {
         acc[alpaca.category] = [];

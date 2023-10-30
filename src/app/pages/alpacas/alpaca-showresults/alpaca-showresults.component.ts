@@ -18,15 +18,15 @@ import { Showresult } from 'src/app/models/showresult';
 })
 export class AlpacaShowresultsComponent {
   @Input() alpaca!: Alpaca;
-  showresults: Showresult[] = [];
+  public showresults: Showresult[] = [];
 
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'showYear',
     'result',
     'showname',
   ];
 
-  dataSource = new MatTableDataSource<Showresult>();
+  public dataSource = new MatTableDataSource<Showresult>();
 
   ngOnInit(): void {
     this.setShowResults();
@@ -36,7 +36,7 @@ export class AlpacaShowresultsComponent {
     this.setShowResults();
   }
 
-  setShowResults(): void {
+  private setShowResults(): void {
     if (this.alpaca && this.alpaca.showresults) {
       this.showresults = this.alpaca.showresults;
       this.showresults.sort((a, b) => {

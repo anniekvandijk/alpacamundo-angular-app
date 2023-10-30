@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AlpacaOffspringCardComponent {
   @Input() alpaca!: Alpaca;
-  alpacaMainImageUrl!: string;
+  public alpacaMainImageUrl!: string;
 
   constructor(
     private navigationService: NavigationService,
@@ -32,7 +32,7 @@ export class AlpacaOffspringCardComponent {
     this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
   }
 
-  navigateToDetails(alpaca: Alpaca) {
-    this.navigationService.goToAlpacaDetailPage(alpaca);
+  public navigateToDetails(alpaca: Alpaca) {
+    this.navigationService.goToAlpacaDetail(alpaca);
   }
 }

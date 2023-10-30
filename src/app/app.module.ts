@@ -16,7 +16,7 @@ import { ROUTES } from './app.routes';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { environment } from 'src/environments/environment';
-import { HttpApiInterceptor } from './utilities/http-api.interceptor';
+import { HttpApiInterceptor } from './services/interceptors/http-api.interceptor';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 

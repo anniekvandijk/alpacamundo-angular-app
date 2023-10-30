@@ -1,9 +1,10 @@
-<ng-container *ngIf="infopage$ | async as infopage; else loading">
-    <h1>{{infopage.title}}</h1>
-    <div [innerHTML]="getSafeHtml(infopage.body)"></div>
-
-</ng-container>
-
-<ng-template #loading>
-    <app-spinner></app-spinner>
+<ng-template #content>
+    <ng-container *ngIf="infopage$ | async as infopage">
+        <h1>{{infopage.title}}</h1>
+        <div [innerHTML]="getSafeHtml(infopage.body)"></div>
+    </ng-container>
 </ng-template>
+
+<ng-container *ngIf="httpStatus.isLoading | async; else content">
+    <app-spinner></app-spinner>
+</ng-container>

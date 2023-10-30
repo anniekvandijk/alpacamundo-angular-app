@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Infopage } from 'src/app/models/infopage';
+import { HttpStatusService } from 'src/app/services/http-status.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
@@ -19,10 +20,13 @@ import { NavigationService } from 'src/app/services/navigation.service';
   styleUrls: ['./infopage-card.component.scss']
 })
 export class InfopageCardComponent {
-  private readonly navigationService = inject(NavigationService);
   @Input() infopage!: Infopage;
 
+  constructor(
+    private navigationService: NavigationService
+  ) { }
+
   public navigateToDetails(infopage: Infopage) {
-    this.navigationService.goToInfoDetailPage(infopage);
+    this.navigationService.goToInfoPageDetails(infopage);
   }
 }

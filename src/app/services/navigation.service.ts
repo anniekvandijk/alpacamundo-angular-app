@@ -12,11 +12,11 @@ export class NavigationService {
     private router: Router 
     ) { }
 
-  public goToAlpacaDetailPage(alpaca: Alpaca): void {
+  public goToAlpacaDetail(alpaca: Alpaca): void {
     this.router.navigate(['/alpacas/detail', alpaca.id]);
   }
 
-  public goToInfoDetailPage(infopage: Infopage): void {
+  public goToInfoPageDetails(infopage: Infopage): void {
     this.router.navigate(['/info/detail', infopage.id]);
   }
 }

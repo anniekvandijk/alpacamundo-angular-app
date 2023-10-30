@@ -1,14 +1,19 @@
 <h2>Onze alpaca's</h2>
-<div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
-    <h3>{{ alpacaCat.key }}</h3>
-    <ul>
-    <div class="sidebar-alpaca-link" *ngFor="let alpaca of alpacaCat.value">
-        <li>
-            <a [routerLink]="['/alpacas/detail/', alpaca.id]">{{alpaca.shortName}}
-            <span *ngIf="alpaca.status === 'Te koop'">(Te koop)</span>
-            </a>
-    </li>
+<ng-template #content>
+    <div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
+        <h3>{{ alpacaCat.key }}</h3>
+        <ul>
+        <div class="sidebar-alpaca-link" *ngFor="let alpaca of alpacaCat.value">
+            <li>
+                <a [routerLink]="['/alpacas/detail/', alpaca.id]">{{alpaca.shortName}}
+                <span *ngIf="alpaca.status === 'Te koop'">(Te koop)</span>
+                </a>
+        </li>
+        </div>
+        </ul>
     </div>
-    </ul>
-</div>
+</ng-template>
 
+<ng-container *ngIf="httpStatus.isLoading | async; else content">
+    <app-spinner></app-spinner>
+</ng-container>

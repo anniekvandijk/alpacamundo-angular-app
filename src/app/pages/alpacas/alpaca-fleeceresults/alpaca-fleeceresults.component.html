@@ -1,4 +1,4 @@
-<ng-template [ngIf]="dataSource" [ngIfElse]="loading">
+<ng-template #content>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="year">
@@ -53,6 +53,6 @@
 </table>
 </ng-template>
 
-<ng-template #loading>
+<ng-container *ngIf="!dataSource; else content">
     <app-spinner></app-spinner>
-  </ng-template>
+  </ng-container>     

@@ -1,17 +1,19 @@
-<ng-container *ngIf="groupedInfopages$ | async as groupedInfopages; else loading">
-    <h2>Over alpaca's</h2>
-    <div *ngFor="let infoCat of (groupedInfopages | keyvalue)">
-        <h3>{{ infoCat.key }}</h3>
-        <ul>
-        <div class="sidebar-link" *ngFor="let info of infoCat.value">
-            <li>
-                <a [routerLink]="['/info/detail/', info.id]">{{info.title}}</a>
-            </li>
+<h2>Over alpaca's</h2>
+<ng-template #content>
+    <ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
+        <div *ngFor="let infoCat of (groupedInfopages | keyvalue)">
+            <h3>{{ infoCat.key }}</h3>
+            <ul>
+            <div class="sidebar-link" *ngFor="let info of infoCat.value">
+                <li>
+                    <a [routerLink]="['/info/detail/', info.id]">{{info.title}}</a>
+                </li>
+            </div>
+            </ul>
         </div>
-        </ul>
-    </div>
-</ng-container>
-
-<ng-template #loading>
-    <app-spinner></app-spinner>
+    </ng-container>
 </ng-template>
+
+<ng-container *ngIf="httpStatus.isLoading | async; else content">
+    <app-spinner></app-spinner>
+</ng-container>

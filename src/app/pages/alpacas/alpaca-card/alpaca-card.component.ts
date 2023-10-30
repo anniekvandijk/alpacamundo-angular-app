@@ -9,6 +9,8 @@ import { NavigationService } from 'src/app/services/navigation.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpStatusService } from 'src/app/services/http-status.service';
+import { SpinnerComponent } from 'src/app/components/spinner.component';
 
 @Component({
   selector: 'app-alpaca-card',
@@ -17,7 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    SpinnerComponent
   ],
   templateUrl: './alpaca-card.component.html',
   styleUrls: ['./alpaca-card.component.scss']
@@ -30,6 +33,7 @@ export class AlpacaCardComponent {
   constructor(
     private alpacasService: AlpacaService,
     private navigationService: NavigationService,
+    public httpStatus: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
     ) { }
 
@@ -52,6 +56,6 @@ export class AlpacaCardComponent {
   }
 
   public navigateToDetails(alpaca: Alpaca) {
-    this.navigationService.goToAlpacaDetailPage(alpaca);
+    this.navigationService.goToAlpacaDetail(alpaca);
   }
 }

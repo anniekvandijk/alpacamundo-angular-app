@@ -22,13 +22,13 @@ import { SpinnerComponent } from 'src/app/components/spinner.component';
 })
 export class AlpacaFleeceresultsComponent {
   @Input() alpaca!: Alpaca;
-  fleeces: Fleece[] = [];
-  fleeceResultsUrl!: string;
+  public fleeces: Fleece[] = [];
+  public fleeceResultsUrl!: string;
   constructor(
     @Inject(CONFIGURATION) private configuration: Configuration
   ) { }
 
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'year',
     'fleecenumber',
     'mfd',
@@ -39,7 +39,7 @@ export class AlpacaFleeceresultsComponent {
     'fleeceTestReport'
   ];
   
-  dataSource = new MatTableDataSource<Fleece>();
+  public dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
     this.setFleeceResults();
@@ -50,7 +50,7 @@ export class AlpacaFleeceresultsComponent {
     this.setFleeceResults();
   }
 
-  setFleeceResults() {
+  private setFleeceResults() {
     this.fleeces = this.alpaca.fleeceresults;
     // Sort the fleeces by year
     let sorted = this.fleeces.sort((a, b) => b.fleecenumber - a.fleecenumber);

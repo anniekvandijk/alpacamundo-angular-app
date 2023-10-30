@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Infopage } from 'src/app/models/infopage';
 import { InfopagesService } from 'src/app/services/api/infopages.service';
+import { Configuration } from 'src/app/models/configuration';
 import { CONFIGURATION } from 'src/app/utilities/configuration.token';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
+import { HttpStatusService } from 'src/app/services/http-status.service';
 
 @Component({
   selector: 'app-infopages-details',
@@ -19,15 +21,16 @@ import { SpinnerComponent } from 'src/app/components/spinner.component';
   styleUrls: ['./infopages-details.component.scss']
 })
 export class InfopagesDetailsComponent {
-  private readonly configuration = inject(CONFIGURATION);
-  private readonly infopagesService = inject(InfopagesService);
-  private readonly route = inject(ActivatedRoute);
-  private readonly sanitizer = inject(DomSanitizer);
   public infopage$!: Observable<Infopage>;
   public infopageImagesUrl! : string;
 
   constructor(
-    
+    private route: ActivatedRoute,
+    private infopagesService: InfopagesService,
+    private sanitizer: DomSanitizer,
+    public httpStatus: HttpStatusService,
+    @Inject(CONFIGURATION) private configuration: Configuration
+
   ) { }
 
   ngOnInit(): void {

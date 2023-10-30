@@ -7,8 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { HttpStatusService } from '../services/http-status.service';
-import { ErrorService } from '../services/error.service';
+import { HttpStatusService } from '../http-status.service';
+import { ErrorService } from '../error.service';
 
 @Injectable()
 export class HttpApiInterceptor implements HttpInterceptor {
@@ -19,7 +19,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    this.status.startRequest(req.url);
+    this.status.isLoading.next(true);
 
     return next.handle(req).pipe(
       catchError((err) => {
@@ -27,7 +27,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
         return EMPTY;
       }),
       finalize(() => {
-        this.status.endRequest(req.url);
+        this.status.isLoading.next(false);
       })
     );
   }

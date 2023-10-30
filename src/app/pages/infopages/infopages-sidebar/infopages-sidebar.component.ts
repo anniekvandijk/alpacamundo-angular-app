@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
 import { Infopage } from 'src/app/models/infopage';
 import { InfopagesService } from 'src/app/services/api/infopages.service';
+import { HttpStatusService } from 'src/app/services/http-status.service';
 
 @Component({
   selector: 'app-infopages-sidebar',
@@ -18,8 +19,11 @@ import { InfopagesService } from 'src/app/services/api/infopages.service';
   styleUrls: ['./infopages-sidebar.component.scss']
 })
 export class InfopagesSidebarComponent {
-  private readonly infopagesService = inject(InfopagesService);
   groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
+
+  constructor(private infopagesService: InfopagesService,
+    public httpStatus: HttpStatusService,
+    ) {}
 
   ngOnInit(): void {
     this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
@@ -27,7 +31,7 @@ export class InfopagesSidebarComponent {
     );
   }
 
-  groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
+  private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
       if (!acc[infopage.category.toString()]) {
         acc[infopage.category.toString()] = [];

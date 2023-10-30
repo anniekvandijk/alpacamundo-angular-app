@@ -1,15 +1,15 @@
 <ng-template #content>
-<ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
-  <h1>Over alpaca's</h1>
-  <div *ngFor="let category of (groupedInfopages | keyvalue)">
-    <h2>{{ category.key }}</h2>
-    <div *ngFor="let infopage of category.value">
-        <app-infopage-card [infopage]="infopage"></app-infopage-card>
+  <ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
+    <h1>Over alpaca's</h1>
+    <div *ngFor="let category of (groupedInfopages | keyvalue)">
+      <h2>{{ category.key }}</h2>
+      <div *ngFor="let infopage of category.value">
+          <app-infopage-card [infopage]="infopage"></app-infopage-card>
+      </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
 </ng-template>  
   
-<ng-container *ngIf="isLoading; else content">
+<ng-container *ngIf="httpStatus.isLoading | async; else content">
  <app-spinner></app-spinner>
 </ng-container>

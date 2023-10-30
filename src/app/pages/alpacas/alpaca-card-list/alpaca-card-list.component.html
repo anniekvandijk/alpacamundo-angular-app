@@ -1,18 +1,20 @@
-<ng-template [ngIf]="filteredAlpacas" [ngIfElse]="loading">
-  <H1>{{ title }}</H1>
-  <div *ngIf="filteredAlpacas.length == 0">
-    <p>{{noResultsMessage}}</p>
-  </div>
-  <div *ngFor="let alpaca of filteredAlpacas">
-      <div *ngIf="cardListType === 'alpaca'">
-      <app-alpaca-card [alpaca]="alpaca"></app-alpaca-card>
-      </div>
-      <div *ngIf="cardListType === 'crias'">
+<ng-template #content>
+  <ng-container *ngIf="filteredAlpacas">    
+    <H1>{{ title }}</H1>
+    <div *ngIf="filteredAlpacas.length == 0">
+      <p>{{noResultsMessage}}</p>
+    </div>
+    <div *ngFor="let alpaca of filteredAlpacas">
+        <div *ngIf="cardListType === 'alpaca'">
         <app-alpaca-card [alpaca]="alpaca"></app-alpaca-card>
-      </div>
-  </div>
+        </div>
+        <div *ngIf="cardListType === 'crias'">
+          <app-alpaca-card [alpaca]="alpaca"></app-alpaca-card>
+        </div>
+    </div>
+  </ng-container>
 </ng-template>
 
-<ng-template #loading>
+<ng-container *ngIf="httpStatus.isLoading | async; else content">
   <app-spinner></app-spinner>
-</ng-template>
+</ng-container>

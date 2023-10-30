@@ -1,4 +1,4 @@
-<ng-template [ngIf]="alpaca" [ngIfElse]="loading">
+<ng-template #content>
   <mat-card id="offspring-card" (click)="navigateToDetails(alpaca)" style="cursor: pointer;">
     <mat-card-header>
       <mat-card-title>
@@ -50,6 +50,6 @@
   </mat-card>
 </ng-template>  
 
-<ng-template #loading>
+<ng-container *ngIf="!alpaca; else content">
   <app-spinner></app-spinner>
-</ng-template>
+</ng-container>      

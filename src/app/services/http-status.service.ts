@@ -5,13 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class HttpStatusService {  
-  public loading = new BehaviorSubject<{ loading: boolean, url: string }>({ loading: false, url: '' });
+  public isLoading = new BehaviorSubject<boolean>(false);
 
-  public startRequest(url: string) {
-    this.loading.next({ loading: true, url });
-  }
 
-  public endRequest(url: string) {
-    this.loading.next({ loading: false, url });
-  }
 }

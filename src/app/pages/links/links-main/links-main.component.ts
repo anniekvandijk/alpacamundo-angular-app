@@ -27,30 +27,19 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./links-main.component.scss']
 })
 export class LinksMainComponent {
-  
-  private readonly destroyRef = inject(DestroyRef);
-  public isLoading: boolean | undefined;
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   public linkImagesUrl!: string;
 
   constructor(
     @Inject(CONFIGURATION) private readonly configuration: Configuration,
     private linkService: LinkService, 
-    private httpStatus: HttpStatusService) {}
+    public httpStatus: HttpStatusService) {}
 
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
     this.groupedLinks$ = this.linkService.getLinks().pipe(
       map((links) => this.groupLinksByType(links))
     );
-  }
-
-  ngOnViewInit(): void {
-    this.httpStatus.loading
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((status) => {
-      this.isLoading = status.loading;
-    });
   }
 
   private groupLinksByType(links: Link[]): { [key: string]: Link[] } {

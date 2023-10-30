@@ -20,13 +20,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: ['./infopages-list.component.scss']
 })
 export class InfopagesListComponent {
-  private readonly destroyRef = inject(DestroyRef);
-  public isLoading: boolean | undefined;
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
 
   constructor(
     private infopagesService: InfopagesService,
-    private httpStatus: HttpStatusService,
+    public httpStatus: HttpStatusService,
   ) { }
 
   ngOnInit(): void {
@@ -35,15 +33,7 @@ export class InfopagesListComponent {
     );
   }
 
-  ngOnViewInit(): void {
-    this.httpStatus.loading
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((status) => {
-      this.isLoading = status.loading;
-    });
-  }
-
-  public groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
+  private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
       if (!acc[infopage.category.toString()]) {
         acc[infopage.category.toString()] = [];
