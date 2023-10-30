@@ -7,8 +7,8 @@ import {
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { HttpStatusService } from '../http-status.service';
-import { ErrorService } from '../error.service';
+import { HttpStatusService } from '../services/http-status.service';
+import { ErrorService } from '../services/error.service';
 
 @Injectable()
 export class HttpApiInterceptor implements HttpInterceptor {

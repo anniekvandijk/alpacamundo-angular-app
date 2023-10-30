@@ -12,7 +12,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpStatusService } from 'src/app/services/http-status.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-
 @Component({
   standalone: true,
   imports: [
@@ -29,16 +28,28 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class LinksMainComponent {
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   public linkImagesUrl!: string;
+  private readonly destroyRef = inject(DestroyRef);
+  public isLoading!: boolean;
 
   constructor(
     @Inject(CONFIGURATION) private readonly configuration: Configuration,
     private linkService: LinkService, 
-    public httpStatus: HttpStatusService) {}
+    public httpStatus: HttpStatusService,
+    ) {}
 
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
     this.groupedLinks$ = this.linkService.getLinks().pipe(
       map((links) => this.groupLinksByType(links))
+    );
+  }
+
+  ngOnViewInit(): void {
+    this.httpStatus.isLoading
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      }
     );
   }
 

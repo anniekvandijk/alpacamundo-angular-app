@@ -6,6 +6,4 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HttpStatusService {  
   public isLoading = new BehaviorSubject<boolean>(false);
-
-
 }
