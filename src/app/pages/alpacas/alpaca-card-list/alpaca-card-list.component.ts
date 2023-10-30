@@ -19,14 +19,15 @@ import { SpinnerComponent } from 'src/app/components/spinner.component';
   styleUrls: ['./alpaca-card-list.component.scss']
 })
 export class AlpacaCardListComponent {
-  readonly destroyRef = inject(DestroyRef);
-  alpacas : Alpaca[] = [];
-  filteredAlpacas: Alpaca[] | null = null;
-  title = 'Onze alpaca\'s';
-  noResultsMessage = 'Geen alpaca\'s gevonden';
-  cardListType = 'alpaca';
+  private readonly destroyRef = inject(DestroyRef);
+  public alpacas : Alpaca[] = [];
+  public filteredAlpacas: Alpaca[] | null = null;
+  public title = 'Onze alpaca\'s';
+  public noResultsMessage = 'Geen alpaca\'s gevonden';
+  public cardListType = 'alpaca';
   
-  constructor(private alpacaService: AlpacaService,
+  constructor(
+    private alpacaService: AlpacaService,
     private route: ActivatedRoute
     ) {}
 

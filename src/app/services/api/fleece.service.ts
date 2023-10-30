@@ -13,7 +13,8 @@ export class FleeceService {
     private http: HttpClient) { }
 
   private url = `${environment.apiBaseUrl}/api/fleeces`;
-  getFleeces(): Observable<Fleece[]> {
+  
+  public getFleeces(): Observable<Fleece[]> {
     return this.http.get<Fleece[]>(this.url);
   }
 

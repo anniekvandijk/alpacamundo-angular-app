@@ -23,9 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./alpaca-card.component.scss']
 })
 export class AlpacaCardComponent {
-  readonly destroyRef = inject(DestroyRef);
   @Input() alpaca!: Alpaca;
-  alpacaMainImageUrl!: string;
+  private readonly destroyRef = inject(DestroyRef);
+  public alpacaMainImageUrl!: string;
 
   constructor(
     private alpacasService: AlpacaService,
@@ -51,7 +51,7 @@ export class AlpacaCardComponent {
     }
   }
 
-  navigateToDetails(alpaca: Alpaca) {
+  public navigateToDetails(alpaca: Alpaca) {
     this.navigationService.goToAlpacaDetailPage(alpaca);
   }
 }
