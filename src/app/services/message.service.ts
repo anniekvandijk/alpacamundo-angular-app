@@ -25,11 +25,7 @@ export class MessageService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  public messages: Message[] = [];
-
-  public add(message: Message) {
-    // TODO - maybe remove this.messages.push(message);?
-    // this.messages.push(message);
+  public showMessage(message: Message) {
     const { panelClass } = getToastProperties(message.messageType);
 
     // Side-effect: showing the toast
@@ -39,12 +35,5 @@ export class MessageService {
       verticalPosition: 'bottom',
       panelClass: [panelClass]
     });
-
-
-
-  }
-
-  public clear() {
-    this.messages = [];
   }
 }
