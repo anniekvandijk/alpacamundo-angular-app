@@ -18,6 +18,7 @@ import { AlpacaShowresultsComponent } from '../alpaca-showresults/alpaca-showres
 import { AlpacaFleeceresultsComponent } from '../alpaca-fleeceresults/alpaca-fleeceresults.component';
 import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-offspring-card.component';
 import { HttpStatusService } from 'src/app/services/http-status.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alpaca-details',
@@ -39,6 +40,7 @@ export class AlpacaDetailsComponent {
   public alpacaImagesUrl! : string;
   public alpacaPedigreeUrl! : string;
   public alpacaFleeceResultsUrl! : string;
+  public isLoading$! : Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class AlpacaDetailsComponent {
     private fleeceService: FleeceService,
     private navigationService: NavigationService,
     private sanitizer: DomSanitizer,
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
     
     ) { }
@@ -58,6 +60,10 @@ export class AlpacaDetailsComponent {
     this.alpacaImagesUrl = this.configuration.storage.alpacaImagesUrl;
     this.alpacaPedigreeUrl = this.configuration.storage.alpacaPedigreeUrl;
     this.alpacaFleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   private getAlpaca(): void {

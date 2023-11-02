@@ -10,7 +10,6 @@ import { SpinnerComponent } from 'src/app/components/spinner.component';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpStatusService } from 'src/app/services/http-status.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -27,14 +26,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class LinksMainComponent {
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
+  public isLoading$! : Observable<boolean>;
   public linkImagesUrl!: string;
-  private readonly destroyRef = inject(DestroyRef);
-  public isLoading!: boolean;
 
   constructor(
     @Inject(CONFIGURATION) private readonly configuration: Configuration,
     private linkService: LinkService, 
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
     ) {}
 
   ngOnInit(): void {
@@ -45,12 +43,7 @@ export class LinksMainComponent {
   }
 
   ngOnViewInit(): void {
-    this.httpStatus.isLoading
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((isLoading) => {
-        this.isLoading = isLoading;
-      }
-    );
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   private groupLinksByType(links: Link[]): { [key: string]: Link[] } {

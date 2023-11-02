@@ -6,6 +6,7 @@ import { AlpacaService } from 'src/app/services/api/alpaca.service';
 import { RouterModule } from '@angular/router';
 import { HttpStatusService } from 'src/app/services/http-status.service';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alpacas-sidebar',
@@ -22,10 +23,11 @@ export class AlpacasSidebarComponent {
   readonly destroyRef = inject(DestroyRef);
   public alpacas : Alpaca[] = [];
   public groupedAlpacas: { [key: string]: Alpaca[] } = {};
+  public isLoading$! : Observable<boolean>;
 
   constructor(
     private alpacaService: AlpacaService,
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
     ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,11 @@ export class AlpacasSidebarComponent {
       this.groupedAlpacas = this.groupAlpacasByCategory(this.alpacas);
     });
   }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
+  }
+
 
   private groupAlpacasByCategory(alpacas: Alpaca[]): { [key: string]: Alpaca[] } {
     return alpacas.reduce<{ [key: string]: Alpaca[] }>((acc, alpaca) => {

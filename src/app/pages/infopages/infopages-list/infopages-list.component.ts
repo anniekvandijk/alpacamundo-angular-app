@@ -21,16 +21,21 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class InfopagesListComponent {
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
+  public isLoading$! : Observable<boolean>;
 
   constructor(
     private infopagesService: InfopagesService,
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
   ) { }
 
   ngOnInit(): void {
     this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
       map((infopages) => this.groupInfopagesByCategory(infopages))
     );
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {

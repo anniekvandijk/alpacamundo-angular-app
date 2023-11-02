@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
 import { Infopage } from 'src/app/models/infopage';
@@ -19,16 +19,22 @@ import { HttpStatusService } from 'src/app/services/http-status.service';
   styleUrls: ['./infopages-sidebar.component.scss']
 })
 export class InfopagesSidebarComponent {
-  groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
-
-  constructor(private infopagesService: InfopagesService,
-    public httpStatus: HttpStatusService,
+  public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
+  public isLoading$! : Observable<boolean>;
+  
+  constructor(
+    private infopagesService: InfopagesService,
+    private httpStatusService: HttpStatusService,
     ) {}
 
   ngOnInit(): void {
     this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
       map((infopages) => this.groupInfopagesByCategory(infopages))
     );
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {

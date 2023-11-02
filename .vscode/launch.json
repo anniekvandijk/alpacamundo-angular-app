@@ -5,14 +5,9 @@
             "request": "launch",
             "type": "chrome",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach to Chrome",
-            "port": 8888,
-            "request": "attach",
-            "type": "chrome",
-            "webRoot": "${workspaceFolder}"
-        },
+          // "webRoot": "${workspaceFolder}"
+            "preLaunchTask": "npm: start"
+        }
+
     ]
 }

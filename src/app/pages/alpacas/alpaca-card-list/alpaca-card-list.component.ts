@@ -7,6 +7,7 @@ import { AlpacaCardComponent } from '../alpaca-card/alpaca-card.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
 import { HttpStatusService } from 'src/app/services/http-status.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alpaca-card-list',
@@ -26,11 +27,12 @@ export class AlpacaCardListComponent {
   public title = 'Onze alpaca\'s';
   public noResultsMessage = 'Geen alpaca\'s gevonden';
   public cardListType = 'alpaca';
+  public isLoading$! : Observable<boolean>;
   
   constructor(
     private alpacaService: AlpacaService,
     private route: ActivatedRoute,
-    public httpStatus: HttpStatusService,
+    public httpStatusService: HttpStatusService,
     ) {}
 
   ngOnInit(): void {
@@ -92,5 +94,9 @@ export class AlpacaCardListComponent {
         }
       });
     });
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 }

@@ -27,6 +27,6 @@
   </ng-container>
 </ng-template>  
 
-<ng-container *ngIf="isLoading; else content">
+<ng-container *ngIf="isLoading$ | async as loader; else content">
   <app-spinner></app-spinner>
 </ng-container>

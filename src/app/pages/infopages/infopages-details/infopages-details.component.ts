@@ -22,13 +22,14 @@ import { HttpStatusService } from 'src/app/services/http-status.service';
 })
 export class InfopagesDetailsComponent {
   public infopage$!: Observable<Infopage>;
+  public isLoading$! : Observable<boolean>;
   public infopageImagesUrl! : string;
 
   constructor(
     private route: ActivatedRoute,
     private infopagesService: InfopagesService,
     private sanitizer: DomSanitizer,
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
 
   ) { }
@@ -39,8 +40,11 @@ export class InfopagesDetailsComponent {
           return this.infopagesService.getInfopage(params['id'])
         })
       )
-
     this.infopageImagesUrl = this.configuration.storage.infopageImagesUrl;
+    }
+
+    ngOnViewInit(): void {
+      this.isLoading$ = this.httpStatusService.isLoading;
     }
 
     public getSafeHtml(html: string) {

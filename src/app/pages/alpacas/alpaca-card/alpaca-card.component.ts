@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpStatusService } from 'src/app/services/http-status.service';
 import { SpinnerComponent } from 'src/app/components/spinner.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alpaca-card',
@@ -29,11 +30,12 @@ export class AlpacaCardComponent {
   @Input() alpaca!: Alpaca;
   private readonly destroyRef = inject(DestroyRef);
   public alpacaMainImageUrl!: string;
+  public isLoading$! : Observable<boolean>;
 
   constructor(
     private alpacasService: AlpacaService,
     private navigationService: NavigationService,
-    public httpStatus: HttpStatusService,
+    private httpStatusService: HttpStatusService,
     @Inject(CONFIGURATION) private configuration: Configuration
     ) { }
 
@@ -53,6 +55,10 @@ export class AlpacaCardComponent {
         this.alpaca.dam = alpaca;
       });
     }
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   public navigateToDetails(alpaca: Alpaca) {

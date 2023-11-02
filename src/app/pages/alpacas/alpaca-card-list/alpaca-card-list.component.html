@@ -15,6 +15,6 @@
   </ng-container>
 </ng-template>
 
-<ng-container *ngIf="httpStatus.isLoading | async; else content">
+<ng-container *ngIf="isLoading$ | async as loader; else content">
   <app-spinner></app-spinner>
 </ng-container>
