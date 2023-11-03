@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
@@ -16,7 +16,7 @@ import { Showresult } from 'src/app/features/alpacas/showresult.model';
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: ['./alpaca-showresults.component.scss']
 })
-export class AlpacaShowresultsComponent {
+export class AlpacaShowresultsComponent implements OnInit, OnChanges {
   @Input() alpaca!: Alpaca;
   public showresults: Showresult[] = [];
 

@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -32,7 +32,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpaca-details.component.html',
   styleUrls: ['./alpaca-details.component.scss']
 })
-export class AlpacaDetailsComponent extends HttploaderComponent {
+export class AlpacaDetailsComponent extends HttploaderComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);
   private alpacaService = inject(AlpacaService);
@@ -133,7 +133,7 @@ export class AlpacaDetailsComponent extends HttploaderComponent {
             o.alpaca = cria;
         });
       });
-    };
+    }
   });
   } 
 

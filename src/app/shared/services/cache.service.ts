@@ -15,14 +15,14 @@ export class CacheService {
 }
 
   public getCache(url: string): HttpEvent<any> | undefined {
-    let result = this.cache.get(url);
+    const result = this.cache.get(url);
 
     if (!result) {
       return undefined;
     }
 
-    let response: HttpEvent<any> = result.response;
-    let resDate: Date = result.date;
+    const response: HttpEvent<any> = result.response;
+    const resDate: Date = result.date;
 
     if (Date.now() - resDate.getTime() > this.expiry) {
       this.deleteCache(url);

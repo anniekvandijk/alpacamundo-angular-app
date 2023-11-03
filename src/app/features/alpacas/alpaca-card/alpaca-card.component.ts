@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, inject } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
   templateUrl: './alpaca-card.component.html',
   styleUrls: ['./alpaca-card.component.scss']
 })
-export class AlpacaCardComponent {
+export class AlpacaCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);

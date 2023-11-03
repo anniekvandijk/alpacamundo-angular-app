@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
@@ -19,7 +19,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpacas-sidebar.component.html',
   styleUrls: ['./alpacas-sidebar.component.scss']
 })
-export class AlpacasSidebarComponent extends HttploaderComponent {
+export class AlpacasSidebarComponent extends HttploaderComponent implements OnInit{
   readonly destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
   public alpacas : Alpaca[] = [];

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { UsermenuComponent } from './usermenu/usermenu.component';
 
 @Component({
-  selector: 'header',
+  selector: 'app-header',
   standalone: true,
   imports : [
     CommonModule,    

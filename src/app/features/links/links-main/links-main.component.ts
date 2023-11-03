@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Link } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
@@ -25,7 +25,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './links-main.component.html',
   styleUrls: ['./links-main.component.scss']
 })
-export class LinksMainComponent extends HttploaderComponent {
+export class LinksMainComponent extends HttploaderComponent implements OnInit {
   private configuration: Configuration = inject(CONFIGURATION);
   private linkService = inject(LinkService);
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;

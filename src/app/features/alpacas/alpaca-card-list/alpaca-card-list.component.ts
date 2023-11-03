@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { Alpaca } from '../alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +20,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpaca-card-list.component.html',
   styleUrls: ['./alpaca-card-list.component.scss']
 })
-export class AlpacaCardListComponent extends HttploaderComponent {
+export class AlpacaCardListComponent extends HttploaderComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
   private route = inject(ActivatedRoute);
@@ -39,7 +39,7 @@ export class AlpacaCardListComponent extends HttploaderComponent {
       this.alpacaService.getAlpacas()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(alpacas => {
-        let sorted = alpacas.sort((a, b) => a.shortName.localeCompare(b.shortName));
+        const sorted = alpacas.sort((a, b) => a.shortName.localeCompare(b.shortName));
         this.alpacas = sorted;
         
         // For sale page
@@ -55,7 +55,7 @@ export class AlpacaCardListComponent extends HttploaderComponent {
         else if (filter === 'sold') {
           this.filteredAlpacas = alpacas
             .filter(alpaca => alpaca.status === "Verkocht");
-          this.title = `Alpaca\'s verkocht (${this.filteredAlpacas.length})`;
+          this.title = `Alpaca's verkocht (${this.filteredAlpacas.length})`;
           this.cardListType = 'alpaca';
         } 
         
@@ -74,7 +74,7 @@ export class AlpacaCardListComponent extends HttploaderComponent {
         else if (filter === 'crias') {
           this.filteredAlpacas = alpacas
             .filter(alpaca => alpaca.bornOnFarm === true);
-          this.title = `Onze cria\'s hier geboren (${this.filteredAlpacas.length})`;
+          this.title = `Onze cria's hier geboren (${this.filteredAlpacas.length})`;
           this.cardListType = 'crias';
         } 
         
@@ -84,7 +84,7 @@ export class AlpacaCardListComponent extends HttploaderComponent {
             .filter(alpaca => alpaca.status !== "Verkocht")
             .filter(alpaca => alpaca.status !== "Overleden")
             .filter(alpaca => alpaca.category !== "Externe  hengsten")
-          this.title = `Onze Alpaca\'s (${this.filteredAlpacas.length})`;
+          this.title = `Onze Alpaca's (${this.filteredAlpacas.length})`;
           this.cardListType = 'alpaca';
         }
       });

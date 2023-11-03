@@ -1,6 +1,5 @@
-import { Component, DestroyRef, inject } from '@angular/core';
-import { UserService } from './features/users/user.service';
-import { AuthenticationResult, EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { AuthenticationResult, EventMessage, EventType } from '@azure/msal-browser';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
@@ -10,7 +9,7 @@ import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Alpacamundo';
   private destroyRef = inject(DestroyRef);
 

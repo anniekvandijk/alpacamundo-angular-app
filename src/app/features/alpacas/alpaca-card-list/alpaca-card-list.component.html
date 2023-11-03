@@ -1,7 +1,7 @@
-<H1 *ngIf="title != ''">{{ title }}</H1>
+<H1 *ngIf="title !== ''">{{ title }}</H1>
 <app-http-loader>
   <ng-container *ngIf="filteredAlpacas">    
-    <div *ngIf="filteredAlpacas.length == 0">
+    <div *ngIf="filteredAlpacas.length === 0">
       <p>{{noResultsMessage}}</p>
     </div>
     <div *ngFor="let alpaca of filteredAlpacas">

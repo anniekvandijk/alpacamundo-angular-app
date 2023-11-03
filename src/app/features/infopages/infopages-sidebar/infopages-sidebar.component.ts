@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
@@ -19,7 +19,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './infopages-sidebar.component.html',
   styleUrls: ['./infopages-sidebar.component.scss']
 })
-export class InfopagesSidebarComponent extends HttploaderComponent{
+export class InfopagesSidebarComponent extends HttploaderComponent implements OnInit{
   private infopagesService = inject(InfopagesService);
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
 

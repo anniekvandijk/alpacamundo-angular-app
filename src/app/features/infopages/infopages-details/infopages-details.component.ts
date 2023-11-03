@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
@@ -21,7 +21,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './infopages-details.component.html',
   styleUrls: ['./infopages-details.component.scss']
 })
-export class InfopagesDetailsComponent extends HttploaderComponent {
+export class InfopagesDetailsComponent extends HttploaderComponent implements OnInit{
   private configuration: Configuration = inject(CONFIGURATION);
   private infopagesService = inject(InfopagesService);
   private route = inject(ActivatedRoute);

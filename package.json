@@ -19,7 +19,8 @@
     "cypress:run": "cypress run",
     "cypress:open:local": "cypress open --env environment=local",
     "cypress:run:local": "cypress run --env environment=local",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -44,9 +45,17 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.0",
+    "@angular-eslint/builder": "16.2.0",
+    "@angular-eslint/eslint-plugin": "16.2.0",
+    "@angular-eslint/eslint-plugin-template": "16.2.0",
+    "@angular-eslint/schematics": "16.2.0",
+    "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "^16.0.3",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
     "cypress": "^12.13.0",
+    "eslint": "^8.49.0",
     "jsonwebtoken": "^9.0.0",
     "typescript": "~5.0.4"
   }

@@ -1,4 +1,4 @@
-import { Component, Inject, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Router } from '@angular/router';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alpaca-offspring-card.component.html',
   styleUrls: ['./alpaca-offspring-card.component.scss']
 })
-export class AlpacaOffspringCardComponent {
+export class AlpacaOffspringCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
   private configuration: Configuration = inject(CONFIGURATION);
   private router = inject(Router);

@@ -27,7 +27,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
       return this.sentRequest(req, next);
     }
 
-    let cachedResponse = this.cacheService.getCache(req.url);
+    const cachedResponse = this.cacheService.getCache(req.url);
     if (!cachedResponse) {
       return this.sentRequest(req, next);
     }

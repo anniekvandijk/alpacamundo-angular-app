@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, Inject, inject } from '@angular/core';
+import { Component, DestroyRef, Inject, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
@@ -8,10 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserService } from 'src/app/features/users/user.service';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const project = require('../../../../../package.json');
 
 @Component({
-  selector: 'footer',
+  selector: 'app-footer',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,9 +27,9 @@ const project = require('../../../../../package.json');
   `,
   
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
-  isUserLoggedIn: boolean = false;
+  public isUserLoggedIn = false;
 
   constructor(
     private authService: MsalService, 
@@ -50,11 +51,11 @@ export class FooterComponent {
     });
   }
 
-  getProjectVersion() {
+  public getProjectVersion() {
     return project.version;
   }
 
-  login() {
+  public login() {
     if(this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
     }
@@ -63,7 +64,7 @@ export class FooterComponent {
     }
   }
 
-  logout() {
+  public logout() {
     this.authService.logoutRedirect({postLogoutRedirectUri:environment.postLogoutRedirectUrl});
   }
 }

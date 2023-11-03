@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
@@ -19,7 +19,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './infopages-list.component.html',
   styleUrls: ['./infopages-list.component.scss']
 })
-export class InfopagesListComponent extends HttploaderComponent {
+export class InfopagesListComponent extends HttploaderComponent implements OnInit{
   private infopagesService = inject(InfopagesService);
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
 
@@ -29,7 +29,7 @@ export class InfopagesListComponent extends HttploaderComponent {
     );
   }
 
-  
+
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
