@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, inject } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Router } from '@angular/router';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
@@ -20,12 +20,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AlpacaOffspringCardComponent {
   @Input() alpaca!: Alpaca;
+  private configuration: Configuration = inject(CONFIGURATION);
+  private router = inject(Router);
   public alpacaMainImageUrl!: string;
-
-  constructor(
-    private router: Router,
-    @Inject(CONFIGURATION) private configuration: Configuration
-    ) { }
 
   ngOnInit(): void {
     this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;

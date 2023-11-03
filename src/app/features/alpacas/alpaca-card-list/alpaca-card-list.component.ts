@@ -6,8 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AlpacaCardComponent } from '../alpaca-card/alpaca-card.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
-import { HttpStatusService } from 'src/app/shared/services/http-status.service';
-import { Observable } from 'rxjs';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-card-list',
@@ -16,24 +15,20 @@ import { Observable } from 'rxjs';
     CommonModule,
     AlpacaCardComponent,
     SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpaca-card-list.component.html',
   styleUrls: ['./alpaca-card-list.component.scss']
 })
-export class AlpacaCardListComponent {
+export class AlpacaCardListComponent extends HttploaderComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private alpacaService = inject(AlpacaService);
+  private route = inject(ActivatedRoute);
   public alpacas : Alpaca[] = [];
   public filteredAlpacas: Alpaca[] | null = null;
-  public title = 'Onze alpaca\'s';
+  public title = '';
   public noResultsMessage = 'Geen alpaca\'s gevonden';
   public cardListType = 'alpaca';
-  public isLoading$! : Observable<boolean>;
-  
-  constructor(
-    private alpacaService: AlpacaService,
-    private route: ActivatedRoute,
-    public httpStatusService: HttpStatusService,
-    ) {}
 
   ngOnInit(): void {
     this.route.params

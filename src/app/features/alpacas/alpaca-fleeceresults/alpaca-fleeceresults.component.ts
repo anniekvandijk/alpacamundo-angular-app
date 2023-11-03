@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
 import { Fleece } from 'src/app/features/alpacas/fleece.model';
@@ -22,11 +22,9 @@ import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.com
 })
 export class AlpacaFleeceresultsComponent {
   @Input() alpaca!: Alpaca;
+  private configuration: Configuration = inject(CONFIGURATION);
   public fleeces: Fleece[] = [];
   public fleeceResultsUrl!: string;
-  constructor(
-    @Inject(CONFIGURATION) private configuration: Configuration
-  ) { }
 
   public displayedColumns: string[] = [
     'year',
@@ -42,7 +40,6 @@ export class AlpacaFleeceresultsComponent {
   public dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
-    this.setFleeceResults();
     this.fleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
   }
 

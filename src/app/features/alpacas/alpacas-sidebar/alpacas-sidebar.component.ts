@@ -4,9 +4,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { RouterModule } from '@angular/router';
-import { HttpStatusService } from 'src/app/shared/services/http-status.service';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
-import { Observable } from 'rxjs';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpacas-sidebar',
@@ -14,21 +13,19 @@ import { Observable } from 'rxjs';
   imports: [
     CommonModule,
     RouterModule,
-    SpinnerComponent
+    SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpacas-sidebar.component.html',
   styleUrls: ['./alpacas-sidebar.component.scss']
 })
-export class AlpacasSidebarComponent {
+export class AlpacasSidebarComponent extends HttploaderComponent {
   readonly destroyRef = inject(DestroyRef);
+  private alpacaService = inject(AlpacaService);
   public alpacas : Alpaca[] = [];
   public groupedAlpacas: { [key: string]: Alpaca[] } = {};
-  public isLoading$! : Observable<boolean>;
 
-  constructor(
-    private alpacaService: AlpacaService,
-    private httpStatusService: HttpStatusService,
-    ) { }
+  constructor() { super(); }
 
   ngOnInit(): void {
     this.alpacaService.getAlpacas()
@@ -41,11 +38,6 @@ export class AlpacasSidebarComponent {
       this.groupedAlpacas = this.groupAlpacasByCategory(this.alpacas);
     });
   }
-
-  ngOnViewInit(): void {
-    this.isLoading$ = this.httpStatusService.isLoading;
-  }
-
 
   private groupAlpacasByCategory(alpacas: Alpaca[]): { [key: string]: Alpaca[] } {
     return alpacas.reduce<{ [key: string]: Alpaca[] }>((acc, alpaca) => {

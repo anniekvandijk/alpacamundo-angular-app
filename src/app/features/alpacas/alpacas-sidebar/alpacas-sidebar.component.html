@@ -1,5 +1,5 @@
 <h2>Onze alpaca's</h2>
-<ng-template #content>
+<app-http-loader>
     <div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
         <h3>{{ alpacaCat.key }}</h3>
         <ul>
@@ -12,8 +12,4 @@
         </div>
         </ul>
     </div>
-</ng-template>
-
-<ng-container *ngIf="isLoading$ | async as loader; else content">
-    <app-spinner></app-spinner>
-  </ng-container>
+</app-http-loader>

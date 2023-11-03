@@ -1,12 +1,11 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/infopages.service';
 import { InfopageCardComponent } from '../infopage-card/infopage-card.component';
-import { HttpStatusService } from 'src/app/shared/services/http-status.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-infopages-list',
@@ -14,19 +13,15 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   imports: [
     CommonModule,
     SpinnerComponent,
-    InfopageCardComponent
+    InfopageCardComponent,
+    HttploaderComponent
   ],
   templateUrl: './infopages-list.component.html',
   styleUrls: ['./infopages-list.component.scss']
 })
-export class InfopagesListComponent {
+export class InfopagesListComponent extends HttploaderComponent {
+  private infopagesService = inject(InfopagesService);
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
-  public isLoading$! : Observable<boolean>;
-
-  constructor(
-    private infopagesService: InfopagesService,
-    private httpStatusService: HttpStatusService,
-  ) { }
 
   ngOnInit(): void {
     this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
@@ -34,9 +29,7 @@ export class InfopagesListComponent {
     );
   }
 
-  ngOnViewInit(): void {
-    this.isLoading$ = this.httpStatusService.isLoading;
-  }
+  
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {

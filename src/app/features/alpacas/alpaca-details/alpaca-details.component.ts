@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -16,8 +16,7 @@ import { CommonModule } from '@angular/common';
 import { AlpacaShowresultsComponent } from '../alpaca-showresults/alpaca-showresults.component';
 import { AlpacaFleeceresultsComponent } from '../alpaca-fleeceresults/alpaca-fleeceresults.component';
 import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-offspring-card.component';
-import { HttpStatusService } from 'src/app/shared/services/http-status.service';
-import { Observable } from 'rxjs';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-details',
@@ -27,31 +26,26 @@ import { Observable } from 'rxjs';
     AlpacaShowresultsComponent,
     AlpacaFleeceresultsComponent,
     AlpacaOffspringCardComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpaca-details.component.html',
   styleUrls: ['./alpaca-details.component.scss']
 })
-export class AlpacaDetailsComponent {
+export class AlpacaDetailsComponent extends HttploaderComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private configuration: Configuration = inject(CONFIGURATION);
+  private alpacaService = inject(AlpacaService);
+  private showresultService = inject(ShowresultService);
+  private fleeceService = inject(FleeceService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private sanitizer = inject(DomSanitizer);
   public alpaca!: Alpaca;
   public alpacaMainImageUrl!: string;
   public alpacaImagesUrl! : string;
   public alpacaPedigreeUrl! : string;
   public alpacaFleeceResultsUrl! : string;
-  public isLoading$! : Observable<boolean>;
-
-  constructor(
-    private route: ActivatedRoute,
-    private alpacaService: AlpacaService,
-    private showresultService: ShowresultService,
-    private fleeceService: FleeceService,
-    private router: Router,
-    private sanitizer: DomSanitizer,
-    private httpStatusService: HttpStatusService,
-    @Inject(CONFIGURATION) private configuration: Configuration
-    
-    ) { }
 
   ngOnInit(): void {
     this.getAlpaca();
@@ -59,10 +53,6 @@ export class AlpacaDetailsComponent {
     this.alpacaImagesUrl = this.configuration.storage.alpacaImagesUrl;
     this.alpacaPedigreeUrl = this.configuration.storage.alpacaPedigreeUrl;
     this.alpacaFleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
-  }
-
-  ngOnViewInit(): void {
-    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   private getAlpaca(): void {

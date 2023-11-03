@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Inject, Input, inject } from '@angular/core';
+import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
@@ -8,9 +8,7 @@ import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpStatusService } from 'src/app/shared/services/http-status.service';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,15 +27,10 @@ import { Router } from '@angular/router';
 export class AlpacaCardComponent {
   @Input() alpaca!: Alpaca;
   private readonly destroyRef = inject(DestroyRef);
+  private configuration: Configuration = inject(CONFIGURATION);
+  private alpacasService = inject(AlpacaService);
+  private router = inject(Router);
   public alpacaMainImageUrl!: string;
-  public isLoading$! : Observable<boolean>;
-
-  constructor(
-    private alpacasService: AlpacaService,
-    private router: Router,
-    private httpStatusService: HttpStatusService,
-    @Inject(CONFIGURATION) private configuration: Configuration
-    ) { }
 
   ngOnInit(): void {
     this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
@@ -55,10 +48,6 @@ export class AlpacaCardComponent {
         this.alpaca.dam = alpaca;
       });
     }
-  }
-
-  ngOnViewInit(): void {
-    this.isLoading$ = this.httpStatusService.isLoading;
   }
 
   public navigateToDetails(alpaca: Alpaca) {

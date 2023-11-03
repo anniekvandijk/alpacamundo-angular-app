@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Link } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
@@ -26,13 +26,10 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   styleUrls: ['./links-main.component.scss']
 })
 export class LinksMainComponent extends HttploaderComponent {
+  private configuration: Configuration = inject(CONFIGURATION);
+  private linkService = inject(LinkService);
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   public linkImagesUrl!: string;
-
-  constructor(
-    @Inject(CONFIGURATION) private readonly configuration: Configuration,
-    private readonly linkService: LinkService,
-  ) { super(); }
 
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;

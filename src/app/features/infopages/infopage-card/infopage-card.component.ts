@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,10 +20,7 @@ import { Router } from '@angular/router';
 })
 export class InfopageCardComponent {
   @Input() infopage!: Infopage;
-
-  constructor(
-    private router: Router
-  ) { }
+  private router = inject(Router);
 
   public navigateToDetails(infopage: Infopage) {
     this.router.navigate(['/info/detail', infopage.id]);

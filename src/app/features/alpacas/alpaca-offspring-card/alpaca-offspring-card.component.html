@@ -1,4 +1,3 @@
-<ng-template #content>
   <mat-card id="offspring-card" (click)="navigateToDetails(alpaca)" style="cursor: pointer;">
     <mat-card-header>
       <mat-card-title>
@@ -48,8 +47,4 @@
       <img loading="lazy" src="{{alpacaMainImageUrl}}{{alpaca.mainImage.name}}" alt="{{alpaca.longName}}" class="alpaca-image"/>
     </mat-card-content>
   </mat-card>
-</ng-template>  
-
-<ng-container *ngIf="!alpaca; else content">
-  <app-spinner></app-spinner>
-</ng-container>      
+   

@@ -1,4 +1,4 @@
-<ng-template #content>
+<app-http-loader>
   <ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
     <h1>Over alpaca's</h1>
     <div *ngFor="let category of (groupedInfopages | keyvalue)">
@@ -8,8 +8,4 @@
       </div>
     </div>
   </ng-container>
-</ng-template>  
-  
-<ng-container *ngIf="isLoading$ | async as loader; else content">
-  <app-spinner></app-spinner>
-</ng-container>
+</app-http-loader>

@@ -1,6 +1,6 @@
-<ng-template #content>
+<H1 *ngIf="title != ''">{{ title }}</H1>
+<app-http-loader>
   <ng-container *ngIf="filteredAlpacas">    
-    <H1>{{ title }}</H1>
     <div *ngIf="filteredAlpacas.length == 0">
       <p>{{noResultsMessage}}</p>
     </div>
@@ -13,8 +13,4 @@
         </div>
     </div>
   </ng-container>
-</ng-template>
-
-<ng-container *ngIf="isLoading$ | async as loader; else content">
-  <app-spinner></app-spinner>
-</ng-container>
+</app-http-loader>

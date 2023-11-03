@@ -1,4 +1,3 @@
-<ng-template #content>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     
         <ng-container matColumnDef="showYear">
@@ -30,8 +29,3 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
     </table>
-</ng-template>
-    
-<ng-container *ngIf="!dataSource; else content">
-  <app-spinner></app-spinner>
-</ng-container>      
