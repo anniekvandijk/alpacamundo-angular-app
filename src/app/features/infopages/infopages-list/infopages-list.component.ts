@@ -1,0 +1,51 @@
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { Component, DestroyRef, inject } from '@angular/core';
+import { map, Observable, tap } from 'rxjs';
+import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
+import { Infopage } from 'src/app/features/infopages/infopage.model';
+import { InfopagesService } from 'src/app/features/infopages/infopages.service';
+import { InfopageCardComponent } from '../infopage-card/infopage-card.component';
+import { HttpStatusService } from 'src/app/shared/services/http-status.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+@Component({
+  selector: 'app-infopages-list',
+  standalone: true,
+  imports: [
+    CommonModule,
+    SpinnerComponent,
+    InfopageCardComponent
+  ],
+  templateUrl: './infopages-list.component.html',
+  styleUrls: ['./infopages-list.component.scss']
+})
+export class InfopagesListComponent {
+  public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
+  public isLoading$! : Observable<boolean>;
+
+  constructor(
+    private infopagesService: InfopagesService,
+    private httpStatusService: HttpStatusService,
+  ) { }
+
+  ngOnInit(): void {
+    this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
+      map((infopages) => this.groupInfopagesByCategory(infopages))
+    );
+  }
+
+  ngOnViewInit(): void {
+    this.isLoading$ = this.httpStatusService.isLoading;
+  }
+
+  private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
+    return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
+      if (!acc[infopage.category.toString()]) {
+        acc[infopage.category.toString()] = [];
+      }
+      acc[infopage.category.toString()].push(infopage);
+      return acc;
+    }, {});
+  }
+
+}

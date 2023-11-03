@@ -5,18 +5,18 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './mocks/in-memory-data.service';
+import { InMemoryDataService } from './shared/services/in-memory-data.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HeaderComponent } from './pages/main/header/header.component';
-import { FooterComponent } from './pages/main/footer/footer.component';
+import { HeaderComponent } from './shared/features/header/header.component';
+import { FooterComponent } from './shared/features/footer/footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { ROUTES } from './app.routes';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { environment } from 'src/environments/environment';
-import { HttpApiInterceptor } from './interceptors/http-api.interceptor';
+import { HttpApiInterceptor } from './shared/interceptors/http-api.interceptor';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 
