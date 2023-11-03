@@ -1,0 +1,15 @@
+<h2>Onze alpaca's</h2>
+<app-http-loader>
+    <div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
+        <h3>{{ alpacaCat.key }}</h3>
+        <ul>
+        <div class="sidebar-alpaca-link" *ngFor="let alpaca of alpacaCat.value">
+            <li>
+                <a [routerLink]="['/alpacas/detail/', alpaca.id]">{{alpaca.shortName}}
+                <span *ngIf="alpaca.status === 'Te koop'">(Te koop)</span>
+                </a>
+        </li>
+        </div>
+        </ul>
+    </div>
+</app-http-loader>

@@ -1,5 +1,5 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { CONFIGURATION } from './app/utilities/configuration.token';
+import { CONFIGURATION } from './app/shared/configuration/configuration.token';
 import { AppModule } from './app/app.module';
 
 fetch('/assets/config.json')

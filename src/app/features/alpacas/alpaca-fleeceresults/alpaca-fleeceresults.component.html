@@ -1,0 +1,52 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Jaar </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="fleecenumber">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.fleecenumber}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="mfd">
+        <th mat-header-cell *matHeaderCellDef> MFD </th>
+        <td mat-cell *matCellDef="let element"> {{element.mfd}} mic</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sd">
+        <th mat-header-cell *matHeaderCellDef> SD </th>
+        <td mat-cell *matCellDef="let element"> {{element.sd}} mic</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cf">
+        <th mat-header-cell *matHeaderCellDef> CF </th>
+        <td mat-cell *matCellDef="let element"> {{element.cf}} %</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cv">
+        <th mat-header-cell *matHeaderCellDef> CV </th>
+        <td mat-cell *matCellDef="let element"> {{element.cv}} %</td>
+    </ng-container>
+
+    <ng-container matColumnDef="crv">
+        <th mat-header-cell *matHeaderCellDef> CRV </th>
+        <td mat-cell *matCellDef="let element"> {{element.crv}} dg/mm</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fleeceTestReport">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngIf="element.fleeceTestReport">
+                <a [href]="fleeceResultsUrl+element.fleeceTestReport.name" target="_blank">
+                    <mat-icon>picture_as_pdf</mat-icon>
+                </a>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
