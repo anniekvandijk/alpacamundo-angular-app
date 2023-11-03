@@ -8,7 +8,7 @@ export interface Fleece {
     cv: number;
     crv: number;
     cf: number;
-    fleeceTestReport: FleeceTestReport;
+    fleeceTestReport: FleeceTestReport | null;
 }
 
 export interface FleeceTestReport {

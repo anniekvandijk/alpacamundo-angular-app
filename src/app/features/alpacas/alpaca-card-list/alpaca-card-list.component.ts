@@ -90,8 +90,4 @@ export class AlpacaCardListComponent extends HttploaderComponent {
       });
     });
   }
-
-  ngOnViewInit(): void {
-    this.isLoading$ = this.httpStatusService.isLoading;
-  }
 }

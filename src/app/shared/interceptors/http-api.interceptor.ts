@@ -35,7 +35,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
     return of(cachedResponse)
   }
 
-  isCachable(req: HttpRequest<any>) {
+  private isCachable(req: HttpRequest<any>) {
     return req.method === 'GET';
   }
 

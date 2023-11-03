@@ -38,10 +38,6 @@ export class InfopagesDetailsComponent extends HttploaderComponent {
     this.infopageImagesUrl = this.configuration.storage.infopageImagesUrl;
     }
 
-    ngOnViewInit(): void {
-      this.isLoading$ = this.httpStatusService.isLoading;
-    }
-
     public getSafeHtml(html: string) {
       return this.sanitizer.bypassSecurityTrustHtml(html);
     }
