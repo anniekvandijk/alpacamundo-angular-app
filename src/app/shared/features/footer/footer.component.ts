@@ -22,10 +22,10 @@ const project = require('../../../../../package.json');
   template: `
   <div class="footer-text">© Copyright 2023 Alpacamundo - v{{getProjectVersion()}}
     <ng-container *ngIf="!isUserLoggedIn; else loggedIn">
-      <a role="button" (click)="login()" (keydown)="login()" title="Login" rel="login" tabindex="0">login here</a>
+      <a role="button" (click)="login()" (keydown)="login()" title="Login" rel="login" tabindex="0" style="cursor: pointer;">login here</a>
     </ng-container>
     <ng-template #loggedIn>
-      <a role="button" (click)="logout()" (keydown)="login()" title="Logout" rel="logout" tabindex="0">logout</a>
+      <a role="button" (click)="logout()" (keydown)="login()" title="Logout" rel="logout" tabindex="0" style="cursor: pointer;">logout</a>
     </ng-template> 
   `,
   
@@ -54,11 +54,11 @@ export class FooterComponent implements OnInit {
     });
   }
 
-  public getProjectVersion() {
+  public getProjectVersion() : string {
     return project.version;
   }
 
-  public login() {
+  public login() : void {
     if(this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
     }
@@ -67,7 +67,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-  public logout() {
+  public logout() : void {
     this.authService.logoutRedirect({postLogoutRedirectUri:environment.postLogoutRedirectUrl});
   }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Observable, tap } from 'rxjs';
@@ -15,7 +15,7 @@ import { UserService } from 'src/app/features/users/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   readonly destroyRef = inject(DestroyRef);
   private userService = inject(UserService);
   private domSanitizer = inject(DomSanitizer);
@@ -39,7 +39,7 @@ export class ProfileComponent {
       takeUntilDestroyed(this.destroyRef)
     )
     .subscribe(photo => {
-      var urlCreator = window.URL || window.webkitURL;
+      const urlCreator = window.URL || window.webkitURL;
       this.profilePhoto = this.domSanitizer.bypassSecurityTrustResourceUrl(urlCreator.createObjectURL(photo));
     });
   }

@@ -24,14 +24,22 @@
             <tr>
             <td>Vader:</td>
             <td>
-                <div *ngIf="alpaca.sire"><a (click)="navigateToDetails(alpaca.sire)" style="cursor: pointer;">{{ alpaca.sire.longName }}</a></div>
+                <div *ngIf="alpaca.sire">
+                    <a (click)="navigateToDetails(alpaca.sire)" 
+                    (keydown)="navigateToDetails(alpaca.sire)" 
+                    tabindex="0" 
+                    style="cursor: pointer;">{{ alpaca.sire.longName }}</a></div>
                 <div *ngIf="alpaca.sireName">{{ alpaca.sireName }}</div>
             </td>
             </tr>
             <tr>
             <td>Moeder:</td>
             <td>
-                <div *ngIf="alpaca.dam"><a (click)="navigateToDetails(alpaca.dam)" style="cursor: pointer;">{{ alpaca.dam.longName }}</a></div>
+                <div *ngIf="alpaca.dam">
+                    <a (click)="navigateToDetails(alpaca.dam)" 
+                    (keydown)="navigateToDetails(alpaca.dam)" 
+                    tabindex="0" 
+                    style="cursor: pointer;">{{ alpaca.dam.longName }}</a></div>
                 <div *ngIf="alpaca.damName">{{ alpaca.damName }}</div>
             </td>
             </tr>

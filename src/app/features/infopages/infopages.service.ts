@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Infopage } from './infopage.model';
@@ -8,9 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class InfopagesService {
-
-  constructor(private http: HttpClient) { }
-
+  private http = inject(HttpClient);
   private url = `${environment.apiBaseUrl}/api/infopages`;
 
   public getInfopages(): Observable<Infopage[]> {

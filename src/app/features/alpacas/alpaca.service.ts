@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Alpaca } from './alpaca.model';
@@ -8,10 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AlpacaService {
-
-  constructor(
-    private http: HttpClient) { }
-
+  private http = inject(HttpClient);
   private url = `${environment.apiBaseUrl}/api/alpacas`;
 
   public getAlpacas(): Observable<Alpaca[]> {

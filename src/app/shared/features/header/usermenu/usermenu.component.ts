@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AccountInfo } from '@azure/msal-browser';
@@ -18,12 +17,12 @@ import { UserService } from 'src/app/features/users/user.service';
   templateUrl: './usermenu.component.html',
   styleUrls: ['./usermenu.component.scss']
 })
-export class UsermenuComponent {
-  isUserLoggedIn$!: Observable<boolean>;
-  activeAccount$!: Observable<AccountInfo>;
-  account!: AccountInfo;
+export class UsermenuComponent implements OnInit {
+  private userService = inject(UserService);
+  public isUserLoggedIn$!: Observable<boolean>;
+  public activeAccount$!: Observable<AccountInfo>;
+  public account!: AccountInfo;
 
-  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.isUserLoggedIn$ = this.userService.isUserLoggedIn;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Link } from './link.model.js';
 import { HttpClient } from '@angular/common/http';
@@ -8,9 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LinkService {
-
-  constructor(private http: HttpClient) { }
-
+  private http = inject(HttpClient);
   private url = `${environment.apiBaseUrl}/api/links`;
 
   public getLinks(): Observable<Link[]> {

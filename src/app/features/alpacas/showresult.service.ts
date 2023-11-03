@@ -1,5 +1,5 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
-import { Observable, filter, map, take, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Showresult } from './showresult.model';
 import { AlpacashowService } from './alpacashow.service';
@@ -14,13 +14,9 @@ import { environment } from 'src/environments/environment';
 })
 export class ShowresultService {
   readonly destroyRef = inject(DestroyRef);
-
-  constructor(
-    private http: HttpClient,
-    private alpacashowService: AlpacashowService,
-    private alpacaService: AlpacaService
-    ) { }
-
+  private http = inject(HttpClient);
+  private alpacashowService = inject(AlpacashowService);
+  private alpacaService = inject(AlpacaService);
   private url = `${environment.apiBaseUrl}/api/showresults`;
 
   public getShowresults(): Observable<Showresult[]> {
