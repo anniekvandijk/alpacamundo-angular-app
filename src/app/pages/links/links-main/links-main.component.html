@@ -1,6 +1,6 @@
-<ng-template #content>
+<H1>Links</H1>
+<app-http-loader>
   <ng-container *ngIf="groupedLinks$ | async as groupedLinks">
-  <H1>Links</H1>
   <div *ngFor="let linkType of (groupedLinks | keyvalue)">
     <h2>{{ linkType.key }}</h2>
     <div *ngFor="let link of linkType.value">
@@ -25,8 +25,4 @@
   </div>
   </div>
   </ng-container>
-</ng-template>  
-
-<ng-container *ngIf="isLoading$ | async as loader; else content">
-  <app-spinner></app-spinner>
-</ng-container>
+</app-http-loader>  
