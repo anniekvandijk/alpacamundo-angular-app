@@ -1,12 +1,18 @@
 import { HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
   })
 export class CacheService {
+
   private cache = new Map();
-  private expiry: number = 10000; // 10sec
+  private expiry: number;
+
+  constructor() {
+    this.expiry = environment.cacheLifetime;
+}
 
   public getCache(url: string): HttpEvent<any> | undefined {
     let result = this.cache.get(url);
