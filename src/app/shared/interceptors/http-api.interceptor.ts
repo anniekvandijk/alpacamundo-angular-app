@@ -4,31 +4,59 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { EMPTY, Observable, of } from 'rxjs';
+import { catchError, finalize, tap } from 'rxjs/operators';
 import { HttpStatusService } from '../services/http-status.service';
 import { ErrorService } from '../services/error.service';
+import { CacheService } from '../services/cache.service';
 
 @Injectable()
 export class HttpApiInterceptor implements HttpInterceptor {
-  constructor(private status: HttpStatusService, private errorService: ErrorService) {}
+
+  private httpStatusService = inject(HttpStatusService);
+  private errorService = inject(ErrorService);
+  private cacheService = inject(CacheService);
 
   public intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    this.status.isLoading.next(true);
+    if (!this.isCachable(req)) {
+      return this.sentRequest(req, next);
+    }
+
+    let cachedResponse = this.cacheService.getCache(req.url);
+    if (!cachedResponse) {
+      return this.sentRequest(req, next);
+    }
+
+    return of(cachedResponse)
+  }
+
+  isCachable(req: HttpRequest<any>) {
+    return req.method === 'GET';
+  }
+
+  private sentRequest(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> { 
+    
+    this.httpStatusService.isLoading.next(true);
 
     return next.handle(req).pipe(
+      tap((event) => {
+        if (this.isCachable(req)) {
+          this.cacheService.setCache(req.url, event, new Date())
+        }
+      }),
       catchError((err) => {
         this.errorService.handleError(req.url, err);
         return EMPTY;
       }),
       finalize(() => {
-        this.status.isLoading.next(false);
+        this.httpStatusService.isLoading.next(false);
       })
     );
+
   }
 }
