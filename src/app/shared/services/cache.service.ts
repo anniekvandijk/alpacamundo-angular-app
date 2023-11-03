@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
     providedIn: 'root',
   })
-export class CacheService {
+export class CacheService<T> {
 
   private cache = new Map();
   private expiry: number;
@@ -14,14 +14,14 @@ export class CacheService {
     this.expiry = environment.cacheLifetime;
 }
 
-  public getCache(url: string): HttpEvent<any> | undefined {
+  public getCache(url: string): HttpEvent<T> | undefined {
     const result = this.cache.get(url);
 
     if (!result) {
       return undefined;
     }
 
-    const response: HttpEvent<any> = result.response;
+    const response: HttpEvent<T> = result.response;
     const resDate: Date = result.date;
 
     if (Date.now() - resDate.getTime() > this.expiry) {
@@ -32,7 +32,7 @@ export class CacheService {
     return response;
   }
 
-  public setCache(url: string, response: HttpEvent<any>, date: Date): void {
+  public setCache(url: string, response: HttpEvent<T>, date: Date): void {
     this.cache.set(url, { response, date });
   }
 

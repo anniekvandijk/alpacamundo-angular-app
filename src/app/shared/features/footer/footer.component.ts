@@ -20,10 +20,13 @@ const project = require('../../../../../package.json');
     RouterModule
   ],
   template: `
-  <div class="footer-text">© Copyright 2023 Alpacamundo - v{{getProjectVersion()}} -  
-    <a *ngIf="!isUserLoggedIn" (click)="login()" title="Login" rel="login" style="cursor: pointer;">login here</a>
-    <a *ngIf="isUserLoggedIn" (click)="logout()" title="Logout" rel="logout" style="cursor: pointer;">logout</a>
-  </div>
+  <div class="footer-text">© Copyright 2023 Alpacamundo - v{{getProjectVersion()}}
+    <ng-container *ngIf="!isUserLoggedIn; else loggedIn">
+      <a role="button" (click)="login()" (keydown)="login()" title="Login" rel="login" tabindex="0">login here</a>
+    </ng-container>
+    <ng-template #loggedIn>
+      <a role="button" (click)="logout()" (keydown)="login()" title="Logout" rel="logout" tabindex="0">logout</a>
+    </ng-template> 
   `,
   
 })

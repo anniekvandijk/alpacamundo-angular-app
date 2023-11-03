@@ -12,16 +12,16 @@ import { ErrorService } from '../services/error.service';
 import { CacheService } from '../services/cache.service';
 
 @Injectable()
-export class HttpApiInterceptor implements HttpInterceptor {
+export class HttpApiInterceptor<T> implements HttpInterceptor {
 
   private httpStatusService = inject(HttpStatusService);
   private errorService = inject(ErrorService);
   private cacheService = inject(CacheService);
 
   public intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<T>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<T>> {
 
     if (!this.isCachable(req)) {
       return this.sentRequest(req, next);
@@ -35,11 +35,11 @@ export class HttpApiInterceptor implements HttpInterceptor {
     return of(cachedResponse)
   }
 
-  private isCachable(req: HttpRequest<any>) {
+  private isCachable(req: HttpRequest<T>) {
     return req.method === 'GET';
   }
 
-  private sentRequest(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> { 
+  private sentRequest(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> { 
     
     this.httpStatusService.isLoading.next(true);
 
