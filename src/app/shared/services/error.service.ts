@@ -22,27 +22,24 @@ export class ErrorService {
 
   private addMessage(operation: string, error: HttpErrorResponse) : void {
 
-    let userMessage: string;
+    let userMessage = 'Fout opgetreden: ';
 
     switch (error.status) {
-      case 400:
-        userMessage = 'The request was invalid. Please try again.';
-        break;
 
       case 401:
-        userMessage = 'You are not authorized';
+        userMessage += 'Niet geautoriseerd (401)';
         break;
 
       case 403:
-        userMessage = 'You do not have the rights to perform this action.';
+        userMessage += 'Geen permissies voor deze actie (403)';
         break;
 
       case 404:
-        userMessage = 'The requested resource was not found.';
+        userMessage += 'Het gevraagde werd niet gevonden (404)';
         break;
 
-      default: // 500
-        userMessage = 'An error occurred. Please try again later.';
+      default: // Overige fouten
+        userMessage += `Dit ging heel fout (${error.status})`;
         break;
     }
     
