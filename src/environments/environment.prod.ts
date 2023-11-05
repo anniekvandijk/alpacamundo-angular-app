@@ -3,6 +3,6 @@ export const environment = {
     name: 'production',
     loginRedirectUri: 'https://www.alpacamundo.eu',
     postLogoutRedirectUrl: 'http://www.alpacamundo.eu',
-    apiBaseUrl: 'https://localhost:7248',
+    apiBaseUrl: 'http://api.alpacamundo.eu',
     cacheLifetime: 360000, // 1 hour
   };

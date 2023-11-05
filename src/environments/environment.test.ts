@@ -3,7 +3,6 @@ export const environment = {
     name: 'test',
     loginRedirectUri: 'https://tst.alpacamundo.eu',
     postLogoutRedirectUrl: 'http://tst.alpacamundo.eu',
-    apiBaseUrl: 'https://localhost:7248',
+    apiBaseUrl: 'http://api-tst.alpacamundo.eu',
     cacheLifetime: 600000, // 10 minutes
-
   };
