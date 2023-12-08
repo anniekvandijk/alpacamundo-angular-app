@@ -9,20 +9,18 @@ app-footer {
   height: 30px;
   width: 100%;
   border-radius: 10px;
-  border: 1px solid var(--secondary-color);
   color: var(--secondary-color-dark);
   margin: 10px 0px 20px 0px;
   padding: 5px 5px 5px 5px;
   text-align: center;
   font-size: 0.8em;
-  background-color: var(--background-color-light);
+  background-color: var(--secondary-color-light);
 }
 
 #app-container {
   min-height: 600px;
   background: url(./../assets/images/header.png) transparent no-repeat;
   width: 960px;
- // position: relative;
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
