@@ -4,5 +4,6 @@ export const environment = {
     loginRedirectUri: 'http://localhost:4200',
     postLogoutRedirectUrl: 'http://localhost:4200',
     apiBaseUrl: 'https://localhost:7248',
-    cacheLifetime: 20000, // 20 seconds
+    //apiBaseUrl: 'https://api-tst.alpacamundo.eu:11443', // /swagger/index.html
+    cacheLifetime: 20000
   };
