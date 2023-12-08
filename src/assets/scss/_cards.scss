@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+mat-card {
+    margin: 0px 0px 20px 0px;
+    border-radius: 10px !important;
+    @include mat.elevation(0);
+    box-shadow:none !important;
+    border-color: var(--primary-color-light) !important;
+    border-width: 1px !important;  
+    border-style: solid !important;
+      
+}
+
+mat-card-title {
+    font-size: 1.2em;
+}
+
+mat-card-header, mat-card-actions{
+    background: var(--secondary-color-light);
+    height: 50px !important;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+mat-card-header {
+    padding-top: 0px !important;
+    border-radius: 10px 10px 0px 0px;
+    padding-left: 10px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+    border-bottom-width: 1px ;  
+    border-bottom-style: solid;
+}
+
+mat-card-actions {
+    border-top-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+    border-top-width: 1px ;  
+    border-top-style: solid;
+    border-radius: 0px 0px 10px 10px;
+}
+
+
+
+a {
+    text-decoration: none;
+}

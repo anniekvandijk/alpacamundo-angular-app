@@ -90,13 +90,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "alpacamundo-angular-app:build:production"
+              "buildTarget": "alpacamundo-angular-app:build:production"
             },
             "development": {
-              "browserTarget": "alpacamundo-angular-app:build:development"
+              "buildTarget": "alpacamundo-angular-app:build:development"
             },
             "test": {
-              "browserTarget": "alpacamundo-angular-app:build:testing"
+              "buildTarget": "alpacamundo-angular-app:build:testing"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "alpacamundo-angular-app:build"
+            "buildTarget": "alpacamundo-angular-app:build"
           }
         },
         "test": {

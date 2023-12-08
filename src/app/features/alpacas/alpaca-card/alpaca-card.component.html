@@ -47,7 +47,7 @@
         <div *ngIf="alpaca.category === 'Dekhengsten'">Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw</div>
         <div *ngIf="alpaca.status === 'Te koop'">Te koop: {{alpaca.sellPrice | currency}} excl. 21% btw</div>
       </div>
-      <button class="icon-button" mat-button (click)="navigateToDetails(alpaca)">
+      <button class="icon-button" mat-raised-button (click)="navigateToDetails(alpaca)">
         Lees meer  <mat-icon>double_arrow</mat-icon>
       </button>
     </mat-card-actions>

@@ -7,11 +7,11 @@
     </mat-card-header>
     <mat-card-content>
       <div class="card-body">
-        <div [innerHTML]="infopage.body | slice:0:200"></div>
+        <div [innerHTML]="infopage.body | slice:0:400"></div>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button class="icon-button" mat-button (click)="navigateToDetails(infopage)">
+      <button class="icon-button" mat-raised-button (click)="navigateToDetails(infopage)">
         Lees meer  <mat-icon>double_arrow</mat-icon>
       </button>
     </mat-card-actions>

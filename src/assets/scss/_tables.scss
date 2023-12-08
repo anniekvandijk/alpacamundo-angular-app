@@ -1,13 +1,25 @@
+@use '@angular/material' as mat;
+
 .mat-mdc-table {
     margin-right: 16px;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    box-sizing: border-box;
-    border-color: var(--mdc-elevated-card-container-color, transparent);
-   // box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 10px !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: var(--primary-color-light) !important;
+    box-sizing: border-box  !important;
+    @include mat.elevation(0);
+
+    th:first-child {
+        border-radius: 10px 0 0 0 !important;
+    }
+    th:last-child {
+        border-radius: 0 10px 0 0 !important;
+    }
+   
 }
 
 .mat-mdc-header-row {
-    background-color: var(--background-color-light) !important;
+    background-color:var(--secondary-color-light) !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
 }  

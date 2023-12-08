@@ -2,6 +2,7 @@
 @use './assets/scss/variables';
 @use './assets/scss/forms';
 @use './assets/scss/tables';
+@use './assets/scss/cards';
 
 @font-face {
     font-family: 'France Plain';
@@ -111,7 +112,8 @@ white-space: pre-wrap
 
 .page-sidebar {
     float: left;
-    background-color: var(--background-color-light);
+  //  background-color: var(--background-color-light);
+    background-color: var(--secondary-color-light);
     margin-top: 30px;
     padding: 10px;
     width: 200px;
