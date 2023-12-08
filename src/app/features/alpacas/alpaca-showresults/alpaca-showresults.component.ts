@@ -14,7 +14,7 @@ import { Showresult } from 'src/app/features/alpacas/showresult.model';
     SpinnerComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
-  styleUrls: ['./alpaca-showresults.component.scss']
+  styleUrls: []
 })
 export class AlpacaShowresultsComponent implements OnInit, OnChanges {
   @Input() alpaca!: Alpaca;

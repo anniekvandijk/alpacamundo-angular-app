@@ -3,19 +3,19 @@ mat-card {
 }
 
 mat-card-header {
+    height: 56px;
     padding-top: 5px;
     padding-left: 10px;
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
+    border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+    border-bottom-width: 1px ;  
+    border-bottom-style: solid;
 }
 
 mat-card-header, mat-card-actions{
     background-color: var(--background-color-light);
-}
-
-mat-card-title {
-    font-size: 1.2em;
 }
 
 mat-card-actions {
@@ -28,7 +28,7 @@ mat-card-content {
     display: flex; 
     justify-content: space-between;
     align-items: center; 
-    font-size: small;
+    font-size: 14px;
 }
 
 .icon-button {
@@ -36,12 +36,15 @@ mat-card-content {
     justify-content: space-between;
 }
 
-.alpaca-fullname {
-    color: var(--secondary-color);
+.alpaca-shortname {
+    font-size: 14px;
+    font-weight: 500;
 }
 
-.card-body {
-    padding: 10px;
+.alpaca-fullname {
+    font-size: 14px;
+    color: var(--secondary-color);
+    font-weight: 500;
 }
 
 img {
@@ -51,6 +54,5 @@ img {
   }
 
 td.label {
-    font-weight: bold;
     padding-right: 10px;
 }
