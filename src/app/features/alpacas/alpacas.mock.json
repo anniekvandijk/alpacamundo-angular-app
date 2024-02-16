@@ -1,5 +1,255 @@
 [
   {
+    "id": "6f51da53-aceb-4621-ab8a-f931897c3ee3",
+    "shortName": "Qunta",
+    "shortNameSlug": "qunta",
+    "longName": "Alpacamundo Qunta",
+    "longNameSlug": "alpacamundo-qunta",
+    "breed": "Huacaya",
+    "dateOfBirth": "2023-06-11T00:00:00",
+    "bornOnFarm": true,
+    "damName": null,
+    "damId": "a6a040c3-bd5a-49f3-b2d9-88bf9f401ff8",
+    "sireId": "1e33bc34-55b6-46a7-8f28-f5b37aff968d",
+    "sireName": null,
+    "color": "Beige",
+    "gender": "Hengst",
+    "randomText": null,
+    "studFee": 0,
+    "sellPrice": 0,
+    "offspring": [],
+    "pedigree": null,
+    "mainImage": {
+      "id": "32b4b058-c15a-4ff9-aed0-3e2b911efb04",
+      "path": null,
+      "oldUrl": "",
+      "name": "Qunta_1.jpg",
+      "fileType": "image/jpeg",
+      "about": null,
+      "alt": "Alpacamundo Qunta",
+      "title": "Alpacamundo Qunta",
+      "height": 2000,
+      "width": 2000
+    },
+    "images": [
+      {
+        "id": "gce6409c-8bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Qunta_2.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      }
+    ],
+    "description": "Qunta is een leuke beige hengst van onze Hero. Eet graag uit de hand en is altijd nieuwsgierig naar wat er gebeurt.",
+    "category": "Hengsten",
+    "status": "Niet te koop"
+  }, 
+  {
+    "id": "6f50da53-aceb-4621-ab8a-f931897c3ee3",
+    "shortName": "Quest",
+    "shortNameSlug": "quest",
+    "longName": "Alpacamundo Quest",
+    "longNameSlug": "alpacamundo-quest",
+    "breed": "Huacaya",
+    "dateOfBirth": "2023-06-09T00:00:00",
+    "bornOnFarm": true,
+    "damName": null,
+    "damId": "090eb2ff-4f82-4e9a-af93-04f1c29f8e72",
+    "sireId": "1e33bc34-55b6-46a7-8f28-f5b37aff968d",
+    "sireName": null,
+    "color": "White",
+    "gender": "Hengst",
+    "randomText": null,
+    "studFee": 0,
+    "sellPrice": 0,
+    "offspring": [],
+    "pedigree": null,
+    "mainImage": {
+      "id": "32b4a058-c15a-4ff9-aed0-3e2b911efb04",
+      "path": null,
+      "oldUrl": "",
+      "name": "Quest_1.jpg",
+      "fileType": "image/jpeg",
+      "about": null,
+      "alt": "Alpacamundo Quest",
+      "title": "Alpacamundo Quest",
+      "height": 2000,
+      "width": 2000
+    },
+    "images": [
+      {
+        "id": "gce6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Quest_2.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      }
+    ],
+    "description": "Quest is een mooie witte hengst van onze Hero. Hij is een rustige jongen die graag bij zijn moeder in de buurt is.",
+    "category": "Hengsten",
+    "status": "Niet te koop"
+  }, 
+  {
+    "id": "5f40da53-aceb-4621-ab8a-f931897c3ee3",
+    "shortName": "Quinty",
+    "shortNameSlug": "quinty",
+    "longName": "Alpacamundo Quinty",
+    "longNameSlug": "alpacamundo-quinty",
+    "breed": "Huacaya",
+    "dateOfBirth": "2023-06-02T00:00:00",
+    "bornOnFarm": true,
+    "damName": null,
+    "damId": "440175e0-0dd6-40f8-8748-09dffbbf3d92",
+    "sireId": "4dfeec10-dd9f-4e9c-bba1-3ae95c96f101",
+    "sireName": null,
+    "color": "Fawn",
+    "gender": "Merrie",
+    "randomText": null,
+    "studFee": 0,
+    "sellPrice": 0,
+    "offspring": [],
+    "pedigree": null,
+    "mainImage": {
+      "id": "49b4a058-c15a-4ff9-aed0-3e2b911efb04",
+      "path": null,
+      "oldUrl": "",
+      "name": "Quinty_1.jpg",
+      "fileType": "image/jpeg",
+      "about": null,
+      "alt": "Alpacamundo Quinty",
+      "title": "Alpacamundo Quinty",
+      "height": 2000,
+      "width": 2000
+    },
+    "images": [
+      {
+        "id": "hae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Quinty_2.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      }
+    ],
+    "description": "Quinty is ons enige meisje van 2023. Ze is mooi fawn van kleur.",
+    "category": "Merries",
+    "status": "Niet te koop"
+  },
+  {
+    "id": "6f40da53-aceb-4621-ab8a-f931897c3ee3",
+    "shortName": "Q",
+    "shortNameSlug": "q",
+    "longName": "Alpacamundo Q",
+    "longNameSlug": "alpacamundo-q",
+    "breed": "Huacaya",
+    "dateOfBirth": "2023-05-30T00:00:00",
+    "bornOnFarm": true,
+    "damName": null,
+    "damId": "da2d5596-8237-4ada-8bda-f3ca383de719",
+    "sireId": "4dfeec10-dd9f-4e9c-bba1-3ae95c96f101",
+    "sireName": null,
+    "color": "Fawn",
+    "gender": "Hengst",
+    "randomText": null,
+    "studFee": 0,
+    "sellPrice": 0,
+    "offspring": [],
+    "pedigree": null,
+    "mainImage": {
+      "id": "30b4a058-c15a-4ff9-aed0-3e2b911efb04",
+      "path": null,
+      "oldUrl": "",
+      "name": "Q_1.jpg",
+      "fileType": "image/jpeg",
+      "about": null,
+      "alt": "Alpacamundo Q",
+      "title": "Alpacamundo Q",
+      "height": 2000,
+      "width": 2000
+    },
+    "images": [
+      {
+        "id": "gbe6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Q_2.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      }
+    ],
+    "description": "Q is een vrolijke hengstje, klein van stuk, maar staat altijd vooraan. Q is een inventief mannetje en daarom naar 007 Q genoemd.",
+    "category": "Hengsten",
+    "status": "Niet te koop"
+  },  
+  {
+    "id": "4f40da53-aceb-4621-ab8a-f931897c3ee3",
+    "shortName": "Quinn",
+    "shortNameSlug": "quinn",
+    "longName": "Alpacamundo Quinn",
+    "longNameSlug": "alpacamundo-quinn",
+    "breed": "Huacaya",
+    "dateOfBirth": "2023-06-18T00:00:00",
+    "bornOnFarm": true,
+    "damName": null,
+    "damId": "ffdee1a1-4ded-461a-b7af-befb485e1a1c",
+    "sireId": "4dfeec10-dd9f-4e9c-bba1-3ae95c96f101",
+    "sireName": null,
+    "color": "Brown",
+    "gender": "Hengst",
+    "randomText": null,
+    "studFee": 0,
+    "sellPrice": 0,
+    "offspring": [],
+    "pedigree": null,
+    "mainImage": {
+      "id": "39b4a058-c15a-4ff9-aed0-3e2b911efb04",
+      "path": null,
+      "oldUrl": "",
+      "name": "Quinn_1.jpg",
+      "fileType": "image/jpeg",
+      "about": null,
+      "alt": "Alpacamundo Quinn",
+      "title": "Alpacamundo Quinn",
+      "height": 2000,
+      "width": 2000
+    },
+    "images": [
+      {
+        "id": "gae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Quinn_2.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      }
+    ],
+    "description": "Quinn is een vrolijke hengst die altijd in is voor een dolle bui. Hij is fors van stuk, net zoals alle nakomelingen van Cala Luna.",
+    "category": "Hengsten",
+    "status": "Niet te koop"
+  },
+  {
     "id": "006e7127-58e2-4263-87a2-8e78e8ba97be",
     "shortName": "Mystique",
     "shortNameSlug": "mystique",
@@ -227,6 +477,9 @@
     "studFee": 0,
     "sellPrice": 0,
     "offspring": [
+      {
+        "id": "6f50da53-aceb-4621-ab8a-f931897c3ee3"
+      },
       {
         "id": "5fbebb3a-77c5-48a6-bf55-5224dae0f34e"
       }
@@ -458,6 +711,12 @@
     "studFee": 650,
     "sellPrice": 0,
     "offspring": [
+      {
+        "id": "6f50da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
+        "id": "6f51da53-aceb-4621-ab8a-f931897c3ee3"
+      },
       {
         "id": "bb3de8b6-1978-40f9-87a0-542a5597eff5"
       },
@@ -1528,6 +1787,9 @@
     "sellPrice": 0,
     "offspring": [
       {
+        "id": "5f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
         "id": "ddc7b2e5-978f-4171-89f5-71122f7802ec"
       },
       {
@@ -1620,6 +1882,15 @@
     "studFee": 450,
     "sellPrice": 0,
     "offspring": [
+      {
+        "id": "6f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
+        "id": "4f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
+        "id": "5f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
       {
         "id": "20d24d85-035e-4a05-8e9b-407e30f84e51"
       },
@@ -3297,6 +3568,9 @@
     "sellPrice": 0,
     "offspring": [
       {
+        "id": "6f51da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
         "id": "bb3de8b6-1978-40f9-87a0-542a5597eff5"
       },
       {
@@ -4040,6 +4314,9 @@
     "sellPrice": 0,
     "offspring": [
       {
+        "id": "6f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
+      {
         "id": "090eb2ff-4f82-4e9a-af93-04f1c29f8e72"
       },
       {
@@ -4393,6 +4670,9 @@
     "studFee": 0,
     "sellPrice": 0,
     "offspring": [
+      {
+        "id": "4f40da53-aceb-4621-ab8a-f931897c3ee3"
+      },
       {
         "id": "20d24d85-035e-4a05-8e9b-407e30f84e51"
       },
