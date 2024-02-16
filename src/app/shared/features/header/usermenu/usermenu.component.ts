@@ -29,7 +29,7 @@ export class UsermenuComponent implements OnInit {
     this.activeAccount$ = this.userService.activeAccount;
     this.userService.activeAccount.pipe(
       tap((activeAccount: AccountInfo) => { 
-        console.log('activeAccount', activeAccount);
+      //  console.log('activeAccount', activeAccount);
       }),
     ).subscribe(
       (activeAccount: AccountInfo) => {
