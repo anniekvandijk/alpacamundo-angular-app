@@ -52,11 +52,20 @@
         </table>
         </div>
     </div>
-    <div *ngIf="alpaca.category === 'Dekhengsten'">
-        <h3>Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw</h3>
+    <div *ngIf="alpaca.category === 'Dekhengsten'" class="alpaca-detail-dekhengst">
+        <h2>Dekkingen</h2>
+        Deze hengst is beschikbaar voor externe dekkingen en drive-by dekkingen.<p>
+        Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw en excl. evt. reiskosten.
     </div>
-    <div *ngIf="alpaca.status === 'Te koop'">
-        <h3>Te koop: {{alpaca.sellPrice | currency}} excl. 21% btw</h3>
+    <div *ngIf="alpaca.status === 'Te koop'" class="alpaca-detail-tekoop">
+        @if (alpaca.sellPrice > 0) {
+        <h2>Te koop</h2>
+        {{alpaca.sellPrice | currency}} excl. 21% btw.
+        }
+        @else {
+        <h2>Te koop</h2>
+        Prijs op aanvraag.
+        }
     </div>    
     <h2>Beschrijving</h2>
     <p><div [innerHTML]="getSafeHtml(alpaca.description)"></div>
