@@ -1441,8 +1441,8 @@
     "mainImage": {
       "id": "d9a21b51-2ec2-4c97-a4d3-a8f931ca8d53",
       "path": null,
-      "oldUrl": "/sites/default/files/alpaca-images/Oneill-4.png",
-      "name": "Oneill-4.png",
+      "oldUrl": "",
+      "name": "ONeill_2024_1.jpg",
       "fileType": "image/png",
       "about": null,
       "alt": "Alpacamundo O'Neill",
@@ -1451,6 +1451,18 @@
       "width": 1020
     },
     "images": [
+      {
+        "id": "9f7f1e78-105f-4089-8172-773b74197ded",
+        "path": null,
+        "oldUrl": "",
+        "name": "ONeill_2024_2.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo O'Neill",
+        "title": "Alpacamundo O'Neill",
+        "height": 720,
+        "width": 1280
+      },
       {
         "id": "9e7f1e78-105f-4089-8172-773b74197ded",
         "path": null,
@@ -1654,8 +1666,8 @@
     "mainImage": {
       "id": "29b4a058-c15a-4ff9-aed0-3e2b911efb04",
       "path": null,
-      "oldUrl": "/sites/default/files/alpaca-images/IMG_9185.JPG",
-      "name": "IMG_9185.JPG",
+      "oldUrl": "",
+      "name": "Nigel_2024_1.jpg",
       "fileType": "image/jpeg",
       "about": null,
       "alt": "Alpacamundo Nigel",
@@ -1664,6 +1676,66 @@
       "width": 2000
     },
     "images": [
+      {
+        "id": "kae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Nigel_2024_3.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      },  
+      {
+        "id": "jae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Nigel_2024_2.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      },  
+      {
+        "id": "iae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Nigel_2024_1.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      },      
+      {
+        "id": "hae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Nigel_2021_1.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      },
+      {
+        "id": "gae6409c-9bdf-4664-845c-f8d65dbffb53",
+        "path": null,
+        "oldUrl": "",
+        "name": "Nigel_2020_1.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "",
+        "title": "",
+        "height": 2000,
+        "width": 1500
+      },
       {
         "id": "fae6409c-9bdf-4664-845c-f8d65dbffb53",
         "path": null,
@@ -2258,9 +2330,9 @@
     "mainImage": {
       "id": "c1d24e0f-105b-410a-90be-c7825a103227",
       "path": null,
-      "oldUrl": "/sites/default/files/alpaca-images/Odin.png",
-      "name": "Odin.png",
-      "fileType": "image/png",
+      "oldUrl": "",
+      "name": "Odin_2024_1.jpg",
+      "fileType": "image/jpeg",
       "about": null,
       "alt": "Alpacamundo Odin",
       "title": "Alpacamundo Odin",
@@ -2268,6 +2340,42 @@
       "width": 2000
     },
     "images": [
+      {
+        "id": "9bef9056-278f-46ce-9745-ddb887d803f5",
+        "path": null,
+        "oldUrl": "",
+        "name": "Odin_2024_4.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo Odin",
+        "title": "Alpacamundo Odin",
+        "height": 1125,
+        "width": 2000
+      },
+      {
+        "id": "9bdf9056-278f-46ce-9745-ddb887d803f5",
+        "path": null,
+        "oldUrl": "",
+        "name": "Odin_2024_3.jpg",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo Odin",
+        "title": "Alpacamundo Odin",
+        "height": 1125,
+        "width": 2000
+      },
+      {
+        "id": "9bcf9056-278f-46ce-9745-ddb887d803f5",
+        "path": null,
+        "oldUrl": "",
+        "name": "Odin_2024_2.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo Odin",
+        "title": "Alpacamundo Odin",
+        "height": 1125,
+        "width": 2000
+      },
       {
         "id": "9acf9056-278f-46ce-9745-ddb887d803f5",
         "path": null,
@@ -3767,6 +3875,18 @@
       "width": 970
     },
     "images": [
+      {
+        "id": "608fcac5-00d5-42f1-a63f-f73312788ff4",
+        "path": null,
+        "oldUrl": "",
+        "name": "Maddox_2024_1.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo Maddox",
+        "title": "Alpacamundo Maddox",
+        "height": 1500,
+        "width": 2000
+      },
       {
         "id": "508fcac5-00d5-42f1-a63f-f73312788ff4",
         "path": null,
