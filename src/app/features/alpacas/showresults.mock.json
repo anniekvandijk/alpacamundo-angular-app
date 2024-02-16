@@ -1,4 +1,4 @@
-export const SHOWRESULTS = [
+[
   {
     "id": "a01924d4-8b84-42b9-9498-cc015bc885d9",
     "title": "Showresultaat Jesse 2018 4th Adult Male Fawn",
@@ -328,4 +328,4 @@ export const SHOWRESULTS = [
     "alpacashowId": "95c05b91-e070-48d7-bf5b-4b32200ceed0",
     "result": "Judge's Choice Award"
   }
-];
+]

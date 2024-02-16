@@ -1,4 +1,4 @@
-export const ALPACAS =[
+[
   {
     "id": "006e7127-58e2-4263-87a2-8e78e8ba97be",
     "shortName": "Mystique",
@@ -4464,4 +4464,4 @@ export const ALPACAS =[
     "category": "Fokmerries",
     "status": "Niet te koop"
   }
-];
+]

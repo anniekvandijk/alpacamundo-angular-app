@@ -1,4 +1,4 @@
-export const ALPACASHOWS =[
+[
   {
     "id": "c82f748b-eba1-40da-80c2-9989fef92fef",
     "title": "Nationale Alpacashow Assen 2017",
@@ -293,4 +293,4 @@ export const ALPACASHOWS =[
       "fileType": "application/pdf"
     }
   }
-];
+]

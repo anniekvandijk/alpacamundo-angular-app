@@ -1,4 +1,4 @@
-export const FLEECES = [
+[
   {
     "id": "1488274d-5fc3-4354-a119-8ba339b22241",
     "title": "Fleeceresultaat Jesse 2017",
@@ -1802,4 +1802,4 @@ export const FLEECES = [
       "fileType": "application/pdf"
     }
   }
-];
+]

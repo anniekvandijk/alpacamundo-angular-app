@@ -1,4 +1,4 @@
-export const INFOPAGES = [
+[
   {
     "id": "b5d3ab9c-2293-4d18-8c38-e05676cde793",
     "title": "Voordelen alpacawol",
@@ -207,4 +207,4 @@ export const INFOPAGES = [
     "created": "2020-07-06T17:58:37+02:00",
     "changed": "2020-07-11T16:02:11+02:00"
   }
-];
+]
