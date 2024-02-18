@@ -69,8 +69,7 @@
     </div>    
     <h2>Beschrijving</h2>
     <p><div [innerHTML]="getSafeHtml(alpaca.description)"></div>
-    <div *ngIf="alpaca.showresults && alpaca.showresults.length > 0">
-        <h2>Showresultaten</h2>
+    <div>
         <app-alpaca-showresults [alpaca]="alpaca"></app-alpaca-showresults>
     </div>
     <div *ngIf="alpaca.fleeceresults && alpaca.fleeceresults.length > 0">

@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, DestroyRef, Input, OnChanges, OnInit, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Showresult } from 'src/app/features/alpacas/showresult.model';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { ShowresultService } from '../showresult.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-alpaca-showresults',
@@ -11,6 +14,7 @@ import { Showresult } from 'src/app/features/alpacas/showresult.model';
   imports: [
     CommonModule,
     MatTableModule,
+    MatSortModule,
     SpinnerComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
@@ -18,6 +22,9 @@ import { Showresult } from 'src/app/features/alpacas/showresult.model';
 })
 export class AlpacaShowresultsComponent implements OnInit, OnChanges {
   @Input() alpaca!: Alpaca;
+  private readonly destroyRef = inject(DestroyRef);
+  private showresultService = inject(ShowresultService);
+  @ViewChild(MatSort) sort: MatSort = new MatSort();
   public showresults: Showresult[] = [];
 
   public displayedColumns: string[] = [
@@ -29,26 +36,25 @@ export class AlpacaShowresultsComponent implements OnInit, OnChanges {
   public dataSource = new MatTableDataSource<Showresult>();
 
   ngOnInit(): void {
-    this.setShowResults();
+    this.setShowResults(this.alpaca.id);
   }
 
   ngOnChanges(): void {
-    this.setShowResults();
+    this.setShowResults(this.alpaca.id);
   }
 
-  private setShowResults(): void {
-    if (this.alpaca && this.alpaca.showresults) {
-      this.showresults = this.alpaca.showresults;
-      this.showresults.sort((a, b) => {
-        if (a.alpacashow && a.alpacashow.showYear && b.alpacashow && b.alpacashow.showYear) {
-          return a.alpacashow.showYear - b.alpacashow.showYear;
-        } else {
-          return 0;
-        }
-      });
-      this.dataSource.data = this.showresults;
-    }
-
+  private setShowResults(alpacaId: string): void {
+    this.showresultService.getShowresultsByAlpacaId(alpacaId)
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe ((showresults: Showresult[]) => {
+      if (showresults.length === 0) {
+        this.dataSource.data = [];
+        return;
+      }
+      this.dataSource.data = showresults;
+      this.dataSource.sort = this.sort;
+    });
+    console.log(this.dataSource.data);
   }
 }
 
