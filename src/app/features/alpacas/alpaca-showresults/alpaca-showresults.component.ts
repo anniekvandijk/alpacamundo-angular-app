@@ -52,7 +52,18 @@ export class AlpacaShowresultsComponent implements OnInit, OnChanges {
         return;
       }
       this.dataSource.data = showresults;
+      this.dataSource.sortingDataAccessor = (item: Showresult, property: string) => {
+        switch(property) {
+          case 'showYear': return item.alpacashow.showYear;
+          default: return (item as any)[property];
+        }
+      };
       this.dataSource.sort = this.sort;
+      const sortState: Sort = {active: 'showYear', direction: 'desc'};
+      this.sort.active = sortState.active;
+      this.sort.direction = sortState.direction;
+      this.sort.sortChange.emit(sortState);
+
     });
     console.log(this.dataSource.data);
   }

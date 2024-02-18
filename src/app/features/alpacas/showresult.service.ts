@@ -1,5 +1,5 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Showresult } from './showresult.model';
 import { AlpacashowService } from './alpacashow.service';
@@ -8,6 +8,7 @@ import { AlpacaService } from './alpaca.service';
 import { Alpaca } from './alpaca.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { environment } from 'src/environments/environment';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +28,17 @@ export class ShowresultService {
     return this.getShowresults().pipe(
       takeUntilDestroyed(this.destroyRef),
       map(f => f.filter(f => f.alpacaId === alpacaId)),
-      map((showresults: Showresult[]) => {
-        showresults.forEach(showresult => {
-          this.alpacashowService.getAlpacashowById(showresult.alpacashowId)
-          .pipe(takeUntilDestroyed(this.destroyRef))
-            .subscribe((show: Alpacashow | null) => {
+      switchMap((showresults: Showresult[]) => {
+        const alpacashowObservables = showresults.map(showresult =>
+          this.alpacashowService.getAlpacashowById(showresult.alpacashowId).pipe(
+            takeUntilDestroyed(this.destroyRef),
+            map((show: Alpacashow | null) => {
               if (show) showresult.alpacashow = show;
-            } 
-          );
-        });
-        return showresults;
+              return showresult;
+            })
+          )
+        );
+        return forkJoin(alpacashowObservables);
       })
     );
   }

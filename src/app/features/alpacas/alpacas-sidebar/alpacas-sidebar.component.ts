@@ -46,7 +46,6 @@ export class AlpacasSidebarComponent extends HttploaderComponent implements OnIn
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
       if (alpacaDob > oneYearAgo) {
         alpaca.category = "Cria's " + oneYearAgo.getFullYear();
-        console.log(alpaca.category);
       }
       if (!acc[alpaca.category]) {
         acc[alpaca.category] = [];
