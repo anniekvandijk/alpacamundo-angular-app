@@ -3,7 +3,7 @@ import { Alpaca } from '../alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AlpacaCardComponent } from '../alpaca-card/alpaca-card.component';
+import { AlpacaCardComponent } from './alpaca-card/alpaca-card.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';

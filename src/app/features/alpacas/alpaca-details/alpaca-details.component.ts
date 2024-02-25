@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
-import { Alpaca } from '../alpaca.model';
+import { Alpaca, Offspring } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
@@ -13,9 +13,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
-import { AlpacaShowresultsComponent } from '../alpaca-showresults/alpaca-showresults.component';
-import { AlpacaFleeceresultsComponent } from '../alpaca-fleeceresults/alpaca-fleeceresults.component';
-import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-offspring-card.component';
+import { AlpacaShowresultsComponent } from './alpaca-showresults/alpaca-showresults.component';
+import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-fleeceresults.component';
+import { AlpacaOffspringCardComponent } from './alpaca-offspring-card/alpaca-offspring-card.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
@@ -88,20 +88,6 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
           alpaca.dam = dam;
         })
       }
-      // Show results
-      this.showresultService.getShowresultsByAlpacaId(alpaca.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe ((showresults: Showresult[]) => {
-        // Set the show results
-        alpaca.showresults = showresults;
-      });
-      // Fleeces
-      this.fleeceService.getFleecesByAlpacaId(alpaca.id)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe ((fleeces: Fleece[]) => {
-          // Set the fleeces
-          alpaca.fleeceresults = fleeces;
-      });
       // Offspring
       if (this.alpaca.offspring.length > 0) {
         this.alpaca.offspring.forEach(o => {
@@ -137,6 +123,11 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
   });
   } 
 
+  sortOffspringByBirthYear(alpacaOffspring : Offspring[]) : Offspring[] {
+    return alpacaOffspring.sort(function (a, b) {
+      return a.alpaca.dateOfBirth.getFullYear() - b.alpaca.dateOfBirth.getFullYear();
+    })
+  } 
 
   public getSafeHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);

@@ -1,4 +1,6 @@
-<table mat-table [dataSource]="dataSource">
+@if (dataSource.data.length > 0) {
+    <h2>Fleeceresultaten</h2>
+<table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="year">
         <th mat-header-cell *matHeaderCellDef> Jaar </th>
@@ -50,3 +52,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
+}

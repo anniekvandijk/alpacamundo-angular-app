@@ -73,8 +73,7 @@
     <div>
         <app-alpaca-showresults [alpaca]="alpaca"></app-alpaca-showresults>
     </div>
-    <div *ngIf="alpaca.fleeceresults && alpaca.fleeceresults.length > 0">
-        <h2>Fleeceresultaten</h2>
+    <div>
         <app-alpaca-fleeceresults [alpaca]="alpaca"></app-alpaca-fleeceresults>
     </div>
     <div *ngIf="alpaca.offspring && alpaca.offspring.length > 0">

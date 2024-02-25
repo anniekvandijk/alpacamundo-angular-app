@@ -5,7 +5,7 @@ import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.com
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { ShowresultService } from '../showresult.service';
+import { ShowresultService } from '../../showresult.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
