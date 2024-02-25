@@ -36,8 +36,6 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);
   private alpacaService = inject(AlpacaService);
-  private showresultService = inject(ShowresultService);
-  private fleeceService = inject(FleeceService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
@@ -61,7 +59,6 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
   .pipe(
     takeUntilDestroyed(this.destroyRef),
     switchMap((params: Params) => {
-      // Get the alpaca from the alpaca service
       return this.alpacaService.getAlpaca(params['id'])
     })
   )
@@ -121,12 +118,6 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
       });
     }
   });
-  } 
-
-  sortOffspringByBirthYear(alpacaOffspring : Offspring[]) : Offspring[] {
-    return alpacaOffspring.sort(function (a, b) {
-      return a.alpaca.dateOfBirth.getFullYear() - b.alpaca.dateOfBirth.getFullYear();
-    })
   } 
 
   public getSafeHtml(html: string) {
