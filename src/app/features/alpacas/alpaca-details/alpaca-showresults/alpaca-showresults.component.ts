@@ -20,7 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []
 })
-export class AlpacaShowresultsComponent implements OnInit, OnChanges {
+export class AlpacaShowresultsComponent implements OnChanges {
   @Input() alpaca!: Alpaca;
   private readonly destroyRef = inject(DestroyRef);
   private showresultService = inject(ShowresultService);
@@ -35,23 +35,20 @@ export class AlpacaShowresultsComponent implements OnInit, OnChanges {
 
   public dataSource = new MatTableDataSource<Showresult>();
 
-  ngOnInit(): void {
-    this.setShowResults(this.alpaca.id);
-  }
-
   ngOnChanges(): void {
-    this.setShowResults(this.alpaca.id);
+    this.setShowResults();
   }
 
-  private setShowResults(alpacaId: string): void {
-    this.showresultService.getShowresultsByAlpacaId(alpacaId)
+  private setShowResults(): void {
+    this.showresultService.getShowresultsByAlpacaId(this.alpaca.id)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((showresults: Showresult[]) => {
       if (showresults.length === 0) {
         this.dataSource.data = [];
         return;
       }
-      this.dataSource.data = showresults;
+      this.showresults = showresults;
+      this.dataSource.data = this.showresults;
       this.dataSource.sortingDataAccessor = (item: Showresult, property: string) => {
         switch(property) {
           case 'showYear': return item.alpacashow.showYear;
@@ -65,7 +62,6 @@ export class AlpacaShowresultsComponent implements OnInit, OnChanges {
       this.sort.sortChange.emit(sortState);
 
     });
-    console.log(this.dataSource.data);
   }
 }
 

@@ -21,13 +21,12 @@ export class AlpacaOffspringListComponent implements OnChanges{
   offsprings: Alpaca[] = [];
 
   ngOnChanges(): void {
-    this.offsprings = [];
-    this.getOffspring(this.alpaca);
+    this.getOffspring();
   }
 
-  getOffspring(alpaca: Alpaca) {
-    if (alpaca.offspring.length > 0) {
-      const offspringObservables = alpaca.offspring.map(offspring => 
+  getOffspring() {
+    if (this.alpaca.offspring.length > 0) {
+      const offspringObservables = this.alpaca.offspring.map(offspring => 
         this.alpacaService.getAlpaca(offspring.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
