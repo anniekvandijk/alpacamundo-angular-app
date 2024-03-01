@@ -76,11 +76,8 @@
     <div>
         <app-alpaca-fleeceresults [alpaca]="alpaca"></app-alpaca-fleeceresults>
     </div>
-    <div *ngIf="alpaca.offspring && alpaca.offspring.length > 0">
-        <h2>Nakomelingen</h2>
-        <div *ngFor="let cria of alpaca.offspring">
-            <app-alpaca-offspring-card [alpaca]="cria.alpaca"></app-alpaca-offspring-card>
-        </div>
+    <div>
+        <app-alpaca-offspring-list [alpaca]="alpaca"></app-alpaca-offspring-list>
     </div>
     <div *ngIf="alpaca.images && alpaca.images.length > 0">
         <h2>Foto's</h2>
