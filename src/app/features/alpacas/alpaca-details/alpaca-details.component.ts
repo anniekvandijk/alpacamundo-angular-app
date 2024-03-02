@@ -1,14 +1,10 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { Alpaca, Offspring } from '../alpaca.model';
+import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
 import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
-import { FleeceService } from 'src/app/features/alpacas/fleece.service';
-import { Fleece } from 'src/app/features/alpacas/fleece.model';
-import { ShowresultService } from 'src/app/features/alpacas/showresult.service';
-import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';

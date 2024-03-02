@@ -1,6 +1,6 @@
-@if (alpaca) {
-<h1>{{ alpaca.shortName }}</h1>
 <app-http-loader>
+    @if (alpaca) {
+        <h1>{{ alpaca.shortName }}</h1>
     <div><h2>{{ alpaca.longName }}</h2></div>
     <div class="alpaca-header">
         <img loading="lazy" src="{{alpacaMainImageUrl}}{{alpaca.mainImage.name}}" alt="{{alpaca.longName}}" class="alpaca-main-image"/>
@@ -85,5 +85,5 @@
             <img loading="lazy" src="{{alpacaImagesUrl}}{{image.name}}" alt="{{alpaca.longName}}" class="alpaca-image"/>
         </div>
     </div>
-</app-http-loader>
 }
+</app-http-loader>
