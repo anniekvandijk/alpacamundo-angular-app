@@ -23,16 +23,18 @@ import { MatSort, Sort } from '@angular/material/sort';
   templateUrl: './alpaca-fleeceresults.component.html',
   styleUrls: ['./alpaca-fleeceresults.component.scss']
 })
-export class AlpacaFleeceresultsComponent implements OnInit, OnChanges {
-  @Input() alpaca!: Alpaca;
+export class AlpacaFleeceresultsComponent implements OnInit {
+  @Input() set alpaca (alpaca: Alpaca) {
+    this.setFleeceResults(alpaca);
+  }
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   private readonly destroyRef = inject(DestroyRef);
-  private configuration: Configuration = inject(CONFIGURATION);
-  public fleeces: Fleece[] = [];
-  public fleeceResultsUrl!: string;
-  private fleeceService = inject(FleeceService);
+  private readonly fleeceService = inject(FleeceService);
+  private readonly configuration: Configuration = inject(CONFIGURATION);
+  fleeces: Fleece[] = [];
+  fleeceResultsUrl!: string;
 
-  public displayedColumns: string[] = [
+  displayedColumns: string[] = [
     'year',
     'fleecenumber',
     'mfd',
@@ -43,24 +45,18 @@ export class AlpacaFleeceresultsComponent implements OnInit, OnChanges {
     'fleeceTestReport'
   ];
   
-  public dataSource = new MatTableDataSource<Fleece>();
+  dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
     this.fleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
   }
 
-  ngOnChanges(): void {
-    this.setFleeceResults();
-  }
-
-  private setFleeceResults() {
-    this.fleeceService.getFleecesByAlpacaId(this.alpaca.id)
+  private setFleeceResults(alpaca: Alpaca) : void {
+    this.fleeces = [];
+    this.dataSource.data = [];
+    this.fleeceService.getFleecesByAlpacaId(alpaca.id)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((fleeces: Fleece[]) => {
-      if (fleeces.length === 0) {
-        this.dataSource.data = [];
-        return;
-      }
       this.fleeces = fleeces;
       this.dataSource.data = this.fleeces;
       this.dataSource.sortingDataAccessor = (item: Fleece, property: string) => {

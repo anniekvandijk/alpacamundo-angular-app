@@ -20,33 +20,29 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []
 })
-export class AlpacaShowresultsComponent implements OnChanges {
-  @Input() alpaca!: Alpaca;
+export class AlpacaShowresultsComponent {
+  @Input() set alpaca (alpaca: Alpaca) {
+    this.setShowResults(alpaca);
+  }
   private readonly destroyRef = inject(DestroyRef);
-  private showresultService = inject(ShowresultService);
+  private readonly showresultService = inject(ShowresultService);
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  public showresults: Showresult[] = [];
+  showresults: Showresult[] = [];
 
-  public displayedColumns: string[] = [
+  displayedColumns: string[] = [
     'showYear',
     'result',
     'showname',
   ];
 
-  public dataSource = new MatTableDataSource<Showresult>();
+  dataSource = new MatTableDataSource<Showresult>();
 
-  ngOnChanges(): void {
-    this.setShowResults();
-  }
-
-  private setShowResults(): void {
-    this.showresultService.getShowresultsByAlpacaId(this.alpaca.id)
+  private setShowResults(alpaca: Alpaca): void {
+    this.showresults = [];
+    this.dataSource.data = [];
+    this.showresultService.getShowresultsByAlpacaId(alpaca.id)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((showresults: Showresult[]) => {
-      if (showresults.length === 0) {
-        this.dataSource.data = [];
-        return;
-      }
       this.showresults = showresults;
       this.dataSource.data = this.showresults;
       this.dataSource.sortingDataAccessor = (item: Showresult, property: string) => {

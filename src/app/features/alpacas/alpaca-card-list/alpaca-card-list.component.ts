@@ -22,20 +22,20 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 })
 export class AlpacaCardListComponent extends HttploaderComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
-  private alpacaService = inject(AlpacaService);
-  private route = inject(ActivatedRoute);
-  public alpacas : Alpaca[] = [];
-  public filteredAlpacas: Alpaca[] | null = null;
-  public title = '';
-  public noResultsMessage = 'Geen alpaca\'s gevonden';
-  public cardListType = 'alpaca';
+  private readonly alpacaService = inject(AlpacaService);
+  private readonly route = inject(ActivatedRoute);
+  alpacas : Alpaca[] = [];
+  filteredAlpacas: Alpaca[] | null = null;
+  title = '';
+  noResultsMessage = 'Geen alpaca\'s gevonden';
+  cardListType = 'alpaca';
 
   ngOnInit(): void {
     this.route.params
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(params => {
       const filter = params['filter'];
-  
+
       this.alpacaService.getAlpacas()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(alpacas => {

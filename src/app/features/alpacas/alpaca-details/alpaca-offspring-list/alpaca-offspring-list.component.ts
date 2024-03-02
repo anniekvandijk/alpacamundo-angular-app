@@ -14,19 +14,18 @@ import { forkJoin, map, mergeMap, of } from 'rxjs';
   templateUrl: './alpaca-offspring-list.component.html',
   styleUrl: './alpaca-offspring-list.component.scss'
 })
-export class AlpacaOffspringListComponent implements OnChanges{
-  @Input() alpaca!: Alpaca;
+export class AlpacaOffspringListComponent{
+  @Input() set alpaca (alpaca: Alpaca) {
+    this.getOffspring(alpaca);
+  }
   private readonly destroyRef = inject(DestroyRef);
   private readonly alpacaService = inject(AlpacaService);
   offsprings: Alpaca[] = [];
 
-  ngOnChanges(): void {
-    this.getOffspring();
-  }
-
-  getOffspring() {
-    if (this.alpaca.offspring.length > 0) {
-      const offspringObservables = this.alpaca.offspring.map(offspring => 
+  private getOffspring(alpaca: Alpaca): void {
+    this.offsprings = [];
+    if (alpaca.offspring.length > 0) {
+      const offspringObservables = alpaca.offspring.map(offspring => 
         this.alpacaService.getAlpaca(offspring.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
