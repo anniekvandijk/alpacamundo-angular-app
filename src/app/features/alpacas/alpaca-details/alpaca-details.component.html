@@ -1,6 +1,6 @@
-@if (alpaca) {
-<h1>{{ alpaca.shortName }}</h1>
-<app-http-loader>
+<app-http-loader [componentId]="componentId">
+    @if (alpaca) {
+        <h1>{{ alpaca.shortName }}</h1>
     <div><h2>{{ alpaca.longName }}</h2></div>
     <div class="alpaca-header">
         <img loading="lazy" src="{{alpacaMainImageUrl}}{{alpaca.mainImage.name}}" alt="{{alpaca.longName}}" class="alpaca-main-image"/>
@@ -73,15 +73,11 @@
     <div>
         <app-alpaca-showresults [alpaca]="alpaca"></app-alpaca-showresults>
     </div>
-    <div *ngIf="alpaca.fleeceresults && alpaca.fleeceresults.length > 0">
-        <h2>Fleeceresultaten</h2>
+    <div>
         <app-alpaca-fleeceresults [alpaca]="alpaca"></app-alpaca-fleeceresults>
     </div>
-    <div *ngIf="alpaca.offspring && alpaca.offspring.length > 0">
-        <h2>Nakomelingen</h2>
-        <div *ngFor="let cria of alpaca.offspring">
-            <app-alpaca-offspring-card [alpaca]="cria.alpaca"></app-alpaca-offspring-card>
-        </div>
+    <div>
+        <app-alpaca-offspring-list [alpaca]="alpaca"></app-alpaca-offspring-list>
     </div>
     <div *ngIf="alpaca.images && alpaca.images.length > 0">
         <h2>Foto's</h2>
@@ -89,5 +85,5 @@
             <img loading="lazy" src="{{alpacaImagesUrl}}{{image.name}}" alt="{{alpaca.longName}}" class="alpaca-image"/>
         </div>
     </div>
-</app-http-loader>
 }
+</app-http-loader>

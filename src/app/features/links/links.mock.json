@@ -80,6 +80,15 @@
   
     },
     {
+      "id": "18",
+      "title": "AlpacaMarkt",
+      "body": "AlpacaMarkt is hét betrouwbare platform voor (ver)koop van alpaca's.",
+      "url": "https://alpacamarkt.nl/?ref=alpacamundo",
+      "linkType": "Inkoop en verkoop",
+      "imageName": "alpacamarkt.svg"
+  
+    },
+    {
       "id": "11",
       "title": "Alpacaseller",
       "body": "Deze site is een internationale site voor inkoop en verkoop van alpaca's. Ook kun je hierop zoeken naar fokkers en hengsten die ter dekking worden aangeboden. ",
@@ -127,14 +136,6 @@
       "url": "https://www.alpaca-benelux.com/",
       "linkType": "Verenigingen en shows",
       "imageName": "aab_logo.png"
-    },
-    {
-      "id": "17",
-      "title": "Alpacashow",
-      "body": "Onafhankelijke showteam in het noorden van Nederland. Organiseren met regelmaat shows in het noorden van het land in samenwerking met de AAB.",
-      "url": "https://www.alpacashow.nl/",
-      "linkType": "Verenigingen en shows",
-      "imageName": "alpacashownl.jpg"
     },
     {
       "id": "18",

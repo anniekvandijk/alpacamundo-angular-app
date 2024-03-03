@@ -1,5 +1,5 @@
 <h2>Over alpaca's</h2>
-<app-http-loader>
+<app-http-loader [componentId]="componentId">
     <ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
         <div *ngFor="let infoCat of (groupedInfopages | keyvalue)">
             <h3>{{ infoCat.key }}</h3>

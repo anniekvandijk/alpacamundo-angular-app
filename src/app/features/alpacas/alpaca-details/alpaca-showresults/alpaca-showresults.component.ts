@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, Input, OnChanges, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, Input, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { ShowresultService } from '../showresult.service';
+import { ShowresultService } from '../../showresult.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-showresults',
@@ -15,43 +16,36 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     CommonModule,
     MatTableModule,
     MatSortModule,
-    SpinnerComponent
+    SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []
 })
-export class AlpacaShowresultsComponent implements OnInit, OnChanges {
-  @Input() alpaca!: Alpaca;
+export class AlpacaShowresultsComponent {
+  @Input() set alpaca (alpaca: Alpaca) {
+    this.setShowResults(alpaca);
+  }
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
-  private showresultService = inject(ShowresultService);
+  private readonly showresultService = inject(ShowresultService);
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   public showresults: Showresult[] = [];
-
   public displayedColumns: string[] = [
     'showYear',
     'result',
     'showname',
   ];
-
   public dataSource = new MatTableDataSource<Showresult>();
 
-  ngOnInit(): void {
-    this.setShowResults(this.alpaca.id);
-  }
-
-  ngOnChanges(): void {
-    this.setShowResults(this.alpaca.id);
-  }
-
-  private setShowResults(alpacaId: string): void {
-    this.showresultService.getShowresultsByAlpacaId(alpacaId)
+  private setShowResults(alpaca: Alpaca): void {
+    this.showresults = [];
+    this.dataSource.data = [];
+    this.showresultService.getShowresultsByAlpacaId(alpaca.id, this.componentId)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((showresults: Showresult[]) => {
-      if (showresults.length === 0) {
-        this.dataSource.data = [];
-        return;
-      }
-      this.dataSource.data = showresults;
+      this.showresults = showresults;
+      this.dataSource.data = this.showresults;
       this.dataSource.sortingDataAccessor = (item: Showresult, property: string) => {
         switch(property) {
           case 'showYear': return item.alpacashow.showYear;
@@ -65,7 +59,6 @@ export class AlpacaShowresultsComponent implements OnInit, OnChanges {
       this.sort.sortChange.emit(sortState);
 
     });
-    console.log(this.dataSource.data);
   }
 }
 

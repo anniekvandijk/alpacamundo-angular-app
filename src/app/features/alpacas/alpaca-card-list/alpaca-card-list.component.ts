@@ -3,7 +3,7 @@ import { Alpaca } from '../alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AlpacaCardComponent } from '../alpaca-card/alpaca-card.component';
+import { AlpacaCardComponent } from './alpaca-card/alpaca-card.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
@@ -20,10 +20,11 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpaca-card-list.component.html',
   styleUrls: ['./alpaca-card-list.component.scss']
 })
-export class AlpacaCardListComponent extends HttploaderComponent implements OnInit {
+export class AlpacaCardListComponent implements OnInit {
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
-  private alpacaService = inject(AlpacaService);
-  private route = inject(ActivatedRoute);
+  private readonly alpacaService = inject(AlpacaService);
+  private readonly route = inject(ActivatedRoute);
   public alpacas : Alpaca[] = [];
   public filteredAlpacas: Alpaca[] | null = null;
   public title = '';
@@ -35,8 +36,8 @@ export class AlpacaCardListComponent extends HttploaderComponent implements OnIn
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(params => {
       const filter = params['filter'];
-  
-      this.alpacaService.getAlpacas()
+
+      this.alpacaService.getAlpacas(this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(alpacas => {
         const sorted = alpacas.sort((a, b) => a.shortName.localeCompare(b.shortName));

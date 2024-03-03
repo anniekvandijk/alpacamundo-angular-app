@@ -25,14 +25,16 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './links-main.component.html',
   styleUrls: ['./links-main.component.scss']
 })
-export class LinksMainComponent extends HttploaderComponent implements OnInit {
-  private configuration: Configuration = inject(CONFIGURATION);
+export class LinksMainComponent implements OnInit {
+  public componentId = this.constructor.name;
   private linkService = inject(LinkService);
+  private configuration: Configuration = inject(CONFIGURATION);
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   public linkImagesUrl!: string;
+  
   ngOnInit(): void {
     this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
-    this.groupedLinks$ = this.linkService.getLinks().pipe(
+    this.groupedLinks$ = this.linkService.getLinks(this.componentId).pipe(
       map((links) => this.groupLinksByType(links))
     );
   }

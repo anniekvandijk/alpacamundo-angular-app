@@ -1,22 +1,20 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
 import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
-import { FleeceService } from 'src/app/features/alpacas/fleece.service';
-import { Fleece } from 'src/app/features/alpacas/fleece.model';
-import { ShowresultService } from 'src/app/features/alpacas/showresult.service';
-import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
-import { AlpacaShowresultsComponent } from '../alpaca-showresults/alpaca-showresults.component';
-import { AlpacaFleeceresultsComponent } from '../alpaca-fleeceresults/alpaca-fleeceresults.component';
-import { AlpacaOffspringCardComponent } from '../alpaca-offspring-card/alpaca-offspring-card.component';
+import { AlpacaShowresultsComponent } from './alpaca-showresults/alpaca-showresults.component';
+import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-fleeceresults.component';
+import { AlpacaOffspringCardComponent } from './alpaca-offspring-list/alpaca-offspring-card/alpaca-offspring-card.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { AlpacaOffspringListComponent } from './alpaca-offspring-list/alpaca-offspring-list.component';
+import { forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-alpaca-details',
@@ -25,6 +23,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     CommonModule,
     AlpacaShowresultsComponent,
     AlpacaFleeceresultsComponent,
+    AlpacaOffspringListComponent,
     AlpacaOffspringCardComponent,
     SpinnerComponent,
     HttploaderComponent
@@ -32,12 +31,11 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpaca-details.component.html',
   styleUrls: ['./alpaca-details.component.scss']
 })
-export class AlpacaDetailsComponent extends HttploaderComponent implements OnInit {
+export class AlpacaDetailsComponent implements OnInit {
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);
   private alpacaService = inject(AlpacaService);
-  private showresultService = inject(ShowresultService);
-  private fleeceService = inject(FleeceService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
@@ -56,87 +54,28 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
   }
 
   private getAlpaca(): void {
-  // Get the alpaca id from the route parameters
-  this.route.params
-  .pipe(
-    takeUntilDestroyed(this.destroyRef),
-    switchMap((params: Params) => {
-      // Get the alpaca from the alpaca service
-      return this.alpacaService.getAlpaca(params['id'])
-    })
-  )
-  .subscribe((alpaca: Alpaca) => {
-      // Set the alpaca
+    this.route.params.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      switchMap((params: Params) => this.alpacaService.getAlpaca(params['id'], this.componentId)),
+      switchMap((alpaca: Alpaca) => {
+        const sireObservable = alpaca.sireId ? 
+          this.alpacaService.getAlpaca(alpaca.sireId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
+          of(null);
+        const damObservable = alpaca.damId ? 
+          this.alpacaService.getAlpaca(alpaca.damId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
+          of(null);
+        return forkJoin([of(alpaca), sireObservable, damObservable]);
+      }),
+      map(([alpaca, sire, dam]) => {
+        if (sire) { alpaca.sire = sire; }
+        if (dam) { alpaca.dam = dam; }
+        return alpaca;
+      })
+    )
+    .subscribe((alpaca: Alpaca) => {
       this.alpaca = alpaca;
-      // Sire
-      if (alpaca.sireId) {
-        // Get the sire from the alpaca service
-        this.alpacaService.getAlpaca(alpaca.sireId)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((sire: Alpaca) => {
-          // Set the sire
-          alpaca.sire = sire;
-        })
-      }
-      // Dam
-      if (alpaca.damId) {
-        // Get the dam from the alpaca service
-        this.alpacaService.getAlpaca(alpaca.damId)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((dam: Alpaca) => {
-          // Set the dam
-          alpaca.dam = dam;
-        })
-      }
-      // Show results
-      this.showresultService.getShowresultsByAlpacaId(alpaca.id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe ((showresults: Showresult[]) => {
-        // Set the show results
-        alpaca.showresults = showresults;
-      });
-      // Fleeces
-      this.fleeceService.getFleecesByAlpacaId(alpaca.id)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe ((fleeces: Fleece[]) => {
-          // Set the fleeces
-          alpaca.fleeceresults = fleeces;
-      });
-      // Offspring
-      if (this.alpaca.offspring.length > 0) {
-        this.alpaca.offspring.forEach(o => {
-          // Get the cria from the alpaca service
-          this.alpacaService.getAlpaca(o.id)
-          .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe ((cria: Alpaca) => {
-            // Cria Sire
-            if (cria.sireId) {
-              //  Get the cria sire from the alpaca service
-              this.alpacaService.getAlpaca(cria.sireId)
-              .pipe(takeUntilDestroyed(this.destroyRef))
-              .subscribe (alpaca => {
-                // Set the cria sire
-                cria.sire = alpaca;
-              });
-            }
-            // Cria Dam
-            if (cria.damId) {
-              //  Get the cria dam from the alpaca service
-              this.alpacaService.getAlpaca(cria.damId)
-              .pipe(takeUntilDestroyed(this.destroyRef))
-              .subscribe (alpaca => {
-                // Set the cria dam
-                cria.dam = alpaca;
-              });
-            }
-            // Set the cria
-            o.alpaca = cria;
-        });
-      });
-    }
-  });
-  } 
-
+    });
+  }
 
   public getSafeHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);

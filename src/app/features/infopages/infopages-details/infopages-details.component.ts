@@ -21,7 +21,8 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './infopages-details.component.html',
   styleUrls: ['./infopages-details.component.scss']
 })
-export class InfopagesDetailsComponent extends HttploaderComponent implements OnInit{
+export class InfopagesDetailsComponent implements OnInit{
+  public componentId = this.constructor.name;
   private configuration: Configuration = inject(CONFIGURATION);
   private infopagesService = inject(InfopagesService);
   private route = inject(ActivatedRoute);
@@ -32,13 +33,13 @@ export class InfopagesDetailsComponent extends HttploaderComponent implements On
   ngOnInit(): void {
     this.infopage$ = this.route.params.pipe(
         switchMap((params: Params) => {
-          return this.infopagesService.getInfopage(params['id'])
+          return this.infopagesService.getInfopage(params['id'], this.componentId)
         })
       )
     this.infopageImagesUrl = this.configuration.storage.infopageImagesUrl;
     }
 
-    public getSafeHtml(html: string) {
-      return this.sanitizer.bypassSecurityTrustHtml(html);
-    }
+  public getSafeHtml(html: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
 }
