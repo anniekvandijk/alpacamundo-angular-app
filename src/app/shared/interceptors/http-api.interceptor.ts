@@ -23,13 +23,15 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<T>> {
 
+    const componentId: string = req.headers.get('X-ComponentId') || '';
+
     if (!this.isCachable(req)) {
-      return this.sentRequest(req, next);
+      return this.sentRequest(req, next, componentId);
     }
 
     const cachedResponse = this.cacheService.getCache(req.url);
     if (!cachedResponse) {
-      return this.sentRequest(req, next);
+      return this.sentRequest(req, next, componentId);
     }
 
     return of(cachedResponse)
@@ -39,9 +41,9 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
     return req.method === 'GET';
   }
 
-  private sentRequest(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> { 
-    
-    this.httpStatusService.isLoading.next(true);
+  private sentRequest(req: HttpRequest<T>, next: HttpHandler, componentId: string): Observable<HttpEvent<T>> { 
+    const loadingState = this.httpStatusService.getLoadingState(componentId);
+    loadingState.next(true);
 
     return next.handle(req).pipe(
       tap((event) => {
@@ -54,7 +56,7 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
         return EMPTY;
       }),
       finalize(() => {
-        this.httpStatusService.isLoading.next(false);
+        loadingState.next(false);
       })
     );
 

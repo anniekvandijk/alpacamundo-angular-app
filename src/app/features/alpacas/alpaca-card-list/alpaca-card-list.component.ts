@@ -20,15 +20,16 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpaca-card-list.component.html',
   styleUrls: ['./alpaca-card-list.component.scss']
 })
-export class AlpacaCardListComponent extends HttploaderComponent implements OnInit {
+export class AlpacaCardListComponent implements OnInit {
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private readonly alpacaService = inject(AlpacaService);
   private readonly route = inject(ActivatedRoute);
-  alpacas : Alpaca[] = [];
-  filteredAlpacas: Alpaca[] | null = null;
-  title = '';
-  noResultsMessage = 'Geen alpaca\'s gevonden';
-  cardListType = 'alpaca';
+  public alpacas : Alpaca[] = [];
+  public filteredAlpacas: Alpaca[] | null = null;
+  public title = '';
+  public noResultsMessage = 'Geen alpaca\'s gevonden';
+  public cardListType = 'alpaca';
 
   ngOnInit(): void {
     this.route.params
@@ -36,7 +37,7 @@ export class AlpacaCardListComponent extends HttploaderComponent implements OnIn
     .subscribe(params => {
       const filter = params['filter'];
 
-      this.alpacaService.getAlpacas()
+      this.alpacaService.getAlpacas(this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(alpacas => {
         const sorted = alpacas.sort((a, b) => a.shortName.localeCompare(b.shortName));

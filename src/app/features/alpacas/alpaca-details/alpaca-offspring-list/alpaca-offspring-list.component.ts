@@ -18,23 +18,25 @@ export class AlpacaOffspringListComponent{
   @Input() set alpaca (alpaca: Alpaca) {
     this.getOffspring(alpaca);
   }
+
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private readonly alpacaService = inject(AlpacaService);
-  offsprings: Alpaca[] = [];
+  public offsprings: Alpaca[] = [];
 
   private getOffspring(alpaca: Alpaca): void {
     this.offsprings = [];
     if (alpaca.offspring.length > 0) {
       const offspringObservables = alpaca.offspring.map(offspring => 
-        this.alpacaService.getAlpaca(offspring.id)
+        this.alpacaService.getAlpaca(offspring.id, this.componentId)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
           mergeMap((offspringAlpaca: Alpaca) => {
             const sireObservable = offspringAlpaca.sireId ? 
-              this.alpacaService.getAlpaca(offspringAlpaca.sireId).pipe(takeUntilDestroyed(this.destroyRef)) 
+              this.alpacaService.getAlpaca(offspringAlpaca.sireId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) 
               : of(null);
             const damObservable = offspringAlpaca.damId ? 
-              this.alpacaService.getAlpaca(offspringAlpaca.damId).pipe(takeUntilDestroyed(this.destroyRef)) 
+              this.alpacaService.getAlpaca(offspringAlpaca.damId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) 
               : of(null);
             return forkJoin([of(offspringAlpaca), sireObservable, damObservable]);
           }),

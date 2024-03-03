@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner.component';
 import { Observable } from 'rxjs';
 import { HttpStatusService } from '../../services/http-status.service';
-
 
 @Component({
   standalone: true,
@@ -20,11 +19,11 @@ import { HttpStatusService } from '../../services/http-status.service';
   
 })
 export class HttploaderComponent {
+  @Input() componentId!: string;
+  private httpStatusService = inject(HttpStatusService)
+  isLoading$! : Observable<boolean>;
 
-  public httpStatusService = inject(HttpStatusService)
-  public isLoading$! : Observable<boolean>;
-
-  constructor() { 
-    this.isLoading$ = this.httpStatusService.isLoading;
+  constructor() {
+    this.isLoading$ = this.httpStatusService.getLoadingState(this.componentId).asObservable();
   }
 }

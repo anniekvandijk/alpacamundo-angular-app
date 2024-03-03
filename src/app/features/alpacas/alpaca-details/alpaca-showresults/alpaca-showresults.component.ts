@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, Input, OnChanges, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, Input, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
@@ -7,6 +7,7 @@ import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { ShowresultService } from '../../showresult.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-showresults',
@@ -15,7 +16,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     CommonModule,
     MatTableModule,
     MatSortModule,
-    SpinnerComponent
+    SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []
@@ -24,23 +26,22 @@ export class AlpacaShowresultsComponent {
   @Input() set alpaca (alpaca: Alpaca) {
     this.setShowResults(alpaca);
   }
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private readonly showresultService = inject(ShowresultService);
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  showresults: Showresult[] = [];
-
-  displayedColumns: string[] = [
+  public showresults: Showresult[] = [];
+  public displayedColumns: string[] = [
     'showYear',
     'result',
     'showname',
   ];
-
-  dataSource = new MatTableDataSource<Showresult>();
+  public dataSource = new MatTableDataSource<Showresult>();
 
   private setShowResults(alpaca: Alpaca): void {
     this.showresults = [];
     this.dataSource.data = [];
-    this.showresultService.getShowresultsByAlpacaId(alpaca.id)
+    this.showresultService.getShowresultsByAlpacaId(alpaca.id, this.componentId)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((showresults: Showresult[]) => {
       this.showresults = showresults;

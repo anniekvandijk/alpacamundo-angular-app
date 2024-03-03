@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 })
 export class AlpacaCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);
   private alpacasService = inject(AlpacaService);
@@ -35,14 +36,14 @@ export class AlpacaCardComponent implements OnInit {
   ngOnInit(): void {
     this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
     if (this.alpaca.sireId) {
-      this.alpacasService.getAlpaca(this.alpaca.sireId)
+      this.alpacasService.getAlpaca(this.alpaca.sireId, this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe (alpaca => {
         this.alpaca.sire = alpaca;
       });
     }
     if (this.alpaca.damId) {
-      this.alpacasService.getAlpaca(this.alpaca.damId)
+      this.alpacasService.getAlpaca(this.alpaca.damId, this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe (alpaca => {
         this.alpaca.dam = alpaca;
