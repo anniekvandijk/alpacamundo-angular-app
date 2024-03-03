@@ -53,6 +53,7 @@ export class AlpacaOffspringListComponent{
       );
       forkJoin(offspringObservables)
         .subscribe((completedOffsprings: Alpaca[]) => {
+          completedOffsprings.sort((a, b) => new Date(b.dateOfBirth).getFullYear() - new Date(a.dateOfBirth).getFullYear())
           this.offsprings.push(...completedOffsprings);
       });
     }

@@ -62,12 +62,6 @@ export class AlpacaFleeceresultsComponent implements OnInit {
     .subscribe ((fleeces: Fleece[]) => {
       this.fleeces = fleeces;
       this.dataSource.data = this.fleeces;
-      this.dataSource.sortingDataAccessor = (item: Fleece, property: string) => {
-        switch(property) {
-          case 'fleecenumber': return item.fleecenumber;
-          default: return (item as any)[property];
-        }
-      };
       this.dataSource.sort = this.sort;
       const sortState: Sort = {active: 'fleecenumber', direction: 'desc'};
       this.sort.active = sortState.active;
