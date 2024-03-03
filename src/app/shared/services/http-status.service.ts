@@ -12,7 +12,7 @@ export class HttpStatusService {
     if (!this.loadingMap.has(componentId)) {
       this.loadingMap.set(componentId, new BehaviorSubject<boolean>(false));
     }
-    return this.loadingMap.get(componentId)!;
+    const state = this.loadingMap.get(componentId)!;
+    return state;
   }
-
 }

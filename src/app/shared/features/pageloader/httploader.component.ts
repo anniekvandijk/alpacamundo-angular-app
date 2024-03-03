@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner.component';
 import { Observable } from 'rxjs';
@@ -18,12 +18,12 @@ import { HttpStatusService } from '../../services/http-status.service';
     </ng-container>`,
   
 })
-export class HttploaderComponent {
+export class HttploaderComponent implements OnInit {
   @Input() componentId!: string;
   private httpStatusService = inject(HttpStatusService)
-  isLoading$! : Observable<boolean>;
+  public isLoading$!: Observable<boolean>;
 
-  constructor() {
-    this.isLoading$ = this.httpStatusService.getLoadingState(this.componentId).asObservable();
+  ngOnInit(): void {
+    this.isLoading$ = this.httpStatusService.getLoadingState(this.componentId);
   }
 }
