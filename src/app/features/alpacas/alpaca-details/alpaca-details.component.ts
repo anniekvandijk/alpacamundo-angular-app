@@ -31,7 +31,8 @@ import { forkJoin, of } from 'rxjs';
   templateUrl: './alpaca-details.component.html',
   styleUrls: ['./alpaca-details.component.scss']
 })
-export class AlpacaDetailsComponent extends HttploaderComponent implements OnInit {
+export class AlpacaDetailsComponent implements OnInit {
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private configuration: Configuration = inject(CONFIGURATION);
   private alpacaService = inject(AlpacaService);
@@ -55,13 +56,13 @@ export class AlpacaDetailsComponent extends HttploaderComponent implements OnIni
   private getAlpaca(): void {
     this.route.params.pipe(
       takeUntilDestroyed(this.destroyRef),
-      switchMap((params: Params) => this.alpacaService.getAlpaca(params['id'])),
+      switchMap((params: Params) => this.alpacaService.getAlpaca(params['id'], this.componentId)),
       switchMap((alpaca: Alpaca) => {
         const sireObservable = alpaca.sireId ? 
-          this.alpacaService.getAlpaca(alpaca.sireId).pipe(takeUntilDestroyed(this.destroyRef)) : 
+          this.alpacaService.getAlpaca(alpaca.sireId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
           of(null);
         const damObservable = alpaca.damId ? 
-          this.alpacaService.getAlpaca(alpaca.damId).pipe(takeUntilDestroyed(this.destroyRef)) : 
+          this.alpacaService.getAlpaca(alpaca.damId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
           of(null);
         return forkJoin([of(alpaca), sireObservable, damObservable]);
       }),

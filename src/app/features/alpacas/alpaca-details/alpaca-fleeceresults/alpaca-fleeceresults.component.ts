@@ -10,6 +10,7 @@ import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.com
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FleeceService } from '../../fleece.service';
 import { MatSort, Sort } from '@angular/material/sort';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-fleeceresults',
@@ -18,7 +19,8 @@ import { MatSort, Sort } from '@angular/material/sort';
     CommonModule,
     MatTableModule,
     MatIconModule,
-    SpinnerComponent
+    SpinnerComponent,
+    HttploaderComponent
   ],
   templateUrl: './alpaca-fleeceresults.component.html',
   styleUrls: ['./alpaca-fleeceresults.component.scss']
@@ -27,14 +29,15 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   @Input() set alpaca (alpaca: Alpaca) {
     this.setFleeceResults(alpaca);
   }
+  public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   private readonly destroyRef = inject(DestroyRef);
   private readonly fleeceService = inject(FleeceService);
   private readonly configuration: Configuration = inject(CONFIGURATION);
-  fleeces: Fleece[] = [];
-  fleeceResultsUrl!: string;
+  public fleeces: Fleece[] = [];
+  public fleeceResultsUrl!: string;
 
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'year',
     'fleecenumber',
     'mfd',
@@ -45,7 +48,7 @@ export class AlpacaFleeceresultsComponent implements OnInit {
     'fleeceTestReport'
   ];
   
-  dataSource = new MatTableDataSource<Fleece>();
+  public dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
     this.fleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
@@ -54,7 +57,7 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   private setFleeceResults(alpaca: Alpaca) : void {
     this.fleeces = [];
     this.dataSource.data = [];
-    this.fleeceService.getFleecesByAlpacaId(alpaca.id)
+    this.fleeceService.getFleecesByAlpacaId(alpaca.id, this.componentId)
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe ((fleeces: Fleece[]) => {
       this.fleeces = fleeces;

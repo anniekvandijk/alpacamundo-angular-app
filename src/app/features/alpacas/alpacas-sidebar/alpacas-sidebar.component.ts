@@ -19,24 +19,23 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './alpacas-sidebar.component.html',
   styleUrls: ['./alpacas-sidebar.component.scss']
 })
-export class AlpacasSidebarComponent extends HttploaderComponent implements OnInit{
-  readonly destroyRef = inject(DestroyRef);
+export class AlpacasSidebarComponent implements OnInit{
+  public componentId = this.constructor.name;
+  private readonly destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
   public alpacas : Alpaca[] = [];
   public groupedAlpacas: { [key: string]: Alpaca[] } = {};
 
-  constructor() { super(); }
-
   ngOnInit(): void {
-    this.alpacaService.getAlpacas()
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe((alpacas: Alpaca[]) => {
-      this.alpacas = alpacas
-      .filter(alpaca => alpaca.status !== "Verkocht")
-      .filter(alpaca => alpaca.status !== "Overleden")
-      .filter(alpaca => alpaca.category !== "Externe  hengsten");
-      this.groupedAlpacas = this.groupAlpacasByCategory(this.alpacas);
-    });
+    this.alpacaService.getAlpacas(this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((alpacas: Alpaca[]) => {
+        this.alpacas = alpacas
+        .filter(alpaca => alpaca.status !== "Verkocht")
+        .filter(alpaca => alpaca.status !== "Overleden")
+        .filter(alpaca => alpaca.category !== "Externe  hengsten");
+        this.groupedAlpacas = this.groupAlpacasByCategory(this.alpacas);
+      });
   }
 
   private groupAlpacasByCategory(alpacas: Alpaca[]): { [key: string]: Alpaca[] } {

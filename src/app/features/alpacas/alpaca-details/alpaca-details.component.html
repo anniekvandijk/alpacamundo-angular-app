@@ -1,4 +1,4 @@
-<app-http-loader>
+<app-http-loader [componentId]="componentId">
     @if (alpaca) {
         <h1>{{ alpaca.shortName }}</h1>
     <div><h2>{{ alpaca.longName }}</h2></div>

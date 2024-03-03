@@ -1,5 +1,5 @@
 <h2>Onze alpaca's</h2>
-<app-http-loader>
+<app-http-loader [componentId]="componentId">
     <div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
         <h3>{{ alpacaCat.key }}</h3>
         <ul>

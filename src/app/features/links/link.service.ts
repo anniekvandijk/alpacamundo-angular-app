@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Link } from './link.model.js';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class LinkService {
   private http = inject(HttpClient);
   private url = `${environment.apiBaseUrl}/api/links`;
 
-  public getLinks(): Observable<Link[]> {
-    return this.http.get<Link[]>(this.url);
+  public getLinks(componentId: string): Observable<Link[]> {
+    return this.http.get<Link[]>(this.url, { headers: new HttpHeaders().set('X-ComponentId', componentId) });
   }
 }

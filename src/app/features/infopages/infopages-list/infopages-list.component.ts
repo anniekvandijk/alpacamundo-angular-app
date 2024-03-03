@@ -19,17 +19,16 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   templateUrl: './infopages-list.component.html',
   styleUrls: ['./infopages-list.component.scss']
 })
-export class InfopagesListComponent extends HttploaderComponent implements OnInit{
+export class InfopagesListComponent implements OnInit{
+  public componentId = this.constructor.name;
   private infopagesService = inject(InfopagesService);
   public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
 
   ngOnInit(): void {
-    this.groupedInfopages$ = this.infopagesService.getInfopages().pipe(
+    this.groupedInfopages$ = this.infopagesService.getInfopages(this.componentId).pipe(
       map((infopages) => this.groupInfopagesByCategory(infopages))
     );
   }
-
-
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
