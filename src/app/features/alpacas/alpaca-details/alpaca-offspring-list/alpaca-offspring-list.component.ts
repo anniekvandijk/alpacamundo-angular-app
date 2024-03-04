@@ -14,10 +14,8 @@ import { AlpacaOffspringCardComponent } from './alpaca-offspring-card/alpaca-off
 export class AlpacaOffspringListComponent{
   @Input() set alpaca (alpaca: Alpaca) {
     this.offsprings = []; 
-    if (alpaca.offspring.length > 0) {
       alpaca.offspring.sort((a, b) => new Date(b.dateOfBirth).getFullYear() - new Date(a.dateOfBirth).getFullYear())
       this.offsprings = alpaca.offspring;
-    }
   }
 
   public offsprings: Alpaca[] = [];

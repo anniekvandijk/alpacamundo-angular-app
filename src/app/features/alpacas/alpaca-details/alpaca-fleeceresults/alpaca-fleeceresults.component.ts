@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { MatSort, Sort } from '@angular/material/sort';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-fleeceresults',
@@ -17,8 +16,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     CommonModule,
     MatTableModule,
     MatIconModule,
-    SpinnerComponent,
-    HttploaderComponent
+    SpinnerComponent
   ],
   templateUrl: './alpaca-fleeceresults.component.html',
   styleUrls: ['./alpaca-fleeceresults.component.scss']
@@ -26,9 +24,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 export class AlpacaFleeceresultsComponent implements OnInit {
   @Input() set alpaca (alpaca: Alpaca) {
     this.dataSource.data = [];
-    if (alpaca.fleeceresults.length > 0) {
-      this.setFleeceResults(alpaca);
-    }
+    this.setFleeceResults(alpaca);
   }
   public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();

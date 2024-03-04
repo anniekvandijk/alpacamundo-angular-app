@@ -74,15 +74,15 @@
     </div>    
     <h2>Beschrijving</h2>
     <p><div [innerHTML]="getSafeHtml(alpaca.description)"></div>
-    <div>
+    @if (alpaca.showresults.length > 0) {
         <app-alpaca-showresults [alpaca]="alpaca"></app-alpaca-showresults>
-    </div>
-    <div>
+    }
+    @if (alpaca.fleeceresults.length > 0) {
         <app-alpaca-fleeceresults [alpaca]="alpaca"></app-alpaca-fleeceresults>
-    </div>
-    <div>
+    }
+    @if (alpaca.offspring.length > 0) {
         <app-alpaca-offspring-list [alpaca]="alpaca"></app-alpaca-offspring-list>
-    </div>
+    }
     <div *ngIf="alpaca.images && alpaca.images.length > 0">
         <h2>Foto's</h2>
         <div *ngFor="let image of alpaca.images">

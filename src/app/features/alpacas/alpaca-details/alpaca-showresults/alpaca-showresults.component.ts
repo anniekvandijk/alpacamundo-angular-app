@@ -5,7 +5,6 @@ import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.com
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpaca-showresults',
@@ -14,8 +13,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     CommonModule,
     MatTableModule,
     MatSortModule,
-    SpinnerComponent,
-    HttploaderComponent
+    SpinnerComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []
@@ -23,12 +21,8 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 export class AlpacaShowresultsComponent {
   @Input() set alpaca (alpaca: Alpaca) {
     this.dataSource.data = [];
-    if (alpaca.showresults.length > 0) {
-      this.setShowResults(alpaca);
-    }
+    this.setShowResults(alpaca);
   }
-
-  public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   public displayedColumns: string[] = [
     'showYear',
