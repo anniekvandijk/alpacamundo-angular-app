@@ -21,7 +21,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   styleUrls: []
 })
 export class AlpacaShowresultsComponent {
-  @Input() set alpaca (alpaca: Alpaca) {
+  @Input() set showresults (alpaca: Alpaca) {
     this.dataSource.data = [];
     if (alpaca.showresults.length > 0) {
       this.setShowResults(alpaca);
