@@ -26,15 +26,10 @@ export interface Alpaca {
   randomText: string;
   studFee: number;
   sellPrice: number;
-  offspring: Offspring[];
+  offspring: Alpaca[];
   fleeceresults: Fleece[],
   showresults: Showresult[],
   images: Image[];
-}
-
-export interface Offspring {
-  id: string;
-  alpaca: Alpaca;
 }
 
 export interface Pedigree {

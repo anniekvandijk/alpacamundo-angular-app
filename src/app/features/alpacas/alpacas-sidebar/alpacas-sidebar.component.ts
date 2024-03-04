@@ -33,7 +33,7 @@ export class AlpacasSidebarComponent implements OnInit{
         this.alpacas = alpacas
         .filter(alpaca => alpaca.status !== "Verkocht")
         .filter(alpaca => alpaca.status !== "Overleden")
-        .filter(alpaca => alpaca.category !== "Externe  hengsten");
+        .filter(alpaca => alpaca.category !== "Externe hengsten");
         this.groupedAlpacas = this.groupAlpacasByCategory(this.alpacas);
       });
   }

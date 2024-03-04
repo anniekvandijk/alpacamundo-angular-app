@@ -22,12 +22,12 @@ export class InMemoryDataService implements InMemoryDbService {
     const infopages = INFOPAGES;
     const showresults = SHOWRESULTS;
     return {
-      links, 
-      alpacas, 
-      alpacashows, 
-      fleeces, 
+    //  links, 
+    //  alpacas, 
+    //  alpacashows, 
+    //  fleeces, 
       infopages, 
-      showresults
+    //  showresults
     };
   }
 }

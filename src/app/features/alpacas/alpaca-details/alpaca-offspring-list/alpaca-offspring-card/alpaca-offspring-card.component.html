@@ -1,7 +1,6 @@
 <mat-card  id="offspring-card" (click)="navigateToDetails(alpaca)" style="cursor: pointer;">
   <mat-card-header>
     <mat-card-title class="alpaca-shortname">
-      <!-- <h3>{{ alpaca.shortName }}</h3> -->
       {{ alpaca.shortName }}
     </mat-card-title>
       <div class="alpaca-fullname">{{alpaca.longName}}</div>
@@ -17,14 +16,12 @@
           <td class="label">Vader:</td>
           <td>
             <div *ngIf="alpaca.sire">{{ alpaca.sire.longName }}</div>
-            <div *ngIf="alpaca.sireName">{{ alpaca.sireName }}</div>
           </td>
         </tr>
         <tr>
           <td class="label">Moeder:</td>
           <td>
             <div *ngIf="alpaca.dam">{{ alpaca.dam.longName }}</div>
-            <div *ngIf="alpaca.damName">{{ alpaca.damName }}</div>
           </td>
         </tr>
       </table>

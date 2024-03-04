@@ -2,7 +2,7 @@
   {
     "id": "1488274d-5fc3-4354-a119-8ba339b22241",
     "title": "Fleeceresultaat Jesse 2017",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2017,
     "mfd": 19.8,
     "sd": 3.4,
@@ -20,7 +20,7 @@
   {
     "id": "f28d41a8-5344-4624-a512-84e5f613e343",
     "title": "Fleeceresultaat Jesse 2016",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2016,
     "mfd": 17.3,
     "sd": 4,
@@ -38,7 +38,7 @@
   {
     "id": "f0cb38e6-a722-4a86-9cd0-3143eb26ba44",
     "title": "Fleeceresultaat Fann 2015",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2015,
     "mfd": 23.7,
     "sd": 4.5,
@@ -56,7 +56,7 @@
   {
     "id": "c3bd333b-599b-4b16-899a-f7adc11c229a",
     "title": "Fleeceresultaat Fann 2016",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2016,
     "mfd": 26.8,
     "sd": 4.9,
@@ -74,7 +74,7 @@
   {
     "id": "dab9615e-af22-4d84-99bf-e1823139fc1d",
     "title": "Fleeceresultaat Fann 2017",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2017,
     "mfd": 27.7,
     "sd": 5,
@@ -92,7 +92,7 @@
   {
     "id": "d0a5062b-b5a2-4a78-a817-a747c7ea36ae",
     "title": "Fleeceresultaat Fann 2014",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2014,
     "mfd": 23.7,
     "sd": 4.4,
@@ -110,7 +110,7 @@
   {
     "id": "fd9643c5-e0e3-4017-9217-9d153a4b1905",
     "title": "Fleeceresultaat Fann 2013",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2013,
     "mfd": 20.4,
     "sd": 4.1,
@@ -128,7 +128,7 @@
   {
     "id": "11403bc7-5858-45ce-ba36-2f25c1978bc1",
     "title": "Fleeceresultaat Ambria 2017",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2017,
     "mfd": 23.6,
     "sd": 4.6,
@@ -146,7 +146,7 @@
   {
     "id": "e6b071df-253c-48be-90dd-44bd4a021b7d",
     "title": "Fleeceresultaat Cala Luna 2015",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2015,
     "mfd": 23.3,
     "sd": 5.2,
@@ -164,7 +164,7 @@
   {
     "id": "b4803a7e-d241-4483-8da1-5fa469d39cef",
     "title": "Fleeceresultaat Cala Luna 2016",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2016,
     "mfd": 27.7,
     "sd": 6.2,
@@ -182,7 +182,7 @@
   {
     "id": "315aa5c9-17da-49a0-beb2-3158526159f7",
     "title": "Fleeceresultaat Cala Luna 2017",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2017,
     "mfd": 27.3,
     "sd": 6,
@@ -200,7 +200,7 @@
   {
     "id": "f2dd2a43-c4e5-4207-968b-24c926f0db3a",
     "title": "Fleeceresultaat Gwen 2014",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2014,
     "mfd": 18.9,
     "sd": 3.9,
@@ -218,7 +218,7 @@
   {
     "id": "be54ddcf-d03f-4161-a2ac-ca6797b45f90",
     "title": "Fleeceresultaat Gwen 2016",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2016,
     "mfd": 26.7,
     "sd": 5.6,
@@ -236,7 +236,7 @@
   {
     "id": "22e1e822-8aa4-43f9-8fec-be591843c29d",
     "title": "Fleeceresultaat Gwen 2017",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2017,
     "mfd": 26.1,
     "sd": 5.9,
@@ -254,7 +254,7 @@
   {
     "id": "5a3b4d35-4786-4009-9e65-d595a0109abc",
     "title": "Fleeceresultaat Pumpkin 2011",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2011,
     "mfd": 21.3,
     "sd": 3.9,
@@ -272,7 +272,7 @@
   {
     "id": "0ca60af3-36db-4c44-8c9c-27fa6553b0a0",
     "title": "Fleeceresultaat Pumpkin 2012",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2012,
     "mfd": 27.6,
     "sd": 5.7,
@@ -290,7 +290,7 @@
   {
     "id": "dbd424c7-28e8-435c-885e-439e9b979971",
     "title": "Fleeceresultaat Pumpkin 2013",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2013,
     "mfd": 27.4,
     "sd": 5.8,
@@ -308,7 +308,7 @@
   {
     "id": "f28d3334-caa5-41d9-8d13-f0c9b69960b4",
     "title": "Fleeceresultaat Pumpkin 2014",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2014,
     "mfd": 26.7,
     "sd": 5.5,
@@ -326,7 +326,7 @@
   {
     "id": "06588a74-a696-403d-a6d2-f8c9fdbee2e0",
     "title": "Fleeceresultaat Pumpkin 2015",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2015,
     "mfd": 28,
     "sd": 6,
@@ -344,7 +344,7 @@
   {
     "id": "9d4c6bbc-0d19-4cb5-a772-77045ad2cb29",
     "title": "Fleeceresultaat Pumpkin 2016",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2016,
     "mfd": 28.8,
     "sd": 6.8,
@@ -362,7 +362,7 @@
   {
     "id": "af691908-662d-4485-bddc-d57a2e9f2fbe",
     "title": "Fleeceresultaat Pumpkin 2017",
-    "fleecenumber": 8,
+    "fleeceNumber": 8,
     "year": 2017,
     "mfd": 32.7,
     "sd": 8.5,
@@ -380,7 +380,7 @@
   {
     "id": "9f900b1a-f983-4dba-8eb1-04189f4444fb",
     "title": "Fleeceresultaat Rehea 2017",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2017,
     "mfd": 31.2,
     "sd": 6.2,
@@ -398,7 +398,7 @@
   {
     "id": "fd3c22e0-352c-405b-a82a-8eb471d9c089",
     "title": "Fleeceresultaat Hero 2015",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2015,
     "mfd": 16.7,
     "sd": 3.2,
@@ -416,7 +416,7 @@
   {
     "id": "dda2e686-2081-4bb3-9d82-549b57417a4a",
     "title": "Fleeceresultaat Hero 2016",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2016,
     "mfd": 16.6,
     "sd": 2.8,
@@ -434,7 +434,7 @@
   {
     "id": "c5f3cfcc-b8f9-40b2-a64d-93aa917daa74",
     "title": "Fleeceresultaat Hero 2017",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2017,
     "mfd": 17.8,
     "sd": 3.7,
@@ -452,7 +452,7 @@
   {
     "id": "7d2bbded-a777-41f0-8bba-cfcc46084ad6",
     "title": "Fleeceresultaat Ikrit 2013",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2013,
     "mfd": 20,
     "sd": 3.5,
@@ -470,7 +470,7 @@
   {
     "id": "e3898cfd-3e5e-45f2-9ff1-b53bb9d0c08c",
     "title": "Fleeceresultaat Ikrit 2014",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2014,
     "mfd": 22.9,
     "sd": 4.2,
@@ -488,7 +488,7 @@
   {
     "id": "c9c41da5-f3de-46ef-ac44-7e886287e670",
     "title": "Fleeceresultaat Ikrit 2015",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2015,
     "mfd": 25.6,
     "sd": 4.5,
@@ -506,7 +506,7 @@
   {
     "id": "a6d08510-af06-4656-b76e-ba29eb4ef908",
     "title": "Fleeceresultaat Ikrit 2016",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2016,
     "mfd": 28.3,
     "sd": 5.2,
@@ -524,7 +524,7 @@
   {
     "id": "d5643803-ffc5-4a99-a1ca-f67db32649e8",
     "title": "Fleeceresultaat Ikrit 2017",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2017,
     "mfd": 29.4,
     "sd": 5.7,
@@ -542,7 +542,7 @@
   {
     "id": "da1062b0-3bec-4468-80f5-63d4049ca6b8",
     "title": "Fleeceresultaat Gucci 2014",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2014,
     "mfd": 19.4,
     "sd": 4.4,
@@ -560,7 +560,7 @@
   {
     "id": "dd38720c-06dd-486f-88ae-c70308138e7b",
     "title": "Fleeceresultaat Gucci 2015",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2015,
     "mfd": 20.1,
     "sd": 4.6,
@@ -578,7 +578,7 @@
   {
     "id": "96d9443c-5d8a-456c-8387-2a86c52133f1",
     "title": "Fleeceresultaat Gucci 2016",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2016,
     "mfd": 22.4,
     "sd": 4.7,
@@ -596,7 +596,7 @@
   {
     "id": "54080105-142e-4cad-8a65-86179aaf1e50",
     "title": "Fleeceresultaat Gucci 2017",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2017,
     "mfd": 24.1,
     "sd": 5.1,
@@ -614,7 +614,7 @@
   {
     "id": "3ff33e06-6c87-406e-ac01-e35a2ca02a94",
     "title": "Fleeceresultaat Zephyr 2011",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2011,
     "mfd": 19,
     "sd": 3.4,
@@ -632,7 +632,7 @@
   {
     "id": "6de0bc2d-e34a-4681-8353-9238781e75c5",
     "title": "Fleeceresultaat Zephyr 2012",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2012,
     "mfd": 25.4,
     "sd": 5.1,
@@ -650,7 +650,7 @@
   {
     "id": "485a9efe-5ad8-49a4-8797-2109c182bd2f",
     "title": "Fleeceresultaat Zephyr 2013",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2013,
     "mfd": 25.2,
     "sd": 4.8,
@@ -668,7 +668,7 @@
   {
     "id": "f203a79d-47f8-42f2-8538-0b1e4e3054c9",
     "title": "Fleeceresultaat Zephyr 2014",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2014,
     "mfd": 26.5,
     "sd": 5.1,
@@ -686,7 +686,7 @@
   {
     "id": "54f10dac-dd72-4ea5-976a-9e1b96f51328",
     "title": "Fleeceresultaat Zephyr 2015",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2015,
     "mfd": 27,
     "sd": 5.4,
@@ -704,7 +704,7 @@
   {
     "id": "ab2becfc-787e-4e50-912d-9ecfb0884083",
     "title": "Fleeceresultaat Zephyr 2016",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2016,
     "mfd": 30.1,
     "sd": 6.2,
@@ -722,7 +722,7 @@
   {
     "id": "454ca9c2-8f56-47fa-872e-3135905dcc3b",
     "title": "Fleeceresultaat Zephyr 2017",
-    "fleecenumber": 8,
+    "fleeceNumber": 8,
     "year": 2017,
     "mfd": 31.6,
     "sd": 6.2,
@@ -740,7 +740,7 @@
   {
     "id": "96d28687-2463-4089-9131-9c9c9a5cfe8a",
     "title": "Fleeceresultaat Fei Lian 2013",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2013,
     "mfd": 19.7,
     "sd": 4.3,
@@ -758,7 +758,7 @@
   {
     "id": "db6c2304-41b5-4316-b79d-435c6eb8c126",
     "title": "Fleeceresultaat Fei Lian 2014",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2014,
     "mfd": 24.4,
     "sd": 5.1,
@@ -776,7 +776,7 @@
   {
     "id": "9b7818af-177d-4397-8584-bb7a592f8853",
     "title": "Fleeceresultaat Fei Lian 2015",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2015,
     "mfd": 26.9,
     "sd": 5.6,
@@ -794,7 +794,7 @@
   {
     "id": "854a580b-3fee-4698-a2ab-2ae2afddc4d5",
     "title": "Fleeceresultaat Fei Lian 2016",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2016,
     "mfd": 29.8,
     "sd": 6.1,
@@ -812,7 +812,7 @@
   {
     "id": "e1bc7254-55ef-42de-b156-6f8c4e4bb3bf",
     "title": "Fleeceresultaat Fei Lian 2017",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2017,
     "mfd": 29.5,
     "sd": 6.5,
@@ -830,7 +830,7 @@
   {
     "id": "a452b3fb-18af-4bc8-8f59-209c6014f37f",
     "title": "Fleeceresultaat Gaia 2014",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2014,
     "mfd": 18.4,
     "sd": 3.9,
@@ -848,7 +848,7 @@
   {
     "id": "ff32f3a3-0327-481c-a945-3c11b362dc07",
     "title": "Fleeceresultaat Gaia 2017",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2017,
     "mfd": 30.1,
     "sd": 6.4,
@@ -866,7 +866,7 @@
   {
     "id": "ebf47af2-2ad2-444e-befb-6dd7badd2595",
     "title": "Fleeceresultaat Indy 2016",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2016,
     "mfd": 20.9,
     "sd": 4.9,
@@ -879,7 +879,7 @@
   {
     "id": "3221e3a6-b590-4217-90c0-853cb09a8aaf",
     "title": "Fleeceresultaat Ike 2016",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2016,
     "mfd": 19.8,
     "sd": 4,
@@ -892,7 +892,7 @@
   {
     "id": "f6929840-dfd0-42f3-a5d6-595ad68ffba0",
     "title": "Fleeceresultaat Halo 2015",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2015,
     "mfd": 19.2,
     "sd": 4.1,
@@ -910,7 +910,7 @@
   {
     "id": "dcdcf8d0-bbaa-4de4-ace9-199600ed06ed",
     "title": "Fleeceresultaat Gabby 2014",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2014,
     "mfd": 20,
     "sd": 4,
@@ -928,7 +928,7 @@
   {
     "id": "68524024-ee15-4c29-89a9-b568c4711f7f",
     "title": "Fleeceresultaat Snow Warrior 2011",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2011,
     "mfd": 18.9,
     "sd": 4.3,
@@ -946,7 +946,7 @@
   {
     "id": "0d39769c-2606-4f1e-831c-f3437bcd6e8d",
     "title": "Fleeceresultaat Snow Warrior 2012",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2012,
     "mfd": 22.1,
     "sd": 4.8,
@@ -964,7 +964,7 @@
   {
     "id": "e3e2acf6-359c-4126-bc4a-476973fdc9f0",
     "title": "Fleeceresultaat Snow Warrior 2013",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2013,
     "mfd": 19.4,
     "sd": 4.4,
@@ -982,7 +982,7 @@
   {
     "id": "f3a24f5e-d1f6-4135-bb87-161fde050ff6",
     "title": "Fleeceresultaat Snow Warrior 2014",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2014,
     "mfd": 21.1,
     "sd": 4.9,
@@ -1000,7 +1000,7 @@
   {
     "id": "3249d6fc-de97-4dc1-832d-e360ae938440",
     "title": "Fleeceresultaat Snow Warrior 2015",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2015,
     "mfd": 21.3,
     "sd": 4.9,
@@ -1018,7 +1018,7 @@
   {
     "id": "a3a8792e-7d4d-434f-bc8b-407eebe9582f",
     "title": "Fleeceresultaat Bailey II 2011",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2011,
     "mfd": 19.3,
     "sd": 4.8,
@@ -1036,7 +1036,7 @@
   {
     "id": "2016bf33-6505-4e25-ac85-44680a8fc6a0",
     "title": "Fleeceresultaat Bailey II 2012",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2012,
     "mfd": 21.8,
     "sd": 5.4,
@@ -1054,7 +1054,7 @@
   {
     "id": "7111610d-61e5-40cd-a2cf-cd0151fa5725",
     "title": "Fleeceresultaat Bailey II 2013",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2013,
     "mfd": 22,
     "sd": 5.2,
@@ -1072,7 +1072,7 @@
   {
     "id": "990b1d2c-71f7-46f9-ae28-22704eb12a6c",
     "title": "Fleeceresultaat Bailey II 2014",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2014,
     "mfd": 26.3,
     "sd": 6,
@@ -1090,7 +1090,7 @@
   {
     "id": "d84a9ab6-2f43-4dba-aa95-c8b89dcfb859",
     "title": "Fleeceresultaat Bailey II 2015",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2015,
     "mfd": 26.4,
     "sd": 5.6,
@@ -1108,7 +1108,7 @@
   {
     "id": "aee77437-c9f8-44f7-9715-8b7db7e71b5a",
     "title": "Fleeceresultaat Bailey II 2016",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2016,
     "mfd": 27.7,
     "sd": 6.6,
@@ -1121,7 +1121,7 @@
   {
     "id": "3a1b93cf-52bf-4234-a52a-40b6edb985aa",
     "title": "Fleeceresultaat Hero 2019",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2019,
     "mfd": 19.6,
     "sd": 4.1,
@@ -1139,7 +1139,7 @@
   {
     "id": "a1221c52-9222-4a45-b0bb-def2f9fd9273",
     "title": "Fleeceresultaat Ikrit 2019",
-    "fleecenumber": 8,
+    "fleeceNumber": 8,
     "year": 2019,
     "mfd": 27.8,
     "sd": 4.7,
@@ -1157,7 +1157,7 @@
   {
     "id": "b733329f-aeb9-4e8a-ab82-01c3535fd4ca",
     "title": "Fleeceresultaat Gucci 2019",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2019,
     "mfd": 23.2,
     "sd": 5.3,
@@ -1175,7 +1175,7 @@
   {
     "id": "2d2beb20-c644-49b1-930a-b2db8fdad01d",
     "title": "Fleeceresultaat Ikrit 2018",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2018,
     "mfd": 28.6,
     "sd": 5.2,
@@ -1193,7 +1193,7 @@
   {
     "id": "2eea9b36-74d6-460d-887c-a9a811b817ad",
     "title": "Fleeceresultaat Gucci 2018",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2018,
     "mfd": 22.2,
     "sd": 4.9,
@@ -1211,7 +1211,7 @@
   {
     "id": "45a5cdae-e41d-4b83-a9c8-6c86c71b5920",
     "title": "Fleeceresultaat Hero 2018",
-    "fleecenumber": 4,
+    "fleeceNumber": 4,
     "year": 2018,
     "mfd": 18.6,
     "sd": 3.7,
@@ -1229,7 +1229,7 @@
   {
     "id": "0ccf06b1-f0a6-46c5-bbaf-ca8a47162218",
     "title": "Fleeceresultaat Lev 2019",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2019,
     "mfd": 16.8,
     "sd": 3.1,
@@ -1247,7 +1247,7 @@
   {
     "id": "6bf86d7e-d859-41f7-9c83-c167744be863",
     "title": "Fleeceresultaat Kate 2019",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2019,
     "mfd": 21.7,
     "sd": 4.6,
@@ -1265,7 +1265,7 @@
   {
     "id": "7d62a3cd-f1d7-4501-a9c1-9d55d0809c23",
     "title": "Fleeceresultaat Kyam 2019",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2019,
     "mfd": 22,
     "sd": 4.2,
@@ -1283,7 +1283,7 @@
   {
     "id": "3e410fac-bb75-48e3-85e4-c96e24911fa9",
     "title": "Fleeceresultaat Kitty 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 17.8,
     "sd": 4.3,
@@ -1301,7 +1301,7 @@
   {
     "id": "cdf11af3-385e-41f2-aee1-ca1143e10695",
     "title": "Fleeceresultaat Kitty 2019",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2019,
     "mfd": 19.8,
     "sd": 4.6,
@@ -1319,7 +1319,7 @@
   {
     "id": "0bab7425-802a-4897-ae8c-239f82d6d16a",
     "title": "Fleeceresultaat Leonardo 2019",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2019,
     "mfd": 18.1,
     "sd": 4.3,
@@ -1337,7 +1337,7 @@
   {
     "id": "f02bbd6b-a783-463a-8300-3968dd2292dd",
     "title": "Fleeceresultaat Koby 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 19.2,
     "sd": 4.5,
@@ -1355,7 +1355,7 @@
   {
     "id": "f0f0cafd-dc77-47ce-9a01-3341ca51e280",
     "title": "Fleeceresultaat Kirk 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 19.9,
     "sd": 3.8,
@@ -1373,7 +1373,7 @@
   {
     "id": "02c9ce2d-8d51-4ae6-bd53-eed715ce1230",
     "title": "Fleeceresultaat Kenny 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 20.8,
     "sd": 4.8,
@@ -1391,7 +1391,7 @@
   {
     "id": "ad47b9ef-9e0a-4ed8-a6d7-909d84494e3b",
     "title": "Fleeceresultaat Jesse 2018",
-    "fleecenumber": 3,
+    "fleeceNumber": 3,
     "year": 2018,
     "mfd": 21.1,
     "sd": 3.9,
@@ -1409,7 +1409,7 @@
   {
     "id": "6b276c40-e029-4619-a25e-d987c3fe05bb",
     "title": "Fleeceresultaat Ambria 2018",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2018,
     "mfd": 23.4,
     "sd": 4.1,
@@ -1427,7 +1427,7 @@
   {
     "id": "4c7865ae-313f-4582-ad70-5f0ae232db13",
     "title": "Fleeceresultaat Ambria 2019",
-    "fleecenumber": 8,
+    "fleeceNumber": 8,
     "year": 2019,
     "mfd": 25.3,
     "sd": 5.2,
@@ -1445,7 +1445,7 @@
   {
     "id": "418f2422-ce32-4b31-b644-cf978184aa09",
     "title": "Fleeceresultaat Rehea 2018",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2018,
     "mfd": 29.1,
     "sd": 5.2,
@@ -1463,7 +1463,7 @@
   {
     "id": "929f3eaa-f161-4e7a-933e-2ce39a93804f",
     "title": "Fleeceresultaat Rehea 2019",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2019,
     "mfd": 25.5,
     "sd": 4.7,
@@ -1481,7 +1481,7 @@
   {
     "id": "71dd379a-f835-4b22-9e73-de3cf2dab92d",
     "title": "Fleeceresultaat Gwen 2018",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2018,
     "mfd": 25.8,
     "sd": 5.2,
@@ -1499,7 +1499,7 @@
   {
     "id": "f135af7f-3eaf-4385-84b1-904231954bbd",
     "title": "Fleeceresultaat Gwen 2019",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2019,
     "mfd": 26.9,
     "sd": 5.3,
@@ -1517,7 +1517,7 @@
   {
     "id": "284c467b-7223-4a8d-b7c8-103ea692d2a7",
     "title": "Fleeceresultaat Kay 2019",
-    "fleecenumber": 2,
+    "fleeceNumber": 2,
     "year": 2019,
     "mfd": 17.9,
     "sd": 3.3,
@@ -1535,7 +1535,7 @@
   {
     "id": "5f2e7f3b-37a3-4e81-be52-9d454ba05e75",
     "title": "Fleeceresultaat Kay 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 17.4,
     "sd": 3.8,
@@ -1553,7 +1553,7 @@
   {
     "id": "99330c2d-95f4-42f4-9edf-030f77160d6d",
     "title": "Fleeceresultaat Kyam 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 17.5,
     "sd": 3.5,
@@ -1571,7 +1571,7 @@
   {
     "id": "b247cdfc-f032-4176-9a2c-4d3e1b411faa",
     "title": "Fleeceresultaat Zephyr 2019",
-    "fleecenumber": 10,
+    "fleeceNumber": 10,
     "year": 2019,
     "mfd": 32.4,
     "sd": 6,
@@ -1589,7 +1589,7 @@
   {
     "id": "5e50b2e6-b26d-4ce8-923e-184a16389a6e",
     "title": "Fleeceresultaat Fann 2018",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2018,
     "mfd": 26.3,
     "sd": 4.8,
@@ -1607,7 +1607,7 @@
   {
     "id": "fe67c164-0420-4b61-ab90-adbc1a91f5fa",
     "title": "Fleeceresultaat Cala Luna 2019",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2019,
     "mfd": 29.3,
     "sd": 6.9,
@@ -1625,7 +1625,7 @@
   {
     "id": "30b07e5c-483f-4aa5-948e-c85c27ab4115",
     "title": "Fleeceresultaat Cala Luna 2018",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2018,
     "mfd": 26.8,
     "sd": 5.2,
@@ -1643,7 +1643,7 @@
   {
     "id": "9edfccd2-c8ea-4830-ad0a-fec831d0226d",
     "title": "Fleeceresultaat Zephyr 2018",
-    "fleecenumber": 9,
+    "fleeceNumber": 9,
     "year": 2018,
     "mfd": 31.1,
     "sd": 6,
@@ -1661,7 +1661,7 @@
   {
     "id": "b4d7ad49-2aac-4128-8d05-3e4f810d445f",
     "title": "Fleeceresultaat Gaia 2019",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2019,
     "mfd": 31.7,
     "sd": 5.8,
@@ -1679,7 +1679,7 @@
   {
     "id": "06853edb-6796-4685-9b3a-ef17caca770d",
     "title": "Fleeceresultaat Pumpkin 2019",
-    "fleecenumber": 10,
+    "fleeceNumber": 10,
     "year": 2019,
     "mfd": 30,
     "sd": 7,
@@ -1697,7 +1697,7 @@
   {
     "id": "d054bb62-6ab7-499c-b566-80c27f09abc1",
     "title": "Fleeceresultaat Fei Lian 2018",
-    "fleecenumber": 6,
+    "fleeceNumber": 6,
     "year": 2018,
     "mfd": 30.7,
     "sd": 6.6,
@@ -1715,7 +1715,7 @@
   {
     "id": "5e9f9682-1327-4494-99f4-a8b7e0caebc5",
     "title": "Fleeceresultaat Fei Lian 2019",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2019,
     "mfd": 32.5,
     "sd": 5.9,
@@ -1733,7 +1733,7 @@
   {
     "id": "458e4465-50cf-49ab-a469-4b2d4c169606",
     "title": "Fleeceresultaat Gaia 2018",
-    "fleecenumber": 5,
+    "fleeceNumber": 5,
     "year": 2018,
     "mfd": 30.6,
     "sd": 5.7,
@@ -1751,7 +1751,7 @@
   {
     "id": "ab7aaded-533c-4c52-b75e-a4f2f75e585a",
     "title": "Fleeceresultaat Pumpkin 2018",
-    "fleecenumber": 9,
+    "fleeceNumber": 9,
     "year": 2018,
     "mfd": 30.8,
     "sd": 7.2,
@@ -1769,7 +1769,7 @@
   {
     "id": "af51d58d-faf1-4587-829e-cac800db1849",
     "title": "Fleeceresultaat Fann 2019",
-    "fleecenumber": 7,
+    "fleeceNumber": 7,
     "year": 2019,
     "mfd": 28.2,
     "sd": 5.1,
@@ -1787,7 +1787,7 @@
   {
     "id": "77d52fe0-a82e-4596-b961-d66040825f93",
     "title": "Fleeceresultaat Kate 2018",
-    "fleecenumber": 1,
+    "fleeceNumber": 1,
     "year": 2018,
     "mfd": 17.7,
     "sd": 3.9,
