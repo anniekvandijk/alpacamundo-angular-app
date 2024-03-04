@@ -22,7 +22,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 })
 export class AlpacaShowresultsComponent {
   @Input() set alpaca (alpaca: Alpaca) {
-    this.showresults = [];
     this.dataSource.data = [];
     if (alpaca.showresults.length > 0) {
       this.setShowResults(alpaca);
@@ -30,7 +29,6 @@ export class AlpacaShowresultsComponent {
   }
   public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  public showresults: Showresult[] = [];
   public displayedColumns: string[] = [
     'showYear',
     'result',
@@ -39,8 +37,7 @@ export class AlpacaShowresultsComponent {
   public dataSource = new MatTableDataSource<Showresult>();
 
   private setShowResults(alpaca: Alpaca): void {
-    this.showresults = alpaca.showresults;
-    this.dataSource.data = this.showresults;
+    this.dataSource.data = alpaca.showresults;
     this.dataSource.sortingDataAccessor = (item: Showresult, property: string) => {
       switch(property) {
         case 'showYear': return item.alpacashow.showYear;

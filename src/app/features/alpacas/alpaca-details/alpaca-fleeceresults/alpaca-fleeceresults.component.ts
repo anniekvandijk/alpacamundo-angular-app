@@ -25,7 +25,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 })
 export class AlpacaFleeceresultsComponent implements OnInit {
   @Input() set alpaca (alpaca: Alpaca) {
-    this.fleeces = [];
     this.dataSource.data = [];
     if (alpaca.fleeceresults.length > 0) {
       this.setFleeceResults(alpaca);
@@ -34,7 +33,6 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   private readonly configuration: Configuration = inject(CONFIGURATION);
-  public fleeces: Fleece[] = [];
   public fleeceResultsUrl!: string;
 
   public displayedColumns: string[] = [
@@ -55,8 +53,7 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   }
 
   private setFleeceResults(alpaca: Alpaca) : void {
-      this.fleeces = alpaca.fleeceresults;
-      this.dataSource.data = this.fleeces;
+      this.dataSource.data = alpaca.fleeceresults;
       this.dataSource.sort = this.sort;
       const sortState: Sort = {active: 'fleeceNumber', direction: 'desc'};
       this.sort.active = sortState.active;
