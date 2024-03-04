@@ -21,12 +21,13 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   styleUrls: []
 })
 export class AlpacaShowresultsComponent {
-  @Input() set showresults (alpaca: Alpaca) {
+  @Input() set alpaca (alpaca: Alpaca) {
     this.dataSource.data = [];
     if (alpaca.showresults.length > 0) {
       this.setShowResults(alpaca);
     }
   }
+
   public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   public displayedColumns: string[] = [

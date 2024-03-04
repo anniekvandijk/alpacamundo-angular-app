@@ -57,20 +57,6 @@ export class AlpacaDetailsComponent implements OnInit {
     this.route.params.pipe(
       takeUntilDestroyed(this.destroyRef),
       switchMap((params: Params) => this.alpacaService.getAlpaca(params['id'], this.componentId)),
-      // switchMap((alpaca: Alpaca) => {
-      //   const sireObservable = alpaca.sireId ? 
-      //     this.alpacaService.getAlpaca(alpaca.sireId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
-      //     of(null);
-      //   const damObservable = alpaca.damId ? 
-      //     this.alpacaService.getAlpaca(alpaca.damId, this.componentId).pipe(takeUntilDestroyed(this.destroyRef)) : 
-      //     of(null);
-      //   return forkJoin([of(alpaca), sireObservable, damObservable]);
-      // }),
-      // map(([alpaca, sire, dam]) => {
-      //   if (sire) { alpaca.sire = sire; }
-      //   if (dam) { alpaca.dam = dam; }
-      //   return alpaca;
-      // })
     )
     .subscribe((alpaca: Alpaca) => {
       this.alpaca = alpaca;

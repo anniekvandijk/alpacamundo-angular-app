@@ -24,7 +24,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   styleUrls: ['./alpaca-fleeceresults.component.scss']
 })
 export class AlpacaFleeceresultsComponent implements OnInit {
-  @Input() set fleeceresults (alpaca: Alpaca) {
+  @Input() set alpaca (alpaca: Alpaca) {
     this.dataSource.data = [];
     if (alpaca.fleeceresults.length > 0) {
       this.setFleeceResults(alpaca);
