@@ -84,7 +84,7 @@ export class AlpacaCardListComponent implements OnInit {
           this.filteredAlpacas = alpacas
             .filter(alpaca => alpaca.status !== "Verkocht")
             .filter(alpaca => alpaca.status !== "Overleden")
-            .filter(alpaca => alpaca.category !== "Externe  hengsten")
+            .filter(alpaca => alpaca.category !== "Externe hengsten")
           this.title = `Onze Alpaca's (${this.filteredAlpacas.length})`;
           this.cardListType = 'alpaca';
         }
