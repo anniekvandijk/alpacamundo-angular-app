@@ -5,5 +5,5 @@ export interface Infopage {
     created: Date;
     changed: Date;
     tags: string[];
-    category: string[];
+    categories: string[];
 }

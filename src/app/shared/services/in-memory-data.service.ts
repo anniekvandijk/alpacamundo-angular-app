@@ -26,7 +26,7 @@ export class InMemoryDataService implements InMemoryDbService {
     //  alpacas, 
     //  alpacashows, 
     //  fleeces, 
-      infopages, 
+    //  infopages, 
     //  showresults
     };
   }

@@ -33,10 +33,10 @@ export class InfopagesSidebarComponent implements OnInit{
 
   private groupInfopagesByCategory(infopages: Infopage[]): { [key: string]: Infopage[] } {
     return infopages.reduce<{ [key: string]: Infopage[] }>((acc, infopage) => {
-      if (!acc[infopage.category.toString()]) {
-        acc[infopage.category.toString()] = [];
+      if (!acc[infopage.categories.toString()]) {
+        acc[infopage.categories.toString()] = [];
       }
-      acc[infopage.category.toString()].push(infopage);
+      acc[infopage.categories.toString()].push(infopage);
       return acc;
     }, {});
   }
