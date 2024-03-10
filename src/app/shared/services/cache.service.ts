@@ -14,8 +14,8 @@ export class CacheService<T> {
     this.expiry = environment.cacheLifetime;
 }
 
-  public getCache(url: string): HttpEvent<T> | undefined {
-    const result = this.cache.get(url);
+  public getCache(cacheKey: string): HttpEvent<T> | undefined {
+    const result = this.cache.get(cacheKey);
 
     if (!result) {
       return undefined;
@@ -25,18 +25,18 @@ export class CacheService<T> {
     const resDate: Date = result.date;
 
     if (Date.now() - resDate.getTime() > this.expiry) {
-      this.deleteCache(url);
+      this.deleteCache(cacheKey);
       return undefined;
     }
 
     return response;
   }
 
-  public setCache(url: string, response: HttpEvent<T>, date: Date): void {
-    this.cache.set(url, { response, date });
+  public setCache(cacheKey: string, response: HttpEvent<T>, date: Date): void {
+    this.cache.set(cacheKey, { response, date });
   }
 
-  private deleteCache(url: string): void {
-    this.cache.delete(url);
+  private deleteCache(cacheKey: string): void {
+    this.cache.delete(cacheKey);
   }
 }
