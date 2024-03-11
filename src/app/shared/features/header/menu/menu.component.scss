@@ -1,9 +1,14 @@
 .menu-button {
   color: var(--secondary-color-dark) !important;
-  font-size: 1.2em;
+  font-size: 1.1em;
   
 }
 
 .dropdown-menu {
   background-color: var(--secondary-color-dark) !important;
+}
+
+.menu-divider {
+  color: var(--secondary-color-dark);
+  font-size: 1.2em;
 }

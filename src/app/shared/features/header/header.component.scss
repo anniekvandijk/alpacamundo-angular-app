@@ -5,20 +5,32 @@
   margin-left: 40px;
 }
 
+#themetoggle {
+  position: fixed;
+  left: 420px;
+  top: 0px;
+}
+
 #headertext {
-  margin-left: 412px;
-  width: 100%;
-  padding-top: 3px;
+  position: fixed;
+  left: 469px;
+  top:2px;
   color: #fff;
   font-size: 0.85em;
 
 }
 
 app-menu {
-  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 33px;
+  left: 75px;
   position: absolute;
   top: 176px;
-  width: 920px;
+  width: 798px;
+  overflow: hidden;
 }
 
 app-usermenu {
