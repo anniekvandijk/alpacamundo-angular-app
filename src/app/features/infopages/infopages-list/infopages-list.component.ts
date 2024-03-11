@@ -17,7 +17,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     HttploaderComponent
   ],
   templateUrl: './infopages-list.component.html',
-  styleUrls: ['./infopages-list.component.scss']
+  styleUrls: []
 })
 export class InfopagesListComponent implements OnInit{
   public componentId = this.constructor.name;
