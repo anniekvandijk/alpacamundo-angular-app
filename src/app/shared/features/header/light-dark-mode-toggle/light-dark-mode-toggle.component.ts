@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ThemeService } from 'src/app/shared/services/theme.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { ThemeService } from 'src/app/shared/services/theme.service';
   standalone: true,
   imports: [
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './light-dark-mode-toggle.component.html',
   styleUrl: './light-dark-mode-toggle.component.scss',

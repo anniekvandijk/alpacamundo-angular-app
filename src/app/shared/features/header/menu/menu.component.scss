@@ -1,3 +1,16 @@
+#main-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  height: 33px;
+  left: 75px;
+  position: absolute;
+  top: 176px;
+  width: 798px;
+  overflow: hidden;
+}
+
 .menu-button {
   color: var(--secondary-color-dark) !important;
   font-size: 1.1em;

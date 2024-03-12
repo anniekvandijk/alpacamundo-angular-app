@@ -1,69 +1,71 @@
-<div>
-  <button class="menu-button" mat-button routerLink="/" routerLinkActive="active">Home</button>
-</div>
+<div id="main-menu">
+  <div>
+    <button class="menu-button" mat-button routerLink="/" routerLinkActive="active">Home</button>
+  </div>
 
-<div>
-  <button mat-button 
-    class="menu-button"
-    #about="matMenuTrigger"
-    [matMenuTriggerFor]="aboutMenu"
-    >Over ons</button>
-    <mat-menu class="dropdown-menu" #aboutMenu="matMenu">
-    <button mat-menu-item routerLink="/about">Over ons</button>
-    <button mat-menu-item routerLink="/students">School en studie opdrachten</button>
-  </mat-menu>
-</div>  
-
-<div>
-  <button mat-button 
-    class="menu-button"
-    #alpacas="matMenuTrigger"
-    [matMenuTriggerFor]="alpacaMenu"
-    >Onze alpaca's</button>
-    <mat-menu class="dropdown-menu" #alpacaMenu="matMenu">
-      <button mat-menu-item routerLink="/alpacas">Onze alpaca's</button>
-      <button mat-menu-item routerLink="/alpacas/crias">Onze cria's (veulens)</button>
-      <a mat-menu-item href="https://goo.gl/photos/dir2jPpDZbZjNgZf6" target="_blank">Fotoalbum (Google)</a>
-  </mat-menu>
-</div>
-
-<div>
-  <button mat-button 
-    class="menu-button"
-    #sell="matMenuTrigger"
-    [matMenuTriggerFor]="sellMenu"
-    >Verkoop</button>
-    <mat-menu class="dropdown-menu" #sellMenu="matMenu">
-      <button mat-menu-item routerLink="/alpacas/forsale" routerLinkActive="active">Alpaca's te koop</button>
-      <button mat-menu-item routerLink="/alpacas/sold" routerLinkActive="active">Alpaca's verkocht</button>   
-      <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>     
+  <div>
+    <button mat-button 
+      class="menu-button"
+      #about="matMenuTrigger"
+      [matMenuTriggerFor]="aboutMenu"
+      >Over ons</button>
+      <mat-menu class="dropdown-menu" #aboutMenu="matMenu">
+      <button mat-menu-item routerLink="/about">Over ons</button>
+      <button mat-menu-item routerLink="/students">School en studie opdrachten</button>
     </mat-menu>
-</div>
+  </div>  
 
-<div>
-  <button mat-button 
-    class="menu-button"
-    #studs="matMenuTrigger"
-    [matMenuTriggerFor]="studsMenu"
-    >Dekservice</button>
-    <mat-menu class="dropdown-menu" #studsMenu="matMenu">  
-      <button mat-menu-item routerLink="/alpacas/studservice" routerLinkActive="active">Onze dekhengsten</button>
-      <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>  
+  <div>
+    <button mat-button 
+      class="menu-button"
+      #alpacas="matMenuTrigger"
+      [matMenuTriggerFor]="alpacaMenu"
+      >Onze alpaca's</button>
+      <mat-menu class="dropdown-menu" #alpacaMenu="matMenu">
+        <button mat-menu-item routerLink="/alpacas">Onze alpaca's</button>
+        <button mat-menu-item routerLink="/alpacas/crias">Onze cria's (veulens)</button>
+        <a mat-menu-item href="https://goo.gl/photos/dir2jPpDZbZjNgZf6" target="_blank">Fotoalbum (Google)</a>
     </mat-menu>
-</div>
+  </div>
 
-<div>
-<button class="menu-button" mat-button routerLink="/info" routerLinkActive="active">Over alpaca's</button>
-</div>
-<div>
-<button class="menu-button" mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
-</div>
-<div>
-  <button class="menu-button" mat-button routerLink="/links" routerLinkActive="active">Links</button>
-</div>
-<div class="menu-divider">
-  |
-</div>
-<div>  
-  <app-light-dark-mode-toggle></app-light-dark-mode-toggle>
+  <div>
+    <button mat-button 
+      class="menu-button"
+      #sell="matMenuTrigger"
+      [matMenuTriggerFor]="sellMenu"
+      >Verkoop</button>
+      <mat-menu class="dropdown-menu" #sellMenu="matMenu">
+        <button mat-menu-item routerLink="/alpacas/forsale" routerLinkActive="active">Alpaca's te koop</button>
+        <button mat-menu-item routerLink="/alpacas/sold" routerLinkActive="active">Alpaca's verkocht</button>   
+        <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>     
+      </mat-menu>
+  </div>
+
+  <div>
+    <button mat-button 
+      class="menu-button"
+      #studs="matMenuTrigger"
+      [matMenuTriggerFor]="studsMenu"
+      >Dekservice</button>
+      <mat-menu class="dropdown-menu" #studsMenu="matMenu">  
+        <button mat-menu-item routerLink="/alpacas/studservice" routerLinkActive="active">Onze dekhengsten</button>
+        <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>  
+      </mat-menu>
+  </div>
+
+  <div>
+    <button class="menu-button" mat-button routerLink="/info" routerLinkActive="active">Over alpaca's</button>
+  </div>
+  <div>
+  <button class="menu-button" mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
+  </div>
+  <div>
+    <button class="menu-button" mat-button routerLink="/links" routerLinkActive="active">Links</button>
+  </div>
+  <div class="menu-divider">
+    |
+  </div>
+  <div>  
+    <app-light-dark-mode-toggle></app-light-dark-mode-toggle>
+  </div>
 </div>
