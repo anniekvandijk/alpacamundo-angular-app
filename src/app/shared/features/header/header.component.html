@@ -1,15 +1,17 @@
-<div *ngIf="!environment.production" class="environment">
-  <b>env: {{environment.name}}</b>
+<div id="header">
+  <div *ngIf="!environment.production" class="environment">
+    <b>env: {{environment.name}}</b>
+  </div>
+  <nav>
+    <app-usermenu></app-usermenu>
+  </nav>
+  <a routerLink="/" title="Home" rel="home">
+    <img id="logo" src="/assets/images/logo.svg" alt="Home">
+  </a>
+  <span id="headertext">
+    Scheiding 8, 9231AN Surhuisterveen, info&#64;alpacamundo.eu
+  </span>
+  <nav>
+    <app-menu role="navigation"></app-menu>
+  </nav>
 </div>
-<nav>
-  <app-usermenu></app-usermenu>
-</nav>
-<a routerLink="/" title="Home" rel="home">
-  <img id="logo" src="/assets/images/logo.svg" alt="Home">
-</a>
-<span id="headertext">
-  Scheiding 8, 9231AN Surhuisterveen, info&#64;alpacamundo.eu
-</span>
-<nav>
-  <app-menu role="navigation"></app-menu>
-</nav>

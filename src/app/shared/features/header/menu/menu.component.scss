@@ -14,11 +14,18 @@
 .menu-button {
   color: var(--secondary-color-dark) !important;
   font-size: 1.1em;
-  
 }
 
-.dropdown-menu {
-  background-color: var(--secondary-color-dark) !important;
+::ng-deep .mat-mdc-menu-panel {
+  background-color: var(--background-color-light) !important;
+  border-radius: 5px !important;
+  border: 0.5px solid var(--primary-color-light);
+  position: relative;
+  top: 5px;
+}
+
+.mat-mdc-menu-item:hover {
+  background-color: var(--secondary-color-light) !important;
 }
 
 .menu-divider {

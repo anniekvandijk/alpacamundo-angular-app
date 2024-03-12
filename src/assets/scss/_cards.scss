@@ -5,8 +5,8 @@ mat-card {
     border-radius: 10px !important;
     @include mat.elevation(0);
     box-shadow:none !important;
-    border-color: var(--primary-color-light) !important;
-    border-width: 1px !important;  
+    border-color: var(--secondary-color-light) !important;
+    border-width: 0.5px !important;  
     border-style: solid !important;
       
 }
@@ -19,7 +19,11 @@ mat-card-header, mat-card-actions{
     background: var(--secondary-color-light);
     height: 50px !important;
     padding-top: 5px;
-    padding-left: 10px;
+    padding-left: 10px;    
+}
+
+mat-card-content {
+   background-color: var(--background-color-light);
 }
 
 mat-card-header {
@@ -29,14 +33,14 @@ mat-card-header {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+    border-bottom-color: var(--secondary-color-light) !important;
     border-bottom-width: 1px ;  
     border-bottom-style: solid;
 }
 
 mat-card-actions {
-    border-top-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
-    border-top-width: 1px ;  
+    border-top-color: var(--secondary-color-light) !important;
+    border-top-width: 1px; 
     border-top-style: solid;
     border-radius: 0px 0px 10px 10px;
 }
