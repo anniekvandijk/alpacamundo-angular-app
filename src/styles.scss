@@ -101,24 +101,28 @@ white-space: pre-wrap
 --mdc-snackbar-supporting-text-color: white !important;
 --mat-mdc-snack-bar-button-color: white !important;
 }
- 
+
+
+#app-container-background {
+    // position: relative;
+    // height: 490px;
+    // background: url(/assets/images/SVG/aai-liggende-alpaca-achter.svg) transparent no-repeat;
+    // background-position-y: -239px;
+    // background-position-x: 152px;
+    
+  }
+
 #app-container {
-    //  min-height: 600px;
-    //  background: url(./assets/images/header2.png) transparent no-repeat;
-    //  background-size: contain;
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 490px;
 
-     width: 960px;
-     margin: 0 auto;
-     padding-left: 10px;
-     padding-right: 10px;
-}
-
-#header-alpaca-kop {
-    position: fixed;
-    top: 0px;
-    left: 824px;
-    height: 585px;
-    z-index: 1;
+    background: url(/assets/images/SVG/aai-liggende-alpaca-voor.svg) transparent no-repeat;
+    background-position-y: -239px;
+    background-position-x: -52px;
 }
 
 .page-content {
