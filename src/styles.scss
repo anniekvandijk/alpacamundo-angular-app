@@ -1,6 +1,7 @@
 @use './assets/scss/material';
 @use './assets/scss/variables';
 @use './assets/scss/forms';
+@use './assets//scss//snackbar';
 @use './assets/scss/tables';
 @use './assets/scss/cards';
 
@@ -70,48 +71,6 @@ ul {
 
 }
 
-.default-snackbar {
---mdc-snackbar-container-color: var(--primary-color) !important;
---mdc-snackbar-supporting-text-color: white !important;
---mat-mdc-snack-bar-button-color: white !important;
-}
-
-.info-snackbar {
---mdc-snackbar-container-color: var(--primary-color) !important;
---mdc-snackbar-supporting-text-color: white !important;
---mat-mdc-snack-bar-button-color: white !important;
-}
-
-.warning-snackbar {
---mdc-snackbar-container-color: orange !important;
---mdc-snackbar-supporting-text-color: white !important;
---mat-mdc-snack-bar-button-color: white !important;
-white-space: pre-wrap
-}  
-
-.error-snackbar {
---mdc-snackbar-container-color: darkred !important;
---mdc-snackbar-supporting-text-color: white !important;
---mat-mdc-snack-bar-button-color: white !important;
-white-space: pre-wrap
-}
-
-.success-snackbar {
---mdc-snackbar-container-color: green !important;
---mdc-snackbar-supporting-text-color: white !important;
---mat-mdc-snack-bar-button-color: white !important;
-}
-
-
-#app-container-background {
-    // position: relative;
-    // height: 490px;
-    // background: url(/assets/images/SVG/aai-liggende-alpaca-achter.svg) transparent no-repeat;
-    // background-position-y: -239px;
-    // background-position-x: 152px;
-    
-  }
-
 #app-container {
     position: relative;
     width: 960px;
@@ -120,7 +79,7 @@ white-space: pre-wrap
     padding-right: 10px;
     height: 490px;
 
-    background: url(/assets/images/SVG/aai-liggende-alpaca-voor.svg) transparent no-repeat;
+    background: url(/assets/images/liggende-alpaca.svg) transparent no-repeat;
     background-position-y: -239px;
     background-position-x: -52px;
 }
