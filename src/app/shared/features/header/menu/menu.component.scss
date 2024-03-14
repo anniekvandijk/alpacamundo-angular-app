@@ -1,6 +1,6 @@
 #main-menu {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   height: 33px;
@@ -16,6 +16,7 @@
 .menu-button {
   color: var(--secondary-color-dark) !important;
   font-size: 1.1em;
+  z-index: 2;
 }
 
 ::ng-deep .mat-mdc-menu-panel {
@@ -33,4 +34,8 @@
 .menu-divider {
   color: var(--secondary-color-dark);
   font-size: 1.2em;
+}
+
+.mode-toggle {
+  padding-right: 10px;
 }
