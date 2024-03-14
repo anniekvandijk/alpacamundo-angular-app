@@ -103,12 +103,22 @@ white-space: pre-wrap
 }
  
 #app-container {
-    min-height: 600px;
-    background: url(./assets/images/header.png) transparent no-repeat;
-    width: 960px;
-    margin: 0 auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    //  min-height: 600px;
+    //  background: url(./assets/images/header2.png) transparent no-repeat;
+    //  background-size: contain;
+
+     width: 960px;
+     margin: 0 auto;
+     padding-left: 10px;
+     padding-right: 10px;
+}
+
+#header-alpaca-kop {
+    position: fixed;
+    top: 0px;
+    left: 824px;
+    height: 585px;
+    z-index: 1;
 }
 
 .page-content {
