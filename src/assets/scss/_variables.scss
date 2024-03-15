@@ -60,6 +60,8 @@
 
    // Dark theme
 
+   // #161b22
+
    --body-color--dark-theme: #121212;
 
    --primary-color--dark-theme:  hsl(279, 22%, 64%);
@@ -67,10 +69,10 @@
    --primary-color-dark--dark-theme: hsl(279, 22%, 84%);
 
    --secondary-color--dark-theme:  hsl(29, 15%, 54%);
-   --secondary-color-light--dark-theme:  hsl(29, 15%, 15%);
+   --secondary-color-light--dark-theme:  hsl(29, 15%, 10%);
    --secondary-color-dark--dark-theme: hsl(29, 15%, 20%);
    
-   --background-color-light--dark-theme: hsl(0, 0%, 18%);
+   --background-color-light--dark-theme: hsl(0, 0%, 10%);
    --background-color-dark--dark-theme: hsl(0, 0%, 10%); 
 
    --text-color-light--dark-theme:  hsl(0, 0%, 20%);
