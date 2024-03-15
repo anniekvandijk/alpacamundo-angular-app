@@ -18,14 +18,14 @@ import { LightDarkModeToggleComponent } from '../light-dark-mode-toggle/light-da
 })
 export class MenuComponent {
 
-  enteredButton = false;
-  isMatMenuOpen = false;
+  private enteredButton = false;
+  private isMatMenuOpen = false;
 
-  menuEnter() {
+  dropdownMenuEnter() {
     this.isMatMenuOpen = true;
   }
 
-  menuLeave(trigger: MatMenuTrigger) {
+  dropdownMenuLeave(trigger: MatMenuTrigger) {
     setTimeout(() => {
       if (!this.enteredButton) {
         this.isMatMenuOpen = false;
