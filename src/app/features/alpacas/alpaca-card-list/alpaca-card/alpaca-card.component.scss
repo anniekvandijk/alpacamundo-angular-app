@@ -2,6 +2,7 @@ mat-card-actions {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
+    color: var(--secondary-color);
 }
 
 mat-card-content {
