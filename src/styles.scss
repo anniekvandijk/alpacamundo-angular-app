@@ -85,12 +85,14 @@ a {
 }
 
 #main-section {
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .page-content {
     float: right;
+    margin-top: 30px;
+    margin-bottom: 10px;
     margin-right: 80px;
     width: 630px;
     h1 {
@@ -106,6 +108,8 @@ a {
 
 .page-sidebar {
     float: left;
+    margin-top: 30px;
+    margin-bottom: 10px;
     background-color: var(--background-color-light);
     padding: 10px;
     width: 200px;

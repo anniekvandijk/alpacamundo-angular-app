@@ -8,31 +8,34 @@ export class ThemeService {
 
   isDarkMode() {
     if (this.darkMode === undefined) {
-      if (window.matchMedia('(prefers-color-scheme: dark)'))
-      {
-        document.body.classList.add('dark-theme');
-        this.setDarkMode(true);
-      }
-      else if (window.matchMedia('(prefers-color-scheme: light)'))
-      {
-        document.body.classList.add('light-theme');
-        this.setDarkMode(false);
-      }
-      else {
-        this.setDarkMode(false);
-      }
+      if (this.prefersDarkColorSchemeDark()) this.setDarkMode();
+      else this.setLightMode();
     }
     return this.darkMode;
   }
 
-  setDarkMode(isDarkMode: boolean) {
-    this.darkMode = isDarkMode;
-    if (isDarkMode) {
-      document.body.classList.add('dark-theme');
-      document.body.classList.remove('light-theme');
-    } else {
-      document.body.classList.add('light-theme');
-      document.body.classList.remove('dark-theme');
-    }
+  toggleColorMode(setDarkMode: boolean) {
+    this.darkMode = setDarkMode;
+    if (setDarkMode) this.setDarkMode();
+    else this.setLightMode();
   }
+
+  private prefersDarkColorSchemeDark() {
+  return window &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  private setDarkMode() {
+    document.body.classList.add('dark-theme');
+    document.body.classList.remove('light-theme');
+    this.darkMode = true;
+  }
+
+  private setLightMode() {
+    document.body.classList.add('light-theme');
+    document.body.classList.remove('dark-theme');
+    this.darkMode = false;
+  }
+
 }

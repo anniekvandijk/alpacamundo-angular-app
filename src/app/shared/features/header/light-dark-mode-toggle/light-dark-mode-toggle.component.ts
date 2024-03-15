@@ -24,7 +24,7 @@ export class LightDarkModeToggleComponent {
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    this.themeService.setDarkMode(this.isDarkMode);
+    this.isDarkMode = !this.isDarkMode; 
+    this.themeService.toggleColorMode(this.isDarkMode);
   }
 }
