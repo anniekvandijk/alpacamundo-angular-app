@@ -21,35 +21,38 @@ html, body {
 
 body { 
     margin: 0; 
-    font-family: 
-    Roboto, "Helvetica Neue", sans-serif; 
+    font-family: "Nunito Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.5;
+    font-variation-settings:
+      "wdth" 100,
+      "YTLC" 500;
     color: var(--text-color-dark);
     background-color: var(--body-color);
 }
 
 h1, h2, h3 {
+    font-weight: 400;
     padding-bottom: 5px;
-    font-family: "France Plain";
-    font-weight: normal;
 }
 
 h1 {
-    border-bottom: 2px dotted var(--primary-color);
-}
-
-h1, h3 {
     color: var(--primary-color);
+    border-bottom: 2px dotted var(--primary-color);
+    font-family: "France Plain";
 }
 
 h2 {
     color: var(--secondary-color);
+    font-family: "France Plain";
 }
 
 h3 {
+   // color: var(--primary-color);
     margin-top: 10px;
     margin-bottom: 5px;
-    font-style: none;
-
 }
 
 hr {
@@ -67,10 +70,6 @@ a {
     }
 }
 
-ul {
-
-}
-
 #app-container {
     position: relative;
     width: 960px;
@@ -85,19 +84,20 @@ ul {
 }
 
 .page-content {
-       float: right;
-       margin-top: 30px;
-       margin-right: 80px;
-       width: 630px;
-       img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-      }
-     }
+    float: right;
+    margin-top: 30px;
+    margin-right: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 630px;
+    img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    }
+}
 
 .page-sidebar {
     float: left;
@@ -108,6 +108,7 @@ ul {
     min-height: 500px;
     border-radius: 10px;
     margin-right: 15px;
+    margin-bottom: 10px;
     border: 1px solid var(--secondary-color-light);
 
     h2 {
