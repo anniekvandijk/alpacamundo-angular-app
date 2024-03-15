@@ -8,6 +8,11 @@ mat-card-content {
     display: flex; 
     justify-content: left;
     align-items: center; 
+    gap: 5px;
+}
+
+.label {
+    padding-right: 10px;
 }
 
 .icon-button {
