@@ -42,6 +42,7 @@ h1 {
     color: var(--primary-color);
     border-bottom: 1px solid var(--primary-color-light);
     font-family: "France Plain";
+  //  letter-spacing: 1px;
 }
 
 h2 {
@@ -100,7 +101,7 @@ a {
         max-width: 100%;
         height: auto;
         border-radius: 10px;
-        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    //    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     }
 }
 
@@ -108,7 +109,7 @@ a {
     float: left;
     margin-top: 30px;
     margin-bottom: 10px;
-    background-color: var(--background-color-light);
+    background-color: var(--secondary-color-light);
     padding: 10px;
     width: 200px;
     min-height: 500px;
