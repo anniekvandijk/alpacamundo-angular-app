@@ -1,0 +1,11 @@
+#footer {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  color: var(--text-color-dark);
+  font-size: 0.8em;
+  border-top: 1px solid var(--primary-color-light);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

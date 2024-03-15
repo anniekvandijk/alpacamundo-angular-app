@@ -10,30 +10,30 @@
       <div class="card-body">
         <table>
           <tr>
-            <td>Soort:</td>
+            <td class="label">Soort:</td>
             <td>{{ alpaca.breed }}</td>
           </tr>
           <tr>
-            <td>Geslacht:</td>
+            <td class="label">Geslacht:</td>
             <td>{{ alpaca.gender }}</td>
           </tr>
           <tr>
-            <td>Kleur:</td>
+            <td class="label">Kleur:</td>
             <td>{{ alpaca.color }}</td>
           </tr>
           <tr>
-            <td>Geboortedatum:</td>
+            <td class="label">Geboortedatum:</td>
             <td>{{ alpaca.dateOfBirth | date: 'dd-MM-yyyy' }}</td>
           </tr>
           <tr>
-            <td>Vader:</td>
+            <td class="label">Vader:</td>
             <td>
               <div *ngIf="alpaca.sire">{{ alpaca.sire.longName }}</div>
               <div *ngIf="alpaca.sireName">{{ alpaca.sireName }}</div>
             </td>
           </tr>
           <tr>
-            <td>Moeder:</td>
+            <td class="label">Moeder:</td>
             <td>
               <div *ngIf="alpaca.dam">{{ alpaca.dam.longName }}</div>
               <div *ngIf="alpaca.damName">{{ alpaca.damName }}</div>

@@ -1,9 +1,18 @@
-<div *ngIf="!environment.production" class="environment">
-  <b>env: {{environment.name}}</b>
+<div id="header">
+  <img id="header-alpaca-kop" src="/assets/images/alpaca-kop2.svg" alt="alpaca kop"> 
+  <div *ngIf="!environment.production" class="environment">
+    <b>env: {{environment.name}}</b>
+  </div>
+  <nav>
+    <app-usermenu></app-usermenu>
+  </nav>
+  <a routerLink="/" title="Home" rel="home">
+    <img id="logo" src="/assets/images/logo.svg" alt="Home">
+  </a>
+  <!-- <span id="headertext">
+    Scheiding 8, 9231AN Surhuisterveen, info&#64;alpacamundo.eu
+  </span> -->
+  <nav>
+    <app-menu role="navigation"></app-menu>
+  </nav>
 </div>
-  <app-usermenu></app-usermenu>
-<a routerLink="/" title="Home" rel="home">
-  <img id="logo" src="/assets/images/logo.svg" alt="Home">
-</a>
-<div id="headertext">Scheiding 8, 9231AN Surhuisterveen, info&#64;alpacamundo.eu</div>
-<app-menu role="navigation"></app-menu>

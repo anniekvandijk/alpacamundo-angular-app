@@ -18,7 +18,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     HttploaderComponent
   ],
   templateUrl: './alpaca-card-list.component.html',
-  styleUrls: ['./alpaca-card-list.component.scss']
+  styleUrls: []
 })
 export class AlpacaCardListComponent implements OnInit {
   public componentId = this.constructor.name;

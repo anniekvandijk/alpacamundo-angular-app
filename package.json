@@ -7,7 +7,7 @@
     "url": "https://github.com/anniekvandijk/alpacamundo-angular-app"
   },
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1-beta",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
