@@ -40,7 +40,7 @@ h1, h2, h3 {
 
 h1 {
     color: var(--primary-color);
-    border-bottom: 2px dotted var(--primary-color);
+    border-bottom: 1px solid var(--primary-color-light);
     font-family: "France Plain";
 }
 
@@ -57,9 +57,7 @@ h3 {
 }
 
 hr {
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: var(--primary-color-light);
+    border-bottom: 1px var(--primary-color-light);
 }
 
 a {
@@ -120,7 +118,7 @@ a {
 
     h2 {
         margin-top: 10px;
-        border-bottom: 2px dotted var(--primary-color);
+        border-bottom: 1px solid var(--primary-color-light);
     }
     img {
         width: 200px;
