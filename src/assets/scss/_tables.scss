@@ -5,7 +5,7 @@
     border-radius: 10px !important;
     border-style: solid !important;
     border-width: 1px !important;
-    border-color: var(--primary-color-light) !important;
+    border-color: var(--secondary-color-light) !important;
     box-sizing: border-box  !important;
     @include mat.elevation(0);
 
@@ -18,8 +18,19 @@
    
 }
 
+.mat-mdc-cell {
+    border-color: var(--secondary-color-light) !important;  
+    background-color: var(--background-color-light) !important;
+    color: var(--text-color-dark) !important;
+}
+
+.mat-mdc-header-cell {
+    border-color: var(--secondary-color-light) !important;  
+    background-color: var(--secondary-color-light) !important;
+}
+
 .mat-mdc-header-row {
-    background-color:var(--secondary-color-light) !important;
+    color: var(--text-color-dark) !important;
     border-radius: 10px !important;
     box-sizing: border-box !important;
 }  

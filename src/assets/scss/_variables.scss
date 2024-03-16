@@ -1,14 +1,81 @@
 :root {
 
-   --primary-color:  #785889;
-   --primary-color-light: #e0e0e0;
-   --primary-color-dark: #33253a;
+   .light-theme {
+      --body-color: var(--body-color--light-theme);
 
-   --secondary-color: #9b8978; 
-   --secondary-color-light: #f4f2f0; 
-   --secondary-color-dark: #48261a;
+      --primary-color: var(--primary-color--light-theme);
+      --primary-color-light: var(--primary-color-light--light-theme);
+      --primary-color-dark: var(--primary-color-dark--light-theme);
 
-   --background-color-light:  #fafafa;
+      --secondary-color: var(--secondary-color--light-theme); 
+      --secondary-color-light: var(--secondary-color-light--light-theme); 
+      --secondary-color-dark: var(--secondary-color-dark--light-theme);
 
-   --text-color: #2c2c2c;
+      --background-color-light: var(--background-color-light--light-theme);
+      --background-color-dark: var(--background-color-dark--light-theme);
+
+      --text-color-light: var(--text-color-light--light-theme);
+      --text-color-dark: var(--text-color-dark--light-theme);
+   }
+   .dark-theme {
+      --body-color: var(--body-color--dark-theme);
+
+      --primary-color: var(--primary-color--dark-theme);
+      --primary-color-light: var(--primary-color-light--dark-theme);
+      --primary-color-dark: var(--primary-color-dark--dark-theme);
+   
+      --secondary-color: var(--secondary-color--dark-theme); 
+      --secondary-color-light: var(--secondary-color-light--dark-theme); 
+      --secondary-color-dark: var(--secondary-color-dark--dark-theme);
+   
+      --background-color-light: var(--background-color-light--dark-theme);
+      --background-color-dark: var(--background-color-dark--dark-theme);
+   
+      --text-color-light: var(--text-color-light--dark-theme);
+      --text-color-dark: var(--text-color-dark--dark-theme);
+   }
+
+   // Default colors
+
+   --white: white;
+   --black: black;
+
+   // Light theme
+
+   --body-color--light-theme: hsl(0, 0%, 99%);
+
+   --primary-color--light-theme:  hsl(279, 22%, 44%);
+   --primary-color-light--light-theme: hsl(279, 22%, 84%);
+   --primary-color-dark--light-theme: hsl(279, 22%, 14%);
+
+   --secondary-color--light-theme: hsl(29, 15%, 54%);
+   --secondary-color-light--light-theme: hsl(29, 15%, 90%);
+   --secondary-color-dark--light-theme: hsl(29, 15%, 20%);
+
+   --background-color-light--light-theme:  hsl(0, 0%, 97%);
+   --background-color-dark--light-theme:  hsl(0, 0%, 10%);
+
+   --text-color-light--light-theme: hsl(0, 0%, 95%);
+   --text-color-dark--light-theme: hsl(0, 0%, 20%);
+
+   // Dark theme
+
+   // #161b22
+
+   --body-color--dark-theme: #121212;
+
+   --primary-color--dark-theme:  hsl(279, 22%, 64%);
+   --primary-color-light--dark-theme: hsl(279, 22%, 34%);
+   --primary-color-dark--dark-theme: hsl(279, 22%, 84%);
+
+   --secondary-color--dark-theme:  hsl(29, 15%, 54%);
+   --secondary-color-light--dark-theme:  hsl(29, 15%, 10%);
+   --secondary-color-dark--dark-theme: hsl(29, 15%, 20%);
+   
+   --background-color-light--dark-theme: hsl(0, 0%, 10%);
+   --background-color-dark--dark-theme: hsl(0, 0%, 10%); 
+
+   --text-color-light--dark-theme:  hsl(0, 0%, 20%);
+   --text-color-dark--dark-theme:  hsl(0, 0%, 90%);
+
 }

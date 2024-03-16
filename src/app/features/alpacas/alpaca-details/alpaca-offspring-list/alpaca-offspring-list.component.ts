@@ -9,7 +9,6 @@ import { AlpacaOffspringCardComponent } from './alpaca-offspring-card/alpaca-off
     AlpacaOffspringCardComponent
   ],
   templateUrl: './alpaca-offspring-list.component.html',
-  styleUrl: './alpaca-offspring-list.component.scss'
 })
 export class AlpacaOffspringListComponent{
   @Input() set alpaca (alpaca: Alpaca) {

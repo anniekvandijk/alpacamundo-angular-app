@@ -3,6 +3,7 @@ import { MenuComponent } from './menu/menu.component';
 import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
 import { UsermenuComponent } from './usermenu/usermenu.component';
+import { LightDarkModeToggleComponent } from './light-dark-mode-toggle/light-dark-mode-toggle.component';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ import { UsermenuComponent } from './usermenu/usermenu.component';
   imports : [
     CommonModule,    
     MenuComponent,
-    UsermenuComponent
+    UsermenuComponent,
+    LightDarkModeToggleComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']

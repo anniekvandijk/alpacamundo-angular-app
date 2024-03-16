@@ -13,7 +13,7 @@ import { UserService } from 'src/app/features/users/user.service';
     CommonModule
   ],
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: []
 })
 export class ProfileComponent implements OnInit {
   readonly destroyRef = inject(DestroyRef);

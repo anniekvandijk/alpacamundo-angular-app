@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-not-found',
   standalone: true,
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss']
+  styleUrls: []
 })
 export class NotFoundComponent {
 
