@@ -2,10 +2,9 @@
 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.05 77.36">
   <defs>
     <linearGradient id="linear-gradient" x1="3.41" y1="37.73" x2="30.71" y2="39.64" gradientUnits="userSpaceOnUse">
-      <stop offset=".04" stop-color="#fff"/>
-      <stop offset=".15" stop-color="rgba(226, 226, 226, .87)" stop-opacity=".87"/>
-      <stop offset=".39" stop-color="rgba(155, 153, 153, .55)" stop-opacity=".55"/>
-      <stop offset=".75" stop-color="rgba(41, 37, 38, .03)" stop-opacity=".03"/>
+      <stop offset=".04" stop-color="#f2efeb"/>
+      <stop offset=".16" stop-color="rgba(214, 211, 207, .87)" stop-opacity=".87"/>
+      <stop offset=".41" stop-color="rgba(143, 139, 137, .52)" stop-opacity=".52"/>
       <stop offset=".77" stop-color="#231f20" stop-opacity="0"/>
     </linearGradient>
   </defs>
