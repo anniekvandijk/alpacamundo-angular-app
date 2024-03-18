@@ -8,7 +8,7 @@ Development/Local build:
 ng build --configuration=development
 
 Test build:
-ng build --configuration=testing
+ng build --configuration=test
 
 Production build:
 ng build --configuration=production
