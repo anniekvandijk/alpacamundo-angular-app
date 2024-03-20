@@ -41,10 +41,10 @@ export class LinksMainComponent implements OnInit {
 
   private groupLinksByType(links: Link[]): { [key: string]: Link[] } {
     return links.reduce<{ [key: string]: Link[] }>((acc, link) => {
-      if (!acc[link.linkType]) {
-        acc[link.linkType] = [];
+      if (!acc[link.linkType.name]) {
+        acc[link.linkType.name] = [];
       }
-      acc[link.linkType].push(link);
+      acc[link.linkType.name].push(link);
       return acc;
     }, {});
   }
