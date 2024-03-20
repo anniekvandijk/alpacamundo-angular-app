@@ -1,11 +1,13 @@
 #user-menu {
-    margin-left: 350px;
     position: absolute;
+    left: 400px;
     top: 50px;
-    width: 920px;
   }
   
+.userinfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
-h2 {
-    color: var(--text-color-light);
 }

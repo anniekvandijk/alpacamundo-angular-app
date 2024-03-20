@@ -1,12 +1,7 @@
 <ng-container *ngIf="profile$ | async as profile">
-    <h1>Profiel {{ profile.displayName }} </h1>
+    <h1>{{ profile.displayName }} </h1>
 
-    <p>Naam: {{ profile.displayName }}</p>
-    <p>Email: {{ profile?.mail }}</p>
-    <p>Telefoon: {{ profile?.mobilePhone }}</p>
-
-
-
+    <img [src]="profilePhoto" alt="Profile picture" height="200px"/>
 
 
 </ng-container>

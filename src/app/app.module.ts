@@ -20,6 +20,24 @@ import { HttpApiInterceptor } from './shared/interceptors/http-api.interceptor';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 
+const scopes = 
+  {
+    apiWrite: 'api://88dd619d-a72e-49f5-bd69-985cdf0a8a12/access_as_user',
+    graphRead: 'user.read'
+  }
+
+
+const apiScopeArray = [
+  { httpMethod: 'POST', scopes: [scopes.apiWrite] },
+  { httpMethod: 'PUT', scopes: [scopes.apiWrite] },
+  { httpMethod: 'DELETE', scopes: [scopes.apiWrite] }, 
+]
+
+const graphScopeArray = [
+  { httpMethod: 'GET', scopes: [scopes.graphRead] },
+]
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +63,7 @@ registerLocaleData(localeNl, 'nl-NL');
     MsalModule.forRoot(new PublicClientApplication(
         { 
         auth: {
-            clientId: '13f9d129-96e3-4d32-9199-1786494d46ec',
+            clientId: environment.clientId,
             redirectUri: environment.loginRedirectUri,
             authority: `https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75`
         },
@@ -56,16 +74,17 @@ registerLocaleData(localeNl, 'nl-NL');
         }
     ),
     {
-        interactionType: InteractionType.Redirect,
-        authRequest: {
-        scopes: ['user.read']
-        }
+      interactionType: InteractionType.Redirect,
+      authRequest: {
+        scopes: [scopes.apiWrite, scopes.graphRead]
+      }
     },
     {
-        interactionType: InteractionType.Redirect,
-        protectedResourceMap: new Map([
-        ['https://graph.microsoft.com/v1.0/me', ['user.read']] 
-        ])
+      interactionType: InteractionType.Redirect,
+      protectedResourceMap: new Map([
+      ['https://graph.microsoft.com/v1.0/me', graphScopeArray],
+      [`${environment.apiBaseUrl}/api/*`, apiScopeArray] 
+      ])
     }      
     ),
    ],

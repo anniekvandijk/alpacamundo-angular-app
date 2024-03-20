@@ -24,14 +24,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile$ = this.userService.getUserProfile();
-    this.userService.getUserProfile()
-    .pipe(
-      tap((profile: Profile) => { 
-        console.log('profile', profile);
-      } 
-    ))
-    .subscribe();
+    this.getProfilePhoto()
+
   }
+
 
   getProfilePhoto() {
     return this.userService.getUserProfilePhoto()

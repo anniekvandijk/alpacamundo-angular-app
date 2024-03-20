@@ -1,7 +1,7 @@
 <div id="user-menu">
   <div *ngIf="isUserLoggedIn$ | async as userLoggedIn">
-    <div *ngIf="account">
-      <h2>Hello {{ account.username }}</h2>
+    <div class="userinfo" *ngIf="account">
+      <h3>Logged in as {{ account.username }}</h3>
       <button mat-raised-button routerLink="/profile">Profile</button>
     </div>
   </div>
