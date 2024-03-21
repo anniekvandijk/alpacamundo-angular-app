@@ -2,35 +2,44 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Observable, tap } from 'rxjs';
-import { Profile } from 'src/app/features/users/profile.model';
-import { UserService } from 'src/app/features/users/user.service';
+import { Observable, tap, map } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-user',
   standalone: true,
   imports: [
     CommonModule
   ],
-  templateUrl: './profile.component.html',
+  templateUrl: './user.component.html',
   styleUrls: []
 })
-export class ProfileComponent implements OnInit {
+export class UserComponent implements OnInit {
   readonly destroyRef = inject(DestroyRef);
   private userService = inject(UserService);
   private domSanitizer = inject(DomSanitizer);
-  profile$!: Observable<Profile>;
-  profilePhoto!: SafeResourceUrl;
+  public user!: User;
+  public profilePhoto!: SafeResourceUrl;
 
   ngOnInit(): void {
-    this.profile$ = this.userService.getUserProfile();
-    this.getProfilePhoto()
-
+    this.getUser();
+    this.getPhoto();
   }
 
+  private getUser() {
+    this.userService.getUser()
+    .pipe(
+      takeUntilDestroyed(this.destroyRef),
+      tap(user => console.log(user))
+    )
+    .subscribe(user => {
+      this.user = user;
+    });
+  }
 
-  getProfilePhoto() {
-    return this.userService.getUserProfilePhoto()
+  private getPhoto() {
+    return this.userService.getUserPhoto()
     .pipe(
       takeUntilDestroyed(this.destroyRef)
     )

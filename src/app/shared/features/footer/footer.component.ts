@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { MatButtonModule } from '@angular/material/button';
 import { filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UserService } from 'src/app/features/users/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const project = require('../../../../../package.json');
 

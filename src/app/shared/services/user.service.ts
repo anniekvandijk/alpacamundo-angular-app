@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Profile } from './profile.model';
+import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { AccountInfo } from '@azure/msal-browser';
 
@@ -15,11 +15,11 @@ export class UserService {
   public isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
   public activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
 
-  public getUserProfile() : Observable<Profile> {
-    return this.http.get<Profile>(GRAPH_ENDPOINT, { });
+  public getUser() : Observable<User> {
+    return this.http.get<User>(GRAPH_ENDPOINT, { });
   }
 
-  public getUserProfilePhoto() {
+  public getUserPhoto() {
     return this.http.get(GRAPH_ENDPOINT_PHOTO, { responseType: 'blob' });
   }
 

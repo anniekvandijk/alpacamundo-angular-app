@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/features/not-found/not-found.component';
 import { HomeSidebarComponent } from './features/home/home-sidebar/home-sidebar.component';
 import { MsalGuard } from '@azure/msal-angular';
-import { ProfileComponent } from './features/users/profile/profile.component';
 
 export const ROUTES: Routes = [
     {
@@ -10,8 +9,8 @@ export const ROUTES: Routes = [
       loadChildren: () => import('./features/home/home.routes')
     },
     {
-      path: 'profile',
-      component: ProfileComponent,
+      path: 'admin',
+      loadChildren: () => import('./features/admin/admin.routes'),
       canActivate: [MsalGuard]
     },
     { 

@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AccountInfo } from '@azure/msal-browser';
 import { Observable, tap } from 'rxjs';
-import { UserService } from 'src/app/features/users/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-usermenu',
