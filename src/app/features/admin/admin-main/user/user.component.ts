@@ -31,7 +31,6 @@ export class UserComponent implements OnInit {
     this.userService.getUser()
     .pipe(
       takeUntilDestroyed(this.destroyRef),
-      tap(user => console.log(user))
     )
     .subscribe(user => {
       this.user = user;
