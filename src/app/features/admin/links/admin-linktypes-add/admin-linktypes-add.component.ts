@@ -25,7 +25,6 @@ export class AdminLinkTypesAddComponent implements OnInit{
   private componentId = this.constructor.name;
   private linkService = inject(LinkService);
   private route = inject(ActivatedRoute);
-  public linkType!: LinkType;
   public linkTypesAddForm!: FormGroup;
 
   ngOnInit(): void {	
@@ -40,6 +39,11 @@ export class AdminLinkTypesAddComponent implements OnInit{
   public onSubmit() {
     if (this.linkTypesAddForm.valid) {
       console.log('Form submitted', this.linkTypesAddForm);
+      const linkType: LinkType = {
+        id: '',
+        name: this.linkTypesAddForm.value.name,
+      };  
+      this.linkService.postLinkType(linkType, this.componentId)
       this.linkTypesAddForm.reset();
     } 
     else {
