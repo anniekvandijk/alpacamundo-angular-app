@@ -42,10 +42,6 @@ $alpacamundo-angular-app-dark-theme: mat.define-dark-theme((
 
 @include mat.all-component-themes($alpacamundo-angular-app-light-theme);
 
-body .light-theme {
-  @include mat.all-component-themes($alpacamundo-angular-app-light-theme);
-}
-
 body .dark-theme {
-  @include mat.all-component-themes($alpacamundo-angular-app-dark-theme);
+  @include mat.all-component-colors($alpacamundo-angular-app-dark-theme);
 }

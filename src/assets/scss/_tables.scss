@@ -37,13 +37,14 @@
     border-color: var(--secondary-color-light) !important;  
     background-color: var(--background-color-light) !important;
     color: var(--text-color-dark) !important;
-    .row-hover-highlight {
-        cursor: pointer;
-        background-color: var(--secondary-color-light) !important;
-    }
     .row-select-highlight {
         cursor: pointer;
         background-color: var(--secondary-color-light) !important;
     }
 
+}
+
+.mat-mdc-row:hover.row-hover-highlight {
+    cursor: pointer;
+    background-color: var(--secondary-color-light) !important;
 }
