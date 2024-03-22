@@ -1,77 +1,59 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule, MatIconButton } from '@angular/material/button';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, switchMap, tap } from 'rxjs';
+import { ActivatedRoute, Params, RouterModule } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
 import { Link } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
-import { CanComponentDeactivate } from '../../services/can-deactivate-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-admin-links-edit',
   standalone: true,
   imports: [
-    FormsModule, 
+    RouterModule,
     ReactiveFormsModule, 
     MatFormFieldModule, 
     MatIconModule, 
     MatInputModule, 
-    MatButtonModule],
+    MatButtonModule,
+  ],
   templateUrl: './admin-links-edit.component.html',
-  styleUrl: './admin-links-edit.component.scss'
 })
-export class AdminLinksEditComponent implements OnInit, CanComponentDeactivate{
+export class AdminLinksEditComponent implements OnInit{
   private componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private linkService = inject(LinkService);
-  private formBuilder = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   public link!: Link;
-  public linkForm!: FormGroup;
-  public submitError = false;
+  public linksEditForm!: FormGroup;
 
   ngOnInit(): void {	
+    this.createForm();
     this.getLink();
-    if (this.link) {
-      this.createForm();
-    }
   }
 
   private createForm() {
-    this.linkForm = this.formBuilder.group(
-      {
-        title: [this.link.title, [Validators.required]],
-        url: [this.link.url, [Validators.required]],
-        body: [this.link.body, [Validators.required]], 
-      },
-      {
-        updateOn: 'blur'
-      }
-    );
+    this.linksEditForm = new FormGroup({
+      'body': new FormControl(null, [Validators.required]), 
+      'image': new FormControl(null, [Validators.required]),
+      'linkType': new FormControl(null, [Validators.required]),
+      'title': new FormControl(null, [Validators.required]),
+      'url': new FormControl(null, [Validators.required]),
+    });
   }
 
   public onSubmit() {
-    if (this.linkForm.valid) {
-      this.submitError = false;
-      this.linkForm.reset();
-      console.log('Form submitted');
+    if (this.linksEditForm.valid) {
+      console.log('Form submitted', this.linksEditForm);
+      this.linksEditForm.reset();
     } 
     else {
-      this.submitError = true;
-      this.linkForm.reset(this.linkForm.value);
+      this.linksEditForm.reset(this.linksEditForm.value);
       console.log('Form not submitted');
-    }
-  }
-
-  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean  {
-    if (this.linkForm.touched && this.linkForm.dirty) {
-      return confirm('Er zijn wijzigingen. Weet u zeker dat u de pagina wilt verlaten?');
-    } else {
-      return true;
     }
   }
 
@@ -82,14 +64,15 @@ export class AdminLinksEditComponent implements OnInit, CanComponentDeactivate{
         this.linkService.getLink(params['id'], this.componentId)
       ),
     )
-    .pipe (
+    .pipe(
       tap((link: Link) => { 
         console.log(link); 
       })
     )
-    .subscribe(
-      (link: Link) => { 
-        this.link = link; 
+    .subscribe({
+      next: (link: Link) => { this.link = link; },
+      error: (error: any) => { console.error(error); },
+      complete: () => { console.log('Link loaded'); }
       }
     );
   }

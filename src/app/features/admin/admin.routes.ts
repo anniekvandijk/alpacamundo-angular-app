@@ -4,7 +4,9 @@ import { AdminMainComponent } from "./admin-main/admin-main.component";
 import { AdminLinksListComponent } from "./links/admin-links-list/admin-links-list.component";
 import { AdminLinksAddComponent } from "./links/admin-links-add/admin-links-add.component";
 import { AdminLinksEditComponent } from "./links/admin-links-edit/admin-links-edit.component";
-import { CanDeactivateGuard } from "./services/can-deactivate-guard.service";
+import { AdminLinkTypesListComponent } from "./links/admin-linktypes-list/admin-linktypes-list.component";
+import { AdminLinkTypesAddComponent } from "./links/admin-linktypes-add/admin-linktypes-add.component";
+import { AdminLinkTypesEditComponent } from "./links/admin-linktypes-edit/admin-linktypes-edit.component";
 
 export default [
     {
@@ -27,6 +29,17 @@ export default [
     {
       path: 'links/:id/edit',
       component: AdminLinksEditComponent,
-      canDeactivate: [CanDeactivateGuard],
+    },
+    {
+      path: 'linktypes',
+      component: AdminLinkTypesListComponent,
+    },
+    { 
+      path: 'linktypes/add',
+      component: AdminLinkTypesAddComponent,
+    },
+    { 
+      path: 'linktypes/:id/edit',
+      component: AdminLinkTypesEditComponent,
     },
   ] as Route[];

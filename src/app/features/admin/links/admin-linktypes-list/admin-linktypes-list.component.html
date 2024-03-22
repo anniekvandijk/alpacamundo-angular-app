@@ -1,0 +1,35 @@
+<H1>Link categorieën
+  <button mat-raised-button 
+  class="button-primary-action" 
+  routerLink="/admin/linktypes/add"
+  style="float:right;"
+  >Nieuwe link categorie</button>
+</H1>
+
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Zoeken" #input>
+</mat-form-field> -->
+
+<div>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Naam </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    class="row-hover-highlight" 
+    [routerLink]="['/admin/linktypes/', row.id, 'edit']"></tr>
+  
+  </table>
+
+  <!-- <mat-paginator 
+  showFirstLastButtons
+  [pageSizeOptions]="[5, 10, 20]"
+  [pageSize]="10"
+  aria-label="Select page">
+  </mat-paginator> -->
+</div>
+

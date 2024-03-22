@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [UserComponent],
   templateUrl: './admin-main.component.html',
-  styleUrl: './admin-main.component.scss'
 })
 export class AdminMainComponent {
 

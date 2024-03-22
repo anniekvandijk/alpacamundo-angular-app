@@ -1,10 +1,10 @@
 export interface Link {
   id: string;
-  title: string;
   body: string;
-  url: string;
-  linkType: LinkType;
   image: Image;
+  linkType: LinkType;
+  title: string;
+  url: string;
 }
 
 export interface LinkType {

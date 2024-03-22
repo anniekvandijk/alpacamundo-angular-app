@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './admin-links-add.component.html',
-  styleUrl: './admin-links-add.component.scss'
 })
 export class AdminLinksAddComponent {
 
