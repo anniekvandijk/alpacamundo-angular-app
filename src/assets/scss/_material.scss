@@ -40,6 +40,8 @@ $alpacamundo-angular-app-dark-theme: mat.define-dark-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
+@include mat.all-component-themes($alpacamundo-angular-app-light-theme);
+
 body .light-theme {
   @include mat.all-component-themes($alpacamundo-angular-app-light-theme);
 }

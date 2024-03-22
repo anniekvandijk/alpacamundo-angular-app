@@ -14,4 +14,8 @@ export class LinkService {
   public getLinks(componentId: string): Observable<Link[]> {
     return this.http.get<Link[]>(this.url, { headers: new HttpHeaders().set('X-ComponentId', componentId) });
   }
+
+  public getLink(id: string, componentId: string): Observable<Link> {
+    return this.http.get<Link>(this.url.concat('/', id), { headers: new HttpHeaders().set('X-ComponentId', componentId) });
+  }
 }

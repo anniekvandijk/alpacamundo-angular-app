@@ -27,8 +27,8 @@
   top: 5px;
 }
 
-.mat-mdc-menu-item:hover {
-  background-color: var(--secondary-color-light) !important;
+.mat-mdc-menu-item {
+  color: var(--text-color-dark) !important;
 }
 
 .menu-divider {

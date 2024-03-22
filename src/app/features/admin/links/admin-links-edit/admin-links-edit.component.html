@@ -1,0 +1,11 @@
+<h1>Edit link</h1>
+<form [formGroup]="linkForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title"/>
+    <!-- @if(linkForm.get('title')?.invalid) {
+    <mat-error>Voer een geldige title in</mat-error>
+    } -->
+  </mat-form-field>
+  <button mat-raised-button class="button-primary-action" type="submit">Save</button>
+</form>

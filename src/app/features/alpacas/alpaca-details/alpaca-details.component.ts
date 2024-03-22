@@ -1,5 +1,5 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
@@ -14,7 +14,6 @@ import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-flee
 import { AlpacaOffspringCardComponent } from './alpaca-offspring-list/alpaca-offspring-card/alpaca-offspring-card.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 import { AlpacaOffspringListComponent } from './alpaca-offspring-list/alpaca-offspring-list.component';
-import { forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-alpaca-details',
