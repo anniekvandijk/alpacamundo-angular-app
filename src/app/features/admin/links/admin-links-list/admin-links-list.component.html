@@ -2,7 +2,7 @@
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Type filter" #input>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Zoeken" #input>
 </mat-form-field>
 
 <div>
@@ -15,7 +15,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     class="row-hover-highlight" 
-    [routerLink]="['/admin/links/edit', row.id]"></tr>
+    [routerLink]="['/admin/links/', row.id, 'edit']"></tr>
   
   </table>
 

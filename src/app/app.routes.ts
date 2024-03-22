@@ -11,7 +11,8 @@ export const ROUTES: Routes = [
     {
       path: 'admin',
       loadChildren: () => import('./features/admin/admin.routes'),
-      canActivate: [MsalGuard]
+      canActivate: [MsalGuard],
+      canActivateChild: [MsalGuard], // TODO: it seems that this is not needed?
     },
     { 
       path: 'about',
