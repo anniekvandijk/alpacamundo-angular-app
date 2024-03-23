@@ -1,0 +1,22 @@
+<H1>Technische informatie pagina
+  <button mat-raised-button 
+  class="button-primary-action" 
+  (click)="clearErrorHistory()"
+  style="float:right;"
+  >Wis meldingen
+</button>
+</H1>
+
+@if (technicalMessage) {
+<H2>Huidige technische melding</H2>
+  {{ technicalMessage }}
+}
+
+@if(messageHistory.length > 0) {
+  <H2>Laatste 10 technische meldingen</H2>
+
+  @for(message of messageHistory; track message) {
+    <div>{{ message }}</div>
+    <hr>
+  }
+}

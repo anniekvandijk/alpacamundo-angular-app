@@ -33,7 +33,7 @@ export class AdminLinksListComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public dataSource = new MatTableDataSource<Link>();
-  public displayedColumns: string[] = ['title'];
+  public displayedColumns: string[] = ['title', 'linkType'];
 
   ngOnInit(): void {
     this.getLinks();
@@ -41,11 +41,13 @@ export class AdminLinksListComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (item: Link, property: string) => {
+      switch(property) {
+        case 'linkType': return item.linkType.name;
+        default: return (item as any)[property];
+      }
+    };
     this.dataSource.sort = this.sort;
-    const sortState: Sort = {active: 'title', direction: 'asc'};
-    this.sort.active = sortState.active;
-    this.sort.direction = sortState.direction;
-    this.sort.sortChange.emit(sortState);
   }
 
   public applyFilter(event: Event) {
@@ -64,6 +66,10 @@ export class AdminLinksListComponent implements OnInit, AfterViewInit{
     )
     .subscribe(links => {
       this.dataSource.data = links;
+      const sortState: Sort = {active: 'title', direction: 'asc'};
+      this.sort.active = sortState.active;
+      this.sort.direction = sortState.direction;
+      this.sort.sortChange.emit(sortState);
     });
   }
 }

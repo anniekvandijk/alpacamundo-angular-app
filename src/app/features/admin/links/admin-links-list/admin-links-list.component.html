@@ -14,8 +14,12 @@
 <div>
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Naam</th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="linkType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
+      <td mat-cell *matCellDef="let element"> {{element.linkType.name }} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

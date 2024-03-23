@@ -3,6 +3,7 @@ export interface Message {
     technicalMessage: string | null;
     userMessage: string | null;
     messageType: MessageType;
+    actionButtonText?: string;
 }
 
 export enum MessageType {

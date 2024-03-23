@@ -7,6 +7,7 @@ import { AdminLinksEditComponent } from "./links/admin-links-edit/admin-links-ed
 import { AdminLinkTypesListComponent } from "./links/admin-linktypes-list/admin-linktypes-list.component";
 import { AdminLinkTypesAddComponent } from "./links/admin-linktypes-add/admin-linktypes-add.component";
 import { AdminLinkTypesEditComponent } from "./links/admin-linktypes-edit/admin-linktypes-edit.component";
+import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page.component";
 
 export default [
     {
@@ -42,4 +43,8 @@ export default [
       path: 'linktypes/:id/edit',
       component: AdminLinkTypesEditComponent,
     },
+    {
+      path: 'technicalpage',
+      component: TechnicalPageComponent,
+    }
   ] as Route[];
