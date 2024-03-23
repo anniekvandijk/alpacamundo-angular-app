@@ -40,7 +40,9 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
 
   private isCachable(req: HttpRequest<T>) {
     // Only cache GET requests that are not admin requests
-    return req.method === 'GET' && !(req.url.includes('admin'));
+    return false;
+    // TODO find a way to not cache when an admin is logged in
+    return req.method === 'GET';
   }
 
   private sentRequest(req: HttpRequest<T>, cacheKey: string, next: HttpHandler, componentId: string): Observable<HttpEvent<T>> { 
