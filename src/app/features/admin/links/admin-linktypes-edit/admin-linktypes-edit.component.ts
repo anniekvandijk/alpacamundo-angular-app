@@ -97,8 +97,8 @@ export class AdminLinkTypesEditComponent implements OnInit{
   }
 
   private updateForm(linkType: LinkType): void {
-    this.linkTypeEditForm = new FormGroup({
-      'name': new FormControl(linkType.name, [Validators.required]), 
+    this.linkTypeEditForm.patchValue({
+      name: linkType.name,
     });
   }
 
