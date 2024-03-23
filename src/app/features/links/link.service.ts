@@ -59,6 +59,15 @@ export class LinkService {
     )
   }
 
+  public getLinkType(id: string, componentId: string): Observable<LinkType> {
+    return this.httpService.get(this.url.concat('/linktypes/', id), componentId)
+    .pipe(
+      map(
+        (response: HttpServiceResponse) => { return response.body as LinkType }
+      )
+    )
+  }
+
   public postLinkType(linkType: LinkType, componentId: string): Observable<boolean> {
     return this.httpService.post(this.url.concat('/linktypes'), linkType, componentId)
     .pipe(

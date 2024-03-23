@@ -47,8 +47,8 @@ export class AdminLinkTypesListComponent implements OnInit, AfterViewInit{
     this.sort.direction = sortState.direction;
     this.sort.sortChange.emit(sortState);
   }
-
-  public applyFilter(event: Event) {
+ 
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -57,12 +57,12 @@ export class AdminLinkTypesListComponent implements OnInit, AfterViewInit{
     }
   }
 
-  private getLinkTypes() {
+  private getLinkTypes(): void {
     this.linkService.getLinkTypes(this.componentId)
     .pipe(
       takeUntilDestroyed(this.destroyRef),
     )
-    .subscribe(linkTypes => {
+    .subscribe((linkTypes: LinkType[]) => {
       this.dataSource.data = linkTypes;
     });
   }
