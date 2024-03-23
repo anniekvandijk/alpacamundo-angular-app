@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LinkType } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
+import { MessageService } from 'src/app/shared/features/messages/message.service';
 
 @Component({
   selector: 'app-admin-linktypes-add',
@@ -24,6 +25,7 @@ import { LinkService } from 'src/app/features/links/link.service';
 export class AdminLinkTypesAddComponent implements OnInit{
   private componentId = this.constructor.name;
   private linkService = inject(LinkService);
+  private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
   public linkTypesAddForm!: FormGroup;
 
@@ -43,12 +45,21 @@ export class AdminLinkTypesAddComponent implements OnInit{
         id: '',
         name: this.linkTypesAddForm.value.name,
       };  
-      this.linkService.postLinkType(linkType, this.componentId)
+      this.postLinkType(linkType);
       this.linkTypesAddForm.reset();
     } 
     else {
       this.linkTypesAddForm.reset(this.linkTypesAddForm.value);
       console.log('Form not submitted');
     }
+  }
+
+  private postLinkType(linkType: LinkType) {
+    this.linkService.postLinkType(linkType, this.componentId)
+      .subscribe(
+        (okResult: boolean) => {
+          if (okResult) this.messageService.showSuccessMessage('addLinkType', 'LinkType toegevoegd');
+        }
+      );
   }
 }

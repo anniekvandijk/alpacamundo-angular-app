@@ -36,4 +36,13 @@ export class MessageService {
       panelClass: [panelClass]
     });
   }
+
+  public showSuccessMessage(operation: string, userMessage: string) {
+    this.showMessage({
+      operation,
+      technicalMessage: null,
+      userMessage,
+      messageType: MessageType.Success
+    });
+  }
 }
