@@ -35,19 +35,14 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   ngOnInit(): void {
     this.createForm();
-    this.getLinkType();	
+    this.getLinkTypeAndUpdateForm();	
   }
 
-  private createForm() {
-    this.linkTypeEditForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required]), 
-    });
-  }
   public onSubmit() {
     if (this.linkTypeEditForm.valid) {
       console.log('Form submitted', this.linkTypeEditForm);
       this.linkType.name = this.linkTypeEditForm.value.name,
-      this.putLinkType(this.linkType);
+      this.putLinkType();
       this.linkTypeEditForm.reset();
     } 
     else {
@@ -56,7 +51,16 @@ export class AdminLinkTypesEditComponent implements OnInit{
     }
   }
 
-  private getLinkType(): void {
+  public onDelete() {
+    // TODO: show confirmation dialog
+    this.deleteLinkType();
+  }
+
+  public onCancel() {
+    this.getLinkTypeAndUpdateForm();
+  }
+
+  private getLinkTypeAndUpdateForm(): void {
     this.route.params
     .pipe(
       takeUntilDestroyed(this.destroyRef),
@@ -67,16 +71,40 @@ export class AdminLinkTypesEditComponent implements OnInit{
     .subscribe(
       (linkType: LinkType) => { 
         this.linkType = linkType;
+        this.updateForm(linkType);
       }
     );
   }
 
-  private putLinkType(linkType: LinkType) {
-    this.linkService.putLinkType(linkType, this.componentId)
+  private createForm(): void {
+    this.linkTypeEditForm = new FormGroup({
+      'name': new FormControl('', [Validators.required]), 
+    });
+  }
+
+  private updateForm(linkType: LinkType): void {
+    this.linkTypeEditForm = new FormGroup({
+      'name': new FormControl(linkType.name, [Validators.required]), 
+    });
+  }
+
+  private putLinkType(): void {
+    this.linkService.putLinkType(this.linkType, this.componentId)
       .subscribe(
         (okResult: boolean) => {
-          if (okResult) this.messageService.showSuccessMessage('editLinkType', 'LinkType gewijzigd');
+          if (okResult) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
+        }
+      );
+    
+  }
+
+  private deleteLinkType(): void {
+    this.linkService.deleteLinkType(this.linkType.id, this.componentId)
+      .subscribe(
+        (okResult: boolean) => {
+          if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
         }
       );
   }
+
 }

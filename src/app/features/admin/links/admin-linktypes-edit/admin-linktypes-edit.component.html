@@ -15,10 +15,18 @@
   <div class="form-buttons">
     <button mat-raised-button 
       class="icon-button button-standard-action" 
-      type="button"
-      routerLink="/admin/linktypes">
+      routerLink="/admin/linktypes"
+      type="button">
       <mat-icon>keyboard_double_arrow_left</mat-icon>
       Terug</button>
+      <button mat-raised-button
+        class="button-standard-action" 
+        (click)="onDelete()"
+        type="button">Delete</button>
+      <button mat-raised-button 
+      class="button-standard-action" 
+      (click)="onCancel()"
+      type="button">Cancel</button>
     <button mat-raised-button class="button-primary-action" type="submit">Opslaan</button>
   </div>
 </form>
