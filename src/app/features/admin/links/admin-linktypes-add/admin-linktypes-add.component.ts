@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { LinkType } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
@@ -24,6 +24,7 @@ import { MessageService } from 'src/app/shared/features/messages/message.service
 })
 export class AdminLinkTypesAddComponent implements OnInit{
   private componentId = this.constructor.name;
+  private router = inject(Router);
   private linkService = inject(LinkService);
   private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
@@ -33,6 +34,10 @@ export class AdminLinkTypesAddComponent implements OnInit{
     this.createForm();
   }
 
+  public navigateToLinkTypesList(): void {
+    this.router.navigate(['/admin/linktypes']);
+  }
+
   private createForm() {
     this.linkTypesAddForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]), 
@@ -40,26 +45,26 @@ export class AdminLinkTypesAddComponent implements OnInit{
   }
   public onSubmit() {
     if (this.linkTypesAddForm.valid) {
-      console.log('Form submitted', this.linkTypesAddForm);
       const linkType: LinkType = {
         id: '',
         name: this.linkTypesAddForm.value.name,
       };  
       this.postLinkType(linkType);
-      this.linkTypesAddForm.reset();
     } 
     else {
-      this.linkTypesAddForm.reset(this.linkTypesAddForm.value);
       console.log('Form not submitted');
     }
   }
 
   private postLinkType(linkType: LinkType) {
     this.linkService.postLinkType(linkType, this.componentId)
-      .subscribe(
-        (okResult: boolean) => {
+      .subscribe({
+        next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('addLinkType', 'LinkType toegevoegd');
+        },
+        complete: () => {
+          this.navigateToLinkTypesList();
         }
-      );
+    });
   }
 }

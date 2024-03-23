@@ -5,11 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { ActivatedRoute, Params, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { LinkType } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-linktypes-edit',
@@ -21,6 +23,7 @@ import { MessageService } from 'src/app/shared/features/messages/message.service
   MatIconModule,
   MatInputModule,
   MatButtonModule,
+  DeleteConfirmationDialogComponent,
   ],
   templateUrl: './admin-linktypes-edit.component.html',
 })
@@ -28,8 +31,10 @@ export class AdminLinkTypesEditComponent implements OnInit{
   private componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private linkService = inject(LinkService);
   private messageService = inject(MessageService);
+  private dialog = inject(MatDialog);
   public linkTypeEditForm!: FormGroup;
   public linkType!: LinkType;
 
@@ -38,25 +43,34 @@ export class AdminLinkTypesEditComponent implements OnInit{
     this.getLinkTypeAndUpdateForm();	
   }
 
+  public navigateToLinkTypesList(): void {
+    this.router.navigate(['/admin/linktypes']);
+  }
+
   public onSubmit() {
     if (this.linkTypeEditForm.valid) {
-      console.log('Form submitted', this.linkTypeEditForm);
       this.linkType.name = this.linkTypeEditForm.value.name,
       this.putLinkType();
-      this.linkTypeEditForm.reset();
+      this.navigateToLinkTypesList();
     } 
     else {
-      this.linkTypeEditForm.reset(this.linkTypeEditForm.value);
       console.log('Form not submitted');
     }
   }
 
   public onDelete() {
-    // TODO: show confirmation dialog
-    this.deleteLinkType();
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteLinkType();
+      } 
+    });
   }
 
-  public onCancel() {
+  public onReset() {
     this.getLinkTypeAndUpdateForm();
   }
 
@@ -100,11 +114,12 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   private deleteLinkType(): void {
     this.linkService.deleteLinkType(this.linkType.id, this.componentId)
-      .subscribe(
-        (okResult: boolean) => {
+      .subscribe({
+        next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
-        }
-      );
-  }
-
+        },
+        complete: () => { 
+          this.navigateToLinkTypesList();}
+      });
+    }
 }
