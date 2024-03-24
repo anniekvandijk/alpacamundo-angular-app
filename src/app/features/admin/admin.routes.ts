@@ -4,9 +4,9 @@ import { AdminMainComponent } from "./admin-main/admin-main.component";
 import { AdminLinksListComponent } from "./links/admin-links-list/admin-links-list.component";
 import { AdminLinksAddComponent } from "./links/admin-links-add/admin-links-add.component";
 import { AdminLinksEditComponent } from "./links/admin-links-edit/admin-links-edit.component";
-import { AdminLinkTypesListComponent } from "./links/admin-linktypes-list/admin-linktypes-list.component";
-import { AdminLinkTypesAddComponent } from "./links/admin-linktypes-add/admin-linktypes-add.component";
-import { AdminLinkTypesEditComponent } from "./links/admin-linktypes-edit/admin-linktypes-edit.component";
+import { AdminLinkTypesListComponent } from "./linktypes/admin-linktypes-list/admin-linktypes-list.component";
+import { AdminLinkTypesAddComponent } from "./linktypes/admin-linktypes-add/admin-linktypes-add.component";
+import { AdminLinkTypesEditComponent } from "./linktypes/admin-linktypes-edit/admin-linktypes-edit.component";
 import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page.component";
 
 export default [
