@@ -5,11 +5,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
-import { Observable, forkJoin, switchMap, tap } from 'rxjs';
+import { Observable, forkJoin, switchMap } from 'rxjs';
 import { Link, LinkType } from 'src/app/features/links/link.model';
 import { LinkService } from 'src/app/features/links/link.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageService } from 'src/app/shared/features/messages/message.service';
 
 @Component({
   selector: 'app-admin-links-edit',
@@ -22,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule, 
     MatSelectModule,
     MatButtonModule,
+    DeleteConfirmationDialogComponent
   ],
   templateUrl: './admin-links-edit.component.html',
 })
@@ -30,6 +34,8 @@ export class AdminLinksEditComponent implements OnInit{
   private readonly destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private linkService = inject(LinkService);
+  private messageService = inject(MessageService);
+  private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);
   public link!: Link;
   public linkTypes!: LinkType[];
@@ -40,7 +46,7 @@ export class AdminLinksEditComponent implements OnInit{
     this.loadDataAndUpdateForm();
   }
 
-  public navigateToLinkList(): void {
+  public onNavigateBack(): void {
     this.router.navigate(['/admin/links']);
   }
 
@@ -51,6 +57,23 @@ export class AdminLinksEditComponent implements OnInit{
     else {
       console.log('Form not submitted');
     }
+    alert('No implementation yet.');
+  }
+
+  public onDelete() {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteLink();
+      } 
+    });
+  }
+
+  public onReset() {
+    this.loadDataAndUpdateForm();
   }
 
   private createForm() {
@@ -91,9 +114,6 @@ export class AdminLinksEditComponent implements OnInit{
   }
 
   private updateForm(link: Link): void {
-    console.log('Link', this.link);
-    console.log('LinkTypes', this.linkTypes)
-
     this.linksEditForm.patchValue({
       'body': link.body,
       'image': link.image,
@@ -103,4 +123,15 @@ export class AdminLinksEditComponent implements OnInit{
     });
     console.log('Form updated', this.linksEditForm);
   }
+
+  private deleteLink(): void {
+    this.linkService.deleteLink(this.link.id, this.componentId)
+      .subscribe({
+        next: (okResult: boolean) => {
+          if (okResult) this.messageService.showSuccessMessage('deleteLink', 'Link verwijderd');
+        },
+        complete: () => { 
+          this.onNavigateBack();}
+      });
+    }
 }

@@ -43,7 +43,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
     this.getLinkTypeAndUpdateForm();	
   }
 
-  public navigateToLinkTypesList(): void {
+  public onNavigateBack(): void {
     this.router.navigate(['/admin/linktypes']);
   }
 
@@ -51,7 +51,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
     if (this.linkTypeEditForm.valid) {
       this.linkType.name = this.linkTypeEditForm.value.name,
       this.putLinkType();
-      this.navigateToLinkTypesList();
+      this.onNavigateBack();
     } 
     else {
       console.log('Form not submitted');
@@ -119,7 +119,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
         },
         complete: () => { 
-          this.navigateToLinkTypesList();}
+          this.onNavigateBack();}
       });
     }
 }

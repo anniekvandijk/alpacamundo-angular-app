@@ -48,6 +48,15 @@ export class LinkService {
     )
   }
 
+  public deleteLink(id: string, componentId: string): Observable<boolean> {
+    return this.httpService.delete(this.url.concat('/', id), componentId)
+      .pipe(
+        map(
+          (response: HttpServiceResponse) => { return response.ok }
+        )
+      )
+  }
+
   // LinkTypes
 
   public getLinkTypes(componentId: string): Observable<LinkType[]> {
