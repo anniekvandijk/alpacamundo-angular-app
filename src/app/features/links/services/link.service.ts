@@ -1,9 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Link, LinkType } from './link.model';
+import { Link, LinkType } from '../models/link.model';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/shared/services/http-service';
 import { HttpServiceResponse } from 'src/app/shared/models/http-service-response.model';
+import { PutLinkRequest } from '../models/put-link-request.model';
+import { PutLinkTypeRequest } from '../models/put-linkType-request.model';
+import { PostLinkRequest } from '../models/post-link-request.model';
+import { PostLinkTypeRequest } from '../models/post-linkType-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +34,7 @@ export class LinkService {
     )
   }
 
-  public postLink(link: Link, componentId: string): Observable<boolean> {
+  public postLink(link: PostLinkRequest, componentId: string): Observable<boolean> {
     return this.httpService.post(this.url, link, componentId)
     .pipe(
       map(
@@ -39,7 +43,7 @@ export class LinkService {
     )
   }
 
-  public putLink(link: Link, componentId: string): Observable<boolean> {
+  public putLink(link: PutLinkRequest, componentId: string): Observable<boolean> {
     return this.httpService.put(this.url, link, componentId)
     .pipe(
       map(
@@ -77,7 +81,7 @@ export class LinkService {
     )
   }
 
-  public postLinkType(linkType: LinkType, componentId: string): Observable<boolean> {
+  public postLinkType(linkType: PostLinkTypeRequest, componentId: string): Observable<boolean> {
     return this.httpService.post(this.url.concat('/linktypes'), linkType, componentId)
     .pipe(
       map(
@@ -86,7 +90,7 @@ export class LinkService {
     )
   }
 
-  public putLinkType(linkType: LinkType, componentId: string): Observable<boolean> {
+  public putLinkType(linkType: PutLinkTypeRequest, componentId: string): Observable<boolean> {
     return this.httpService.put(this.url.concat('/linktypes'), linkType, componentId)
     .pipe(
       map(

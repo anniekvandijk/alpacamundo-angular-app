@@ -7,11 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { LinkType } from 'src/app/features/links/link.model';
-import { LinkService } from 'src/app/features/links/link.service';
+import { LinkType } from 'src/app/features/links/models/link.model';
+import { LinkService } from 'src/app/features/links/services/link.service';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PutLinkTypeRequest } from 'src/app/features/links/models/put-linkType-request.model';
 
 @Component({
   selector: 'app-admin-linktypes-edit',
@@ -49,8 +50,12 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   public onSubmit() {
     if (this.linkTypeEditForm.valid) {
-      this.linkType.name = this.linkTypeEditForm.value.name,
-      this.putLinkType();
+      const linkTypeRequest: PutLinkTypeRequest = 
+      {
+        id: this.linkType.id,
+        name: this.linkTypeEditForm.value.name,
+      }
+      this.putLinkType(linkTypeRequest);
       this.onNavigateBack();
     } 
     else {
@@ -102,8 +107,8 @@ export class AdminLinkTypesEditComponent implements OnInit{
     });
   }
 
-  private putLinkType(): void {
-    this.linkService.putLinkType(this.linkType, this.componentId)
+  private putLinkType(linkType: PutLinkTypeRequest): void {
+    this.linkService.putLinkType(linkType, this.componentId)
       .subscribe(
         (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');

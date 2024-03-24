@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import LINKS from '../../features/links/links.mock.json';
+import LINKS from '../../features/links/services/links.mock.json';
 import ALPACAS from '../../features/alpacas/alpacas.mock.json';
 import ALPACASHOWS from '../../features/alpacas/alpacashows.mock.json';
 import FLEECES from '../../features/alpacas/fleeces.mock.json';

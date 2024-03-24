@@ -6,13 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { Observable, forkJoin, switchMap } from 'rxjs';
-import { Link, LinkType } from 'src/app/features/links/link.model';
-import { LinkService } from 'src/app/features/links/link.service';
+import { Link, LinkType } from 'src/app/features/links/models/link.model';
+import { LinkService } from 'src/app/features/links/services/link.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { PutLinkRequest } from 'src/app/features/links/models/put-link-request.model';
 
 @Component({
   selector: 'app-admin-links-edit',
@@ -52,6 +53,15 @@ export class AdminLinksEditComponent implements OnInit{
 
   public onSubmit() {
     if (this.linksEditForm.valid) {
+      const linkRequest: PutLinkRequest = {
+        id: this.link.id,
+        body: this.linksEditForm.value.body,
+        imageId: this.link.image.id,
+        linkTypeId: this.linksEditForm.value,
+        title: this.linksEditForm.value.title,
+        url: this.linksEditForm.value.url,
+      };
+      this.putLink(linkRequest);
       console.log('Form submitted', this.linksEditForm);
     } 
     else {
@@ -122,6 +132,16 @@ export class AdminLinksEditComponent implements OnInit{
       'url': link.url,
     });
     console.log('Form updated', this.linksEditForm);
+  }
+
+  private putLink(linkRequest: PutLinkRequest): void {
+    this.linkService.putLink(linkRequest, this.componentId)
+      .subscribe(
+        (okResult: boolean) => {
+          if (okResult) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
+        }
+      );
+    
   }
 
   private deleteLink(): void {

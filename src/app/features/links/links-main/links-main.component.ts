@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Link } from 'src/app/features/links/link.model';
-import { LinkService } from 'src/app/features/links/link.service';
+import { Link } from 'src/app/features/links/models/link.model';
+import { LinkService } from 'src/app/features/links/services/link.service';
 import { Configuration } from 'src/app/shared/configuration/configuration.model';
 import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { Observable, map } from 'rxjs';

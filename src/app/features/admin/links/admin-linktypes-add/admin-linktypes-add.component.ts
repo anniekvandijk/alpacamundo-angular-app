@@ -5,8 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { LinkType } from 'src/app/features/links/link.model';
-import { LinkService } from 'src/app/features/links/link.service';
+import { LinkService } from 'src/app/features/links/services/link.service';
+import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
 
 @Component({
@@ -45,18 +45,17 @@ export class AdminLinkTypesAddComponent implements OnInit{
   }
   public onSubmit() {
     if (this.linkTypesAddForm.valid) {
-      const linkType: LinkType = {
-        id: '',
+      const linkTypeRequest: PostLinkTypeRequest = {
         name: this.linkTypesAddForm.value.name,
       };  
-      this.postLinkType(linkType);
+      this.postLinkType(linkTypeRequest);
     } 
     else {
       console.log('Form not submitted');
     }
   }
 
-  private postLinkType(linkType: LinkType) {
+  private postLinkType(linkType: PostLinkTypeRequest) {
     this.linkService.postLinkType(linkType, this.componentId)
       .subscribe({
         next: (okResult: boolean) => {

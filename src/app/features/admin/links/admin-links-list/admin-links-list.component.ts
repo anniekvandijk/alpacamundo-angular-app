@@ -7,8 +7,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Link } from 'src/app/features/links/link.model';
-import { LinkService } from 'src/app/features/links/link.service';
+import { Link } from 'src/app/features/links/models/link.model';
+import { LinkService } from 'src/app/features/links/services/link.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
