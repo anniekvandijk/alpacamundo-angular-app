@@ -48,3 +48,11 @@
     cursor: pointer;
     background-color: var(--secondary-color-light) !important;
 }
+
+.mat-mdc-paginator {
+    background-color: var(--tranparant) !important;
+    color: var(--text-color-dark) !important;
+    .mat-mdc-paginator-icon {
+        fill: var(--text-color-dark) !important;
+    }
+  }

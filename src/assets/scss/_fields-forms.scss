@@ -1,0 +1,36 @@
+
+  .standard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mat-mdc-form-field {
+    .mdc-text-field, .mat-mdc-select, .mat-mdc-select-value-text {
+      background-color: var(--background-color-light) !important;
+      color: var(--text-color-light) !important;
+      width: 100%;
+    }
+    label {
+      color: var(--secondary-color) !important;
+    }
+    .mat-mdc-input-element {
+      color: var(--text-color-dark) !important;
+    }
+  }
+
+  .form-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .form-buttons-link {
+   font-size: smaller;
+  }

@@ -57,6 +57,7 @@
 
    --white: white;
    --black: black;
+   --transparent: transparent;
 
    // Light theme
 
@@ -106,7 +107,7 @@
    --button-background-standard-action--dark-theme: var(--background-color-light--dark-theme);
    --button-textcolor-standard-action--dark-theme: var(--secondary-color--dark-theme);
    --button-background-primary-action--dark-theme: hsl(128, 84%, 20%);
-   --button-textcolor-primary-action--dark-theme: var(--text-color-dark--dark-theme)
+   --button-textcolor-primary-action--dark-theme: var(--text-color-dark--dark-theme);
    --button-background-secondary-action--dark-theme: hsl(29, 95%, 35%);
    --button-textcolor-secondary-action--dark-theme: var(--text-color-dark--dark-theme);
    --button-background-warning-action--dark-theme:hsl(0, 100%, 18%);
