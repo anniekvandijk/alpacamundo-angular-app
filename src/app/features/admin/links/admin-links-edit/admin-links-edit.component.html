@@ -12,6 +12,17 @@
       }
     </mat-form-field>
     <mat-form-field class="form-field">
+      <mat-label for="linkType">Categorie</mat-label>
+      <mat-select
+        id="linkType"
+        formControlName="linkType"  
+      >
+      @for(linkType of linkTypes; track linkType.id) {
+          <mat-option [value]="linkType.id.toLocaleLowerCase()">{{linkType.name}}</mat-option>
+      }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
       <mat-label>Link</mat-label>
       <input matInput 
       id="url"

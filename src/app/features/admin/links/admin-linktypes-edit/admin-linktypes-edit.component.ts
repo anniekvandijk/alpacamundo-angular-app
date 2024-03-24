@@ -98,7 +98,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   private updateForm(linkType: LinkType): void {
     this.linkTypeEditForm.patchValue({
-      name: linkType.name,
+      'name': linkType.name,
     });
   }
 
