@@ -97,7 +97,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   private createForm(): void {
     this.linkTypeEditForm = new FormGroup({
-      'name': new FormControl('', [Validators.required]), 
+      'name': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]), 
     });
   }
 

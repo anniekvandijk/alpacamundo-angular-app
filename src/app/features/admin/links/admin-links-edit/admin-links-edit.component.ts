@@ -87,11 +87,11 @@ export class AdminLinksEditComponent implements OnInit{
 
   private createForm() {
     this.linksEditForm = new FormGroup({
-      'body': new FormControl('', [Validators.required]), 
+      'body': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]), 
       'image': new FormControl('', [Validators.required]),
       'linkType': new FormControl('', [Validators.required]),
-      'title': new FormControl('', [Validators.required]),
-      'url': new FormControl('', [Validators.required]),
+      'title': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      'url': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
     });
   }
 

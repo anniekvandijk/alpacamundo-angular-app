@@ -9,6 +9,7 @@ import { AdminLinkTypesAddComponent } from "./linktypes/admin-linktypes-add/admi
 import { AdminLinkTypesEditComponent } from "./linktypes/admin-linktypes-edit/admin-linktypes-edit.component";
 import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page.component";
 import { AdminDocumentsListComponent } from "./documents/admin-documents-list/admin-documents-list.component";
+import { NotFoundComponent } from "src/app/shared/features/not-found/not-found.component";
 
 export default [
     {
@@ -51,5 +52,19 @@ export default [
     {
       path: 'technicalpage',
       component: TechnicalPageComponent,
+    },
+    {
+      path: '**',
+      children: [
+        {
+          path: '',
+          component: NotFoundComponent,
+        },
+        {
+          path: '',
+          component: AdminSidebarComponent,
+          outlet: 'sidebar',
+        }
+      ]
     }
   ] as Route[];

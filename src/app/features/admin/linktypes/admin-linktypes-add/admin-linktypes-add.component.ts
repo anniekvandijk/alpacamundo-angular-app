@@ -40,7 +40,7 @@ export class AdminLinkTypesAddComponent implements OnInit{
 
   private createForm() {
     this.linkTypesAddForm = new FormGroup({
-      'name': new FormControl(null, [Validators.required]), 
+      'name': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]), 
     });
   }
   public onSubmit() {
