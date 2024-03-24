@@ -8,6 +8,7 @@ import { AdminLinkTypesListComponent } from "./linktypes/admin-linktypes-list/ad
 import { AdminLinkTypesAddComponent } from "./linktypes/admin-linktypes-add/admin-linktypes-add.component";
 import { AdminLinkTypesEditComponent } from "./linktypes/admin-linktypes-edit/admin-linktypes-edit.component";
 import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page.component";
+import { AdminDocumentsListComponent } from "./documents/admin-documents-list/admin-documents-list.component";
 
 export default [
     {
@@ -18,6 +19,10 @@ export default [
       path: '',
       component: AdminSidebarComponent,
       outlet: 'sidebar',
+    },
+    {
+      path: 'documents',
+      component: AdminDocumentsListComponent,
     },
     {
       path: 'links',

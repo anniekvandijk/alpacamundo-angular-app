@@ -57,7 +57,7 @@ export class AdminLinksEditComponent implements OnInit{
         id: this.link.id,
         body: this.linksEditForm.value.body,
         imageId: this.link.image.id,
-        linkTypeId: this.linksEditForm.value,
+        linkTypeId: this.linksEditForm.value.linkType,
         title: this.linksEditForm.value.title,
         url: this.linksEditForm.value.url,
       };
@@ -67,7 +67,6 @@ export class AdminLinksEditComponent implements OnInit{
     else {
       console.log('Form not submitted');
     }
-    alert('No implementation yet.');
   }
 
   public onDelete() {

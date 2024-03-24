@@ -11,8 +11,6 @@ import SHOWRESULTS from '../../features/alpacas/showresults.mock.json';
 @Injectable({
   providedIn: 'root',
 })
-
-
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const links = LINKS;
