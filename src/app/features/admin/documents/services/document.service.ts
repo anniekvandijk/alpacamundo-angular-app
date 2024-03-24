@@ -17,7 +17,7 @@ export class DocumentService {
 
   public getStorageUrl(document: Document): string {
 
-    switch (document.fileCategory.toLocaleLowerCase()) {
+    switch (document.documentCategory.toLocaleLowerCase()) {
       case 'alpacafleeceresult':
         return environment.storageUrls.alpacaFleeceResultsUrl;
       case 'alpacaimage':
@@ -41,22 +41,13 @@ export class DocumentService {
 
   public getDocumentType(document: Document): string {
 
-    // TODO: Refactor this to use backend instead of frontend
-    switch (document.fileCategory.toLocaleLowerCase()) {
-      case 'alpacafleeceresult':
+    switch (document.contentType) {
+      case 'image/svg+xml':
+      case 'image/png':
+      case 'image/jpeg':
+        return 'img';
+      case 'application/pdf':
         return 'pdf';
-      case 'alpacaimage':
-        return 'img';
-      case 'alpacapedigree':
-        return 'pdf';
-      case 'alpacashowresults':
-        return 'pdf';
-      case 'infopage':
-        return 'img';
-      case 'link':
-        return 'img';
-      case 'staticpage':
-        return 'img';
       case 'general': 
         return 'unknown';
       default:

@@ -1,6 +1,6 @@
 export interface Document {
   id: string;
   name: string;
-  contenttype: string;
-  fileCategory: string;
+  contentType: string;
+  documentCategory: string;
 }

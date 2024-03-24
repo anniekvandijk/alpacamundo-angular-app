@@ -1,4 +1,4 @@
 export interface PostDocumentsRequest {
   files: File[];
-  fileCategory: string;
+  documentCategory: string;
 }

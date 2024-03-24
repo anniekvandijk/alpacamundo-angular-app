@@ -32,7 +32,7 @@ export class AdminDocumentsListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public dataSource = new MatTableDataSource<Document>();
-  public displayedColumns: string[] = ['image','name', 'fileCategory'];
+  public displayedColumns: string[] = ['image','name', 'documentCategory'];
 
 
   getStorageUrl(document: Document): string {
