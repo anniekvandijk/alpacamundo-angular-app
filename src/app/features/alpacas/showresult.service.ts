@@ -1,6 +1,5 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Showresult } from './showresult.model';
 import { AlpacashowService } from './alpacashow.service';
 import { Alpacashow } from './alpacashow.model';
@@ -9,6 +8,7 @@ import { Alpaca } from './alpaca.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { environment } from 'src/environments/environment';
 import { switchMap } from 'rxjs/operators';
+import { HttpService } from 'src/app/shared/services/http-service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,16 @@ import { switchMap } from 'rxjs/operators';
 export class ShowresultService {
   componentId = this.constructor.name;
   readonly destroyRef = inject(DestroyRef);
-  private http = inject(HttpClient);
+  private httpService = inject(HttpService);
   private alpacashowService = inject(AlpacashowService);
   private alpacaService = inject(AlpacaService);
   private url = `${environment.apiBaseUrl}/api/showresults`;
 
   public getShowresults(componentId: string): Observable<Showresult[]> {
-    return this.http.get<Showresult[]>(this.url, { headers: new HttpHeaders().set('X-ComponentId', componentId) });
+    return this.httpService.get<Showresult[]>(this.url, componentId);
   }
 
+  // TODO Backend call
   public getShowresultsByAlpacaId(alpacaId: string, componentId: string): Observable<Showresult[]> {
     return this.getShowresults(componentId).pipe(
       takeUntilDestroyed(this.destroyRef),
@@ -44,6 +45,7 @@ export class ShowresultService {
     );
   }
 
+  // TODO Backend call
   public getShowresultsByAlpacashowId(showId: string, componentId: string): Observable<Showresult[]> {
     return this.getShowresults(componentId).pipe(
       takeUntilDestroyed(this.destroyRef),
