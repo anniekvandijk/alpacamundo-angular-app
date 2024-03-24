@@ -11,16 +11,23 @@
   }
 
   .mat-mdc-form-field {
-    .mdc-text-field, .mat-mdc-select, .mat-mdc-select-value-text {
+    .mdc-text-field {
       background-color: var(--background-color-light) !important;
-      color: var(--text-color-light) !important;
       width: 100%;
-    }
-    label {
-      color: var(--secondary-color) !important;
     }
     .mat-mdc-input-element {
       color: var(--text-color-dark) !important;
+    }
+    .mat-mdc-select {
+      background-color: var(--background-color-light) !important;
+      color: var(--text-color-dark) !important;
+      width: 100%;
+      .mat-mdc-select-arrow {
+        color: var(--text-color-dark) !important;
+      }
+    }
+    label {
+      color: var(--secondary-color) !important;
     }
   }
 
