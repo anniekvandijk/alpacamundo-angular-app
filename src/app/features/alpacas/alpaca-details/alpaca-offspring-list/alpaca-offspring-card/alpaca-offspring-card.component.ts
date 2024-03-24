@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Router } from '@angular/router';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { MatCardModule } from '@angular/material/card';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-alpaca-offspring-card',
@@ -20,12 +19,11 @@ import { CommonModule } from '@angular/common';
 })
 export class AlpacaOffspringCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
-  private configuration: Configuration = inject(CONFIGURATION);
   private router = inject(Router);
   public alpacaMainImageUrl!: string;
 
   ngOnInit(): void {
-    this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
+    this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
   }
 
   public navigateToDetails(alpaca: Alpaca) {

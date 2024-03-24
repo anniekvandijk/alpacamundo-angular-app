@@ -2,10 +2,10 @@ export const environment = {
     production: false,
     name: 'development',
     clientId: '13f9d129-96e3-4d32-9199-1786494d46ec', 
+    tenantId: "0ef5acdf-6f69-4f04-af24-fa0934009a75",
     loginRedirectUri: 'http://localhost:4200',
     postLogoutRedirectUrl: 'http://localhost:4200',
     apiBaseUrl: 'https://localhost:7248',
-    //apiBaseUrl: 'https://api-tst.alpacamundo.eu', // /swagger/index.html
     cacheLifetime: 20000,
     storageUrls: {
       linkImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/links/',

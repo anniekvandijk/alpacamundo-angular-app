@@ -1,8 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Link } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { Observable, map } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,6 +8,7 @@ import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.com
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   standalone: true,
@@ -28,12 +27,11 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 export class LinksMainComponent implements OnInit {
   public componentId = this.constructor.name;
   private linkService = inject(LinkService);
-  private configuration: Configuration = inject(CONFIGURATION);
   public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
   public linkImagesUrl!: string;
   
   ngOnInit(): void {
-    this.linkImagesUrl = this.configuration.storage.linkImagesUrl;
+    this.linkImagesUrl = environment.storageUrls.linkImagesUrl;
     this.groupedLinks$ = this.linkService.getLinks(this.componentId).pipe(
       map((links) => this.groupLinksByType(links))
     );

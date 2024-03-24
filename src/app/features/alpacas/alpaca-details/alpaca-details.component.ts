@@ -3,8 +3,6 @@ import { switchMap } from 'rxjs/operators';
 import { Alpaca } from '../alpaca.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
@@ -14,6 +12,7 @@ import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-flee
 import { AlpacaOffspringCardComponent } from './alpaca-offspring-list/alpaca-offspring-card/alpaca-offspring-card.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 import { AlpacaOffspringListComponent } from './alpaca-offspring-list/alpaca-offspring-list.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-alpaca-details',
@@ -33,7 +32,6 @@ import { AlpacaOffspringListComponent } from './alpaca-offspring-list/alpaca-off
 export class AlpacaDetailsComponent implements OnInit {
   public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
-  private configuration: Configuration = inject(CONFIGURATION);
   private alpacaService = inject(AlpacaService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -46,10 +44,10 @@ export class AlpacaDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlpaca();
-    this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
-    this.alpacaImagesUrl = this.configuration.storage.alpacaImagesUrl;
-    this.alpacaPedigreeUrl = this.configuration.storage.alpacaPedigreeUrl;
-    this.alpacaFleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
+    this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
+    this.alpacaImagesUrl = environment.storageUrls.alpacaImagesUrl;
+    this.alpacaPedigreeUrl = environment.storageUrls.alpacaPedigreeUrl;
+    this.alpacaFleeceResultsUrl = environment.storageUrls.alpacaFleeceResultsUrl;
   }
 
   private getAlpaca(): void {

@@ -1,13 +1,12 @@
-import { Component, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
 import { Fleece } from 'src/app/features/alpacas/fleece.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { MatSort, Sort } from '@angular/material/sort';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-alpaca-fleeceresults',
@@ -28,7 +27,6 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   }
   public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  private readonly configuration: Configuration = inject(CONFIGURATION);
   public fleeceResultsUrl!: string;
 
   public displayedColumns: string[] = [
@@ -45,7 +43,7 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   public dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
-    this.fleeceResultsUrl = this.configuration.storage.alpacaFleeceResultsUrl;
+    this.fleeceResultsUrl = environment.storageUrls.alpacaFleeceResultsUrl;
   }
 
   private setFleeceResults(alpaca: Alpaca) : void {

@@ -2,6 +2,7 @@ export const environment = {
     production: false,
     name: 'test',
     clientId: '13f9d129-96e3-4d32-9199-1786494d46ec', 
+    tenantId: "0ef5acdf-6f69-4f04-af24-fa0934009a75",
     loginRedirectUri: 'https://tst.alpacamundo.eu',
     postLogoutRedirectUrl: 'https://tst.alpacamundo.eu',
     apiBaseUrl: 'https://api-tst.alpacamundo.eu', // /swagger/index.html

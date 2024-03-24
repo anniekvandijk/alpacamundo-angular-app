@@ -2,14 +2,13 @@ import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-alpaca-card',
@@ -28,13 +27,12 @@ export class AlpacaCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
   public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
-  private configuration: Configuration = inject(CONFIGURATION);
   private alpacasService = inject(AlpacaService);
   private router = inject(Router);
   public alpacaMainImageUrl!: string;
 
   ngOnInit(): void {
-    this.alpacaMainImageUrl = this.configuration.storage.alpacaMainImageUrl;
+    this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
     if (this.alpaca.sireId) {
       this.alpacasService.getAlpaca(this.alpaca.sireId, this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))

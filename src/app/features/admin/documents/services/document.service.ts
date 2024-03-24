@@ -1,6 +1,5 @@
 import { Injectable, inject } from "@angular/core";
 import { Observable, map } from "rxjs";
-import { HttpServiceResponse } from "src/app/shared/models/http-service-response.model";
 import { HttpService } from "src/app/shared/services/http-service";
 import { environment } from "src/environments/environment";
 import { Document } from "../models/document.model";
@@ -56,47 +55,22 @@ export class DocumentService {
   }
 
   public getDocuments(componentId: string): Observable<Document[]> {
-    return this.httpService.get(this.url, componentId)
-    .pipe(
-      map(
-        (response: HttpServiceResponse) => { return response.body as Document[] }
-      )
-    )
+    return this.httpService.get<Document[]>(this.url, componentId);
   }
 
   public getDocument(id: string, componentId: string): Observable<Document> {
-    return this.httpService.get(this.url.concat('/', id), componentId)
-    .pipe(
-      map(
-        (response: HttpServiceResponse) => { return response.body as Document }
-      )
-    )
+    return this.httpService.get<Document>(this.url.concat('/', id), componentId);
   }
 
   public postDocument(document: PostDocumentRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post(this.url, document, componentId)
-    .pipe(
-      map(
-        (response: HttpServiceResponse) => { return response.ok }
-      )
-    )
+    return this.httpService.post<PostDocumentRequest>(this.url, document, componentId);
   }
 
   public postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post(this.url, documents, componentId)
-    .pipe(
-      map(
-        (response: HttpServiceResponse) => { return response.ok }
-      )
-    )
+    return this.httpService.post<PostDocumentsRequest>(this.url, documents, componentId);
   }
 
   public deleteDocument(id: string, componentId: string): Observable<boolean> {
-    return this.httpService.delete(this.url.concat('/', id), componentId)
-      .pipe(
-        map(
-          (response: HttpServiceResponse) => { return response.ok }
-        )
-      )
+    return this.httpService.delete(this.url.concat('/', id), componentId);
   }
 }

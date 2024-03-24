@@ -3,12 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/infopages.service';
-import { Configuration } from 'src/app/shared/configuration/configuration.model';
-import { CONFIGURATION } from 'src/app/shared/configuration/configuration.token';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-infopages-details',
@@ -23,7 +22,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
 })
 export class InfopagesDetailsComponent implements OnInit{
   public componentId = this.constructor.name;
-  private configuration: Configuration = inject(CONFIGURATION);
   private infopagesService = inject(InfopagesService);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
@@ -36,7 +34,7 @@ export class InfopagesDetailsComponent implements OnInit{
           return this.infopagesService.getInfopage(params['id'], this.componentId)
         })
       )
-    this.infopageImagesUrl = this.configuration.storage.infopageImagesUrl;
+    this.infopageImagesUrl = environment.storageUrls.infopageImagesUrl;
     }
 
   public getSafeHtml(html: string) {

@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Observable, map } from "rxjs";
-import { HttpServiceResponse } from "../models/http-service-response.model";
 
 @Injectable({
     providedIn : 'root'
@@ -10,7 +9,7 @@ export class HttpService {
 
   private http = inject(HttpClient);
 
-  public get(url: string, componentId: string): Observable<HttpServiceResponse> {
+  public get<T>(url: string, componentId: string): Observable<T> {
     return this.http.get(
       url, 
       { 
@@ -20,17 +19,13 @@ export class HttpService {
       .pipe(
         map(
           (response: HttpResponse<object>) => { 
-            return {
-              body: response.body,
-              status: response.status,
-              ok: response.ok,
-            };
+            return response.body as T;
           } 
         )
       )
   }
 
-  public post<T>(url: string, data: T, componentId: string): Observable<HttpServiceResponse> {
+  public post<T>(url: string, data: T, componentId: string): Observable<boolean> {
     return this.http.post(
       url, 
       data, 
@@ -42,17 +37,13 @@ export class HttpService {
     .pipe(
       map(
         (response: HttpResponse<object>) => { 
-          return {
-            body: response.body,
-            status: response.status,
-            ok: response.ok,
-          };
-        } 
+          return response.ok
+        }
       )
     )
   }
 
-  public put<T>(url: string, data: T, componentId: string): Observable<HttpServiceResponse> {
+  public put<T>(url: string, data: T, componentId: string): Observable<boolean> {
     return this.http.put(
       url, 
       data, 
@@ -64,17 +55,13 @@ export class HttpService {
     .pipe(
       map(
         (response: HttpResponse<object>) => { 
-          return {
-            body: response.body,
-            status: response.status,
-            ok: response.ok,
-          };
+          return response.ok
         } 
       )
     )
   }
 
-  public delete(url: string, componentId: string): Observable<HttpServiceResponse> {
+  public delete(url: string, componentId: string): Observable<boolean> {
     return this.http.delete(
       url, 
       { 
@@ -85,11 +72,7 @@ export class HttpService {
     .pipe(
       map(
         (response: HttpResponse<object>) => { 
-          return {
-            body: response.body,
-            status: response.status,
-            ok: response.ok,
-          };
+          return response.ok
         } 
       )
     )
