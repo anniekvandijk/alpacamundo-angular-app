@@ -10,6 +10,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { LinkType } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { RouterModule } from '@angular/router';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-admin-linktypes-list',
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    HttploaderComponent
   ],
   templateUrl: './admin-linktypes-list.component.html',
 })

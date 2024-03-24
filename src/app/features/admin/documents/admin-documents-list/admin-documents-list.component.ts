@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
   selector: 'app-admin-documents-list',
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    HttploaderComponent
   ],
   templateUrl: './admin-documents-list.component.html',
   styleUrl: './admin-documents-list.component.scss'

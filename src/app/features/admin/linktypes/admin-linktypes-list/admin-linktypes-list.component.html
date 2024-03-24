@@ -11,6 +11,7 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Zoeken" #input>
 </mat-form-field> -->
 
+<app-http-loader [componentId]="componentId">
 <div>
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="name">
@@ -32,4 +33,5 @@
   aria-label="Select page">
   </mat-paginator> -->
 </div>
+</app-http-loader>
 
