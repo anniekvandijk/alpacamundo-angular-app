@@ -1,0 +1,29 @@
+#file-upload {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 100%;
+  background-color: var(--background-color-light);
+
+  .file-upload-header {
+    color: var(--secondary-color);
+    border-bottom: var(--primary-color-light) 1px solid;
+  }
+
+  .file-upload-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .document {
+    img {
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+}

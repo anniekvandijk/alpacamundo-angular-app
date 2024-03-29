@@ -18,6 +18,12 @@ $alpacamundo-angular-app-accent: mat.define-palette(mat.$gray-palette, A200, A10
 // The warn palette is optional (defaults to red).
 $alpacamundo-angular-app-warn: mat.define-palette(mat.$red-palette);
 
+  // Typography config based on the default, but using "Comic Sans" as the
+  // default font family for all levels.
+  $alpacamundo-typography: mat.define-typography-config(
+    $font-family: "Nunito Sans",
+  );
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $alpacamundo-angular-app-light-theme: mat.define-light-theme((
@@ -25,7 +31,8 @@ $alpacamundo-angular-app-light-theme: mat.define-light-theme((
     primary: $alpacamundo-angular-app-primary,
     accent: $alpacamundo-angular-app-accent,
     warn: $alpacamundo-angular-app-warn,
-  )
+  ),
+  typography: $alpacamundo-typography,
 ));
 
 $alpacamundo-angular-app-dark-theme: mat.define-dark-theme((
@@ -33,7 +40,8 @@ $alpacamundo-angular-app-dark-theme: mat.define-dark-theme((
     primary: $alpacamundo-angular-app-primary,
     accent: $alpacamundo-angular-app-accent,
     warn: $alpacamundo-angular-app-warn,
-  )
+  ),
+  typography: $alpacamundo-typography,
 ));
 
 // Include theme styles for core and each component used in your app.

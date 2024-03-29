@@ -9,6 +9,12 @@
       <mat-error>Voer een geldige title in</mat-error>
       }
     </mat-form-field>
+    <div class="upload-component">
+      <app-file-upload 
+        [documents]="documents" 
+        [multipleFiles]="false"
+      ></app-file-upload>
+    </div>
     <mat-form-field class="form-field">
       <mat-label for="linkType">Categorie</mat-label>
       <mat-select id="linkType" formControlName="linkType">

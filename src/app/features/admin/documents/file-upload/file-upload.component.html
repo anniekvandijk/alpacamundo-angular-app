@@ -1,0 +1,18 @@
+<div id="file-upload" class="file-upload">
+  <div class="file-upload-header">
+    File upload
+  </div>
+  <div class="file-upload-body">
+    <input type="file" />
+    @if (documents && documents.length > 0) {
+      <div class="documents">
+      @for (document of documents; track document.id) {
+      <div class="document">
+        <img src="{{getStorageUrl(document)}}{{document.name}}" alt="{{ document.name }}" />
+        <div>{{ document.name }}</div>
+      </div>
+      }
+      </div>
+    }
+  </div>
+</div>

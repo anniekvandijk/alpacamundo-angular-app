@@ -24,8 +24,7 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
     MatFormFieldModule,
     HttploaderComponent
   ],
-  templateUrl: './admin-documents-list.component.html',
-  styleUrl: './admin-documents-list.component.scss'
+  templateUrl: './admin-documents-list.component.html'
 })
 export class AdminDocumentsListComponent implements OnInit, AfterViewInit {
   readonly destroyRef = inject(DestroyRef);
