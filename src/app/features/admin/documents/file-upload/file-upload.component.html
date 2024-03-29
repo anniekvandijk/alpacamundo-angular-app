@@ -24,7 +24,26 @@
         <div>{{ document.name }}</div>
       </div>
       }
-      </div>
+    </div>
     }
   </div>
+  <div class="file-upload-preview">
+    @if (selectedFiles && selectedFiles.length > 0) {
+      <div class="file-upload-preview-header">
+        Preview
+      </div>
+      <div class="file-upload-preview-body">
+        @for (selectedFile of selectedFiles; track selectedFile.file.name; let index = $index) {
+        <div class="file-preview">
+          <img src="{{selectedFile.url}}" alt="{{selectedFile.file.name}}" />
+          <div>{{selectedFile.file.name}}</div>
+        </div>
+        <div class="file-preview-actions">
+          <button mat-raised-button type="button" color="warn" (click)="onPreviewFileRemove(index)">
+            Verwijder
+          </button>
+        </div>
+        }
+      </div>
+    }
 </div>

@@ -25,6 +25,24 @@
     }
   }
 
+  .file-upload-preview {
+    .file-upload-preview-header {
+      color: var(--secondary-color);
+      font-size: 0.8em;
+      border-bottom: var(--primary-color-light) 1px solid;
+    }
+    .file-upload-preview-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px;
+      img {
+        height: 80px;
+        object-fit: cover;
+      }
+    }
+  }
+
   .document {
     img {
       height: 80px;
