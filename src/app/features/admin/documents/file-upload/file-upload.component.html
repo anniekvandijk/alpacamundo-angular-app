@@ -1,9 +1,21 @@
 <div id="file-upload" class="file-upload">
   <div class="file-upload-header">
-    File upload
+    {{ multipleFiles ? 'Upload files' : 'Upload file' }}
+    {{ fileRequired ? '*' : '' }}
   </div>
   <div class="file-upload-body">
-    <input type="file" />
+    <div class="uploadsection">
+      <input class="file-upload-input"
+        type="file"
+        [multiple]="multipleFiles"
+        (change)="onFileChange($event)"     
+        />
+      <div class="file-upload-button">
+        <button mat-raised-button type="button" color="primary" [disabled]="!filesSelected">
+          Upload
+        </button>
+      </div>
+    </div>
     @if (documents && documents.length > 0) {
       <div class="documents">
       @for (document of documents; track document.id) {

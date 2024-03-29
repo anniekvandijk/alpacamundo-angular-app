@@ -131,7 +131,6 @@ export class AdminLinksEditComponent implements OnInit{
           documentCategory: image.documentCategory
         };
       });
-      console.log('Documents', this.documents);
       this.updateForm(link);
     });
   }
