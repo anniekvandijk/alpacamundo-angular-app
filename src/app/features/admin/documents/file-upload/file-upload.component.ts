@@ -2,6 +2,7 @@ import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { Document } from '../models/document.model';
 import { DocumentService } from '../services/document.service';
 import { MatButtonModule } from '@angular/material/button';
+import { on } from 'events';
 
 @Component({
   selector: 'app-file-upload',
@@ -15,6 +16,7 @@ export class FileUploadComponent {
   @Input() public multipleFiles = false;
   @Input() public acceptedFileTypes: string[] = [];
   @Input() public fileRequired = false;
+  @Input() public replaceFiles = false;
   private componentId = this.constructor.name;
   public filesSelected = false;
   private readonly destroyRef = inject(DestroyRef);
@@ -41,5 +43,9 @@ export class FileUploadComponent {
     else {
       this.filesSelected = false;
     }
+  }
+
+  public onFileUpload() {
+    console.log('Files uploaded');
   }
 }

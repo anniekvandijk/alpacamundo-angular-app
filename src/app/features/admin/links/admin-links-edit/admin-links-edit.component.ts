@@ -65,7 +65,7 @@ export class AdminLinksEditComponent implements OnInit{
         title: this.linksEditForm.value.title,
         url: this.linksEditForm.value.url,
       };
-      this.putLink(linkRequest);
+      //this.putLink(linkRequest);
       console.log('Form submitted', this.linksEditForm);
     } 
     else {
@@ -143,7 +143,6 @@ export class AdminLinksEditComponent implements OnInit{
       'title': link.title,
       'url': link.url,
     });
-    console.log('Form updated', this.linksEditForm);
   }
 
   private putLink(linkRequest: PutLinkRequest): void {
