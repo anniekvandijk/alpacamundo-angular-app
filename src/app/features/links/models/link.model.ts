@@ -17,4 +17,5 @@ export interface Image {
   name: string;
   contentType: string;
   documentCategory: string;
+  url: string;
 }

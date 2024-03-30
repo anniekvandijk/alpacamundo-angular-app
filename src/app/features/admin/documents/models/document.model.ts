@@ -3,4 +3,5 @@ export interface Document {
   name: string;
   contentType: string;
   documentCategory: string;
+  url: string;
 }

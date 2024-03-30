@@ -35,11 +35,6 @@ export class AdminDocumentsListComponent implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource<Document>();
   public displayedColumns: string[] = ['image','name', 'documentCategory'];
 
-
-  getStorageUrl(document: Document): string {
-    return `${this.documentService.getStorageUrl(document)}`;
-  }
-
   getDocumentType(document: Document): string {
     return `${this.documentService.getDocumentType(document)}`;
   }

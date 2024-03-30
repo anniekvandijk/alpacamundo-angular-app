@@ -20,7 +20,7 @@
       <div class="documents">
       @for (document of documents; track document.id) {
       <div class="document">
-        <img src="{{getStorageUrl(document)}}{{document.name}}" alt="{{ document.name }}" />
+        <img src="{{document.url}}" alt="{{ document.name }}" />
         <div>{{ document.name }}</div>
       </div>
       }

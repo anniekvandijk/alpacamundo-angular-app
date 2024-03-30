@@ -128,7 +128,8 @@ export class AdminLinksEditComponent implements OnInit{
           id: image.id,
           name: image.name,
           contentType: image.contentType,
-          documentCategory: image.documentCategory
+          documentCategory: image.documentCategory,
+          url: image.url
         };
       });
       this.updateForm(link);

@@ -20,14 +20,10 @@ export class FileUploadComponent {
   @Input() public fileRequired = false;
   @Input() public replaceFiles = false;
   private componentId = this.constructor.name;
-  public filesSelected = false;
-  public selectedFiles: selectedFile[] = [];
   private readonly destroyRef = inject(DestroyRef);
   private documentService = inject(DocumentService);
-  
-  public getStorageUrl(document: Document): string {
-    return `${this.documentService.getStorageUrl(document)}`;
-  }	
+  public filesSelected = false;
+  public selectedFiles: selectedFile[] = [];
 
   ngOnInit(): void {
     console.log('FileUploadComponent initialized');

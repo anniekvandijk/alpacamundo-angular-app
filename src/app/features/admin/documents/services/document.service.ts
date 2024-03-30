@@ -14,30 +14,6 @@ export class DocumentService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/documents`;
 
-  public getStorageUrl(document: Document): string {
-
-    switch (document.documentCategory.toLocaleLowerCase()) {
-      case 'alpacafleeceresult':
-        return environment.storageUrls.alpacaFleeceResultsUrl;
-      case 'alpacaimage':
-        return environment.storageUrls.alpacaImagesUrl;
-      case 'alpacapedigree':
-        return environment.storageUrls.alpacaPedigreeUrl;
-      case 'alpacashowresults':
-        return environment.storageUrls.showResultsUrl;
-        case 'infopage':
-          return environment.storageUrls.infopageImagesUrl;
-      case 'link':
-        return environment.storageUrls.linkImagesUrl;
-      case 'staticpage':
-        return environment.storageUrls.staticPageImagesUrl;
-      case 'general': 
-        return environment.storageUrls.generalUrl;
-      default:
-        return environment.storageUrls.generalUrl;  
-    }
-  }
-
   public getDocumentType(document: Document): string {
 
     switch (document.contentType) {
