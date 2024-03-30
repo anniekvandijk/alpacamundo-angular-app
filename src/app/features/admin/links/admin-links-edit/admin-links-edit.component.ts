@@ -139,7 +139,7 @@ export class AdminLinksEditComponent implements OnInit{
   private updateForm(link: Link): void {
     this.linksEditForm.patchValue({
       'body': link.body,
-      'image': link.image,
+      'image': link.image.id,
       'linkType': link.linkType.id,
       'title': link.title,
       'url': link.url,
@@ -153,7 +153,6 @@ export class AdminLinksEditComponent implements OnInit{
           if (okResult) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
         }
       );
-    
   }
 
   private deleteLink(): void {

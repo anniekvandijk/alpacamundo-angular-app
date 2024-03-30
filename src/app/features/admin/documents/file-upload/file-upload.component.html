@@ -1,42 +1,47 @@
 <div id="file-upload" class="file-upload">
+  <div class="existing-documents">
+    @if (currentFiles && currentFiles.length > 0) {
+    <div class="existing-documents-header">
+      Huidige documenten
+    </div>
+    <div class="existing-documents-body">
+        @for (currentFile of currentFiles; track currentFile.id) {
+        <div class="document">
+          <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
+        </div>
+        <div class="document-actions">
+          <button mat-raised-button type="button" color="warn" (click)="onExistingDocumentRemove(currentFile.id)">
+            Verwijder
+          </button>
+        </div>
+        }
+    </div>
+    } 
+  </div>
   <div class="file-upload-header">
     {{ multipleFiles ? 'Upload files' : 'Upload file' }}
-    {{ fileRequired ? '*' : '' }}
+    {{ isUploadrequired() ? '*' : '' }}
   </div>
   <div class="file-upload-body">
     <div class="uploadsection">
-      <input class="file-upload-input"
+      <input 
+        id="file-upload-input" 
+        class="file-upload-input"
         type="file"
         [multiple]="multipleFiles"
         (change)="onFileChange($event)"     
         />
-      <div class="file-upload-button">
-        <button mat-raised-button type="button" color="primary" [disabled]="!filesSelected" (click)="onFileUpload()">
-          {{ replaceFiles ? 'Wijzig' : 'Voeg toe' }}
-        </button>
-      </div>
     </div>
-    @if (documents && documents.length > 0) {
-      <div class="documents">
-      @for (document of documents; track document.id) {
-      <div class="document">
-        <img src="{{document.url}}" alt="{{ document.name }}" />
-        <div>{{ document.name }}</div>
-      </div>
-      }
-    </div>
-    }
   </div>
   <div class="file-upload-preview">
-    @if (selectedFiles && selectedFiles.length > 0) {
+    @if (addedFiles && addedFiles.length > 0) {
       <div class="file-upload-preview-header">
         Preview
       </div>
       <div class="file-upload-preview-body">
-        @for (selectedFile of selectedFiles; track selectedFile.file.name; let index = $index) {
+        @for (newfiles of addedFiles; track newfiles.file.name; let index = $index) {
         <div class="file-preview">
-          <img src="{{selectedFile.url}}" alt="{{selectedFile.file.name}}" />
-          <div>{{selectedFile.file.name}}</div>
+          <img src="{{newfiles.url}}" alt="{{newfiles.file.name}}" />
         </div>
         <div class="file-preview-actions">
           <button mat-raised-button type="button" color="warn" (click)="onPreviewFileRemove(index)">

@@ -1,10 +1,7 @@
-import { Component, DestroyRef, Input, inject } from '@angular/core';
+import { Component, DestroyRef, Input, Output, inject } from '@angular/core';
 import { Document } from '../models/document.model';
-import { DocumentService } from '../services/document.service';
 import { MatButtonModule } from '@angular/material/button';
-import { on } from 'events';
-import { selectedFile } from '../models/selectedFile.model';
-import { forEach } from 'cypress/types/lodash';
+import { NewFiles } from '../models/newFiles.model';
 
 @Component({
   selector: 'app-file-upload',
@@ -14,38 +11,37 @@ import { forEach } from 'cypress/types/lodash';
   styleUrl: './file-upload.component.scss'
 })
 export class FileUploadComponent {
-  @Input() public documents: Document[] = [];
+  @Input() set documents(documents: Document[]) {
+    this.currentFiles = documents;
+  }
   @Input() public multipleFiles = false;
   @Input() public acceptedFileTypes: string[] = [];
   @Input() public fileRequired = false;
   @Input() public replaceFiles = false;
-  private componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
-  private documentService = inject(DocumentService);
   public filesSelected = false;
-  public selectedFiles: selectedFile[] = [];
+  public currentFiles: Document[] = [];
+  @Output() public addedFiles: NewFiles[] = [];
+  @Output() public removedFiles: Document[] = [];
 
-  ngOnInit(): void {
-    console.log('FileUploadComponent initialized');
-    console.log('Documents', this.documents);
-    console.log('Multiple files', this.multipleFiles);
-    console.log('Accepted file types', this.acceptedFileTypes);
-    console.log('File required', this.fileRequired);
-    console.log('Files selected', this.filesSelected);
+  isUploadrequired(): boolean {
+    return this.fileRequired 
+      && this.currentFiles 
+      && this.currentFiles.length === 0 
+      && this.addedFiles
+      && this.addedFiles.length === 0;
   }
 
   onFileChange(event: any) {
-    console.log('File changed', event);
     const fileList: FileList = event.target.files;
     if (event.target.files.length > 0) {
       this.filesSelected = true;
       // if onliy one file is allowed, clear the selected files array
-      if (!this.multipleFiles && this.selectedFiles.length > 0) {
-        this.selectedFiles = [];
+      if (!this.multipleFiles && this.addedFiles.length > 0) {
+        this.addedFiles = [];
       }
       //  else if multiple files are allowed, add the files to the selected files array
       for (let i = 0; i < fileList.length; i++) {        
-      this.selectedFiles.push( 
+      this.addedFiles.push( 
         {
           file: fileList[i],
           url: URL.createObjectURL(fileList[i])
@@ -58,14 +54,23 @@ export class FileUploadComponent {
   }
 
   onPreviewFileRemove(index: number) {
-    console.log('File removed', index);
-    this.selectedFiles.splice(index, 1);
-    if (this.selectedFiles.length === 0) {
+    this.addedFiles.splice(index, 1);
+    if (this.addedFiles.length === 0) {
       this.filesSelected = false;
+    }
+    // reset the file input field
+    const fileInput = document.getElementById('file-upload-input') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
     }
   }
 
-  public onFileUpload() {
-    console.log('Files uploaded');
+  onExistingDocumentRemove(documentId: string) {
+    const documentToRemove = this.currentFiles.find(d => d.id === documentId);
+    if (documentToRemove) {
+      this.removedFiles.push(documentToRemove);
+      const index = this.currentFiles.indexOf(documentToRemove);
+      this.currentFiles.splice(index, 1);
+    }
   }
 }

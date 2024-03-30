@@ -1,4 +1,4 @@
-export interface selectedFile {
+export interface NewFiles {
   file : File;
   url : string;
 }
