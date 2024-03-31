@@ -16,4 +16,11 @@ export class FormService {
   private formState = new Subject<{ componentId: string, formstate: FormState }>();
   public formState$ = this.formState.asObservable();
 
+  public registerComponent(componentId: string) {
+    this.formState.next({ componentId, formstate: FormState.Initial });
+  }
+
+  public setFormState(componentId: string, formState: FormState) {
+    this.formState.next({ componentId, formstate: formState });
+  }
 }

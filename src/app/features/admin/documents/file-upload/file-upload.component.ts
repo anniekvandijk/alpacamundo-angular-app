@@ -1,7 +1,9 @@
-import { Component, DestroyRef, Input, Output, inject } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, Output, inject } from '@angular/core';
 import { Document } from '../models/document.model';
 import { MatButtonModule } from '@angular/material/button';
 import { NewFiles } from '../models/newFiles.model';
+import { FormService, FormState } from '../services/form.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-file-upload',
@@ -10,7 +12,7 @@ import { NewFiles } from '../models/newFiles.model';
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss'
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements OnInit {
   @Input() set documents(documents: Document[]) {
     this.currentFiles = documents;
   }
@@ -19,10 +21,34 @@ export class FileUploadComponent {
   @Input() public acceptedFileTypes: string[] = [];
   @Input() public fileRequired = false;
   @Input() public replaceFiles = false;
-  public filesSelected = false;
-  public currentFiles: Document[] = [];
   @Output() public addedFiles: NewFiles[] = [];
   @Output() public removedFiles: Document[] = [];
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly formService = inject(FormService);
+  public filesSelected = false;
+  public currentFiles: Document[] = [];
+  
+  ngOnInit(): void {
+    this.formService.formState$.pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe((formState) => {
+      if (formState.componentId === this.callingComponentId) {
+         if (formState.formstate === FormState.Initial) {
+          // yes action!
+          console.log('FormState.Initial');
+         } else if (formState.formstate === FormState.Deleted) {
+          // reset files
+          console.log('FormState.Deleted');
+
+         } else if (formState.formstate === FormState.Cancelled) {
+          // reset files
+          console.log('FormState.Cancelled');
+         } else if (formState.formstate === FormState.Submitted) {
+          // make files definitive
+          console.log('FormState.Submitted');
+         }
+      }
+    });
+  }
 
   isUploadrequired(): boolean {
     return this.fileRequired 
