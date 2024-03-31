@@ -34,7 +34,7 @@ import { Document } from './../../documents/models/document.model';
   templateUrl: './admin-links-edit.component.html',
 })
 export class AdminLinksEditComponent implements OnInit{
-  private componentId = this.constructor.name;
+  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private linkService = inject(LinkService);
@@ -50,6 +50,8 @@ export class AdminLinksEditComponent implements OnInit{
     this.createForm();
     this.loadDataAndUpdateForm();
   }
+
+
 
   public onNavigateBack(): void {
     this.router.navigate(['/admin/links']);

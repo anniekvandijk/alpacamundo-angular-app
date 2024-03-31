@@ -14,6 +14,7 @@ export class FileUploadComponent {
   @Input() set documents(documents: Document[]) {
     this.currentFiles = documents;
   }
+  @Input() public callingComponentId!: string;
   @Input() public multipleFiles = false;
   @Input() public acceptedFileTypes: string[] = [];
   @Input() public fileRequired = false;
