@@ -2,7 +2,7 @@ import { Component, DestroyRef, Input, OnInit, Output, inject } from '@angular/c
 import { Document } from '../models/document.model';
 import { MatButtonModule } from '@angular/material/button';
 import { NewFiles } from '../models/newFiles.model';
-import { FormService, FormState } from '../services/form.service';
+import { FormService } from '../services/form.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -16,36 +16,26 @@ export class FileUploadComponent implements OnInit {
   @Input() set documents(documents: Document[]) {
     this.currentFiles = documents;
   }
-  @Input() public callingComponentId!: string;
+  @Input() public formComponentId!: string;
   @Input() public multipleFiles = false;
   @Input() public acceptedFileTypes: string[] = [];
   @Input() public fileRequired = false;
-  @Input() public replaceFiles = false;
-  @Output() public addedFiles: NewFiles[] = [];
-  @Output() public removedFiles: Document[] = [];
   private readonly destroyRef = inject(DestroyRef);
   private readonly formService = inject(FormService);
+  public addedFiles: NewFiles[] = [];
+  public removedFiles: Document[] = [];
+
   public filesSelected = false;
   public currentFiles: Document[] = [];
   
-  ngOnInit(): void {
-    this.formService.formState$.pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe((formState) => {
-      if (formState.componentId === this.callingComponentId) {
-         if (formState.formstate === FormState.Initial) {
-          // yes action!
-          console.log('FormState.Initial');
-         } else if (formState.formstate === FormState.Deleted) {
-          // reset files
-          console.log('FormState.Deleted');
+  private readonly replaceFile = (
+    !this.multipleFiles && this.addedFiles.length > 0) ? true : false;
 
-         } else if (formState.formstate === FormState.Cancelled) {
-          // reset files
-          console.log('FormState.Cancelled');
-         } else if (formState.formstate === FormState.Submitted) {
-          // make files definitive
-          console.log('FormState.Submitted');
-         }
+  ngOnInit(): void {
+    this.formService.cancelAction$.pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe((componentId) => {
+      if (componentId === this.formComponentId) {
+          this.resetUpload();
       }
     });
   }
@@ -63,7 +53,7 @@ export class FileUploadComponent implements OnInit {
     if (event.target.files.length > 0) {
       this.filesSelected = true;
       // if onliy one file is allowed, clear the selected files array
-      if (!this.multipleFiles && this.addedFiles.length > 0) {
+      if (this.replaceFile) {
         this.addedFiles = [];
       }
       //  else if multiple files are allowed, add the files to the selected files array
@@ -99,5 +89,12 @@ export class FileUploadComponent implements OnInit {
       const index = this.currentFiles.indexOf(documentToRemove);
       this.currentFiles.splice(index, 1);
     }
+  }
+
+  private resetUpload() {
+    // delete the files that were added 
+    // unremove files that were removed
+    console.log('Resetting upload');
+    this.filesSelected = false;
   }
 }

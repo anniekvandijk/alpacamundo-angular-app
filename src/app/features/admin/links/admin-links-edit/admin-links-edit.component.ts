@@ -16,7 +16,7 @@ import { MessageService } from 'src/app/shared/features/messages/message.service
 import { PutLinkRequest } from 'src/app/features/links/models/put-link-request.model';
 import { FileUploadComponent } from '../../documents/file-upload/file-upload.component';
 import { Document } from './../../documents/models/document.model';
-import { FormService, FormState } from '../../documents/services/form.service';
+import { FormService } from '../../documents/services/form.service';
 
 @Component({
   selector: 'app-admin-links-edit',
@@ -49,13 +49,8 @@ export class AdminLinksEditComponent implements OnInit{
   public linksEditForm!: FormGroup;
 
   ngOnInit(): void {	
-    this.formService.registerComponent(this.componentId);
     this.createForm();
     this.loadDataAndUpdateForm();
-  }
-
-  public onNavigateBack(): void {
-    this.router.navigate(['/admin/links']);
   }
 
   public onSubmit() {
@@ -88,7 +83,13 @@ export class AdminLinksEditComponent implements OnInit{
     });
   }
 
+  public onNavigateBack(): void {
+    this.formService.triggerCancel(this.componentId);	
+    this.router.navigate(['/admin/links']);
+  }
+
   public onReset() {
+    this.formService.triggerCancel(this.componentId);	
     this.loadDataAndUpdateForm();
   }
 
