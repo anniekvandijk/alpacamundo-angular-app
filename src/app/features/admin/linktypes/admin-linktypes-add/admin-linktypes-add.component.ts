@@ -8,6 +8,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
 import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { LinkType } from 'src/app/features/links/models/link.model';
 
 @Component({
   selector: 'app-admin-linktypes-add',
@@ -58,8 +59,8 @@ export class AdminLinkTypesAddComponent implements OnInit{
   private postLinkType(linkType: PostLinkTypeRequest) {
     this.linkService.postLinkType(linkType, this.componentId)
       .subscribe({
-        next: (okResult: boolean) => {
-          if (okResult) this.messageService.showSuccessMessage('addLinkType', 'LinkType toegevoegd');
+        next: (linkType: LinkType) => {
+          if (linkType) this.messageService.showSuccessMessage('addLinkType', 'LinkType toegevoegd');
         },
         complete: () => {
           this.navigateToLinkTypesList();

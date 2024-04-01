@@ -25,7 +25,7 @@ export class HttpService {
       )
   }
 
-  public post<T>(url: string, data: T, componentId: string): Observable<boolean> {
+  public post<T>(url: string, data: any, componentId: string): Observable<T> {
     return this.http.post(
       url, 
       data, 
@@ -37,13 +37,13 @@ export class HttpService {
     .pipe(
       map(
         (response: HttpResponse<object>) => { 
-          return response.ok
+          return response.body as T;
         }
       )
     )
   }
 
-  public put<T>(url: string, data: T, componentId: string): Observable<boolean> {
+  public put<T>(url: string, data: any, componentId: string): Observable<T> {
     return this.http.put(
       url, 
       data, 
@@ -55,7 +55,7 @@ export class HttpService {
     .pipe(
       map(
         (response: HttpResponse<object>) => { 
-          return response.ok
+          return response.body as T;
         } 
       )
     )

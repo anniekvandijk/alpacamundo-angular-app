@@ -1,11 +1,11 @@
 <div id="file-upload" class="file-upload">
   <div class="existing-documents">
-    @if (currentFiles && currentFiles.length > 0) {
+    @if (currentDocuments && currentDocuments.length > 0) {
     <div class="existing-documents-header">
       Huidige documenten
     </div>
     <div class="existing-documents-body">
-        @for (currentFile of currentFiles; track currentFile.id) {
+        @for (currentFile of currentDocuments; track currentFile.id) {
         <div class="document">
           <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
         </div>
@@ -34,14 +34,14 @@
     </div>
   </div>
   <div class="file-upload-preview">
-    @if (addedFiles && addedFiles.length > 0) {
+    @if (filePreviews && filePreviews.length > 0) {
       <div class="file-upload-preview-header">
         Preview
       </div>
       <div class="file-upload-preview-body">
-        @for (newfiles of addedFiles; track newfiles.file.name; let index = $index) {
+        @for (filePreview of filePreviews; track filePreview.file.name; let index = $index) {
         <div class="file-preview">
-          <img src="{{newfiles.url}}" alt="{{newfiles.file.name}}" />
+          <img src="{{filePreview.url}}" alt="{{filePreview.file.name}}" />
         </div>
         <div class="file-preview-actions">
           <button mat-raised-button type="button" color="warn" (click)="onPreviewFileRemove(index)">

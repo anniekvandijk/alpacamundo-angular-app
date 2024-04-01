@@ -23,12 +23,12 @@ export class LinkService {
     return this.httpService.get<Link>(this.url.concat('/', id), componentId);
   }
 
-  public postLink(link: PostLinkRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post<PostLinkRequest>(this.url, link, componentId);
+  public postLink(link: PostLinkRequest, componentId: string): Observable<Link> {
+    return this.httpService.post<Link>(this.url, link, componentId);
   }
 
-  public putLink(link: PutLinkRequest, componentId: string): Observable<boolean> {
-    return this.httpService.put<PutLinkRequest>(this.url, link, componentId)
+  public putLink(link: PutLinkRequest, componentId: string): Observable<Link> {
+    return this.httpService.put<Link>(this.url, link, componentId)
   }
 
   public deleteLink(id: string, componentId: string): Observable<boolean> {
@@ -45,12 +45,12 @@ export class LinkService {
     return this.httpService.get<LinkType>(this.url.concat('/linktypes/', id), componentId);
   }
 
-  public postLinkType(linkType: PostLinkTypeRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post<PostLinkTypeRequest>(this.url.concat('/linktypes'), linkType, componentId);
+  public postLinkType(linkType: PostLinkTypeRequest, componentId: string): Observable<LinkType> {
+    return this.httpService.post<LinkType>(this.url.concat('/linktypes'), linkType, componentId);
   }
 
-  public putLinkType(linkType: PutLinkTypeRequest, componentId: string): Observable<boolean> {
-    return this.httpService.put<PutLinkTypeRequest>(this.url.concat('/linktypes'), linkType, componentId)
+  public putLinkType(linkType: PutLinkTypeRequest, componentId: string): Observable<LinkType> {
+    return this.httpService.put<LinkType>(this.url.concat('/linktypes'), linkType, componentId)
   }
 
   public deleteLinkType(id: string, componentId: string): Observable<boolean> {

@@ -110,8 +110,8 @@ export class AdminLinkTypesEditComponent implements OnInit{
   private putLinkType(linkType: PutLinkTypeRequest): void {
     this.linkService.putLinkType(linkType, this.componentId)
       .subscribe(
-        (okResult: boolean) => {
-          if (okResult) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
+        (linkType: LinkType) => {
+          if (linkType) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
         }
       );
     

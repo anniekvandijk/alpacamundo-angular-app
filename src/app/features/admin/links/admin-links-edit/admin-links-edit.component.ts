@@ -153,8 +153,8 @@ export class AdminLinksEditComponent implements OnInit{
   private putLink(linkRequest: PutLinkRequest): void {
     this.linkService.putLink(linkRequest, this.componentId)
       .subscribe(
-        (okResult: boolean) => {
-          if (okResult) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
+        (link: Link) => {
+          if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
         }
       );
   }

@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { Document } from "../models/document.model";
 import { PostDocumentRequest } from "../models/post-document-request.model";
 import { PostDocumentsRequest } from "../models/post-documents-request.model";
+import { UndeleteDocumentRequest } from "../models/undelete-document-request";
 
 @Injectable({
   providedIn: 'root',
@@ -38,15 +39,19 @@ export class DocumentService {
     return this.httpService.get<Document>(this.url.concat('/', id), componentId);
   }
 
-  public postDocument(document: PostDocumentRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post<PostDocumentRequest>(this.url, document, componentId);
+  public postDocument(document: PostDocumentRequest, componentId: string): Observable<Document> {
+    return this.httpService.post<Document>(this.url, document, componentId);
   }
 
-  public postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<boolean> {
-    return this.httpService.post<PostDocumentsRequest>(this.url, documents, componentId);
+  public postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<Document[]> {
+    return this.httpService.post<Document[]>(this.url, documents, componentId);
   }
 
   public deleteDocument(id: string, componentId: string): Observable<boolean> {
     return this.httpService.delete(this.url.concat('/', id), componentId);
+  }
+
+  public undeleteDocument(document: UndeleteDocumentRequest, componentId: string): Observable<Document> {
+    return this.httpService.put<Document>(this.url.concat('/undelete'), document, componentId);
   }
 }
