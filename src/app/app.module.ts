@@ -1,5 +1,5 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -46,7 +46,10 @@ const graphScopeArray = [
     BrowserModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    RouterModule.forRoot(ROUTES, {scrollPositionRestoration: 'enabled'}),
+    RouterModule.forRoot(ROUTES, {
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules
+    }),
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
