@@ -2,7 +2,7 @@ import { Route } from "@angular/router";
 import { AboutMainComponent } from "./about-main/about-main.component";
 import { AboutSidebarComponent } from "./about-sidebar/about-sidebar.component";
 
-export default [
+export const ABOUT_ROUTES: Route[] = [
     {
         path: '',
         component: AboutMainComponent,
@@ -12,4 +12,4 @@ export default [
         component: AboutSidebarComponent,
         outlet: 'sidebar',
       },
-  ] as Route[];
+  ];

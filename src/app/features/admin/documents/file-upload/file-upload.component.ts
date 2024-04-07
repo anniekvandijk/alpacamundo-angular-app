@@ -5,6 +5,7 @@ import { FormService } from '../services/form.service';
 import { DocumentService } from '../services/document.service';
 import { PostDocumentsRequest } from '../models/post-documents-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PostDocumentRequest } from '../models/post-document-request.model';
 
 @Component({
   selector: 'app-file-upload',
@@ -45,17 +46,12 @@ export class FileUploadComponent implements OnInit {
     });
   }
 
-  isUploadrequired(): boolean {
-    return this.fileRequired 
-      && this.currentDocuments 
-      && this.currentDocuments.length === 0 
-      && this.addedDocuments
-      && this.addedDocuments.length === 0;
-  }
-
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
+      if (!this.multipleFiles) {
+        this.filePreviews = [];
+      }
       for (let i = 0; i < fileList.length; i++) {        
       this.filePreviews.push( 
         {
@@ -68,6 +64,36 @@ export class FileUploadComponent implements OnInit {
 
   onPreviewFileRemove(index: number) {
     this.filePreviews.splice(index, 1);
+  }
+
+
+  onUploadSubmit() {
+    if (this.multipleFiles) {
+      this.onDocumentsUpload();
+    } else {
+      this.onDocumentUpload();
+    }
+  }
+
+  // Single file upload
+  onDocumentUpload() {
+    // TODO delete existing document
+    const postDocumentrequest: PostDocumentRequest = {
+      file: this.filePreviews[0].file,
+      documentCategory: 'link'
+    };
+    this.documentService
+      .postDocument(postDocumentrequest, this.formComponentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((document) => {
+        if (this.replaceFile) {
+          this.deletedDocuments.push(this.addedDocuments[0]);
+          this.currentDocuments.splice(this.currentDocuments.indexOf(this.addedDocuments[0]), 1);
+        }
+        this.addedDocuments = [document];
+        this.currentDocuments.push(document);
+      });
+
   }
 
   onDocumentsUpload() {
@@ -84,7 +110,6 @@ export class FileUploadComponent implements OnInit {
             this.currentDocuments.push(document);
           });
         });
-    // more to do here
   }
 
   onExistingDocumentRemove(documentId: string) {

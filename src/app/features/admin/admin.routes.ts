@@ -11,7 +11,7 @@ import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page
 import { AdminDocumentsListComponent } from "./documents/admin-documents-list/admin-documents-list.component";
 import { NotFoundComponent } from "src/app/shared/features/not-found/not-found.component";
 
-export default [
+export const ADMIN_ROUTES: Route[] = [
     {
       path: '',
       component: AdminMainComponent,
@@ -67,4 +67,4 @@ export default [
         }
       ]
     }
-  ] as Route[];
+  ];

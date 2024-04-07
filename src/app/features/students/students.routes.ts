@@ -2,7 +2,8 @@ import { Route } from "@angular/router";
 import { StudentsMainComponent } from "./students-main/students-main.component";
 import { StudentsSidebarComponent } from "./students-sidebar/students-sidebar.component";
 
-export default [
+export const STUDENTS_ROUTES: Route[] = 
+[
     {
         path: '',
         component: StudentsMainComponent,
@@ -12,4 +13,4 @@ export default [
         component: StudentsSidebarComponent,
         outlet: 'sidebar',
     },
-  ] as Route[];
+  ];

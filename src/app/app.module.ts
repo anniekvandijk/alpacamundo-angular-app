@@ -37,6 +37,9 @@ const graphScopeArray = [
   { httpMethod: 'GET', scopes: [scopes.graphRead] },
 ]
 
+// TODO: get rid of this NgModule 
+// move to main.ts
+// bootstrapApplication with providers ans omporftProvidersFrom
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@ import { InfopagesListComponent } from "./infopages-list/infopages-list.componen
 import { InfopagesSidebarComponent } from "./infopages-sidebar/infopages-sidebar.component";
 import { InfopagesDetailsComponent } from "./infopages-details/infopages-details.component";
 
-export default [
+export const INFOPAGE_ROUTES: Route[] = [
     {
         path: '',
         component: InfopagesListComponent,
@@ -17,4 +17,4 @@ export default [
         path: 'detail/:id',
         component: InfopagesDetailsComponent,
     }
-  ] as Route[];
+  ];
