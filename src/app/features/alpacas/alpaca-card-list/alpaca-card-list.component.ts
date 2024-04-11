@@ -73,7 +73,8 @@ export class AlpacaCardListComponent implements OnInit {
         this.alpacas = sorted;
         if (this.filter === 'forsale') {
           this.filteredAlpacas = alpacas
-            .filter(alpaca => alpaca.status === "Te koop")
+            .filter(alpaca => alpaca.status === "Te koop");
+          this.counter = null;
         } 
         else if (this.filter === 'sold') {
           this.filteredAlpacas = alpacas
