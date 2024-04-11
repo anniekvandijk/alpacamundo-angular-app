@@ -1,3 +1,8 @@
+.position {
+  display: flex;
+  justify-content: center;
+}
+
 .lds-spinner {
   /* change color here */
   color: var(--primary-color);

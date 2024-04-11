@@ -5,7 +5,6 @@ import { Infopage } from 'src/app/features/infopages/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/infopages.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +13,6 @@ import { environment } from 'src/environments/environment';
   standalone: true,
   imports: [
     CommonModule,
-    SpinnerComponent,
     HttploaderComponent
   ],
   templateUrl: './infopages-details.component.html',

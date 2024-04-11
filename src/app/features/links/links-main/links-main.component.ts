@@ -4,7 +4,6 @@ import { LinkService } from 'src/app/features/links/services/link.service';
 import { Observable, map } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
@@ -17,7 +16,6 @@ import { environment } from 'src/environments/environment';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    SpinnerComponent,
     HttploaderComponent
   ],
   selector: 'app-links-main',

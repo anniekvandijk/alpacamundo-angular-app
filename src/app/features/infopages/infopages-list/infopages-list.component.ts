@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/infopages.service';
 import { InfopageCardComponent } from '../infopage-card/infopage-card.component';
@@ -12,7 +11,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   standalone: true,
   imports: [
     CommonModule,
-    SpinnerComponent,
     InfopageCardComponent,
     HttploaderComponent
   ],

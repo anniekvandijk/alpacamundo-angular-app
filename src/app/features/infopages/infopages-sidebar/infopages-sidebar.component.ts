@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Infopage } from 'src/app/features/infopages/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/infopages.service';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
@@ -13,7 +12,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   imports: [
     CommonModule, 
     RouterModule,
-    SpinnerComponent,
     HttploaderComponent
   ],
   templateUrl: './infopages-sidebar.component.html',

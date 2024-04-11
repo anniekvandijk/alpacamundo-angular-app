@@ -5,7 +5,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
 import { AlpacaShowresultsComponent } from './alpaca-showresults/alpaca-showresults.component';
 import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-fleeceresults.component';
@@ -23,7 +22,6 @@ import { environment } from 'src/environments/environment';
     AlpacaFleeceresultsComponent,
     AlpacaOffspringListComponent,
     AlpacaOffspringCardComponent,
-    SpinnerComponent,
     HttploaderComponent
   ],
   templateUrl: './alpaca-details.component.html',

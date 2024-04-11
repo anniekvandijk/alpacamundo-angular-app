@@ -6,7 +6,6 @@ import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -18,7 +17,6 @@ import { environment } from 'src/environments/environment';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    SpinnerComponent
   ],
   templateUrl: './alpaca-card.component.html',
   styleUrls: ['./alpaca-card.component.scss']

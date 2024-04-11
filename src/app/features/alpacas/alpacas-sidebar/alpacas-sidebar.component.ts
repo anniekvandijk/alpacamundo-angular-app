@@ -4,7 +4,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/alpaca.service';
 import { RouterModule } from '@angular/router';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
 
 @Component({
@@ -13,7 +12,6 @@ import { HttploaderComponent } from 'src/app/shared/features/pageloader/httpload
   imports: [
     CommonModule,
     RouterModule,
-    SpinnerComponent,
     HttploaderComponent
   ],
   templateUrl: './alpacas-sidebar.component.html',

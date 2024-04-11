@@ -2,7 +2,6 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +11,6 @@ import { environment } from 'src/environments/environment';
   imports: [
     CommonModule,
     MatCardModule,
-    SpinnerComponent
   ],
   templateUrl: './alpaca-offspring-card.component.html',
   styleUrls: ['./alpaca-offspring-card.component.scss']

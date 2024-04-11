@@ -1,4 +1,4 @@
-<H1 *ngIf="title !== ''">{{ title }}</H1>
+<H1 *ngIf="title">{{ title }} <span *ngIf="counter">({{ counter }})</span></H1>
 <app-http-loader [componentId]="componentId">
   <ng-container *ngIf="filteredAlpacas">    
     <div *ngIf="filteredAlpacas.length === 0">

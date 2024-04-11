@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { Alpaca } from 'src/app/features/alpacas/alpaca.model';
 import { Showresult } from 'src/app/features/alpacas/showresult.model';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
@@ -13,7 +12,6 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
     CommonModule,
     MatTableModule,
     MatSortModule,
-    SpinnerComponent
   ],
   templateUrl: './alpaca-showresults.component.html',
   styleUrls: []

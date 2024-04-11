@@ -4,7 +4,6 @@ import { Fleece } from 'src/app/features/alpacas/fleece.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { SpinnerComponent } from 'src/app/shared/features/pageloader/spinner.component';
 import { MatSort, Sort } from '@angular/material/sort';
 import { environment } from 'src/environments/environment';
 
@@ -15,7 +14,6 @@ import { environment } from 'src/environments/environment';
     CommonModule,
     MatTableModule,
     MatIconModule,
-    SpinnerComponent
   ],
   templateUrl: './alpaca-fleeceresults.component.html',
   styleUrls: ['./alpaca-fleeceresults.component.scss']
