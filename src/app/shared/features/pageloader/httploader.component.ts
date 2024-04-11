@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpinnerComponent } from './spinner.component';
 import { Observable } from 'rxjs';
 import { HttpStatusService } from '../../services/http-status.service';
+import { LoadingSpinnerComponent } from './pure-css-loader/loading-spinner.component';
 
 @Component({
   standalone: true,
-  imports: [ CommonModule, SpinnerComponent ],
+  imports: [ CommonModule, LoadingSpinnerComponent ],
   selector: 'app-http-loader',
   template: `
     <ng-template #content>
@@ -14,7 +14,7 @@ import { HttpStatusService } from '../../services/http-status.service';
     </ng-template>
 
     <ng-container *ngIf="isLoading$ | async; else content">
-      <app-spinner></app-spinner>
+      <app-loading-spinner></app-loading-spinner>
     </ng-container>`,
   
 })
