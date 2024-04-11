@@ -21,6 +21,13 @@
     padding: 10px;
   }
 
+  .file-preview-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
   .file-upload-body {
     display: flex;
     flex-direction: row;
@@ -31,6 +38,11 @@
     .file-upload-button {
       margin-top: 10px;
     }
+  }
+
+  .file-upload-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   img {

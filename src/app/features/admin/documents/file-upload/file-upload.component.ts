@@ -66,15 +66,6 @@ export class FileUploadComponent implements OnInit {
     this.filePreviews.splice(index, 1);
   }
 
-
-  onUploadSubmit() {
-    if (this.multipleFiles) {
-      this.onDocumentsUpload();
-    } else {
-      this.onDocumentUpload();
-    }
-  }
-
   // Single file upload
   onDocumentUpload() {
     // TODO delete existing document
