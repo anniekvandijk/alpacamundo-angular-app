@@ -15,26 +15,24 @@ import { PostDocumentRequest } from '../models/post-document-request.model';
   styleUrl: './file-upload.component.scss'
 })
 export class FileUploadComponent implements OnInit {
-  @Input() set documents(documents: Document[]) {
-    this.currentDocuments = documents;
-  }
-  @Input() public formComponentId!: string;
-  @Input() public multipleFiles = false;
-  @Input() public acceptedFileTypes: string[] = [];
-  @Input() public fileRequired = false;
+  @Input() documents: Document[] = [];
+  @Input() formComponentId!: string;
+  @Input() multipleFiles = false;
+  @Input() acceptedFileTypes: string[] = [];
+  @Input() fileRequired = false;
   private readonly destroyRef = inject(DestroyRef);
   private readonly formService = inject(FormService);
   private readonly documentService = inject(DocumentService);
-  public currentDocuments: Document[] = [];
   private addedDocuments: Document[] = [];
   private deletedDocuments: Document[] = [];
-  public filePreviews: {file: File, url: string}[] = [];
+  filePreviews: {file: File, url: string}[] = [];
+  filesSelected = false;
 
-  public filesSelected = false;
-
-  
+  /** 
+   * In case the user can only upload one file, the existing file will be replaced
+   */
   private readonly replaceFile = (
-    !this.multipleFiles && this.addedDocuments.length > 0) ? true : false;
+    !this.multipleFiles && this.documents.length > 0 && this.addedDocuments.length > 0) ? true : false;
 
   ngOnInit(): void {
     this.formService.cancelAction$
@@ -68,7 +66,17 @@ export class FileUploadComponent implements OnInit {
 
   // Single file upload
   onDocumentUpload() {
-    // TODO delete existing document
+    // replace the existing document if multiple files are not allowed
+    if (this.replaceFile) {
+      this.documentService.deleteDocument(this.documents[0].id, this.formComponentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (result) {
+          this.deletedDocuments.push(this.documents[0]);
+          this.documents.splice(this.documents.indexOf(this.documents[0]), 1);
+        }
+      });
+    }
     const postDocumentrequest: PostDocumentRequest = {
       file: this.filePreviews[0].file,
       documentCategory: 'link'
@@ -79,10 +87,10 @@ export class FileUploadComponent implements OnInit {
       .subscribe((document) => {
         if (this.replaceFile) {
           this.deletedDocuments.push(this.addedDocuments[0]);
-          this.currentDocuments.splice(this.currentDocuments.indexOf(this.addedDocuments[0]), 1);
+          this.documents.splice(this.documents.indexOf(this.addedDocuments[0]), 1);
         }
         this.addedDocuments = [document];
-        this.currentDocuments.push(document);
+        this.documents.push(document);
       });
 
   }
@@ -98,20 +106,20 @@ export class FileUploadComponent implements OnInit {
       .subscribe((documents) => {
         documents.forEach((document: Document) => {
             this.addedDocuments.push(document);
-            this.currentDocuments.push(document);
+            this.documents.push(document);
           });
         });
   }
 
   onExistingDocumentRemove(documentId: string) {
-    const documentToRemove = this.currentDocuments.find(d => d.id === documentId);
+    const documentToRemove = this.documents.find(d => d.id === documentId);
     if (documentToRemove) {
       this.documentService.deleteDocument(documentToRemove.id, this.formComponentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
         if (result) {
           this.deletedDocuments.push(documentToRemove);
-          this.currentDocuments.splice(this.currentDocuments.indexOf(documentToRemove), 1);
+          this.documents.splice(this.documents.indexOf(documentToRemove), 1);
         }
       });  
     }
@@ -125,7 +133,7 @@ export class FileUploadComponent implements OnInit {
         .subscribe((result) => {
           if (result) {
             this.deletedDocuments.splice(this.deletedDocuments.indexOf(document), 1);
-            this.currentDocuments.push(document);
+            this.documents.push(document);
           }
         });
     });
@@ -136,7 +144,7 @@ export class FileUploadComponent implements OnInit {
         .subscribe((result) => {
           if (result) {
             this.addedDocuments.splice(this.addedDocuments.indexOf(document), 1);
-            this.currentDocuments.splice(this.currentDocuments.indexOf(document), 1);
+            this.documents.splice(this.documents.indexOf(document), 1);
           }
         });
     });

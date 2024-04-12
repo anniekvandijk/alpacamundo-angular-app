@@ -1,11 +1,11 @@
 <div id="file-upload" class="file-upload">
   <div class="existing-documents">
-    @if (currentDocuments && currentDocuments.length > 0) {
+    @if (documents && documents.length > 0) {
     <div class="existing-documents-header">
-      {{ currentDocuments.length === 1 ? 'Huidige file' : 'Huidige files' }}
+      {{ documents.length === 1 ? 'Huidige file' : 'Huidige files' }}
     </div>
     <div class="existing-documents-body">
-        @for (currentFile of currentDocuments; track currentFile.id) {
+        @for (currentFile of documents; track currentFile.id) {
         <div class="document">
           <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
         </div>

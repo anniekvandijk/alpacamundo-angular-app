@@ -35,7 +35,6 @@ import { FormService } from '../../../documents/services/form.service';
   templateUrl: './admin-links-edit.component.html',
 })
 export class AdminLinksEditComponent implements OnInit{
-  public componentId = this.constructor.name;
   private readonly destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private linkService = inject(LinkService);
@@ -43,17 +42,18 @@ export class AdminLinksEditComponent implements OnInit{
   private formService = inject(FormService);
   private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);
-  public link!: Link;
+  componentId = this.constructor.name;
+  link!: Link;
   @Output() public documents!: Document[];
-  public linkTypes!: LinkType[];
-  public linksEditForm!: FormGroup;
+  linkTypes!: LinkType[];
+  linksEditForm!: FormGroup;
 
   ngOnInit(): void {	
     this.createForm();
     this.loadDataAndUpdateForm();
   }
 
-  public onSubmit() {
+  onSubmit() {
     if (this.linksEditForm.valid) {
       const linkRequest: PutLinkRequest = {
         id: this.link.id,
@@ -71,7 +71,7 @@ export class AdminLinksEditComponent implements OnInit{
     }
   }
 
-  public onDelete() {
+  onDelete() {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: '250px'
     });
@@ -83,12 +83,12 @@ export class AdminLinksEditComponent implements OnInit{
     });
   }
 
-  public onNavigateBack(): void {
+  onNavigateBack(): void {
     this.formService.triggerCancel(this.componentId);	
     this.router.navigate(['/admin/links']);
   }
 
-  public onReset() {
+  onReset() {
     this.formService.triggerCancel(this.componentId);	
     this.loadDataAndUpdateForm();
   }
@@ -102,18 +102,8 @@ export class AdminLinksEditComponent implements OnInit{
       'url': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
     });
   }
-
-  private getLinkTypes(): Observable<LinkType[]> {
-    return this.linkService.getLinkTypes(this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef));
-  }
   
-  private getLink(id: string): Observable<Link> {
-    return this.linkService.getLink(id, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef));
-  }
-  
-  public loadDataAndUpdateForm(): void {
+  loadDataAndUpdateForm(): void {
     this.route.params.pipe(
       takeUntilDestroyed(this.destroyRef),
       switchMap((params: Params) => 
@@ -140,6 +130,16 @@ export class AdminLinksEditComponent implements OnInit{
     });
   }
 
+  private getLinkTypes(): Observable<LinkType[]> {
+    return this.linkService.getLinkTypes(this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef));
+  }
+  
+  private getLink(id: string): Observable<Link> {
+    return this.linkService.getLink(id, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef));
+  }
+
   private updateForm(link: Link): void {
     this.linksEditForm.patchValue({
       'body': link.body,
@@ -152,6 +152,7 @@ export class AdminLinksEditComponent implements OnInit{
 
   private putLink(linkRequest: PutLinkRequest): void {
     this.linkService.putLink(linkRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
         (link: Link) => {
           if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
@@ -161,6 +162,7 @@ export class AdminLinksEditComponent implements OnInit{
 
   private deleteLink(): void {
     this.linkService.deleteLink(this.link.id, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLink', 'Link verwijderd');
