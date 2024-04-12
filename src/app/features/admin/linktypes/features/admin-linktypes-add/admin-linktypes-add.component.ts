@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
-import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { LinkType } from 'src/app/features/links/models/link.model';
 
 @Component({

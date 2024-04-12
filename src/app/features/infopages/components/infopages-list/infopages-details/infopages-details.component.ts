@@ -5,7 +5,7 @@ import { Infopage } from 'src/app/features/infopages/models/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/services/infopages.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 import { environment } from 'src/environments/environment';
 
 @Component({

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AlpacaShowresultsComponent } from './alpaca-showresults/alpaca-showresults.component';
 import { AlpacaFleeceresultsComponent } from './alpaca-fleeceresults/alpaca-fleeceresults.component';
 import { AlpacaOffspringCardComponent } from './alpaca-offspring-list/alpaca-offspring-card/alpaca-offspring-card.component';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 import { AlpacaOffspringListComponent } from './alpaca-offspring-list/alpaca-offspring-list.component';
 import { environment } from 'src/environments/environment';
 

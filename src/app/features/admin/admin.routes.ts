@@ -7,9 +7,9 @@ import { AdminLinksEditComponent } from "./links/features/admin-links-edit/admin
 import { AdminLinkTypesListComponent } from "./linktypes/features/admin-linktypes-list/admin-linktypes-list.component";
 import { AdminLinkTypesAddComponent } from "./linktypes/features/admin-linktypes-add/admin-linktypes-add.component";
 import { AdminLinkTypesEditComponent } from "./linktypes/features/admin-linktypes-edit/admin-linktypes-edit.component";
-import { TechnicalPageComponent } from "./admin-extras/error-page/technical-page.component";
+import { TechnicalPageComponent } from "./admin-extras/technical-page/technical-page.component";
 import { AdminDocumentsListComponent } from "./documents/admin-documents-list/admin-documents-list.component";
-import { NotFoundComponent } from "src/app/shared/features/not-found/not-found.component";
+import { NotFoundComponent } from "src/app/shared/components/not-found/not-found.component";
 
 export const ADMIN_ROUTES: Route[] = [
     {

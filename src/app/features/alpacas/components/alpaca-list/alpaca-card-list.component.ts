@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AlpacaCardComponent } from './alpaca-card/alpaca-card.component';
 import { CommonModule } from '@angular/common';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 import { map, switchMap, tap } from 'rxjs';
 
 @Component({

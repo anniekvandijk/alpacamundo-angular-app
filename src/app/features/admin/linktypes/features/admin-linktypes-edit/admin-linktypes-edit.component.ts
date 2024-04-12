@@ -9,8 +9,8 @@ import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { LinkType } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
-import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PutLinkTypeRequest } from 'src/app/features/links/models/put-linkType-request.model';
 

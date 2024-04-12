@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Alpaca } from 'src/app/features/alpacas/models/alpaca.model';
 import { AlpacaService } from 'src/app/features/alpacas/services/alpaca.service';
 import { RouterModule } from '@angular/router';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 
 @Component({
   selector: 'app-alpacas-sidebar',

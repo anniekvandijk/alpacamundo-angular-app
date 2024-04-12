@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
-import { LinksMainComponent } from "./features/links-main/links-main.component";
-import { LinksSidebarComponent } from "./features/links-sidebar/links-sidebar.component";
+import { LinksMainComponent } from "./components/links-main/links-main.component";
+import { LinksSidebarComponent } from "./components/links-sidebar/links-sidebar.component";
 
 export const LINK_ROUTES: Route[] = [
     {

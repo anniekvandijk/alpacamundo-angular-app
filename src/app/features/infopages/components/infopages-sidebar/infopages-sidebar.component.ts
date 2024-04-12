@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { Infopage } from 'src/app/features/infopages/models/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/services/infopages.service';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 
 @Component({
   selector: 'app-infopages-sidebar',

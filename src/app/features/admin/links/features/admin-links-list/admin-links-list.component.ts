@@ -10,7 +10,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Link } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { RouterModule } from '@angular/router';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 import { link } from 'fs';
 import { FlattenLink } from '../../../../links/models/flattenLink.model';
 

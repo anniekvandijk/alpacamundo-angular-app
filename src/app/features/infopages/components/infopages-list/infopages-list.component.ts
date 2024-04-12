@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Infopage } from 'src/app/features/infopages/models/infopage.model';
 import { InfopagesService } from 'src/app/features/infopages/services/infopages.service';
 import { InfopageCardComponent } from './infopage-card/infopage-card.component';
-import { HttploaderComponent } from 'src/app/shared/features/pageloader/httploader.component';
+import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 
 @Component({
   selector: 'app-infopages-list',

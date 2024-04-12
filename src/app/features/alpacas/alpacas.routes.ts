@@ -1,7 +1,7 @@
 import { Route } from "@angular/router";
-import { AlpacaCardListComponent } from "./features/alpaca-list/alpaca-card-list.component";
-import { AlpacasSidebarComponent } from "./features/alpacas-sidebar/alpacas-sidebar.component";
-import { AlpacaDetailsComponent } from "./features/alpaca-details/alpaca-details.component";
+import { AlpacaCardListComponent } from "./components/alpaca-list/alpaca-card-list.component";
+import { AlpacasSidebarComponent } from "./components/alpacas-sidebar/alpacas-sidebar.component";
+import { AlpacaDetailsComponent } from "./components/alpaca-details/alpaca-details.component";
 
 export const ALPACA_ROUTES: Route[] = [
     {

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { MessageService } from '../features/messages/message.service';
-import { Message, MessageType } from '../features/messages/message.model';
+import { MessageService } from '../components/messages/message.service';
+import { Message, MessageType } from '../components/messages/message.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';

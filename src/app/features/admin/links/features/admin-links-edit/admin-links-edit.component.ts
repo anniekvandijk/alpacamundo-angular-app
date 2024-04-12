@@ -10,9 +10,9 @@ import { Link, LinkType, Image } from 'src/app/features/links/models/link.model'
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { DeleteConfirmationDialogComponent } from 'src/app/shared/features/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MessageService } from 'src/app/shared/features/messages/message.service';
+import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { PutLinkRequest } from 'src/app/features/links/models/put-link-request.model';
 import { FileUploadComponent } from '../../../documents/file-upload/file-upload.component';
 import { Document } from '../../../documents/models/document.model';
