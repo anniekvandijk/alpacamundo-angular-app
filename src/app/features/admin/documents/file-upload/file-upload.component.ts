@@ -6,6 +6,7 @@ import { DocumentService } from '../services/document.service';
 import { PostDocumentsRequest } from '../models/post-documents-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
+import { PutDocumentRequest } from '../models/put-document-request';
 
 @Component({
   selector: 'app-file-upload',
@@ -28,12 +29,6 @@ export class FileUploadComponent implements OnInit {
   filePreviews: {file: File, url: string}[] = [];
   filesSelected = false;
 
-  /** 
-   * In case the user can only upload one file, the existing file will be replaced
-   */
-  private readonly replaceFile = (
-    !this.multipleFiles && this.documents.length > 0 && this.addedDocuments.length > 0) ? true : false;
-
   ngOnInit(): void {
     this.formService.cancelAction$
     .pipe(takeUntilDestroyed(this.destroyRef))
@@ -44,13 +39,19 @@ export class FileUploadComponent implements OnInit {
     });
   }
 
+  log() {
+    console.log('documents', this.documents);
+    console.log('addedDocuments', this.addedDocuments);
+    console.log('deletedDocuments', this.deletedDocuments);
+  }
+
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       if (!this.multipleFiles) {
         this.filePreviews = [];
       }
-      for (let i = 0; i < fileList.length; i++) {        
+      for (let i = 0; i <= fileList.length; i++) {        
       this.filePreviews.push( 
         {
           file: fileList[i],
@@ -62,39 +63,45 @@ export class FileUploadComponent implements OnInit {
 
   onPreviewFileRemove(index: number) {
     this.filePreviews.splice(index, 1);
-  }
+  } 
 
   // Single file upload
   onDocumentUpload() {
     // replace the existing document if multiple files are not allowed
-    if (this.replaceFile) {
-      this.documentService.deleteDocument(this.documents[0].id, this.formComponentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((result) => {
-        if (result) {
-          this.deletedDocuments.push(this.documents[0]);
-          this.documents.splice(this.documents.indexOf(this.documents[0]), 1);
-        }
-      });
-    }
-    const postDocumentrequest: PostDocumentRequest = {
-      file: this.filePreviews[0].file,
-      documentCategory: 'link'
-    };
-    this.documentService
-      .postDocument(postDocumentrequest, this.formComponentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((document) => {
-        if (this.replaceFile) {
-          this.deletedDocuments.push(this.addedDocuments[0]);
-          this.documents.splice(this.documents.indexOf(this.addedDocuments[0]), 1);
-        }
-        this.addedDocuments = [document];
+    if (!this.multipleFiles && this.documents.length > 0) {
+      // UPDATE
+      const putDocumentRequest: PutDocumentRequest = {
+        id: this.documents[0].id,
+        file: this.filePreviews[0].file,
+        documentCategory: 'link'
+      };
+      this.documentService.putDocument(putDocumentRequest, this.formComponentId).pipe(
+        takeUntilDestroyed(this.destroyRef)
+      ).subscribe((document) => {
+        this.deletedDocuments.push(this.documents[0]);
+        this.documents.splice(this.documents.indexOf(this.documents[0]), 1);
+        this.addedDocuments.push(document);
         this.documents.push(document);
+        this.filePreviews = [];
       });
-
+    } else {
+      // add
+      const postDocumentrequest: PostDocumentRequest = {
+        file: this.filePreviews[0].file,
+        documentCategory: 'link'
+      };
+      this.documentService
+        .postDocument(postDocumentrequest, this.formComponentId).pipe(
+          takeUntilDestroyed(this.destroyRef)
+        )
+        .subscribe((document) => {
+          this.addedDocuments.push(document);
+          this.documents.push(document);
+          this.filePreviews = [];
+        });
+      }
   }
-
+  
   onDocumentsUpload() {
     const postDocumentsRequest: PostDocumentsRequest = {
       files: this.filePreviews.map(fp => fp.file),
@@ -107,6 +114,7 @@ export class FileUploadComponent implements OnInit {
         documents.forEach((document: Document) => {
             this.addedDocuments.push(document);
             this.documents.push(document);
+            this.filePreviews = [];
           });
         });
   }

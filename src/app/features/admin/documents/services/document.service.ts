@@ -6,6 +6,7 @@ import { Document } from "../models/document.model";
 import { PostDocumentRequest } from "../models/post-document-request.model";
 import { PostDocumentsRequest } from "../models/post-documents-request.model";
 import { UndeleteDocumentRequest } from "../models/undelete-document-request";
+import { PutDocumentRequest } from "../models/put-document-request";
 
 @Injectable({
   providedIn: 'root',
@@ -40,11 +41,26 @@ export class DocumentService {
   }
 
   public postDocument(document: PostDocumentRequest, componentId: string): Observable<Document> {
-    return this.httpService.post<Document>(this.url, document, componentId);
+    const formData = new FormData();
+    formData.append('FormFile', document.file);
+    const queryUrl = this.url.concat('?FileCategory=', document.documentCategory);
+    return this.httpService.post<Document>(queryUrl, document, componentId);
   }
 
   public postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<Document[]> {
-    return this.httpService.post<Document[]>(this.url, documents, componentId);
+    const formData = new FormData();
+    documents.files.forEach(file => {
+      formData.append('FormFile', file);
+    });
+    const queryUrl = this.url.concat('?FileCategory=', documents.documentCategory);
+    return this.httpService.post<Document[]>(queryUrl, formData, componentId);
+  }
+
+  public putDocument(document: PutDocumentRequest, componentId: string): Observable<Document> {
+    const formData = new FormData();
+    formData.append('FormFile', document.file);
+    const queryUrl = this.url.concat('?Id=', document.id, '&FileCategory=', document.documentCategory);
+    return this.httpService.put<Document>(queryUrl, formData, componentId);
   }
 
   public deleteDocument(id: string, componentId: string): Observable<boolean> {

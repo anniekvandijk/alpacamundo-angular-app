@@ -10,9 +10,11 @@
           <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
         </div>
         <div class="document-actions">
+          @if(multipleFiles) {
           <button mat-raised-button type="button" class="button-warning-action" (click)="onExistingDocumentRemove(currentFile.id)">
             Verwijder
           </button>
+          }
         </div>
         }
     </div>
@@ -48,6 +50,10 @@
         </div>
       }  
     }
+      <button mat-raised-button type="button" class="button-primary-action" (click)="log()">
+        LOGGING
+      </button>
+    </div>
     <div class="file-upload">
       <div class="file-upload-header">
         {{ multipleFiles ? 'Upload files' : 'Upload file' }}
