@@ -8,7 +8,9 @@ mat-card {
     border-color: var(--secondary-color-light) !important;
     border-width: 0.5px !important;  
     border-style: solid !important;
-      
+    border-collapse: separate;
+    border-spacing: 0;
+     
 }
 
 .mat-mdc-card-title, mat-card-title {
@@ -26,6 +28,10 @@ mat-card-header, mat-card-actions{
 
 mat-card-content {
    background-color: var(--background-color-light);
+   &.no-actions-content {
+    border-radius: 0px 0px 10px 10px;
+   }
+   
 }
 
 mat-card-header {
