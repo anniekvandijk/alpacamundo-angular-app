@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/features/not-found/not-found.component';
-import { HomeSidebarComponent } from './features/home/home-sidebar/home-sidebar.component';
+import { HomeSidebarComponent } from './features/home/features/home-sidebar/home-sidebar.component';
 import { MsalGuard } from '@azure/msal-angular';
 
 export const ROUTES: Routes = [

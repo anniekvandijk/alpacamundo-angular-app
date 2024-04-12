@@ -1,7 +1,7 @@
 import { Route } from "@angular/router";
-import { InfopagesListComponent } from "./infopages-list/infopages-list.component";
-import { InfopagesSidebarComponent } from "./infopages-sidebar/infopages-sidebar.component";
-import { InfopagesDetailsComponent } from "./infopages-details/infopages-details.component";
+import { InfopagesListComponent } from "./features/infopages-list/infopages-list.component";
+import { InfopagesSidebarComponent } from "./features/infopages-sidebar/infopages-sidebar.component";
+import { InfopagesDetailsComponent } from "./features/infopages-list/infopages-details/infopages-details.component";
 
 export const INFOPAGE_ROUTES: Route[] = [
     {
