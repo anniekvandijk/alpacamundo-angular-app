@@ -3,5 +3,6 @@ export interface UndeleteDocumentRequest {
   name: string;
   contentType: string;
   documentCategory: string;
+  url: string;
 
 }

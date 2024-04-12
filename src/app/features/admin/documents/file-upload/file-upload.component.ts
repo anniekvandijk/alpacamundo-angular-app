@@ -7,6 +7,7 @@ import { PostDocumentsRequest } from '../models/post-documents-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
 import { PutDocumentRequest } from '../models/put-document-request';
+import { UndeleteDocumentRequest } from '../models/undelete-document-request';
 
 @Component({
   selector: 'app-file-upload',
@@ -34,7 +35,11 @@ export class FileUploadComponent implements OnInit {
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe((componentId) => {
       if (componentId === this.formComponentId) {
-          this.resetUpload();
+        // TODO: implement cancel action
+        // the documents added and deleted are gone as soon as you leave the component
+        // What do I do? 
+        // put added and deleted documents in the formService and then remove them when the form is submitted?
+        //  this.resetUpload();
       }
     });
   }
@@ -136,7 +141,14 @@ export class FileUploadComponent implements OnInit {
   private resetUpload() {
     // undelete documents that were deleted
     this.deletedDocuments.forEach((document) => {
-      this.documentService.undeleteDocument(document, this.formComponentId)
+      const undeleteDocumentRequest: UndeleteDocumentRequest = {
+        id: document.id,
+        name: document.name,
+        contentType: document.contentType,
+        documentCategory: document.documentCategory,
+        url: document.url
+      };
+      this.documentService.undeleteDocument(undeleteDocumentRequest, this.formComponentId)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((result) => {
           if (result) {
@@ -145,14 +157,17 @@ export class FileUploadComponent implements OnInit {
           }
         });
     });
-    // remove documents that were added
     this.addedDocuments.forEach((document) => {
       this.documentService.deleteDocument(document.id, this.formComponentId)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((result) => {
           if (result) {
             this.addedDocuments.splice(this.addedDocuments.indexOf(document), 1);
-            this.documents.splice(this.documents.indexOf(document), 1);
+            if (this.multipleFiles) {
+              // only remove the document from the documents if multiple files are allowed
+              // else this document is already the resetted document
+              this.documents.splice(this.documents.indexOf(document), 1);
+            }
           }
         });
     });
