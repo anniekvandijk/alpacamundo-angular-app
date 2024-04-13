@@ -72,6 +72,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteLinkType();
+        this.editmode = false; 
         this.onNavigateBack();
       } 
     });
@@ -122,14 +123,9 @@ export class AdminLinkTypesEditComponent implements OnInit{
       name: this.linkTypeEditForm.value.name,
     }
     this.linkService.putLinkType(linkTypeRequest, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
-        },
-        complete: () => {
-          this.editmode = false; 
-          this.onNavigateBack();
         }
       });
   }
@@ -139,28 +135,19 @@ export class AdminLinkTypesEditComponent implements OnInit{
       name: this.linkTypeEditForm.value.name,
     }; 
     this.linkService.postLinkType(linkTypeRequest, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('addLinkType', 'Link categorie toegevoegd');
-        },
-        complete: () => {
-          this.editmode = false;
-          this.onNavigateBack();
         }
     }); 
   }
 
   private deleteLinkType(): void {
     this.linkService.deleteLinkType(this.linkType.id, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
-        },
-        complete: () => {
-          this.editmode = false; 
-          this.onNavigateBack();}
+        }
       });
     }
 }

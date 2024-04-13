@@ -52,6 +52,7 @@ export class AdminLinksEditComponent implements OnInit{
 
   ngOnInit(): void {	
     this.route.params
+    .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(
       (params: Params) => {
         this.editmode = params['id'] != null;
@@ -81,6 +82,8 @@ export class AdminLinksEditComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteLink();
+        this.editmode = false; 
+        this.onNavigateBack();
       } 
     });
   }
@@ -166,14 +169,10 @@ export class AdminLinksEditComponent implements OnInit{
       url: this.linksEditForm.value.url,
     };
     this.linkService.putLink(linkRequest, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (link: Link) => {
+          console.log('Link', link);
           if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
-        },
-        complete: () => {
-          this.editmode = false;
-          this.onNavigateBack();
         }
       });
   }
@@ -187,28 +186,19 @@ export class AdminLinksEditComponent implements OnInit{
       url: this.linksEditForm.value.url,
     };
     this.linkService.postLink(linkRequest, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (link: Link) => {
           if (link) this.messageService.showSuccessMessage('addLink', 'Link toegevoegd');
-        },
-        complete: () => {
-          this.editmode = false;
-          this.onNavigateBack();
         }
     });
   }
 
   private deleteLink(): void {
     this.linkService.deleteLink(this.link.id, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLink', 'Link verwijderd');
-        },
-        complete: () => { 
-          this.editmode = false; 
-          this.onNavigateBack();}
+        }
       });
     }
 }

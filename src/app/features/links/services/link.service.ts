@@ -28,6 +28,7 @@ export class LinkService {
   }
 
   public putLink(link: PutLinkRequest, componentId: string): Observable<Link> {
+    console.log('putLink', link)
     return this.httpService.put<Link>(this.url, link, componentId)
   }
 

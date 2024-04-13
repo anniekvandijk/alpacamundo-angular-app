@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+import { EMPTY, Observable, of, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { HttpStatusService } from '../services/http-status.service';
 import { ErrorService } from '../services/error.service';
@@ -57,7 +57,7 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
       }),
       catchError((err) => {
         this.errorService.handleError(req.url, err);
-        return EMPTY;
+        return throwError(() => err)
       }),
       finalize(() => {
         loadingState.next(false);
