@@ -1,4 +1,4 @@
-<h1>Edit link categorie</h1>
+<h1>{{ editmode? 'Link categorie wijzigen' : 'Link categorie toevoegen' }}</h1>
 <form
   class="standard-form"
   [formGroup]="linkTypeEditForm"
@@ -24,14 +24,16 @@
       <mat-icon>keyboard_double_arrow_left</mat-icon>
       Terug
     </button>
-    <button
+    @if(editmode) { 
+      <button
       mat-raised-button
       class="button-standard-action"
       (click)="onDelete()"
       type="button"
-    >
-      Delete
-    </button>
+      >
+        Delete
+      </button>
+    }
     <button
       mat-raised-button
       class="button-standard-action"

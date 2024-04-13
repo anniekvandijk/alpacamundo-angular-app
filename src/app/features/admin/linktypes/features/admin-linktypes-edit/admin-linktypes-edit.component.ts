@@ -13,6 +13,7 @@ import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/dia
 import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PutLinkTypeRequest } from 'src/app/features/links/models/put-linkType-request.model';
+import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
 
 @Component({
   selector: 'app-admin-linktypes-edit',
@@ -36,26 +37,27 @@ export class AdminLinkTypesEditComponent implements OnInit{
   private linkService = inject(LinkService);
   private messageService = inject(MessageService);
   private dialog = inject(MatDialog);
-  public linkTypeEditForm!: FormGroup;
-  public linkType!: LinkType;
+  editmode = false;
+  linkTypeEditForm!: FormGroup;
+  linkType!: LinkType;
 
   ngOnInit(): void {
-    this.createForm();
-    this.getLinkTypeAndUpdateForm();	
-  }
-
-  public onNavigateBack(): void {
-    this.router.navigate(['/admin/linktypes']);
-  }
-
-  public onSubmit() {
-    if (this.linkTypeEditForm.valid) {
-      const linkTypeRequest: PutLinkTypeRequest = 
-      {
-        id: this.linkType.id,
-        name: this.linkTypeEditForm.value.name,
+    this.route.params
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe(
+      (params: Params) => {
+        this.editmode = params['id'] != null;
       }
-      this.putLinkType(linkTypeRequest);
+    )
+    this.createForm();
+    if (this.editmode) this.loadDataAndUpdateForm();	
+  }
+
+  onSubmit() {
+    if (this.linkTypeEditForm.valid) {
+      if (this.editmode) this.putLinkType();
+      else this.postLinkType();
+      this.editmode = false;
       this.onNavigateBack();
     } 
     else {
@@ -63,23 +65,34 @@ export class AdminLinkTypesEditComponent implements OnInit{
     }
   }
 
-  public onDelete() {
+  onDelete() {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: '250px'
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteLinkType();
+        this.onNavigateBack();
       } 
     });
   }
-
-  public onReset() {
-    this.getLinkTypeAndUpdateForm();
+ 
+  onNavigateBack(): void {
+    this.router.navigate(['/admin/linktypes']);
   }
 
-  private getLinkTypeAndUpdateForm(): void {
+  onReset() {
+    if(this.editmode) this.loadDataAndUpdateForm();
+    else this.linkTypeEditForm.reset();
+  }
+  
+  private createForm(): void {
+    this.linkTypeEditForm = new FormGroup({
+      'name': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]), 
+    });
+  }
+
+  private loadDataAndUpdateForm(): void {
     this.route.params
     .pipe(
       takeUntilDestroyed(this.destroyRef),
@@ -95,11 +108,6 @@ export class AdminLinkTypesEditComponent implements OnInit{
     );
   }
 
-  private createForm(): void {
-    this.linkTypeEditForm = new FormGroup({
-      'name': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]), 
-    });
-  }
 
   private updateForm(linkType: LinkType): void {
     this.linkTypeEditForm.patchValue({
@@ -107,23 +115,51 @@ export class AdminLinkTypesEditComponent implements OnInit{
     });
   }
 
-  private putLinkType(linkType: PutLinkTypeRequest): void {
-    this.linkService.putLinkType(linkType, this.componentId)
-      .subscribe(
-        (linkType: LinkType) => {
+  private putLinkType(): void {
+    const linkTypeRequest: PutLinkTypeRequest = 
+    {
+      id: this.linkType.id,
+      name: this.linkTypeEditForm.value.name,
+    }
+    this.linkService.putLinkType(linkTypeRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
-      );
-    
+      });
+  }
+
+  private postLinkType(): void {
+    const linkTypeRequest: PostLinkTypeRequest = {
+      name: this.linkTypeEditForm.value.name,
+    }; 
+    this.linkService.postLinkType(linkTypeRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (linkType: LinkType) => {
+          if (linkType) this.messageService.showSuccessMessage('addLinkType', 'Link categorie toegevoegd');
+        },
+        complete: () => {
+          this.editmode = false;
+          this.onNavigateBack();
+        }
+    }); 
   }
 
   private deleteLinkType(): void {
     this.linkService.deleteLinkType(this.linkType.id, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
         },
-        complete: () => { 
+        complete: () => {
+          this.editmode = false; 
           this.onNavigateBack();}
       });
     }

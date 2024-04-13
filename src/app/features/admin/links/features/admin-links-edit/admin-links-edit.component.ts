@@ -17,6 +17,7 @@ import { PutLinkRequest } from 'src/app/features/links/models/put-link-request.m
 import { FileUploadComponent } from '../../../documents/file-upload/file-upload.component';
 import { Document } from '../../../documents/models/document.model';
 import { FormService } from '../../../documents/services/form.service';
+import { PostLinkRequest } from 'src/app/features/links/models/post-link-request.model';
 
 @Component({
   selector: 'app-admin-links-edit',
@@ -43,28 +44,29 @@ export class AdminLinksEditComponent implements OnInit{
   private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);
   componentId = this.constructor.name;
+  editmode = false;
   link!: Link;
   @Output() public documents!: Document[];
   linkTypes!: LinkType[];
   linksEditForm!: FormGroup;
 
   ngOnInit(): void {	
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.editmode = params['id'] != null;
+      }
+    )
     this.createForm();
-    this.loadDataAndUpdateForm();
+    if(this.editmode) this.loadDataAndUpdateForm();
   }
 
   onSubmit() {
     if (this.linksEditForm.valid) {
-      const linkRequest: PutLinkRequest = {
-        id: this.link.id,
-        body: this.linksEditForm.value.body,
-        imageId: this.link.image.id,
-        linkTypeId: this.linksEditForm.value.linkType,
-        title: this.linksEditForm.value.title,
-        url: this.linksEditForm.value.url,
-      };
-      //this.putLink(linkRequest);
-      console.log('Form submitted', this.linksEditForm);
+      if (this.editmode) this.putLink();
+      else this.postLink();
+      this.editmode = false;
+      this.onNavigateBack();
     } 
     else {
       console.log('Form not submitted');
@@ -90,7 +92,11 @@ export class AdminLinksEditComponent implements OnInit{
 
   onReset() {
     this.formService.triggerCancel(this.componentId);	
-    this.loadDataAndUpdateForm();
+    if(this.editmode) {
+      this.loadDataAndUpdateForm();
+    } else {
+      this.linksEditForm.reset();
+    }
   }
 
   private createForm() {
@@ -150,14 +156,47 @@ export class AdminLinksEditComponent implements OnInit{
     });
   }
 
-  private putLink(linkRequest: PutLinkRequest): void {
+  private putLink(): void {
+    const linkRequest: PutLinkRequest = {
+      id: this.link.id,
+      body: this.linksEditForm.value.body,
+      imageId: this.link.image.id,
+      linkTypeId: this.linksEditForm.value.linkType,
+      title: this.linksEditForm.value.title,
+      url: this.linksEditForm.value.url,
+    };
     this.linkService.putLink(linkRequest, this.componentId)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(
-        (link: Link) => {
+      .subscribe({
+        next: (link: Link) => {
           if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
+        },
+        complete: () => {
+          this.editmode = false;
+          this.onNavigateBack();
         }
-      );
+      });
+  }
+
+  private postLink(): void {
+    const linkRequest: PostLinkRequest = {
+      body: this.linksEditForm.value.body,
+      imageId: this.documents[0].id,
+      linkTypeId: this.linksEditForm.value.linkType,
+      title: this.linksEditForm.value.title,
+      url: this.linksEditForm.value.url,
+    };
+    this.linkService.postLink(linkRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (link: Link) => {
+          if (link) this.messageService.showSuccessMessage('addLink', 'Link toegevoegd');
+        },
+        complete: () => {
+          this.editmode = false;
+          this.onNavigateBack();
+        }
+    });
   }
 
   private deleteLink(): void {
@@ -168,6 +207,7 @@ export class AdminLinksEditComponent implements OnInit{
           if (okResult) this.messageService.showSuccessMessage('deleteLink', 'Link verwijderd');
         },
         complete: () => { 
+          this.editmode = false; 
           this.onNavigateBack();}
       });
     }

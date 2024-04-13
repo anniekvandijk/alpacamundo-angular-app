@@ -1,4 +1,4 @@
-<h1>Edit link</h1>
+<h1>{{ editmode? 'Link wijzigen' : 'Link toevoegen' }}</h1>
 <form class="standard-form" [formGroup]="linksEditForm" (ngSubmit)="onSubmit()">
   <div class="form-fields">
     <mat-form-field class="form-field">
@@ -51,14 +51,16 @@
       <mat-icon>keyboard_double_arrow_left</mat-icon>
       Terug
     </button>
-    <button
-      mat-raised-button
-      class="button-standard-action"
-      (click)="onDelete()"
-      type="button"
-    >
-      Delete
-    </button>
+    @if(editmode) {
+      <button
+        mat-raised-button
+        class="button-standard-action"
+        (click)="onDelete()"
+        type="button"
+      >
+        Delete
+      </button>
+    }
     <button
       mat-raised-button
       class="button-standard-action"
