@@ -66,8 +66,7 @@ export class AdminLinksEditComponent implements OnInit{
     if (this.linksEditForm.valid) {
       if (this.editmode) this.putLink();
       else this.postLink();
-      this.editmode = false;
-      this.onNavigateBack();
+      this.formService.triggerSubmit(this.componentId);
     } 
     else {
       console.log('Form not submitted');
@@ -78,12 +77,9 @@ export class AdminLinksEditComponent implements OnInit{
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: '250px'
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteLink();
-        this.editmode = false; 
-        this.onNavigateBack();
       } 
     });
   }
@@ -169,10 +165,15 @@ export class AdminLinksEditComponent implements OnInit{
       url: this.linksEditForm.value.url,
     };
     this.linkService.putLink(linkRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (link: Link) => {
           console.log('Link', link);
           if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
       });
   }
@@ -186,18 +187,28 @@ export class AdminLinksEditComponent implements OnInit{
       url: this.linksEditForm.value.url,
     };
     this.linkService.postLink(linkRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (link: Link) => {
           if (link) this.messageService.showSuccessMessage('addLink', 'Link toegevoegd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
     });
   }
 
   private deleteLink(): void {
     this.linkService.deleteLink(this.link.id, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLink', 'Link verwijderd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
       });
     }

@@ -14,6 +14,7 @@ import { MessageService } from 'src/app/shared/components/messages/message.servi
 import { MatDialog } from '@angular/material/dialog';
 import { PutLinkTypeRequest } from 'src/app/features/links/models/put-linkType-request.model';
 import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
+import { FormService } from '../../../documents/services/form.service';
 
 @Component({
   selector: 'app-admin-linktypes-edit',
@@ -36,6 +37,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
   private router = inject(Router);
   private linkService = inject(LinkService);
   private messageService = inject(MessageService);
+  private formService = inject(FormService);
   private dialog = inject(MatDialog);
   editmode = false;
   linkTypeEditForm!: FormGroup;
@@ -57,6 +59,7 @@ export class AdminLinkTypesEditComponent implements OnInit{
     if (this.linkTypeEditForm.valid) {
       if (this.editmode) this.putLinkType();
       else this.postLinkType();
+      this.formService.triggerSubmit(this.componentId);
     } 
     else {
       console.log('Form not submitted');
@@ -75,10 +78,12 @@ export class AdminLinkTypesEditComponent implements OnInit{
   }
  
   onNavigateBack(): void {
+    this.formService.triggerCancel(this.componentId);	
     this.router.navigate(['/admin/linktypes']);
   }
 
   onReset() {
+    this.formService.triggerCancel(this.componentId);	
     if(this.editmode) this.loadDataAndUpdateForm();
     else this.linkTypeEditForm.reset();
   }
@@ -119,12 +124,10 @@ export class AdminLinkTypesEditComponent implements OnInit{
       name: this.linkTypeEditForm.value.name,
     }
     this.linkService.putLinkType(linkTypeRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
-        },
-        error: (error) => {
-          this.messageService.showErrorMessage('editLinkType', error.message, 'Link categorie niet gewijzigd');
         },
         complete: () => {
           this.editmode = false; 
@@ -138,12 +141,10 @@ export class AdminLinkTypesEditComponent implements OnInit{
       name: this.linkTypeEditForm.value.name,
     }; 
     this.linkService.postLinkType(linkTypeRequest, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('addLinkType', 'Link categorie toegevoegd');
-        },
-        error: (error) => {
-          this.messageService.showErrorMessage('addLinkType', error.message, 'Link categorie niet toegevoegd');
         },
         complete: () => {
           this.editmode = false; 
@@ -154,12 +155,10 @@ export class AdminLinkTypesEditComponent implements OnInit{
 
   private deleteLinkType(): void {
     this.linkService.deleteLinkType(this.linkType.id, this.componentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
-        },
-        error: (error) => {
-          this.messageService.showErrorMessage('deleteLinkType', error.message, 'Link categorie niet verwijderd');
         },
         complete: () => {
           this.editmode = false; 
