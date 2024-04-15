@@ -10,12 +10,12 @@ import { HttpService } from 'src/app/shared/services/http-service';
 export class AlpacashowService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/alpacashows`;
-  public getAlpacashows(componentId: string): Observable<Alpacashow[]> {
+  getAlpacashows(componentId: string): Observable<Alpacashow[]> {
     return this.httpService.get<Alpacashow[]>(this.url, componentId);
   }
 
   // TODO Backend call
-  public getAlpacashowById(id: string, componentId: string): Observable<Alpacashow> {
+  getAlpacashowById(id: string, componentId: string): Observable<Alpacashow> {
     return this.getAlpacashows(componentId).pipe(
       map(f => f.find(f => f.id === id)),
       filter(f => !!f),

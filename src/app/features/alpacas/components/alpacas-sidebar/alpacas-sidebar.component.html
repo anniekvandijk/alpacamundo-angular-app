@@ -1,15 +1,17 @@
 <h2>Onze alpaca's</h2>
 <app-http-loader [componentId]="componentId">
-    <div *ngFor="let alpacaCat of (groupedAlpacas | keyvalue)">
+    @for(alpacaCat of (groupedAlpacas | keyvalue); track alpacaCat) {
         <h3>{{ alpacaCat.key }}</h3>
         <ul>
-        <div class="sidebar-alpaca-link" *ngFor="let alpaca of alpacaCat.value">
-            <li>
-                <a [routerLink]="['/alpacas/detail/', alpaca.id]">{{alpaca.shortName}}
-                <span *ngIf="alpaca.status === 'Te koop'">(Te koop)</span>
-                </a>
-        </li>
-        </div>
+            @for(alpaca of alpacaCat.value; track alpaca) {
+            <div class="sidebar-alpaca-link">
+                <li>
+                    <a [routerLink]="['/alpacas/detail/', alpaca.id]">{{alpaca.shortName}}
+                    @if(alpaca.status === 'Te koop') { <span>(Te koop)</span> }
+                    </a>
+                </li>
+            </div>
+            }
         </ul>
-    </div>
+    }
 </app-http-loader>

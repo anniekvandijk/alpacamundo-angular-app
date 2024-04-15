@@ -16,7 +16,7 @@ export class DocumentService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/documents`;
 
-  public getDocumentType(document: Document): string {
+  getDocumentType(document: Document): string {
 
     switch (document.contentType) {
       case 'image/svg+xml':
@@ -32,22 +32,22 @@ export class DocumentService {
     }
   }
 
-  public getDocuments(componentId: string): Observable<Document[]> {
+  getDocuments(componentId: string): Observable<Document[]> {
     return this.httpService.get<Document[]>(this.url, componentId);
   }
 
-  public getDocument(id: string, componentId: string): Observable<Document> {
+  getDocument(id: string, componentId: string): Observable<Document> {
     return this.httpService.get<Document>(this.url.concat('/', id), componentId);
   }
 
-  public postDocument(document: PostDocumentRequest, componentId: string): Observable<Document> {
+  postDocument(document: PostDocumentRequest, componentId: string): Observable<Document> {
     const formData = new FormData();
     formData.append('FormFile', document.file);
     const queryUrl = this.url.concat('?FileCategory=', document.documentCategory);
     return this.httpService.post<Document>(queryUrl, document, componentId);
   }
 
-  public postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<Document[]> {
+  postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<Document[]> {
     const formData = new FormData();
     documents.files.forEach(file => {
       formData.append('FormFile', file);
@@ -56,18 +56,18 @@ export class DocumentService {
     return this.httpService.post<Document[]>(queryUrl, formData, componentId);
   }
 
-  public putDocument(document: PutDocumentRequest, componentId: string): Observable<Document> {
+  putDocument(document: PutDocumentRequest, componentId: string): Observable<Document> {
     const formData = new FormData();
     formData.append('FormFile', document.file);
     const queryUrl = this.url.concat('?Id=', document.id, '&FileCategory=', document.documentCategory);
     return this.httpService.put<Document>(queryUrl, formData, componentId);
   }
 
-  public deleteDocument(id: string, componentId: string): Observable<boolean> {
+  deleteDocument(id: string, componentId: string): Observable<boolean> {
     return this.httpService.delete(this.url.concat('/', id), componentId);
   }
 
-  public undeleteDocument(document: UndeleteDocumentRequest, componentId: string): Observable<Document> {
+  undeleteDocument(document: UndeleteDocumentRequest, componentId: string): Observable<Document> {
     return this.httpService.put<Document>(this.url.concat('/undelete'), document, componentId);
   }
 }

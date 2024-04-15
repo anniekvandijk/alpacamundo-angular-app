@@ -15,9 +15,9 @@ export class TechnicalPageComponent implements OnInit{
 
   private errorService = inject(ErrorService);
 
-  public technicalMessage: string | null = null;
+  technicalMessage: string | null = null;
 
-  public messageHistory: string[] = [];
+  messageHistory: string[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
@@ -28,7 +28,7 @@ export class TechnicalPageComponent implements OnInit{
     this.messageHistory = this.errorService.errorArray
   }
 
-  public clearErrorHistory() {
+  clearErrorHistory() {
     this.errorService.clearErrors();
     this.technicalMessage = null;
     this.messageHistory = this.errorService.errorArray;

@@ -30,8 +30,8 @@ import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType
   templateUrl: './admin-linktypes-edit.component.html',
 })
 export class AdminLinkTypesEditComponent implements OnInit{
-  private componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
+  readonly  componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private linkService = inject(LinkService);
@@ -57,8 +57,6 @@ export class AdminLinkTypesEditComponent implements OnInit{
     if (this.linkTypeEditForm.valid) {
       if (this.editmode) this.putLinkType();
       else this.postLinkType();
-      this.editmode = false;
-      this.onNavigateBack();
     } 
     else {
       console.log('Form not submitted');
@@ -72,8 +70,6 @@ export class AdminLinkTypesEditComponent implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteLinkType();
-        this.editmode = false; 
-        this.onNavigateBack();
       } 
     });
   }
@@ -126,6 +122,13 @@ export class AdminLinkTypesEditComponent implements OnInit{
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('editLinkType', 'Link categorie gewijzigd');
+        },
+        error: (error) => {
+          this.messageService.showErrorMessage('editLinkType', error.message, 'Link categorie niet gewijzigd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
       });
   }
@@ -138,6 +141,13 @@ export class AdminLinkTypesEditComponent implements OnInit{
       .subscribe({
         next: (linkType: LinkType) => {
           if (linkType) this.messageService.showSuccessMessage('addLinkType', 'Link categorie toegevoegd');
+        },
+        error: (error) => {
+          this.messageService.showErrorMessage('addLinkType', error.message, 'Link categorie niet toegevoegd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
     }); 
   }
@@ -147,6 +157,13 @@ export class AdminLinkTypesEditComponent implements OnInit{
       .subscribe({
         next: (okResult: boolean) => {
           if (okResult) this.messageService.showSuccessMessage('deleteLinkType', 'Link categorie verwijderd');
+        },
+        error: (error) => {
+          this.messageService.showErrorMessage('deleteLinkType', error.message, 'Link categorie niet verwijderd');
+        },
+        complete: () => {
+          this.editmode = false; 
+          this.onNavigateBack();
         }
       });
     }

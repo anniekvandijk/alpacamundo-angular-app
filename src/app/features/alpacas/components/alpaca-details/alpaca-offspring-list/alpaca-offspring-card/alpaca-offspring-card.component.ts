@@ -18,13 +18,13 @@ import { environment } from 'src/environments/environment';
 export class AlpacaOffspringCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
   private router = inject(Router);
-  public alpacaMainImageUrl!: string;
+  alpacaMainImageUrl!: string;
 
   ngOnInit(): void {
     this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
   }
 
-  public navigateToDetails(alpaca: Alpaca) {
+  navigateToDetails(alpaca: Alpaca) {
     this.router.navigate(['/alpacas/detail', alpaca.id]);
   }
 }

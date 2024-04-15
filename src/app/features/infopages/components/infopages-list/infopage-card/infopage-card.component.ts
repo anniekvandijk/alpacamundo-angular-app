@@ -22,7 +22,7 @@ export class InfopageCardComponent {
   @Input() infopage!: Infopage;
   private router = inject(Router);
 
-  public navigateToDetails(infopage: Infopage) {
+  navigateToDetails(infopage: Infopage) {
     this.router.navigate(['/info/detail', infopage.id]);
   }
 }

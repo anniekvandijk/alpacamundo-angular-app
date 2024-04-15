@@ -19,11 +19,11 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./usermenu.component.scss']
 })
 export class UsermenuComponent implements OnInit {
-  readonly destroyRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
   private userService = inject(UserService);
-  public isUserLoggedIn$!: Observable<boolean>;
-  public activeAccount$!: Observable<AccountInfo>;
-  public account!: AccountInfo;
+  isUserLoggedIn$!: Observable<boolean>;
+  activeAccount$!: Observable<AccountInfo>;
+  account!: AccountInfo;
 
 
   ngOnInit(): void {

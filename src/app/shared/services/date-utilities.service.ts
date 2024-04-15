@@ -8,7 +8,7 @@ export class DateUtilitiesService {
   /*
   * Returns the current timestamp in the format: dd-mm-yyyy hh:mm:ss
   */
-  public getCurrentTimestamp(): string {
+  getCurrentTimestamp(): string {
     const now = new Date();
   
     const day = now.getDate().toString().padStart(2, '0');
@@ -22,7 +22,7 @@ export class DateUtilitiesService {
     return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
   }
 
-  public calculateAgeInYears(birthDate: Date): number {
+  calculateAgeInYears(birthDate: Date): number {
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
     const m = today.getMonth() - birthDate.getMonth();
@@ -34,7 +34,7 @@ export class DateUtilitiesService {
     return age;
   }
 
-  public calculateAgeInYearsMonthsDays(birthDate: Date): { years: number, months: number, days: number } {
+  calculateAgeInYearsMonthsDays(birthDate: Date): { years: number, months: number, days: number } {
     const currentDate = new Date();
     let years = currentDate.getFullYear() - birthDate.getFullYear();
     let months = currentDate.getMonth() - birthDate.getMonth();

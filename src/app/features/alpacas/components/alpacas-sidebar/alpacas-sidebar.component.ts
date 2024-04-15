@@ -18,11 +18,11 @@ import { HttploaderComponent } from 'src/app/shared/components/pageloader/httplo
   styleUrls: ['./alpacas-sidebar.component.scss']
 })
 export class AlpacasSidebarComponent implements OnInit{
-  public componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
-  public alpacas : Alpaca[] = [];
-  public groupedAlpacas: { [key: string]: Alpaca[] } = {};
+  alpacas : Alpaca[] = [];
+  groupedAlpacas: { [key: string]: Alpaca[] } = {};
 
   ngOnInit(): void {
     this.alpacaService.getAlpacas(this.componentId)

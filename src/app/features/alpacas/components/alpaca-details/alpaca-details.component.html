@@ -48,21 +48,26 @@
                 }
             </td>
             </tr>
-            <tr *ngIf="alpaca.pedigree">
+            @if(alpaca.pedigree) {
+            <tr>
                 <td class="label">Stamboom:</td>
                 <td>
                 <a [href]="alpacaPedigreeUrl+alpaca.pedigree.name" target="_blank">Pdf stamboom {{ alpaca.shortName }}</a>
                 </td>
             </tr>
+            }
         </table>
         </div>
     </div>
-    <div *ngIf="alpaca.category === 'Dekhengsten'" class="alpaca-detail-dekhengst">
+    @if(alpaca.category === 'Dekhengsten') {
+    <div class="alpaca-detail-dekhengst">
         <h2>Dekkingen</h2>
         Deze hengst is beschikbaar voor externe dekkingen en drive-by dekkingen.<p>
         Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw en excl. evt. reiskosten.
     </div>
-    <div *ngIf="alpaca.status === 'Te koop'" class="alpaca-detail-tekoop">
+    }
+    @if(alpaca.status === 'Te koop') {
+    <div class="alpaca-detail-tekoop">
         @if (alpaca.sellPrice > 0) {
         <h2>Te koop</h2>
         {{alpaca.sellPrice | currency}} excl. 21% btw.
@@ -71,7 +76,8 @@
         <h2>Te koop</h2>
         Prijs op aanvraag.
         }
-    </div>    
+    </div>
+    }    
     <h2>Beschrijving</h2>
     <p><div [innerHTML]="getSafeHtml(alpaca.description)"></div>
     @if (alpaca.showresults.length > 0) {
@@ -83,11 +89,15 @@
     @if (alpaca.offspring.length > 0) {
         <app-alpaca-offspring-list [alpaca]="alpaca"></app-alpaca-offspring-list>
     }
-    <div *ngIf="alpaca.images && alpaca.images.length > 0">
+    @if(alpaca.images && alpaca.images.length > 0) {
+    <div>
         <h2>Foto's</h2>
-        <div *ngFor="let image of alpaca.images">
+        @for(image of alpaca.images; track image.id) {
+        <div>
             <img loading="lazy" src="{{alpacaImagesUrl}}{{image.name}}" alt="{{alpaca.longName}}" class="alpaca-image"/>
         </div>
+        }
     </div>
+    }
 }
 </app-http-loader>

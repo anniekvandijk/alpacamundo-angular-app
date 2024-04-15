@@ -1,16 +1,18 @@
-<H1 *ngIf="title">{{ title }} <span *ngIf="counter">({{ counter }})</span></H1>
+@if(title) {<H1>{{ title }} 
+  @if(counter) {<span>({{ counter }})</span> } </H1> }
 <app-http-loader [componentId]="componentId">
-  <ng-container *ngIf="filteredAlpacas">    
-    <div *ngIf="filteredAlpacas.length === 0">
+  @if(filteredAlpacas) {
+  <ng-container> 
+    @if(filteredAlpacas.length === 0) {
+    <div>
       <p>{{noResultsMessage}}</p>
     </div>
-    <div *ngFor="let alpaca of filteredAlpacas">
-        <div *ngIf="cardListType === 'alpaca'">
+    }
+    @for(alpaca of filteredAlpacas; track alpaca) {
+      <div>
         <app-alpaca-card [alpaca]="alpaca"></app-alpaca-card>
-        </div>
-        <div *ngIf="cardListType === 'crias'">
-          <app-alpaca-card [alpaca]="alpaca"></app-alpaca-card>
-        </div>
-    </div>
+      </div>
+    }
   </ng-container>
+  }
 </app-http-loader>

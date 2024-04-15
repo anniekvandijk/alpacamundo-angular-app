@@ -22,12 +22,12 @@ export class AlpacaShowresultsComponent {
     this.setShowResults(alpaca);
   }
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  public displayedColumns: string[] = [
+  displayedColumns: string[] = [
     'showYear',
     'result',
     'showname',
   ];
-  public dataSource = new MatTableDataSource<Showresult>();
+  dataSource = new MatTableDataSource<Showresult>();
 
   private setShowResults(alpaca: Alpaca): void {
     this.dataSource.data = alpaca.showresults;

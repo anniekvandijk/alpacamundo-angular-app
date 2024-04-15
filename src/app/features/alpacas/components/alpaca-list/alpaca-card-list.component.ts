@@ -20,17 +20,17 @@ import { map, switchMap, tap } from 'rxjs';
   styleUrls: []
 })
 export class AlpacaCardListComponent implements OnInit {
-  public componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly alpacaService = inject(AlpacaService);
-  private readonly route = inject(ActivatedRoute);
-  public alpacas : Alpaca[] = [];
-  private filter!: string;
-  public filteredAlpacas: Alpaca[] | null = null;
-  public title!: string;
-  public counter!: number | null;
-  public noResultsMessage = 'Geen alpaca\'s gevonden';
-  public cardListType = 'alpaca';
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
+  private alpacaService = inject(AlpacaService);
+  private route = inject(ActivatedRoute);
+  alpacas : Alpaca[] = [];
+  filter!: string;
+  filteredAlpacas: Alpaca[] | null = null;
+  title!: string;
+  counter!: number | null;
+  noResultsMessage = 'Geen alpaca\'s gevonden';
+  cardListType = 'alpaca';
 
   ngOnInit(): void {
     this.route.params.pipe(

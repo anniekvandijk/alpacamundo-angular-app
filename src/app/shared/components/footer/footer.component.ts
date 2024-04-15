@@ -24,12 +24,13 @@ const project = require('../../../../../package.json');
 })
 export class FooterComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
-  public isUserLoggedIn = false;
+  private authService = inject(MsalService);
+  private msalBroadcastService = inject(MsalBroadcastService);
+  private userService = inject(UserService);
+  isUserLoggedIn = false;
 
+  // TODO - replace this @Inject with inject
   constructor(
-    private authService: MsalService, 
-    private msalBroadcastService: MsalBroadcastService, 
-    private userService: UserService,
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration) { }
 
   ngOnInit() {	
@@ -46,11 +47,11 @@ export class FooterComponent implements OnInit {
     });
   }
 
-  public getProjectVersion() : string {
+  getProjectVersion() : string {
     return project.version;
   }
 
-  public login() : void {
+  login() : void {
     if(this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
     }
@@ -59,7 +60,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-  public logout() : void {
+  logout() : void {
     this.authService.logoutRedirect({postLogoutRedirectUri:environment.postLogoutRedirectUrl});
   }
 }

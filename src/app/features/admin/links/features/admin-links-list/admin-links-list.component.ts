@@ -31,11 +31,11 @@ import { FlattenLink } from '../../../../links/models/flattenLink.model';
   templateUrl: './admin-links-list.component.html',
 })
 export class AdminLinksListComponent implements OnInit, AfterViewInit{
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly linkService = inject(LinkService);
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  componentId = this.constructor.name;
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
+  private linkService = inject(LinkService);
   dataSource = new MatTableDataSource<FlattenLink>();
   displayedColumns: string[] = [
     'title', 

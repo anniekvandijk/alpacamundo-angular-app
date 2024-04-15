@@ -22,9 +22,9 @@ export class FileUploadComponent implements OnInit {
   @Input() multipleFiles = false;
   @Input() acceptedFileTypes: string[] = [];
   @Input() fileRequired = false;
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly formService = inject(FormService);
-  private readonly documentService = inject(DocumentService);
+  private destroyRef = inject(DestroyRef);
+  private formService = inject(FormService);
+  private documentService = inject(DocumentService);
   private addedDocuments: Document[] = [];
   private deletedDocuments: Document[] = [];
   filePreviews: {file: File, url: string}[] = [];

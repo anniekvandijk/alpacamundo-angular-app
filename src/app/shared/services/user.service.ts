@@ -12,14 +12,14 @@ const GRAPH_ENDPOINT_PHOTO = 'https://graph.microsoft.com/v1.0/me/photo/$value';
 })
 export class UserService {
   private http = inject(HttpClient);
-  public isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
-  public activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
+  isUserLoggedIn:Subject<boolean> = new Subject<boolean>();
+  activeAccount: Subject<AccountInfo> = new Subject<AccountInfo>();
 
-  public getUser() : Observable<User> {
+  getUser() : Observable<User> {
     return this.http.get<User>(GRAPH_ENDPOINT, { });
   }
 
-  public getUserPhoto() {
+  getUserPhoto() {
     return this.http.get(GRAPH_ENDPOINT_PHOTO, { responseType: 'blob' });
   }
 

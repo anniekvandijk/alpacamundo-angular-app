@@ -1,11 +1,17 @@
 <h1>Over alpaca's</h1>
 <app-http-loader [componentId]="componentId">
-  <ng-container *ngIf="groupedInfopages$ | async as groupedInfopages">
-    <div *ngFor="let category of (groupedInfopages | keyvalue)">
+  @if(groupedInfopages$ | async; as groupedInfopages) {
+  <ng-container>
+    @for(category of (groupedInfopages | keyvalue); track category) {
+    <div>
       <h2>{{ category.key }}</h2>
-      <div *ngFor="let infopage of category.value">
+      @for(infopage of category.value; track infopage) {
+      <div>
           <app-infopage-card [infopage]="infopage"></app-infopage-card>
       </div>
+      }
     </div>
+    }
   </ng-container>
+  }
 </app-http-loader>

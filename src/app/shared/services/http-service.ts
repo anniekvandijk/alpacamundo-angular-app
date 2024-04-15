@@ -9,7 +9,7 @@ export class HttpService {
 
   private http = inject(HttpClient);
 
-  public get<T>(url: string, componentId: string): Observable<T> {
+  get<T>(url: string, componentId: string): Observable<T> {
     return this.http.get(
       url, 
       { 
@@ -25,7 +25,7 @@ export class HttpService {
       )
   }
 
-  public post<T>(url: string, data: any, componentId: string): Observable<T> {
+  post<T>(url: string, data: any, componentId: string): Observable<T> {
     return this.http.post(
       url, 
       data, 
@@ -43,7 +43,7 @@ export class HttpService {
     )
   }
 
-  public put<T>(url: string, data: any, componentId: string): Observable<T> {
+  put<T>(url: string, data: any, componentId: string): Observable<T> {
     return this.http.put(
       url, 
       data, 
@@ -61,7 +61,7 @@ export class HttpService {
     )
   }
 
-  public delete(url: string, componentId: string): Observable<boolean> {
+  delete(url: string, componentId: string): Observable<boolean> {
     return this.http.delete(
       url, 
       { 

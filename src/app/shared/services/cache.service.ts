@@ -14,7 +14,7 @@ export class CacheService<T> {
     this.expiry = environment.cacheLifetime;
 }
 
-  public getCache(cacheKey: string): HttpEvent<T> | undefined {
+  getCache(cacheKey: string): HttpEvent<T> | undefined {
     const result = this.cache.get(cacheKey);
 
     if (!result) {
@@ -32,7 +32,7 @@ export class CacheService<T> {
     return response;
   }
 
-  public setCache(cacheKey: string, response: HttpEvent<T>, date: Date): void {
+  setCache(cacheKey: string, response: HttpEvent<T>, date: Date): void {
     this.cache.set(cacheKey, { response, date });
   }
 

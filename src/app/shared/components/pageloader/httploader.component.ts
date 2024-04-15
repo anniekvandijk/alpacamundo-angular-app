@@ -21,7 +21,7 @@ import { LoadingSpinnerComponent } from './pure-css-loader/loading-spinner.compo
 export class HttploaderComponent implements OnInit {
   @Input() componentId!: string;
   private httpStatusService = inject(HttpStatusService)
-  public isLoading$!: Observable<boolean>;
+  isLoading$!: Observable<boolean>;
 
   ngOnInit(): void {
     this.isLoading$ = this.httpStatusService.getLoadingState(this.componentId);

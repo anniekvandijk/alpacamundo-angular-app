@@ -23,11 +23,11 @@ import { environment } from 'src/environments/environment';
 })
 export class AlpacaCardComponent implements OnInit {
   @Input() alpaca!: Alpaca;
-  public componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private alpacasService = inject(AlpacaService);
   private router = inject(Router);
-  public alpacaMainImageUrl!: string;
+  alpacaMainImageUrl!: string;
 
   ngOnInit(): void {
     this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
@@ -47,7 +47,7 @@ export class AlpacaCardComponent implements OnInit {
     }
   }
 
-  public navigateToDetails(alpaca: Alpaca) {
+  navigateToDetails(alpaca: Alpaca) {
     this.router.navigate(['/alpacas/detail', alpaca.id]);
   }
 }

@@ -11,11 +11,11 @@ export class InfopagesService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/infopages`;
 
-  public getInfopages(componentId: string): Observable<Infopage[]> {
+  getInfopages(componentId: string): Observable<Infopage[]> {
     return this.httpService.get<Infopage[]>(this.url, componentId);
   }
 
-  public getInfopage(id : string, componentId: string): Observable<Infopage> {
+  getInfopage(id : string, componentId: string): Observable<Infopage> {
     return this.httpService.get<Infopage>(this.url.concat('/', id), componentId);
   } 
 }

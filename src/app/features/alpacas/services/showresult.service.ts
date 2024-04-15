@@ -14,19 +14,19 @@ import { HttpService } from 'src/app/shared/services/http-service';
   providedIn: 'root'
 })
 export class ShowresultService {
-  componentId = this.constructor.name;
-  readonly destroyRef = inject(DestroyRef);
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private httpService = inject(HttpService);
   private alpacashowService = inject(AlpacashowService);
   private alpacaService = inject(AlpacaService);
   private url = `${environment.apiBaseUrl}/api/showresults`;
 
-  public getShowresults(componentId: string): Observable<Showresult[]> {
+  getShowresults(componentId: string): Observable<Showresult[]> {
     return this.httpService.get<Showresult[]>(this.url, componentId);
   }
 
   // TODO Backend call
-  public getShowresultsByAlpacaId(alpacaId: string, componentId: string): Observable<Showresult[]> {
+  getShowresultsByAlpacaId(alpacaId: string, componentId: string): Observable<Showresult[]> {
     return this.getShowresults(componentId).pipe(
       takeUntilDestroyed(this.destroyRef),
       map(f => f.filter(f => f.alpacaId === alpacaId)),
@@ -46,7 +46,7 @@ export class ShowresultService {
   }
 
   // TODO Backend call
-  public getShowresultsByAlpacashowId(showId: string, componentId: string): Observable<Showresult[]> {
+  getShowresultsByAlpacashowId(showId: string, componentId: string): Observable<Showresult[]> {
     return this.getShowresults(componentId).pipe(
       takeUntilDestroyed(this.destroyRef),
       map(f => f.filter(f => f.alpacashowId === showId)),

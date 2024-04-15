@@ -10,7 +10,7 @@ export enum WebStorageType {
 })
 export class WebStorageService {
 
-  public setItem(key: string, value: string, webStorageType: WebStorageType): void {
+  setItem(key: string, value: string, webStorageType: WebStorageType): void {
     if (webStorageType === WebStorageType.LOCAL_STORAGE) {
       localStorage.setItem(key, value);
     }
@@ -22,7 +22,7 @@ export class WebStorageService {
     }
   }
 
-  public getItem(key: string, webStorageType: WebStorageType): string | null {
+  getItem(key: string, webStorageType: WebStorageType): string | null {
     if (webStorageType === WebStorageType.LOCAL_STORAGE) {
       const item =  localStorage.getItem(key);
       if (item) return item;

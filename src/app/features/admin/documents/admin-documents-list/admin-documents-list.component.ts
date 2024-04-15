@@ -27,13 +27,13 @@ import { HttploaderComponent } from 'src/app/shared/components/pageloader/httplo
   templateUrl: './admin-documents-list.component.html'
 })
 export class AdminDocumentsListComponent implements OnInit, AfterViewInit {
-  readonly destroyRef = inject(DestroyRef);
-  public componentId = this.constructor.name;
-  private documentService = inject(DocumentService);
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  public dataSource = new MatTableDataSource<Document>();
-  public displayedColumns: string[] = ['image','name', 'documentCategory'];
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
+  private documentService = inject(DocumentService);
+  dataSource = new MatTableDataSource<Document>();
+  displayedColumns: string[] = ['image','name', 'documentCategory'];
 
   getDocumentType(document: Document): string {
     return `${this.documentService.getDocumentType(document)}`;
@@ -48,7 +48,7 @@ export class AdminDocumentsListComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public applyFilter(event: Event) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

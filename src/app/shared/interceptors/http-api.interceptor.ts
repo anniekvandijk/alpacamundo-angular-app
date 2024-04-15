@@ -18,7 +18,7 @@ export class HttpApiInterceptor<T> implements HttpInterceptor {
   private errorService = inject(ErrorService);
   private cacheService = inject(CacheService);
 
-  public intercept(
+  intercept(
     req: HttpRequest<T>,
     next: HttpHandler
   ): Observable<HttpEvent<T>> {

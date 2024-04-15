@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Observable, tap, map } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -16,11 +15,11 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: []
 })
 export class UserComponent implements OnInit {
-  readonly destroyRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
   private userService = inject(UserService);
   private domSanitizer = inject(DomSanitizer);
-  public user!: User;
-  public profilePhoto!: SafeResourceUrl;
+  user!: User;
+  profilePhoto!: SafeResourceUrl;
 
   ngOnInit(): void {
     this.getUser();

@@ -23,11 +23,11 @@ export class AlpacaFleeceresultsComponent implements OnInit {
     this.dataSource.data = [];
     this.setFleeceResults(alpaca);
   }
-  public componentId = this.constructor.name;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  public fleeceResultsUrl!: string;
+  readonly componentId = this.constructor.name;
+  fleeceResultsUrl!: string;
 
-  public displayedColumns: string[] = [
+  displayedColumns: string[] = [
     'year',
     'fleeceNumber',
     'mfd',
@@ -38,7 +38,7 @@ export class AlpacaFleeceresultsComponent implements OnInit {
     'fleeceTestReport'
   ];
   
-  public dataSource = new MatTableDataSource<Fleece>();
+  dataSource = new MatTableDataSource<Fleece>();
   
   ngOnInit(): void {
     this.fleeceResultsUrl = environment.storageUrls.alpacaFleeceResultsUrl;

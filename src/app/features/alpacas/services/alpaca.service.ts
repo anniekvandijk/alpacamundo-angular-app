@@ -11,11 +11,11 @@ export class AlpacaService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/alpacas`;
 
-  public getAlpacas(componentId: string): Observable<Alpaca[]> {
+  getAlpacas(componentId: string): Observable<Alpaca[]> {
     return this.httpService.get<Alpaca[]>(this.url, componentId);
   }
 
-  public getAlpaca(id : string, componentId: string): Observable<Alpaca> {
+  getAlpaca(id : string, componentId: string): Observable<Alpaca> {
     return this.httpService.get<Alpaca>(this.url.concat('/', id), componentId);
   } 
 }

@@ -18,9 +18,9 @@ import { HttploaderComponent } from 'src/app/shared/components/pageloader/httplo
   styleUrls: ['./infopages-sidebar.component.scss']
 })
 export class InfopagesSidebarComponent implements OnInit{
-  public componentId = this.constructor.name;
+  readonly componentId = this.constructor.name;
   private infopagesService = inject(InfopagesService);
-  public groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
+  groupedInfopages$!: Observable<{ [key: string]: Infopage[] }>;
 
 
   ngOnInit(): void {

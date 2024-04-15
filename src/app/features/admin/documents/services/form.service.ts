@@ -7,14 +7,14 @@ import { Subject } from "rxjs";
 export class FormService {
 
   private formSource = new Subject<string>();
-  public cancelAction$ = this.formSource.asObservable();
-  public submitAction$ = this.formSource.asObservable();
+  cancelAction$ = this.formSource.asObservable();
+  submitAction$ = this.formSource.asObservable();
 
-  public triggerCancel(componentId: string) {
+  triggerCancel(componentId: string) {
     this.formSource.next(componentId);
   }
 
-  public triggerSubmit(componentId: string) {
+  triggerSubmit(componentId: string) {
     this.formSource.next(componentId);
   }
 }

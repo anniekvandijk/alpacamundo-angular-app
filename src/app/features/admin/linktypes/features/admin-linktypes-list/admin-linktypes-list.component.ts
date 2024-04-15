@@ -29,13 +29,13 @@ import { HttploaderComponent } from 'src/app/shared/components/pageloader/httplo
   templateUrl: './admin-linktypes-list.component.html',
 })
 export class AdminLinkTypesListComponent implements OnInit, AfterViewInit{
-  readonly destroyRef = inject(DestroyRef);
-  public componentId = this.constructor.name;
-  private linkService = inject(LinkService);
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  public dataSource = new MatTableDataSource<LinkType>();
-  public displayedColumns: string[] = ['name'];
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
+  private linkService = inject(LinkService);
+  dataSource = new MatTableDataSource<LinkType>();
+  displayedColumns: string[] = ['name'];
 
   ngOnInit(): void {
     this.getLinkTypes();
@@ -50,7 +50,7 @@ export class AdminLinkTypesListComponent implements OnInit, AfterViewInit{
     this.sort.sortChange.emit(sortState);
   }
  
-  public applyFilter(event: Event): void {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

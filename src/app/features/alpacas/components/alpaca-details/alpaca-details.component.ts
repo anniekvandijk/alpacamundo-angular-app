@@ -28,17 +28,17 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./alpaca-details.component.scss']
 })
 export class AlpacaDetailsComponent implements OnInit {
-  public componentId = this.constructor.name;
-  private readonly destroyRef = inject(DestroyRef);
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
-  public alpaca!: Alpaca;
-  public alpacaMainImageUrl!: string;
-  public alpacaImagesUrl! : string;
-  public alpacaPedigreeUrl! : string;
-  public alpacaFleeceResultsUrl! : string;
+  alpaca!: Alpaca;
+  alpacaMainImageUrl!: string;
+  alpacaImagesUrl! : string;
+  alpacaPedigreeUrl! : string;
+  alpacaFleeceResultsUrl! : string;
 
   ngOnInit(): void {
     this.getAlpaca();
@@ -58,15 +58,15 @@ export class AlpacaDetailsComponent implements OnInit {
     });
   }
 
-  public getSafeHtml(html: string) {
+  getSafeHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  public navigateToPedegree(name: string): void {
+  navigateToPedegree(name: string): void {
     window.open(this.alpacaPedigreeUrl+name, '_blank');
   }
 
-  public navigateToDetails(alpacaId : string) {
+  navigateToDetails(alpacaId : string) {
     this.router.navigate(['/alpacas/detail', alpacaId]);
   }
 }

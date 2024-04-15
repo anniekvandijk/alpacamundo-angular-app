@@ -16,21 +16,26 @@
     <th mat-header-cell *matHeaderCellDef>Alpacashow</th>
     <td mat-cell *matCellDef="let element">
       {{ element.alpacashow.showName }} {{ element.alpacashow.location }}
-      <div *ngIf="element.alpacashow.judges.length > 0">
+      @if(element.alpacashow.judges.length > 0) {
+      <div>
         Jury:
-        <ng-container
-        *ngFor="let judge of element.alpacashow.judges; let last = last">
+        @for(judge of element.alpacashow.judges; track judge; let last = $last) {
+          <span>
           {{ judge.name  }}{{ last ? "" : ", " }}
-        </ng-container>
+          </span>
+        }
       </div>
-      <div *ngIf="element.alpacashow.showDates.length > 0">
+      }
+      @if(element.alpacashow.showDates.length > 0) {
+      <div>
         Datum:
-        <ng-container
-          *ngFor="let showDate of element.alpacashow.showDates; let last = last"
-        >
-          {{ showDate.date | date : "dd-MM-yyyy" }}{{ last ? "" : ", " }}
-        </ng-container>
+        @for(showDate of element.alpacashow.showDates; track showDate; let last = $last) {
+          <span>
+            {{ showDate.date | date : "dd-MM-yyyy" }}{{ last ? "" : ", " }}
+          </span>
+        }
       </div>
+      }
     </td>
   </ng-container>
 

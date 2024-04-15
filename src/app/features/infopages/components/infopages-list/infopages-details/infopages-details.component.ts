@@ -19,12 +19,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: []
 })
 export class InfopagesDetailsComponent implements OnInit{
-  public componentId = this.constructor.name;
+  readonly componentId = this.constructor.name;
   private infopagesService = inject(InfopagesService);
   private route = inject(ActivatedRoute);
   private sanitizer = inject(DomSanitizer);
-  public infopage$!: Observable<Infopage>;
-  public infopageImagesUrl! : string;
+  infopage$!: Observable<Infopage>;
+  infopageImagesUrl! : string;
 
   ngOnInit(): void {
     this.infopage$ = this.route.params.pipe(
@@ -35,7 +35,7 @@ export class InfopagesDetailsComponent implements OnInit{
     this.infopageImagesUrl = environment.storageUrls.infopageImagesUrl;
     }
 
-  public getSafeHtml(html: string) {
+  getSafeHtml(html: string) {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

@@ -15,13 +15,13 @@ export class ErrorService {
   private dateUtilitiesService = inject(DateUtilitiesService);
   private router = inject(Router);
 
-  public errorArray: string[] = [];
+  errorArray: string[] = [];
 
-  public clearErrors() {
+  clearErrors() {
     this.errorArray = [];
   }
 
-  public handleError(operation: string, error: HttpErrorResponse) : void {
+  handleError(operation: string, error: HttpErrorResponse) : void {
   
     this.log(operation, error);
     this.addMessage(operation, error);

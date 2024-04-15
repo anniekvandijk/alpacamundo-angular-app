@@ -36,17 +36,17 @@ import { PostLinkRequest } from 'src/app/features/links/models/post-link-request
   templateUrl: './admin-links-edit.component.html',
 })
 export class AdminLinksEditComponent implements OnInit{
-  private readonly destroyRef = inject(DestroyRef);
+  @Output() documents!: Document[];
+  readonly componentId = this.constructor.name;
+  private destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private linkService = inject(LinkService);
   private messageService = inject(MessageService);
   private formService = inject(FormService);
   private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);
-  componentId = this.constructor.name;
   editmode = false;
   link!: Link;
-  @Output() public documents!: Document[];
   linkTypes!: LinkType[];
   linksEditForm!: FormGroup;
 

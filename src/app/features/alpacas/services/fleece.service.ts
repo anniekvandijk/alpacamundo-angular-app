@@ -11,12 +11,12 @@ export class FleeceService {
   private httpService = inject(HttpService);
   private url = `${environment.apiBaseUrl}/api/fleeces`;
   
-  public getFleeces(componentId: string): Observable<Fleece[]> {
+  getFleeces(componentId: string): Observable<Fleece[]> {
     return this.httpService.get<Fleece[]>(this.url, componentId);
   }
 
   // TODO Backend call
-  public getFleecesByAlpacaId(alpacaId: string, componentId: string): Observable<Fleece[]> {
+  getFleecesByAlpacaId(alpacaId: string, componentId: string): Observable<Fleece[]> {
     return this.getFleeces(componentId).pipe(
       map(f => f.filter(f => f.alpacaId === alpacaId))
     );

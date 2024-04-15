@@ -23,10 +23,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./links-main.component.scss']
 })
 export class LinksMainComponent implements OnInit {
-  public componentId = this.constructor.name;
+  readonly componentId = this.constructor.name;
   private linkService = inject(LinkService);
-  public groupedLinks$!: Observable<{ [key: string]: Link[] }>;
-  public linkImagesUrl!: string;
+  groupedLinks$!: Observable<{ [key: string]: Link[] }>;
+  linkImagesUrl!: string;
   
   ngOnInit(): void {
     this.linkImagesUrl = environment.storageUrls.linkImagesUrl;
@@ -45,7 +45,7 @@ export class LinksMainComponent implements OnInit {
     }, {});
   }
 
-  public navigateTo(link: Link): void {
+  navigateTo(link: Link): void {
     window.open(link.url, '_blank');
   }
 }

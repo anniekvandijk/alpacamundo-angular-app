@@ -17,6 +17,6 @@ export class AlpacaOffspringListComponent{
       this.offsprings = alpaca.offspring;
   }
 
-  public offsprings: Alpaca[] = [];
+  offsprings: Alpaca[] = [];
 }
 
