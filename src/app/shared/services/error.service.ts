@@ -37,6 +37,10 @@ export class ErrorService {
 
     switch (error.status) {
 
+      case 0:
+        userMessage += 'Geen verbinding met de server';
+        break;
+
       case 400:
         userMessage += 'De verstuurde data is incorrect';
         break;

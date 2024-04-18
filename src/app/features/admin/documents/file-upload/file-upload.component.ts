@@ -7,6 +7,8 @@ import { PostDocumentsRequest } from '../models/post-documents-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
 import { PutDocumentRequest } from '../models/put-document-request';
+import { UndeleteFileRequest } from '../models/undelete-file-request';
+import { DeleteFileRequest } from '../models/delete-file-request';
 import { UndeleteDocumentRequest } from '../models/undelete-document-request';
 
 @Component({
@@ -26,6 +28,7 @@ export class FileUploadComponent implements OnInit {
   private formService = inject(FormService);
   private documentService = inject(DocumentService);
   private addedDocuments: Document[] = [];
+  private changedDocuments: [{oldDocument: Document | null, newDocument: Document | null}] = [{oldDocument: null, newDocument: null}];
   private deletedDocuments: Document[] = [];
   filePreviews: {file: File, url: string}[] = [];
   filesSelected = false;
@@ -33,13 +36,13 @@ export class FileUploadComponent implements OnInit {
   ngOnInit(): void {
     this.formService.cancelAction$
     .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe((componentId) => {
-      if (componentId === this.formComponentId) {
-        // TODO: implement cancel action
-        // the documents added and deleted are gone as soon as you leave the component
-        // What do I do? 
-        // put added and deleted documents in the formService and then remove them when the form is submitted?
-        //  this.resetUpload();
+    .subscribe({
+      next: (componentId) => {
+        if (componentId === this.formComponentId)
+        this.resetUpload();
+      },
+      complete: () => {
+        this.formService.cancelActionComplete(this.formComponentId);
       }
     });
   }
@@ -48,6 +51,7 @@ export class FileUploadComponent implements OnInit {
     console.log('documents', this.documents);
     console.log('addedDocuments', this.addedDocuments);
     console.log('deletedDocuments', this.deletedDocuments);
+    console.log('changedDocuments', this.changedDocuments);	
   }
 
   onFileChange(event: any) {
@@ -83,9 +87,8 @@ export class FileUploadComponent implements OnInit {
       this.documentService.putDocument(putDocumentRequest, this.formComponentId).pipe(
         takeUntilDestroyed(this.destroyRef)
       ).subscribe((document) => {
-        this.deletedDocuments.push(this.documents[0]);
+        this.changedDocuments.push({ oldDocument: this.documents[0], newDocument: document });
         this.documents.splice(this.documents.indexOf(this.documents[0]), 1);
-        this.addedDocuments.push(document);
         this.documents.push(document);
         this.filePreviews = [];
       });
@@ -139,37 +142,59 @@ export class FileUploadComponent implements OnInit {
   }
 
   private resetUpload() {
-    // undelete documents that were deleted
+    this.filePreviews = [];
+    // undelete all deleted files and put deleted documents back    
     this.deletedDocuments.forEach((document) => {
       const undeleteDocumentRequest: UndeleteDocumentRequest = {
         id: document.id,
         name: document.name,
-        contentType: document.contentType,
         documentCategory: document.documentCategory,
+        contentType: document.contentType,
         url: document.url
       };
       this.documentService.undeleteDocument(undeleteDocumentRequest, this.formComponentId)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((result) => {
           if (result) {
-            this.deletedDocuments.splice(this.deletedDocuments.indexOf(document), 1);
+            console.log('undelete deleted document after reset', document);
             this.documents.push(document);
           }
         });
     });
+    // delete all added files and deleted added documents 
     this.addedDocuments.forEach((document) => {
       this.documentService.deleteDocument(document.id, this.formComponentId)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((result) => {
           if (result) {
-            this.addedDocuments.splice(this.addedDocuments.indexOf(document), 1);
-            if (this.multipleFiles) {
-              // only remove the document from the documents if multiple files are allowed
-              // else this document is already the resetted document
-              this.documents.splice(this.documents.indexOf(document), 1);
+            console.log('delete added document after reset', document);
             }
-          }
         });
     });
+    // replace all changed files with the old files
+    this.changedDocuments.forEach(({oldDocument, newDocument}) => {
+      if (!oldDocument || !newDocument) {
+        return;
+      }
+      const undeleteDocumentRequest: UndeleteDocumentRequest = {
+        id: oldDocument.id,
+        name: oldDocument.name,
+        documentCategory: oldDocument.documentCategory,
+        contentType: oldDocument.contentType,
+        url: oldDocument.url
+      };
+      this.documentService.undeleteDocument(undeleteDocumentRequest, this.formComponentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+          console.log('undelete changed document after reset', oldDocument);
+      });
+      this.documentService.deleteFile({name: newDocument.name, documentCategory: newDocument.documentCategory}, this.formComponentId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+          console.log('delete added file after reset', newDocument);
+      });
+    });
   }
-}
+}    
+
+

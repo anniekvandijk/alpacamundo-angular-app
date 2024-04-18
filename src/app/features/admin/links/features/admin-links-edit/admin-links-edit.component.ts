@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
-import { Observable, forkJoin, switchMap } from 'rxjs';
+import { Observable, Subscription, forkJoin, switchMap } from 'rxjs';
 import { Link, LinkType, Image } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -60,6 +60,14 @@ export class AdminLinksEditComponent implements OnInit{
     )
     this.createForm();
     if(this.editmode) this.loadDataAndUpdateForm();
+    this.formService.cancelActionComplete$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (componentId) => {
+          if (componentId === this.componentId) 
+            this.reloadData();
+        }
+      });
   }
 
   onSubmit() {
@@ -91,12 +99,17 @@ export class AdminLinksEditComponent implements OnInit{
 
   onReset() {
     this.formService.triggerCancel(this.componentId);	
+
+  }
+
+  reloadData(): void {
     if(this.editmode) {
       this.loadDataAndUpdateForm();
     } else {
       this.linksEditForm.reset();
     }
   }
+
 
   private createForm() {
     this.linksEditForm = new FormGroup({
@@ -168,7 +181,6 @@ export class AdminLinksEditComponent implements OnInit{
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (link: Link) => {
-          console.log('Link', link);
           if (link) this.messageService.showSuccessMessage('editLink', 'Link gewijzigd');
         },
         complete: () => {

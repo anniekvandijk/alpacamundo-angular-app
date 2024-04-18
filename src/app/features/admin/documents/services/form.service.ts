@@ -6,15 +6,19 @@ import { Subject } from "rxjs";
 })
 export class FormService {
 
-  private formSource = new Subject<string>();
-  cancelAction$ = this.formSource.asObservable();
-  submitAction$ = this.formSource.asObservable();
+  cancelAction$ = new Subject<string>();
+  cancelActionComplete$ = new Subject<string>();
+  submitAction$ = new Subject<string>();
 
   triggerCancel(componentId: string) {
-    this.formSource.next(componentId);
+    this.cancelAction$.next(componentId);
   }
 
   triggerSubmit(componentId: string) {
-    this.formSource.next(componentId);
+    this.submitAction$.next(componentId);
+  }
+
+  cancelActionComplete(componentId: string) {
+    this.cancelActionComplete$.next(componentId);
   }
 }

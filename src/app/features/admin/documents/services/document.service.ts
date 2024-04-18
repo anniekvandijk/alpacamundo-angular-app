@@ -5,8 +5,11 @@ import { environment } from "src/environments/environment";
 import { Document } from "../models/document.model";
 import { PostDocumentRequest } from "../models/post-document-request.model";
 import { PostDocumentsRequest } from "../models/post-documents-request.model";
-import { UndeleteDocumentRequest } from "../models/undelete-document-request";
+import { UndeleteFileRequest } from "../models/undelete-file-request";
 import { PutDocumentRequest } from "../models/put-document-request";
+import { HttpResponse } from "@angular/common/http";
+import { DeleteFileRequest } from "../models/delete-file-request";
+import { UndeleteDocumentRequest } from "../models/undelete-document-request";
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +72,24 @@ export class DocumentService {
 
   undeleteDocument(document: UndeleteDocumentRequest, componentId: string): Observable<Document> {
     return this.httpService.put<Document>(this.url.concat('/undelete'), document, componentId);
+  }
+
+  undeleteFile(undeleteFileRequest: UndeleteFileRequest, componentId: string): Observable<boolean> {
+    return this.httpService.post(this.url.concat('/undeletefile'), undeleteFileRequest, componentId).pipe(
+      map((response) => {
+        if (response) return true;
+        else return false;
+      }
+    ));
+  }
+  
+
+  deleteFile(deleteFileRequest: DeleteFileRequest, componentId: string): Observable<boolean> {
+    return this.httpService.post<Document>(this.url.concat('/deletefile'), deleteFileRequest, componentId).pipe(
+      map((response) => {
+        if (response) return true;
+        else return false;
+      }
+    ));
   }
 }
