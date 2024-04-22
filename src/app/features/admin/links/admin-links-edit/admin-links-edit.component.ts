@@ -14,9 +14,9 @@ import { DeleteConfirmationDialogComponent } from 'src/app/shared/components/dia
 import { MatDialog } from '@angular/material/dialog';
 import { MessageService } from 'src/app/shared/components/messages/message.service';
 import { PutLinkRequest } from 'src/app/features/links/models/put-link-request.model';
-import { FileUploadComponent } from '../../../documents/file-upload/file-upload.component';
-import { Document } from '../../../documents/models/document.model';
-import { FormService } from '../../../documents/services/form.service';
+import { FileUploadComponent } from '../../documents/file-upload/file-upload.component';
+import { Document } from '../../documents/models/document.model';
+import { FormService } from '../../documents/services/form.service';
 import { PostLinkRequest } from 'src/app/features/links/models/post-link-request.model';
 
 @Component({

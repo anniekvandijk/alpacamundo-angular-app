@@ -12,7 +12,7 @@ import { LinkService } from 'src/app/features/links/services/link.service';
 import { RouterModule } from '@angular/router';
 import { HttploaderComponent } from 'src/app/shared/components/pageloader/httploader.component';
 import { link } from 'fs';
-import { FlattenLink } from '../../../../links/models/flattenLink.model';
+import { FlattenLink } from '../../../links/models/flattenLink.model';
 
 @Component({
   selector: 'app-admin-links-list',

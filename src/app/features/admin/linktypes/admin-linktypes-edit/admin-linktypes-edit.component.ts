@@ -14,7 +14,7 @@ import { MessageService } from 'src/app/shared/components/messages/message.servi
 import { MatDialog } from '@angular/material/dialog';
 import { PutLinkTypeRequest } from 'src/app/features/links/models/put-linkType-request.model';
 import { PostLinkTypeRequest } from 'src/app/features/links/models/post-linkType-request.model';
-import { FormService } from '../../../documents/services/form.service';
+import { FormService } from '../../documents/services/form.service';
 
 @Component({
   selector: 'app-admin-linktypes-edit',
