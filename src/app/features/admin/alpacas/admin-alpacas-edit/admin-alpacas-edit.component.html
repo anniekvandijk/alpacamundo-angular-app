@@ -18,13 +18,26 @@
       <mat-error>Voer een geldige naam in</mat-error>
       }
     </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="dateOfBirth">Geboortedatum</mat-label>
+      <input matInput type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+      @if(alpacasEditForm.get('dateOfBirth')?.touched &&
+      alpacasEditForm.get('dateOfBirth')?.invalid) {
+      <mat-error>Voer een geldige geboortedatum in</mat-error>
+      }
+    </mat-form-field>
+    <div class="checkboxes">
+      <mat-checkbox formControlName="bornOnFarm">Bij Alpacamundo geboren</mat-checkbox>
+    </div>
     <div class="radio-buttons">
+      <mat-label for="breed">Soort</mat-label>
       <mat-radio-group class="radio-buttons-group" formControlName="breed" aria-label="Select an option">
         <mat-radio-button class="radio-buttons-button" value="Huacaya">Huacaya</mat-radio-button>
         <mat-radio-button class="radio-buttons-button" value="Suri">Suri</mat-radio-button>
       </mat-radio-group>
     </div>
     <div class="radio-buttons">
+      <mat-label for="breed">Geslacht</mat-label>
       <mat-radio-group class="radio-buttons-group" formControlName="gender" aria-label="Select an option">
         <mat-radio-button class="radio-buttons-button" value="Hengst">Hengst</mat-radio-button>
         <mat-radio-button class="radio-buttons-button" value="Merrie">Merrie</mat-radio-button>
@@ -60,7 +73,15 @@
         }}</mat-option>
         }
       </mat-select>
-    </mat-form-field>            
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="studFee">Dekgeld</mat-label>
+      <input matInput type="number" id="studFee" formControlName="studFee" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="sellPrice">Verkoopprijs</mat-label>
+      <input matInput type="number" id="sellPrice" formControlName="sellPrice" />
+    </mat-form-field>                      
     <mat-form-field class="form-field">
       <mat-label>Beschrijving</mat-label>
       <textarea matInput rows="15" id="description" formControlName="description"></textarea>

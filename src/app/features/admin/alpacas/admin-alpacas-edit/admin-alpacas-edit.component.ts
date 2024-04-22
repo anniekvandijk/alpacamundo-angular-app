@@ -16,6 +16,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FileUploadComponent } from "../../documents/file-upload/file-upload.component";
 import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constants";
 
@@ -30,6 +31,7 @@ import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constan
     MatSelectModule,
     MatButtonModule,
     MatRadioModule,
+    MatCheckboxModule,
     DeleteConfirmationDialogComponent,
     FileUploadComponent
   ],
@@ -126,6 +128,9 @@ export class AdminAlpacasEditComponent  implements OnInit{
       'category': new FormControl('', [Validators.required]),
       'status': new FormControl('', [Validators.required]),
       'dateOfBirth': new FormControl('', [Validators.required]),
+      'bornOnFarm': new FormControl(false),
+      'studFee': new FormControl(0),
+      'sellPrice': new FormControl(0),
       'description': new FormControl('', [Validators.required, Validators.maxLength(1000)]),
     });
   }
@@ -189,6 +194,9 @@ export class AdminAlpacasEditComponent  implements OnInit{
       'category': alpaca.category,
       'status': alpaca.status,
       'dateOfBirth': alpaca.dateOfBirth,
+      'bornOnFarm': alpaca.bornOnFarm,
+      'studFee': alpaca.studFee,
+      'sellPrice': alpaca.sellPrice,
       'description': alpaca.description,
     });
   }
