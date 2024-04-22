@@ -1,0 +1,106 @@
+<h1>{{ editmode? 'Alpaca wijzigen' : 'Alpaca toevoegen' }}</h1>
+
+<form class="standard-form" [formGroup]="alpacasEditForm" (ngSubmit)="onSubmit()">
+  <div class="form-fields">
+    <mat-form-field class="form-field">
+      <mat-label for="shortName">Korte Naam</mat-label>
+      <input matInput id="shortName" formControlName="shortName" />
+      @if(alpacasEditForm.get('shortName')?.touched &&
+      alpacasEditForm.get('shortName')?.invalid) {
+      <mat-error>Voer een geldige naam in</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="shortName">Lange Naam</mat-label>
+      <input matInput id="longName" formControlName="longName" />
+      @if(alpacasEditForm.get('longName')?.touched &&
+      alpacasEditForm.get('longName')?.invalid) {
+      <mat-error>Voer een geldige naam in</mat-error>
+      }
+    </mat-form-field>
+    <div class="radio-buttons">
+      <mat-radio-group class="radio-buttons-group" formControlName="breed" aria-label="Select an option">
+        <mat-radio-button class="radio-buttons-button" value="Huacaya">Huacaya</mat-radio-button>
+        <mat-radio-button class="radio-buttons-button" value="Suri">Suri</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="radio-buttons">
+      <mat-radio-group class="radio-buttons-group" formControlName="gender" aria-label="Select an option">
+        <mat-radio-button class="radio-buttons-button" value="Hengst">Hengst</mat-radio-button>
+        <mat-radio-button class="radio-buttons-button" value="Merrie">Merrie</mat-radio-button>
+        <mat-radio-button class="radio-buttons-button" value="Ruin">Ruin</mat-radio-button>        
+      </mat-radio-group>
+    </div>    
+    <mat-form-field class="form-field">
+      <mat-label for="color">Kleur</mat-label>
+      <mat-select id="color" formControlName="color">
+        @for(color of colors; track color) {
+        <mat-option [value]="color.value">{{
+          color.name
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="category">Category</mat-label>
+      <mat-select id="category" formControlName="category">
+        @for(category of categories; track category) {
+        <mat-option [value]="category.value">{{
+          category.name
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="status">Status</mat-label>
+      <mat-select id="status" formControlName="status">
+        @for(status of statusses; track status) {
+        <mat-option [value]="status.value">{{
+          status.name
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>            
+    <mat-form-field class="form-field">
+      <mat-label>Beschrijving</mat-label>
+      <textarea matInput rows="15" id="description" formControlName="description"></textarea>
+    </mat-form-field>
+    @if(alpacasEditForm.get('description')?.touched &&
+    alpacasEditForm.get('description')?.invalid) {
+    <mat-error>Voer tekst in</mat-error>
+    }
+  </div>
+  <div class="form-buttons">
+    <button
+      mat-raised-button
+      class="icon-button button-standard-action"
+      (click)="onNavigateBack()"
+      type="button"
+    >
+      <mat-icon>keyboard_double_arrow_left</mat-icon>
+      Terug
+    </button>
+    @if(editmode) {
+      <button
+        mat-raised-button
+        class="button-standard-action"
+        (click)="onDelete()"
+        type="button"
+      >
+        Delete
+      </button>
+    }
+    <button
+      mat-raised-button
+      class="button-standard-action"
+      (click)="onReset()"
+      type="button"
+    >
+      Reset
+    </button>
+    <button mat-raised-button class="button-primary-action" type="submit">
+      Opslaan
+    </button>
+  </div>
+</form> 
+

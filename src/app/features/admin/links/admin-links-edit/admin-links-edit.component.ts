@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
-import { Observable, Subscription, forkJoin, switchMap } from 'rxjs';
+import { Observable, forkJoin, switchMap } from 'rxjs';
 import { Link, LinkType, Image } from 'src/app/features/links/models/link.model';
 import { LinkService } from 'src/app/features/links/services/link.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -134,16 +134,13 @@ export class AdminLinksEditComponent implements OnInit{
     .subscribe(({ linkTypes, link }) => {
       this.linkTypes = linkTypes;
       this.link = link;
-      // add all images link to the documents array
-      this.documents = [link.image].map((image: Image) => {
-        return {
-          id: image.id,
-          name: image.name,
-          contentType: image.contentType,
-          documentCategory: image.documentCategory,
-          url: image.url
-        };
-      });
+      this.documents.push({
+          id: link.image.id,
+          name: link.image.name,
+          contentType: link.image.contentType,
+          documentCategory: link.image.documentCategory,
+          url: link.image.url
+        } as Document);
       this.updateForm(link);
     });
   }

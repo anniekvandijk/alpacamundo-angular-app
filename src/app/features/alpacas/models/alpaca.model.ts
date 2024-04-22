@@ -34,21 +34,16 @@ export interface Alpaca {
 
 export interface Pedigree {
   id: string;
-  path: string | null;
-  oldUrl: string;
   name: string;
-  fileType: string;
+  contentType: string;
+  documentCategory: string;
+  url: string;
 }
 
 export interface Image {
   id: string;
-  path: string | null;
-  oldUrl: string;
   name: string;
-  fileType: string;
-  about: string | null;
-  alt: string;
-  title: string;
-  height: number;
-  width: number;
+  contentType: string;
+  documentCategory: string;
+  url: string;
 }

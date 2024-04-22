@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
 import { Document } from '../models/document.model';
 import { MatButtonModule } from '@angular/material/button';
 import { FormService } from '../services/form.service';
@@ -7,8 +7,6 @@ import { PostDocumentsRequest } from '../models/post-documents-request.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
 import { PutDocumentRequest } from '../models/put-document-request';
-import { UndeleteFileRequest } from '../models/undelete-file-request';
-import { DeleteFileRequest } from '../models/delete-file-request';
 import { UndeleteDocumentRequest } from '../models/undelete-document-request';
 
 @Component({

@@ -40,6 +40,10 @@
       <mat-label>Tekst</mat-label>
       <textarea matInput rows="5" id="body" formControlName="body"></textarea>
     </mat-form-field>
+    @if(linksEditForm.get('body')?.touched &&
+    linksEditForm.get('body')?.invalid) {
+    <mat-error>Voer tekst in</mat-error>
+    }
   </div>
   <div class="form-buttons">
     <button
