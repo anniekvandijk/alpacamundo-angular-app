@@ -10,6 +10,46 @@
     flex-direction: column;
   }
 
+  .checkboxes {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color-light) !important;
+    color: var(--text-color-dark) !important;
+    margin-bottom: 20px;
+    input {
+      color: var(--text-color-dark) !important;
+    }
+    mat-label {
+      color: var(--secondary-color) !important;
+      padding: 10px;
+    }
+    mat-checkbox label{
+      background-color: var(--background-color-light) !important;
+      color: var(--text-color-dark) !important;
+    }
+  }
+
+  .radio-buttons {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color-light) !important;
+    color: var(--text-color-dark) !important;
+    margin-bottom: 20px;
+    input {
+      color: var(--text-color-dark) !important;
+    }
+    mat-label {
+      color: var(--secondary-color) !important;
+      padding: 10px;
+      font-size: 0.8em;
+ 
+    }
+    mat-radio-button label{
+      background-color: var(--background-color-light) !important;
+      color: var(--text-color-dark) !important;
+    }
+  }
+
   .mat-mdc-form-field {
     .mdc-text-field {
       background-color: var(--background-color-light) !important;
