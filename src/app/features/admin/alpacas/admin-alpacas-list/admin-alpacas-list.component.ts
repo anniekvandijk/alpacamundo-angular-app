@@ -38,14 +38,15 @@ export class AdminAlpacasListComponent implements OnInit, AfterViewInit {
   private destroyRef = inject(DestroyRef);
   private alpacaService = inject(AlpacaService);
   private searchFilter = '';
-  private selectedStatuses: string[] = [];
-  private selectedCategories: string[] = [];
+  selectedStatuses: string[] = [];
+  selectedCategories: string[] = [];
   dataSource = new MatTableDataSource<Alpaca>();
   statuses: string[] = [];
   categories: string[] = [];
   displayedColumns: string[] = ['shortName', 'status', 'category'];
 
   ngOnInit(): void {
+    this.selectedStatuses = ['Niet te koop', 'Te koop'];
     this.getAlpacas();
   }
 
@@ -69,7 +70,6 @@ export class AdminAlpacasListComponent implements OnInit, AfterViewInit {
     };
   }
 
-
   applySearchByNameFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.searchFilter = filterValue.trim().toLowerCase();
@@ -89,6 +89,7 @@ export class AdminAlpacasListComponent implements OnInit, AfterViewInit {
     this.selectedCategories = event.value;
     this.applyFilter();
   }
+
   private applyFilter(): void {
     this.dataSource.filterPredicate = (data: Alpaca, filter: string) => {
       return (this.selectedStatuses.length ? this.selectedStatuses.includes(data.status) : true) &&
@@ -113,6 +114,8 @@ export class AdminAlpacasListComponent implements OnInit, AfterViewInit {
       // Get all unique categories
       const allCategories = alpacas.map(alpaca => alpaca.category);
       this.categories = Array.from(new Set(allCategories));
+
+      this.applyFilter();
     });
   }
 }

@@ -14,15 +14,19 @@
 
   <mat-form-field>
     <mat-label>Status Filter</mat-label>
-    <mat-select multiple (selectionChange)="applyStatusFilter($event)">
-      <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
+    <mat-select [(value)]="selectedStatuses" multiple (selectionChange)="applyStatusFilter($event)">
+      @for (status of statuses; track status) {
+      <mat-option [value]="status">{{status}}</mat-option>
+      }
     </mat-select>
   </mat-form-field>
 
 <mat-form-field>
   <mat-label>Category Filter</mat-label>
-  <mat-select multiple (selectionChange)="applyCategoryFilter($event)">
-    <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+  <mat-select [(value)]="selectedCategories" multiple (selectionChange)="applyCategoryFilter($event)">
+    @for (category of categories; track category) {
+    <mat-option [value]="category">{{category}}</mat-option>
+    }
   </mat-select>
 </mat-form-field>
 </div>

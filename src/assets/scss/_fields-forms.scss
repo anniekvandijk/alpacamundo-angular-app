@@ -44,9 +44,12 @@
       font-size: 0.8em;
  
     }
-    mat-radio-button label{
-      background-color: var(--background-color-light) !important;
-      color: var(--text-color-dark) !important;
+    mat-radio-button {
+      label {
+        background-color: var(--background-color-light) !important;
+        color: var(--text-color-dark) !important;
+      }
+
     }
   }
 
