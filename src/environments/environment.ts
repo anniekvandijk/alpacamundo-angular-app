@@ -4,6 +4,7 @@ export const environment = {
     clientId: '13f9d129-96e3-4d32-9199-1786494d46ec', 
     tenantId: "0ef5acdf-6f69-4f04-af24-fa0934009a75",
     authority: 'https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75',
+    baseUri: 'http://localhost:4200',
     loginRedirectUri: 'http://localhost:4200',
     postLogoutRedirectUrl: 'http://localhost:4200',
     apiBaseUrl: 'https://localhost:7248',

@@ -13,6 +13,14 @@ ng build --configuration=test
 Production build:
 ng build --configuration=production
 
+## E2e testing	
+Run `npx playwright test` to run the tests
+Rn `npx playwright test --ui` to run the tests with the UI
+
+
+Run `npx playwright show-report` to see the report
+
+
 ## How To deploy manually
 Need:
 - docker extension vsCode to easy build en push images.
