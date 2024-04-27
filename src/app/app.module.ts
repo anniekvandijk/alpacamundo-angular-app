@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/services/in-memory-data.service';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -21,7 +20,6 @@ registerLocaleData(localeNl, 'nl-NL');
 
 // TODO: get rid of this NgModule 
 // move to main.ts
-// bootstrapApplication with providers ans omporftProvidersFrom
 
 @NgModule({
   declarations: [

@@ -13,13 +13,12 @@ ng build --configuration=test
 Production build:
 ng build --configuration=production
 
-## E2e testing	
-Run `npx playwright test` to run the tests
+## E2e testing
+Run tests by clicking the arrow in the test file
+Run `npx playwright test` to run the tests headless
 Rn `npx playwright test --ui` to run the tests with the UI
 
-
 Run `npx playwright show-report` to see the report
-
 
 ## How To deploy manually
 Need:
