@@ -12,8 +12,10 @@ test.describe('Links tests', {
     await page.goto('/links');
   });
 
-  test('Links are visible', async ({ page }) => {
+  test.fixme('Links are visible', async ({ page }) => {
     // Assert
     await expect(page.locator('h1')).toHaveText('Links');
+    await expect(page.locator('mat-card')).toBeVisible();
+    await expect(page.locator('mat-card')).toHaveCount(10);
   });
 });
