@@ -60,7 +60,7 @@ export class AlpacaCardListComponent implements OnInit {
           this.cardListType = 'crias';
         } 
         else {
-          this.title = `Onze Alpaca's`;
+          this.title = `Onze alpaca's`;
           this.cardListType = 'alpaca';
         }
       }),
