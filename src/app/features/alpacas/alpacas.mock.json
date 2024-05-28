@@ -1452,6 +1452,18 @@
     },
     "images": [
       {
+        "id": "9f7f1e78-105f-4089-8172-773b74197der",
+        "path": null,
+        "oldUrl": "",
+        "name": "ONeill_2024_3.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo O'Neill",
+        "title": "Alpacamundo O'Neill",
+        "height": 720,
+        "width": 1280
+      },
+      {
         "id": "9f7f1e78-105f-4089-8172-773b74197ded",
         "path": null,
         "oldUrl": "",
@@ -1512,7 +1524,7 @@
         "width": 1280
       }
     ],
-    "description": "<p>O'Neill is een super stoere donkerbruine hengst. Hij is zeer nieuwsgierig en niet snel bang. Hij speelt graag met zijn maatje Odin, die van dezelfde leeftijd is.\u00A0</p>\n",
+    "description": "<p>O'Neill is een super stoere donkerbruine hengst. Hij is zeer nieuwsgierig en niet snel bang. Hij speelt graag met zijn maatje Odin, die van dezelfde leeftijd is.<p>De geschoren vacht van 2024 is te bekijken.</p>",
     "category": "Hengsten",
     "status": "Te koop"
   },
@@ -2341,6 +2353,18 @@
     },
     "images": [
       {
+        "id": "9bef9056-278f-46ce-9745-ddb887d803f6",
+        "path": null,
+        "oldUrl": "",
+        "name": "Odin_2024_5.JPG",
+        "fileType": "image/jpeg",
+        "about": null,
+        "alt": "Alpacamundo Odin",
+        "title": "Alpacamundo Odin",
+        "height": 1125,
+        "width": 2000
+      },
+      {
         "id": "9bef9056-278f-46ce-9745-ddb887d803f5",
         "path": null,
         "oldUrl": "",
@@ -2401,7 +2425,7 @@
         "width": 1328
       }
     ],
-    "description": "<p>Odin is een mooie witte hengst en een hengst op alle fronten. Altijd in voor een partijtje spelen met andere leeftijdsgenoten :) Hij heeft een mooi stevig postuur.\u00A0</p>\n",
+    "description": "<p>Odin is een mooie witte hengst en een hengst op alle fronten. Altijd in voor een partijtje spelen met andere leeftijdsgenoten :) Hij heeft een mooi stevig postuur.<p>De geschoren vacht van 2024 is te bekijken.</p>",
     "category": "Hengsten",
     "status": "Te koop"
   },
