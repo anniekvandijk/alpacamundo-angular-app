@@ -10,6 +10,7 @@ import { AdminDocumentsListComponent } from "./documents/admin-documents-list/ad
 import { NotFoundComponent } from "src/app/shared/components/not-found/not-found.component";
 import { AdminAlpacasListComponent } from "./alpacas/admin-alpacas-list/admin-alpacas-list.component";
 import { AdminAlpacasEditComponent } from "./alpacas/admin-alpacas-edit/admin-alpacas-edit.component";
+import { AdminFleecesComponent } from "./fleeces/admin-fleeces.component";
 
 export const ADMIN_ROUTES: Route[] = [
     {
@@ -60,6 +61,10 @@ export const ADMIN_ROUTES: Route[] = [
     { 
       path: 'alpacas/:id/edit',
       component: AdminAlpacasEditComponent,
+    },
+    {
+      path: 'alpaca-fleeces',
+      component: AdminFleecesComponent,
     },
     {
       path: 'technicalpage',

@@ -1,7 +1,7 @@
 export interface Fleece {
     id: string;
     alpacaId: string;
-    fleecenumber: number;
+    fleeceNumber: number;
     year: number;
     mfd: number;
     sd: number;
