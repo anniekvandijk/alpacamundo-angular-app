@@ -45,9 +45,9 @@
         "width": 1500
       }
     ],
-    "description": "Qunta is een leuke beige hengst van onze Hero. Eet graag uit de hand en is altijd nieuwsgierig naar wat er gebeurt.",
+    "description": "Qunta is een leuke beige hengst van onze Hero. Eet graag uit de hand en is altijd nieuwsgierig naar wat er gebeurt. <p>Qunta wordt verkocht als koppel samen met Q en Quinn.</p>",
     "category": "Hengsten",
-    "status": "Niet te koop"
+    "status": "Te koop"
   }, 
   {
     "id": "6f50da53-aceb-4621-ab8a-f931897c3ee3",
@@ -195,9 +195,9 @@
         "width": 1500
       }
     ],
-    "description": "Q is een vrolijke hengstje, klein van stuk, maar staat altijd vooraan. Q is een inventief mannetje en daarom naar 007 Q genoemd.",
+    "description": "Q is een vrolijke hengstje, klein van stuk, maar staat altijd vooraan. Q is een inventief mannetje en daarom naar 007 Q genoemd. <p>Q wordt verkocht als koppel samen met Qunta en Quinn.</p>",
     "category": "Hengsten",
-    "status": "Niet te koop"
+    "status": "Te koop"
   },  
   {
     "id": "4f40da53-aceb-4621-ab8a-f931897c3ee3",
@@ -245,9 +245,9 @@
         "width": 1500
       }
     ],
-    "description": "Quinn is een vrolijke hengst die altijd in is voor een dolle bui. Hij is fors van stuk, net zoals alle nakomelingen van Cala Luna.",
+    "description": "Quinn is een vrolijke hengst die altijd in is voor een dolle bui. Hij is fors van stuk, net zoals alle nakomelingen van Cala Luna.<p>Quinn wordt verkocht als koppel samen met Q en Qunta.</p>",
     "category": "Hengsten",
-    "status": "Niet te koop"
+    "status": "Te koop"
   },
   {
     "id": "006e7127-58e2-4263-87a2-8e78e8ba97be",
@@ -1514,7 +1514,7 @@
     ],
     "description": "<p>O'Neill is een super stoere donkerbruine hengst. Hij is zeer nieuwsgierig en niet snel bang. Hij speelt graag met zijn maatje Odin, die van dezelfde leeftijd is.\u00A0</p>\n",
     "category": "Hengsten",
-    "status": "Niet te koop"
+    "status": "Te koop"
   },
   {
     "id": "3659d191-bbfd-44b4-be95-c76502f92233",
@@ -2401,9 +2401,9 @@
         "width": 1328
       }
     ],
-    "description": "<p>Odin is een mooie witte hengst en een hengst op alle fronten. Altijd in voor een partijtje knokken met andere leeftijdsgenoten :) Hij heeft een mooi stevig postuur.\u00A0</p>\n",
+    "description": "<p>Odin is een mooie witte hengst en een hengst op alle fronten. Altijd in voor een partijtje spelen met andere leeftijdsgenoten :) Hij heeft een mooi stevig postuur.\u00A0</p>\n",
     "category": "Hengsten",
-    "status": "Niet te koop"
+    "status": "Te koop"
   },
   {
     "id": "5dda334d-a8b4-440c-802f-c73ddacabf60",
