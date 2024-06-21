@@ -6,7 +6,7 @@ import { AdminFleecesEditComponent } from "./admin-fleeces-edit/admin-fleeces-ed
   standalone: true,
   imports: [AdminFleecesEditComponent],
   templateUrl: './admin-fleeces.component.html',
-  styleUrls: ['']
+  styleUrls: []
 })
 export class AdminFleecesComponent implements OnInit{
   
