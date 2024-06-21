@@ -15,6 +15,7 @@ import { ROUTES } from './app.routes';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { HttpApiInterceptor } from './shared/interceptors/http-api.interceptor';
 import { msalGuardConfiguration, msalInstanceConfig, protectedResourceMap } from './auth/auth';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 registerLocaleData(localeNl, 'nl-NL'); 
 
@@ -65,6 +66,9 @@ registerLocaleData(localeNl, 'nl-NL');
     MsalGuard,
     { 
       provide: LOCALE_ID,
+      useValue: 'nl-NL' 
+    },
+    { provide: MAT_DATE_LOCALE, 
       useValue: 'nl-NL' 
     },
     {

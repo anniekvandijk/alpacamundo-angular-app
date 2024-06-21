@@ -19,8 +19,41 @@
       }
     </mat-form-field>
     <mat-form-field class="form-field">
+      <mat-label for="damId">Moeder</mat-label>
+      <mat-select id="damId" formControlName="damId">
+        <mat-option [value]="null">Geen selectie</mat-option>
+        @for(alpaca of femaleAlpacas; track alpaca.id) {
+        <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+          alpaca.longName
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="damName">Moeder</mat-label>
+      <input matInput id="damName" formControlName="damName" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="sireId">Vader</mat-label>
+      <mat-select id="sireId" formControlName="sireId">
+        <mat-option [value]="null">Geen selectie</mat-option>
+        @for(alpaca of maleAlpacas; track alpaca.id) {
+        <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+          alpaca.longName
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label for="sireName">Naam vader</mat-label>
+      <input matInput 
+        id="sireName" formControlName="sireName" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
       <mat-label for="dateOfBirth">Geboortedatum</mat-label>
-      <input matInput type="date" id="dateOfBirth" formControlName="dateOfBirth" />
+      <input matInput id="dateOfBirth" [matDatepicker]="picker" formControlName="dateOfBirth" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
       @if(alpacasEditForm.get('dateOfBirth')?.touched &&
       alpacasEditForm.get('dateOfBirth')?.invalid) {
       <mat-error>Voer een geldige geboortedatum in</mat-error>

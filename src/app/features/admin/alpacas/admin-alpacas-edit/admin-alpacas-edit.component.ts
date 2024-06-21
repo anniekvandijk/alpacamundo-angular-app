@@ -14,6 +14,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -23,6 +25,7 @@ import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constan
 @Component({
   selector: 'app-admin-alpacas-edit',
   standalone: true,
+  providers: [ MatDatepickerModule ],
   imports: [
     ReactiveFormsModule, 
     MatFormFieldModule, 
@@ -32,6 +35,8 @@ import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constan
     MatButtonModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DeleteConfirmationDialogComponent,
     FileUploadComponent
   ],
@@ -57,6 +62,9 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private route = inject(ActivatedRoute);
   editmode = false;
   alpaca!: Alpaca;
+  alpacas!: Alpaca[];
+  maleAlpacas!: Alpaca[];
+  femaleAlpacas!: Alpaca[];
   alpacasEditForm!: FormGroup;
 
   ngOnInit(): void {	
@@ -75,6 +83,24 @@ export class AdminAlpacasEditComponent  implements OnInit{
         next: (componentId) => {
           if (componentId === this.componentId) 
             this.reloadData();
+        }
+      });
+    this.alpacaService.getAlpacas(this.componentId) 
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (alpacas: Alpaca[]) => {
+          this.alpacas = alpacas;
+          this.maleAlpacas = alpacas
+            .filter(alpaca =>
+                alpaca.gender === 'Hengst'
+                || alpaca.gender === 'Ruin'
+              )
+            .sort((a, b) => a.longName.localeCompare(b.longName));
+          this.femaleAlpacas = alpacas
+            .filter(alpaca =>
+              alpaca.gender === 'Merrie'
+            )
+            .sort((a, b) => a.longName.localeCompare(b.longName));
         }
       });
   }
@@ -122,6 +148,10 @@ export class AdminAlpacasEditComponent  implements OnInit{
     this.alpacasEditForm = new FormGroup({
       'shortName': new FormControl('', [Validators.required, Validators.maxLength(255)]), 
       'longName': new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      'damId': new FormControl(''),
+      'damName': new FormControl(''),
+      'sireId': new FormControl(''),
+      'sireName': new FormControl({ value: '', disabled: false }, [Validators.required, Validators.maxLength(255)]),
       'gender': new FormControl('', [Validators.required]),
       'breed': new FormControl('', [Validators.required]),
       'color': new FormControl('', [Validators.required]),
@@ -188,6 +218,10 @@ export class AdminAlpacasEditComponent  implements OnInit{
     this.alpacasEditForm.patchValue({
       'shortName': alpaca.shortName, 
       'longName': alpaca.longName,
+      'damId': alpaca.dam.id,
+      'damName': alpaca.dam.longName,
+      'sireId': alpaca.sire.id,
+      'sireName': alpaca.sire.longName,
       'gender': alpaca.gender,
       'breed': alpaca.breed,
       'color': alpaca.color,
@@ -202,6 +236,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   private putAlpaca(): void {
+    console.log('putAlpaca', this.alpacasEditForm.value);
     //TODO: implement putAlpaca
   }
 
