@@ -1,133 +1,179 @@
-<h1>{{ editmode? 'Alpaca wijzigen' : 'Alpaca toevoegen' }}</h1>
+<h1>{{ editmode ? "Alpaca wijzigen" : "Alpaca toevoegen" }}</h1>
 
-<form class="standard-form" [formGroup]="alpacasEditForm" (ngSubmit)="onSubmit()">
+<form
+  class="standard-form"
+  [formGroup]="alpacasEditForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="form-fields">
-    <mat-form-field class="form-field">
-      <mat-label for="shortName">Korte Naam</mat-label>
-      <input matInput id="shortName" formControlName="shortName" />
-      @if(alpacasEditForm.get('shortName')?.touched &&
-      alpacasEditForm.get('shortName')?.invalid) {
-      <mat-error>Voer een geldige naam in</mat-error>
-      }
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="shortName">Lange Naam</mat-label>
-      <input matInput id="longName" formControlName="longName" />
-      @if(alpacasEditForm.get('longName')?.touched &&
-      alpacasEditForm.get('longName')?.invalid) {
-      <mat-error>Voer een geldige naam in</mat-error>
-      }
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="damId">Moeder</mat-label>
-      <mat-select id="damId" formControlName="damId">
-        <mat-option [value]="null">Geen selectie</mat-option>
-        @for(alpaca of femaleAlpacas; track alpaca.id) {
-        <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-          alpaca.longName
-        }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="damName">Moeder</mat-label>
-      <input matInput id="damName" formControlName="damName" />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="sireId">Vader</mat-label>
-      <mat-select id="sireId" formControlName="sireId">
-        <mat-option [value]="null">Geen selectie</mat-option>
-        @for(alpaca of maleAlpacas; track alpaca.id) {
-        <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-          alpaca.longName
-        }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="sireName">Naam vader</mat-label>
-      <input matInput 
-        id="sireName" formControlName="sireName" />
-    </mat-form-field>
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label for="shortName">Korte Naam</mat-label>
+        <input matInput id="shortName" formControlName="shortName" />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="shortName">Lange Naam</mat-label>
+        <input matInput id="longName" formControlName="longName" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label for="damId">Moeder</mat-label>
+        <mat-select
+          id="damId"
+          formControlName="damId"
+          (selectionChange)="onChangeDamId()"
+        >
+          <mat-option [value]="null">Geen selectie</mat-option>
+          @for(alpaca of femaleAlpacas; track alpaca.id) {
+          <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+            alpaca.longName
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="damName">Moeder</mat-label>
+        <input matInput id="damName" formControlName="damName" />
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label for="sireId">Vader</mat-label>
+        <mat-select
+          id="sireId"
+          formControlName="sireId"
+          (selectionChange)="onChangeSireId()"
+        >
+          <mat-option [value]="null">Geen selectie</mat-option>
+          @for(alpaca of maleAlpacas; track alpaca.id) {
+          <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+            alpaca.longName
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="sireName">Naam vader</mat-label>
+        <input matInput id="sireName" formControlName="sireName" />
+      </mat-form-field>
+  </div>
+  <div class="form-row">
     <mat-form-field class="form-field">
       <mat-label for="dateOfBirth">Geboortedatum</mat-label>
-      <input matInput id="dateOfBirth" [matDatepicker]="picker" formControlName="dateOfBirth" />
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <input
+        matInput
+        id="dateOfBirth"
+        [matDatepicker]="picker"
+        formControlName="dateOfBirth"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       @if(alpacasEditForm.get('dateOfBirth')?.touched &&
       alpacasEditForm.get('dateOfBirth')?.invalid) {
       <mat-error>Voer een geldige geboortedatum in</mat-error>
       }
-    </mat-form-field>
-    <div class="checkboxes">
-      <mat-checkbox formControlName="bornOnFarm">Bij Alpacamundo geboren</mat-checkbox>
+      </mat-form-field>
+      <div class="checkboxes">
+        <mat-checkbox formControlName="bornOnFarm"
+          >Bij Alpacamundo geboren</mat-checkbox
+        >
+      </div>
     </div>
-    <div class="radio-buttons">
-      <mat-label for="breed">Soort</mat-label>
-      <mat-radio-group class="radio-buttons-group" formControlName="breed" aria-label="Select an option">
-        <mat-radio-button class="radio-buttons-button" value="Huacaya">Huacaya</mat-radio-button>
-        <mat-radio-button class="radio-buttons-button" value="Suri">Suri</mat-radio-button>
-      </mat-radio-group>
+    <div class="form-row">
+      <div class="radio-buttons">
+        <mat-label for="breed">Soort</mat-label>
+        <mat-radio-group
+          class="radio-buttons-group"
+          formControlName="breed"
+          aria-label="Select an option"
+        >
+          <mat-radio-button class="radio-buttons-button" value="Huacaya"
+            >Huacaya</mat-radio-button
+          >
+          <mat-radio-button class="radio-buttons-button" value="Suri"
+            >Suri</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+      <div class="radio-buttons">
+        <mat-label for="breed">Geslacht</mat-label>
+        <mat-radio-group
+          class="radio-buttons-group"
+          formControlName="gender"
+          aria-label="Select an option"
+        >
+          <mat-radio-button class="radio-buttons-button" value="Hengst"
+            >Hengst</mat-radio-button
+          >
+          <mat-radio-button class="radio-buttons-button" value="Merrie"
+            >Merrie</mat-radio-button
+          >
+          <mat-radio-button class="radio-buttons-button" value="Ruin"
+            >Ruin</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
     </div>
-    <div class="radio-buttons">
-      <mat-label for="breed">Geslacht</mat-label>
-      <mat-radio-group class="radio-buttons-group" formControlName="gender" aria-label="Select an option">
-        <mat-radio-button class="radio-buttons-button" value="Hengst">Hengst</mat-radio-button>
-        <mat-radio-button class="radio-buttons-button" value="Merrie">Merrie</mat-radio-button>
-        <mat-radio-button class="radio-buttons-button" value="Ruin">Ruin</mat-radio-button>        
-      </mat-radio-group>
-    </div>    
-    <mat-form-field class="form-field">
-      <mat-label for="color">Kleur</mat-label>
-      <mat-select id="color" formControlName="color">
-        @for(color of colors; track color) {
-        <mat-option [value]="color.value">{{
-          color.name
-        }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="category">Category</mat-label>
-      <mat-select id="category" formControlName="category">
-        @for(category of categories; track category) {
-        <mat-option [value]="category.value">{{
-          category.name
-        }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="status">Status</mat-label>
-      <mat-select id="status" formControlName="status">
-        @for(status of statusses; track status) {
-        <mat-option [value]="status.value">{{
-          status.name
-        }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="studFee">Dekgeld</mat-label>
-      <input matInput 
-        type="number" 
-        id="studFee" 
-        formControlName="studFee" 
-        step="0.01"
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label for="color">Kleur</mat-label>
+        <mat-select id="color" formControlName="color">
+          @for(color of colors; track color) {
+          <mat-option [value]="color.value">{{ color.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="category">Category</mat-label>
+        <mat-select id="category" formControlName="category">
+          @for(category of categories; track category) {
+          <mat-option [value]="category.value">{{ category.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="status">Status</mat-label>
+        <mat-select id="status" formControlName="status">
+          @for(status of statusses; track status) {
+          <mat-option [value]="status.value">{{ status.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="form-field">
+        <mat-label for="sellPrice">Verkoopprijs</mat-label>
+        <input
+          matInput
+          type="number"
+          id="sellPrice"
+          formControlName="sellPrice"
+          step="0.01"
         />
-    </mat-form-field>
-    <mat-form-field class="form-field">
-      <mat-label for="sellPrice">Verkoopprijs</mat-label>
-      <input matInput 
-        type="number" 
-        id="sellPrice" 
-        formControlName="sellPrice" 
-        step="0.01"
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label for="studFee">Dekgeld</mat-label>
+        <input
+          matInput
+          type="number"
+          id="studFee"
+          formControlName="studFee"
+          step="0.01"
         />
-    </mat-form-field>                      
+      </mat-form-field>
+    </div>
     <mat-form-field class="form-field">
       <mat-label>Beschrijving</mat-label>
-      <textarea matInput rows="15" id="description" formControlName="description"></textarea>
+      <textarea
+        matInput
+        rows="15"
+        id="description"
+        formControlName="description"
+      ></textarea>
     </mat-form-field>
     @if(alpacasEditForm.get('description')?.touched &&
     alpacasEditForm.get('description')?.invalid) {
@@ -145,14 +191,14 @@
       Terug
     </button>
     @if(editmode) {
-      <button
-        mat-raised-button
-        class="button-standard-action"
-        (click)="onDelete()"
-        type="button"
-      >
-        Delete
-      </button>
+    <button
+      mat-raised-button
+      class="button-standard-action"
+      (click)="onDelete()"
+      type="button"
+    >
+      Delete
+    </button>
     }
     <button
       mat-raised-button
@@ -166,5 +212,4 @@
       Opslaan
     </button>
   </div>
-</form> 
-
+</form>

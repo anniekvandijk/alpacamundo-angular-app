@@ -151,14 +151,14 @@ export class AdminAlpacasEditComponent  implements OnInit{
       'damId': new FormControl(''),
       'damName': new FormControl(''),
       'sireId': new FormControl(''),
-      'sireName': new FormControl({ value: '', disabled: false }, [Validators.required, Validators.maxLength(255)]),
+      'sireName': new FormControl(''),
       'gender': new FormControl('', [Validators.required]),
-      'breed': new FormControl('', [Validators.required]),
+      'breed': new FormControl('Huacaya', [Validators.required]),
       'color': new FormControl('', [Validators.required]),
       'category': new FormControl('', [Validators.required]),
       'status': new FormControl('', [Validators.required]),
       'dateOfBirth': new FormControl('', [Validators.required]),
-      'bornOnFarm': new FormControl(false),
+      'bornOnFarm': new FormControl(true),
       'studFee': new FormControl(0),
       'sellPrice': new FormControl(0),
       'description': new FormControl('', [Validators.required, Validators.maxLength(1000)]),
@@ -233,7 +233,28 @@ export class AdminAlpacasEditComponent  implements OnInit{
       'sellPrice': alpaca.sellPrice,
       'description': alpaca.description,
     });
+    this.onChangeDamId();
+    this.onChangeSireId();
   }
+
+  public onChangeDamId(): void {
+    if (this.alpacasEditForm.get('damId')?.value === null 
+    || this.alpacasEditForm.get('damId')?.value === '') {
+      this.alpacasEditForm.get('damName')?.enable();
+    } else {
+      this.alpacasEditForm.get('damName')?.disable();
+    }
+  }
+
+  public onChangeSireId(): void {
+    if (this.alpacasEditForm.get('sireId')?.value === null 
+    || this.alpacasEditForm.get('sireId')?.value === '') {
+      this.alpacasEditForm.get('sireName')?.enable();
+    } else {
+      this.alpacasEditForm.get('sireName')?.disable();
+    }
+  }
+
 
   private putAlpaca(): void {
     console.log('putAlpaca', this.alpacasEditForm.value);

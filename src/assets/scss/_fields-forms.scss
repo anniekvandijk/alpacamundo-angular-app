@@ -1,13 +1,22 @@
-
   .standard-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    //background-color: var(--background-color-light) !important;
+    padding: 5px;
   }
 
   .form-fields {
     display: flex;
     flex-direction: column;
+  }
+
+  .form-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    gap: 15px;
   }
 
   .checkboxes {
