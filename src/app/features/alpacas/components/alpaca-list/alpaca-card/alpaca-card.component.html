@@ -44,7 +44,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="extra-info">
-        @if (alpaca.category === 'Dekhengsten') { <div>Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw</div> }
+        @if (alpaca.category === 'Dekhengsten' && alpaca.studFee > 0) { <div>Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw</div> }
         @if (alpaca.status === 'Te koop' && alpaca.sellPrice > 0) { <div>Te koop: {{alpaca.sellPrice | currency}} excl. 21% btw</div> }
         @if (alpaca.status === 'Te koop' && alpaca.sellPrice === 0) { <div>Te koop: Prijs op aanvraag</div> }
       </div>

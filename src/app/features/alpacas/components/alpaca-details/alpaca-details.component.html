@@ -59,10 +59,12 @@
         </table>
         </div>
     </div>
-    @if(alpaca.category === 'Dekhengsten') {
+    @if(alpaca.category === 'Dekhengsten' && alpaca.studFee > 0) {
     <div class="alpaca-detail-dekhengst">
         <h2>Dekkingen</h2>
-        Deze hengst is beschikbaar voor externe dekkingen en drive-by dekkingen.<p>
+        Deze hengst is beschikbaar voor externe dekkingen en drive-by dekkingen. 
+        Lees op <a routerLink="/warranty" routerLinkActive="active">deze pagina</a> meer over de voorwaarden. 
+        <P>
         Dekgeld: {{alpaca.studFee | currency}} excl. 21% btw en excl. evt. reiskosten.
     </div>
     }
@@ -76,6 +78,7 @@
         <h2>Te koop</h2>
         Prijs op aanvraag.
         }
+        <p>Lees op <a routerLink="/warranty" routerLinkActive="active">deze pagina</a> meer over de voorwaarden. 
     </div>
     }    
     <h2>Beschrijving</h2>

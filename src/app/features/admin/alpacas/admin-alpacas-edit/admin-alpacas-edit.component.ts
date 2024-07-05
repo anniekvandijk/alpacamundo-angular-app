@@ -56,7 +56,6 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private alpacaService = inject(AlpacaService);
-  private messageService = inject(MessageService);
   private formService = inject(FormService);
   private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);

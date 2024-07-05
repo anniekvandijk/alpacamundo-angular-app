@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { Alpaca } from '../../models/alpaca.model';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { AlpacaService } from 'src/app/features/alpacas/services/alpaca.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     AlpacaShowresultsComponent,
     AlpacaFleeceresultsComponent,
     AlpacaOffspringListComponent,
