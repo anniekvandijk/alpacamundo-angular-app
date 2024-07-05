@@ -1,0 +1,19 @@
+<h2>Over alpaca's</h2>
+<app-http-loader [componentId]="componentId">
+    @if(groupedInfopages$ | async; as groupedInfopages) {
+        @for(infoCat of (groupedInfopages | keyvalue); track infoCat) {
+        <div>
+            <h3>{{ infoCat.key }}</h3>
+            <ul>
+            @for(info of infoCat.value; track info) {
+            <div class="sidebar-link">
+                <li>
+                    <a [routerLink]="['/info/detail/', info.id]">{{info.title}}</a>
+                </li>
+            </div>
+            }
+            </ul>
+        </div>
+        }
+    }
+</app-http-loader>    

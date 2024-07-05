@@ -1,8 +1,8 @@
 import { Route } from "@angular/router";
-import { WarrantyMainComponent } from "./warranty-main/warranty-main.component";
-import { AlpacasSidebarComponent } from "../alpacas/alpacas-sidebar/alpacas-sidebar.component";
+import { WarrantyMainComponent } from "./components/warranty-main/warranty-main.component";
+import { AlpacasSidebarComponent } from "../alpacas/components/alpacas-sidebar/alpacas-sidebar.component";
 
-export default [
+export const WARRANTY_ROUTES: Route[] = [
     {
         path: '',
         component: WarrantyMainComponent,
@@ -12,4 +12,4 @@ export default [
         component: AlpacasSidebarComponent,
         outlet: 'sidebar',
       },
-  ] as Route[];
+  ];

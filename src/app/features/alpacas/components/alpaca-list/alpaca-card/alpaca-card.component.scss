@@ -1,0 +1,37 @@
+mat-card-actions {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    color: var(--secondary-color);
+}
+
+mat-card-content {
+    display: flex; 
+    justify-content: left;
+    align-items: center; 
+    gap: 5px;
+}
+
+.label {
+    padding-right: 10px;
+}
+
+.alpaca-fullname, .extra-info {
+    color: var(--secondary-color);
+}
+
+.extra-info {
+    padding-left: 10px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+img {
+    object-fit: cover;
+    width: 175px;
+    height: 175px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }

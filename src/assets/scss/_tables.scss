@@ -1,36 +1,66 @@
 @use '@angular/material' as mat;
 
-.mat-mdc-table {
+// TODO: Fix radius for table border
+// https://stackoverflow.com/questions/65238188/border-radius-of-table-not-working-due-to-border-collapse-property
+
+ .mat-mdc-table {
     margin-right: 16px;
     border-radius: 10px !important;
-    border-style: solid !important;
-    border-width: 1px !important;
-    border-color: var(--secondary-color-light) !important;
-    box-sizing: border-box  !important;
+    border: 1px solid var(--secondary-color-light) !important; 
+    border-spacing: 0 !important;
     @include mat.elevation(0);
 
+    th:only-child {
+        border-top-left-radius: 10px !important;
+        border-top-right-radius: 10px !important;
+    }
     th:first-child {
-        border-radius: 10px 0 0 0 !important;
+        border-top-left-radius: 10px !important;
     }
     th:last-child {
-        border-radius: 0 10px 0 0 !important;
+        border-top-right-radius: 10px !important;
     }
-   
-}
-
-.mat-mdc-cell {
-    border-color: var(--secondary-color-light) !important;  
-    background-color: var(--background-color-light) !important;
-    color: var(--text-color-dark) !important;
+    tr:last-child td:only-child {
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+    }
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 10px !important;
+    }
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 10px !important;
+    }
 }
 
 .mat-mdc-header-cell {
-    border-color: var(--secondary-color-light) !important;  
-    background-color: var(--secondary-color-light) !important;
+  border:none !important;  
+
 }
 
 .mat-mdc-header-row {
     color: var(--text-color-dark) !important;
-    border-radius: 10px !important;
-    box-sizing: border-box !important;
+    background-color: var(--secondary-color-light) !important;
 }  
+
+.mat-mdc-row {
+    background-color: var(--background-color-light) !important;
+    color: var(--text-color-dark) !important;
+    .row-select-highlight {
+        cursor: pointer;
+        background-color: var(--secondary-color-light) !important;
+    }
+
+}
+
+.mat-mdc-row:hover.row-hover-highlight {
+    cursor: pointer;
+    background-color: var(--secondary-color-light) !important;
+}
+
+.mat-mdc-paginator {
+    background-color: var(--tranparant) !important;
+    color: var(--text-color-dark) !important;
+    .mat-mdc-paginator-icon {
+        fill: var(--text-color-dark) !important;
+    }
+  }

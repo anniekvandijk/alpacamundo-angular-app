@@ -1,0 +1,26 @@
+
+
+.button-standard-action {
+  background-color: var(--button-background-standard-action) !important;
+  color: var(--button-textcolor-standard-action) !important;
+}
+
+.button-primary-action {
+  background-color: var(--button-background-primary-action) !important;
+  color: var(--button-textcolor-primary-action) !important;
+}
+
+.button-secondary-action {
+  background-color: var(--button-background-secondary-action) !important;
+  color: var(--button-textcolor-secondary-action) !important;
+}
+
+.button-warning-action {
+  background-color: var(--button-background-warning-action) !important;
+  color: var(--button-textcolor-warning-action) !important;
+}
+
+.icon-button {
+  display: flex; 
+  justify-content: space-between;
+}

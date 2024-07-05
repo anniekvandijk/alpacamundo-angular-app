@@ -1,0 +1,12 @@
+<div id="user-menu">
+  @if(isUserLoggedIn$ | async) {
+  <div>
+    @if(account) { 
+      <div class="userinfo">
+        <h3>Ingelogd als {{ account.username }}</h3>
+        <button class="button-standard-action" mat-raised-button routerLink="/admin">Naar Admin Dashboard</button>
+    </div>
+    }
+  </div>
+  }
+</div>

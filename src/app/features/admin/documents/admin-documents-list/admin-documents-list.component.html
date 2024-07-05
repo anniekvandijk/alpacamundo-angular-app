@@ -1,0 +1,56 @@
+<H1>Documenten</H1>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Zoeken" #input>
+</mat-form-field>
+
+<app-http-loader [componentId]="componentId">
+<div>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element">
+        @switch(getDocumentType(element)) {
+          @case('pdf') {
+            <mat-icon>picture_as_pdf</mat-icon>
+          }
+          @case('img') {
+            <img 
+              src="{{element.url}}" 
+              loading="lazy"
+              height="50" 
+              alt="{{element.name}}" />
+          }
+          @case('unknown') {
+          <mat-icon>unknown_document</mat-icon>
+          }
+          @default {
+            <mat-icon>unknown_document</mat-icon>
+          }
+        }
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Naam</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="documentCategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
+      <td mat-cell *matCellDef="let element"> {{element.documentCategory }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+  
+  </table>
+
+  <mat-paginator 
+  showFirstLastButtons
+  [pageSizeOptions]="[5, 10, 20]"
+  [pageSize]="10"
+  aria-label="Select page">
+  </mat-paginator>
+</div>
+</app-http-loader>

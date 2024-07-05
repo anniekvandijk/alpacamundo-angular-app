@@ -1,9 +1,10 @@
 @use './assets/scss/material';
 @use './assets/scss/variables';
-@use './assets/scss/forms';
+@use './assets/scss/fields-forms';
 @use './assets//scss//snackbar';
 @use './assets/scss/tables';
 @use './assets/scss/cards';
+@use './assets/scss/buttons';
 
 @font-face {
     font-family: 'France Plain';
@@ -118,6 +119,7 @@ a {
 }
 
 #content-section {
+    z-index: 1;
     margin-top: 30px;
     margin-bottom: 10px;
     margin-right: 80px;

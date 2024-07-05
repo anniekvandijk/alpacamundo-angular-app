@@ -1,0 +1,80 @@
+<h1>{{ editmode? 'Link wijzigen' : 'Link toevoegen' }}</h1>
+<form class="standard-form" [formGroup]="linksEditForm" (ngSubmit)="onSubmit()">
+  <div class="form-fields">
+    <mat-form-field class="form-field">
+      <mat-label for="title">Titel</mat-label>
+      <input matInput id="title" formControlName="title" />
+      @if(linksEditForm.get('title')?.touched &&
+      linksEditForm.get('title')?.invalid) {
+      <mat-error>Voer een geldige title in</mat-error>
+      }
+    </mat-form-field>
+    <div class="upload-component">
+      <app-file-upload 
+        [documents]="documents" 
+        [multipleFiles]="false"
+        [acceptedFileTypes]="['image/*']"
+        [fileRequired]="true"
+        [formComponentId]="componentId"
+      ></app-file-upload>
+    </div>
+    <mat-form-field class="form-field">
+      <mat-label for="linkType">Categorie</mat-label>
+      <mat-select id="linkType" formControlName="linkType">
+        @for(linkType of linkTypes; track linkType.id) {
+        <mat-option [value]="linkType.id.toLocaleLowerCase()">{{
+          linkType.name
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Link</mat-label>
+      <input matInput id="url" formControlName="url" />
+      @if(linksEditForm.get('url')?.touched &&
+      linksEditForm.get('url')?.invalid) {
+      <mat-error>Voer een geldige URL in</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Tekst</mat-label>
+      <textarea matInput rows="5" id="body" formControlName="body"></textarea>
+    </mat-form-field>
+    @if(linksEditForm.get('body')?.touched &&
+    linksEditForm.get('body')?.invalid) {
+    <mat-error>Voer tekst in</mat-error>
+    }
+  </div>
+  <div class="form-buttons">
+    <button
+      mat-raised-button
+      class="icon-button button-standard-action"
+      (click)="onNavigateBack()"
+      type="button"
+    >
+      <mat-icon>keyboard_double_arrow_left</mat-icon>
+      Terug
+    </button>
+    @if(editmode) {
+      <button
+        mat-raised-button
+        class="button-standard-action"
+        (click)="onDelete()"
+        type="button"
+      >
+        Delete
+      </button>
+    }
+    <button
+      mat-raised-button
+      class="button-standard-action"
+      (click)="onReset()"
+      type="button"
+    >
+      Reset
+    </button>
+    <button mat-raised-button class="button-primary-action" type="submit">
+      Opslaan
+    </button>
+  </div>
+</form>

@@ -1,0 +1,53 @@
+#file-upload {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  height: 100%;
+  background-color: var(--background-color-light);
+
+  .file-upload-header, .file-upload-preview-header, .existing-documents-header {
+    color: var(--secondary-color);
+    font-size: 0.8em;
+    border-bottom: var(--primary-color-light) 1px solid;
+  }
+
+  .file-upload-preview-body, .existing-documents-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .file-preview-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .file-upload-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    .file-upload-button {
+      margin-top: 10px;
+    }
+  }
+
+  .file-upload-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  img {
+    height: 80px;
+    object-fit: cover;
+    max-width: 300px;
+  }
+}

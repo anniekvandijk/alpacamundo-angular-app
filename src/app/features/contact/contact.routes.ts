@@ -1,8 +1,8 @@
 import { Route } from "@angular/router";
-import { ContactMainComponent } from "./contact-main/contact-main.component";
-import { ContactSidebarComponent } from "./contact-sidebar/contact-sidebar.component";
+import { ContactMainComponent } from "./components/contact-main/contact-main.component";
+import { ContactSidebarComponent } from "./components/contact-sidebar/contact-sidebar.component";
 
-export default [
+export const CONTACT_ROUTES: Route[] = [
     {
         path: '',
         component: ContactMainComponent,
@@ -12,4 +12,4 @@ export default [
         component: ContactSidebarComponent,
         outlet: 'sidebar',
     },
-  ] as Route[];
+  ];

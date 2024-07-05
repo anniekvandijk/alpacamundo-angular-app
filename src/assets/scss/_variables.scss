@@ -16,6 +16,15 @@
 
       --text-color-light: var(--text-color-light--light-theme);
       --text-color-dark: var(--text-color-dark--light-theme);
+
+      --button-background-standard-action: var(--button-background-standard-action--light-theme);
+      --button-textcolor-standard-action: var(--button-textcolor-standard-action--light-theme);
+      --button-background-primary-action: var(--button-background-primary-action--light-theme);
+      --button-textcolor-primary-action: var(--button-textcolor-primary-action--light-theme);
+      --button-background-secondary-action: var(--button-background-secondary-action--light-theme);
+      --button-textcolor-secondary-action: var(--button-textcolor-secondary-action--light-theme);
+      --button-background-warning-action: var(--button-background-warning-action--light-theme);
+      --button-textcolor-warning-action: var(--button-textcolor-warning-action--light-theme);
    }
    .dark-theme {
       --body-color: var(--body-color--dark-theme);
@@ -33,12 +42,22 @@
    
       --text-color-light: var(--text-color-light--dark-theme);
       --text-color-dark: var(--text-color-dark--dark-theme);
+
+      --button-background-standard-action: var(--button-background-standard-action--dark-theme);
+      --button-textcolor-standard-action: var(--button-textcolor-standard-action--dark-theme);
+      --button-background-primary-action: var(--button-background-primary-action--dark-theme);
+      --button-textcolor-primary-action: var(--button-textcolor-primary-action--dark-theme);
+      --button-background-secondary-action: var(--button-background-secondary-action--dark-theme);
+      --button-textcolor-secondary-action: var(--button-textcolor-secondary-action--dark-theme);
+      --button-background-warning-action: var(--button-background-warning-action--dark-theme);
+      --button-textcolor-warning-action: var(--button-textcolor-warning-action--dark-theme);
    }
 
    // Default colors
 
    --white: white;
    --black: black;
+   --transparent: transparent;
 
    // Light theme
 
@@ -58,9 +77,16 @@
    --text-color-light--light-theme: hsl(0, 0%, 95%);
    --text-color-dark--light-theme: hsl(0, 0%, 20%);
 
-   // Dark theme
+   --button-background-standard-action--light-theme: var(--background-color-light--light-theme);
+   --button-textcolor-standard-action--light-theme: var(--secondary-color--light-theme);
+   --button-background-primary-action--light-theme: hsl(128, 84%, 20%);
+   --button-textcolor-primary-action--light-theme: var(--text-color-light--light-theme);
+   --button-background-secondary-action--light-theme: hsl(29, 95%, 35%);
+   --button-textcolor-secondary-action--light-theme: var(--text-color-light--light-theme);
+   --button-background-warning-action--light-theme: hsl(0, 100%, 18%);
+   --button-textcolor-warning-action--light-theme: var(--text-color-light--light-theme);
 
-   // #161b22
+   // Dark theme
 
    --body-color--dark-theme: #121212;
 
@@ -77,5 +103,15 @@
 
    --text-color-light--dark-theme:  hsl(0, 0%, 20%);
    --text-color-dark--dark-theme:  hsl(0, 0%, 90%);
+
+   --button-background-standard-action--dark-theme: var(--background-color-light--dark-theme);
+   --button-textcolor-standard-action--dark-theme: var(--secondary-color--dark-theme);
+   --button-background-primary-action--dark-theme: hsl(128, 84%, 20%);
+   --button-textcolor-primary-action--dark-theme: var(--text-color-dark--dark-theme);
+   --button-background-secondary-action--dark-theme: hsl(29, 95%, 35%);
+   --button-textcolor-secondary-action--dark-theme: var(--text-color-dark--dark-theme);
+   --button-background-warning-action--dark-theme:hsl(0, 100%, 18%);
+   --button-textcolor-warning-action--dark-theme: var(--text-color-dark--dark-theme);
+
 
 }

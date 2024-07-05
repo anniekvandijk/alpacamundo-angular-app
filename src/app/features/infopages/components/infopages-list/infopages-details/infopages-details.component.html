@@ -1,0 +1,8 @@
+<app-http-loader componentId="componentId">
+    @if(infopage$ | async) {
+    <ng-container *ngIf="infopage$ | async as infopage">
+        <h1>{{infopage.title}}</h1>
+        <div [innerHTML]="getSafeHtml(infopage.body)"></div>
+    </ng-container>
+    }
+</app-http-loader>

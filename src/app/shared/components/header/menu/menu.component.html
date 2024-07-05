@@ -1,0 +1,83 @@
+<div id="main-menu">
+  <div>
+    <button class="menu-button" mat-button routerLink="/" routerLinkActive="active">Home</button>
+  </div>
+
+  <div>
+    <button mat-button class="menu-button"
+      #about="matMenuTrigger"
+      [matMenuTriggerFor]="aboutMenu"
+      (mouseenter)="menuButtonEnter(about)" 
+      (mouseleave)="menuButtonLeave(about)"
+    >Over ons</button>
+    <mat-menu #aboutMenu="matMenu" class="dropdown-menu" hasBackdrop="false">
+        <span (mouseenter)="dropdownMenuEnter()" (mouseleave)="dropdownMenuLeave(about)">
+          <button mat-menu-item routerLink="/about">Over ons</button>
+          <button mat-menu-item routerLink="/students">School- en studie opdrachten</button>
+        </span>
+    </mat-menu>
+  </div>  
+
+  <div>
+    <button mat-button class="menu-button"
+      #alpacas="matMenuTrigger"
+      [matMenuTriggerFor]="alpacaMenu"
+      (mouseenter)="menuButtonEnter(alpacas)" 
+      (mouseleave)="menuButtonLeave(alpacas)"
+      >Onze alpaca's</button>
+      <mat-menu #alpacaMenu="matMenu" class="dropdown-menu" hasBackdrop="false">
+        <span (mouseenter)="dropdownMenuEnter()" (mouseleave)="dropdownMenuLeave(alpacas)">
+          <button mat-menu-item routerLink="/alpacas">Onze alpaca's</button>
+          <button mat-menu-item routerLink="/alpacas/crias">Onze cria's (veulens)</button>
+          <a mat-menu-item href="https://goo.gl/photos/dir2jPpDZbZjNgZf6" target="_blank">Fotoalbum (Google)</a>
+        </span>
+    </mat-menu>
+  </div>
+
+  <div>
+    <button mat-button class="menu-button"
+      #sell="matMenuTrigger"
+      [matMenuTriggerFor]="sellMenu"
+      (mouseenter)="menuButtonEnter(sell)" 
+      (mouseleave)="menuButtonLeave(sell)"
+      >Verkoop</button>
+      <mat-menu #sellMenu="matMenu" class="dropdown-menu" hasBackdrop="false">
+        <span (mouseenter)="dropdownMenuEnter()" (mouseleave)="dropdownMenuLeave(sell)">
+          <button mat-menu-item routerLink="/alpacas/forsale" routerLinkActive="active">Alpaca's te koop</button>
+          <button mat-menu-item routerLink="/alpacas/sold" routerLinkActive="active">Alpaca's verkocht</button>   
+          <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>     
+        </span>
+      </mat-menu>
+  </div>
+
+  <div>
+    <button mat-button class="menu-button"
+      #studs="matMenuTrigger"
+      [matMenuTriggerFor]="studsMenu"
+      (mouseenter)="menuButtonEnter(studs)" 
+      (mouseleave)="menuButtonLeave(studs)"
+      >Dekservice</button>
+      <mat-menu #studsMenu="matMenu" class="dropdown-menu" hasBackdrop="false">
+        <span (mouseenter)="dropdownMenuEnter()" (mouseleave)="dropdownMenuLeave(studs)">  
+          <button mat-menu-item routerLink="/alpacas/studservice" routerLinkActive="active">Onze dekhengsten</button>
+          <button mat-menu-item routerLink="/warranty" routerLinkActive="active">Voorwaarden en garantie</button>  
+        </span>
+      </mat-menu>
+  </div>
+
+  <div>
+    <button class="menu-button" mat-button routerLink="/info" routerLinkActive="active">Over alpaca's</button>
+  </div>
+  <div>
+  <button class="menu-button" mat-button routerLink="/contact" routerLinkActive="active">Contact</button>
+  </div>
+  <div>
+    <button class="menu-button" mat-button routerLink="/links" routerLinkActive="active">Links</button>
+  </div>
+  <div class="menu-divider">
+    |
+  </div>
+  <div class="mode-toggle menu-button">  
+    <app-light-dark-mode-toggle></app-light-dark-mode-toggle>
+  </div>
+</div>

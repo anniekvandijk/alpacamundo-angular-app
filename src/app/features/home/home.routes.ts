@@ -1,8 +1,8 @@
 import { Route } from "@angular/router";
-import { HomeSidebarComponent } from "./home-sidebar/home-sidebar.component";
-import { HomeMainComponent } from "./home-main/home-main.component";
+import { HomeSidebarComponent } from "./components/home-sidebar/home-sidebar.component";
+import { HomeMainComponent } from "./components/home-main/home-main.component";
 
-export default [
+export const HOME_ROUTES: Route[] = [
     {
         path: '',
         component: HomeMainComponent,
@@ -12,4 +12,4 @@ export default [
         component: HomeSidebarComponent,
         outlet: 'sidebar',
       },
-  ] as Route[];
+  ];

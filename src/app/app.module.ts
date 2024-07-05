@@ -1,24 +1,26 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/services/in-memory-data.service';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HeaderComponent } from './shared/features/header/header.component';
-import { FooterComponent } from './shared/features/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { registerLocaleData } from '@angular/common';
 import localeNl from '@angular/common/locales/nl';
 import { ROUTES } from './app.routes';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
-import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
-import { environment } from 'src/environments/environment';
 import { HttpApiInterceptor } from './shared/interceptors/http-api.interceptor';
+import { msalGuardConfiguration, msalInstanceConfig, protectedResourceMap } from './auth/auth';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 registerLocaleData(localeNl, 'nl-NL'); 
+
+// TODO: get rid of this NgModule 
+// move to main.ts
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ registerLocaleData(localeNl, 'nl-NL');
     BrowserModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    RouterModule.forRoot(ROUTES, {scrollPositionRestoration: 'enabled'}),
+    RouterModule.forRoot(ROUTES, {
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules
+    }),
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -42,32 +47,10 @@ registerLocaleData(localeNl, 'nl-NL');
     ),
     HeaderComponent,
     FooterComponent,
-    MsalModule.forRoot(new PublicClientApplication(
-        { 
-        auth: {
-            clientId: '13f9d129-96e3-4d32-9199-1786494d46ec',
-            redirectUri: environment.loginRedirectUri,
-            authority: `https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75`
-        },
-        cache: {
-            cacheLocation: 'localStorage',
-            storeAuthStateInCookie: true
-        }
-        }
-    ),
-    {
-        interactionType: InteractionType.Redirect,
-        authRequest: {
-        scopes: ['user.read']
-        }
-    },
-    {
-        interactionType: InteractionType.Redirect,
-        protectedResourceMap: new Map([
-        ['https://graph.microsoft.com/v1.0/me', ['user.read']] 
-        ])
-    }      
-    ),
+    MsalModule.forRoot(msalInstanceConfig, msalGuardConfiguration, {
+      interactionType: msalGuardConfiguration.interactionType,
+      protectedResourceMap: new Map(protectedResourceMap)
+    }),
    ],
     providers: [
     {
@@ -81,15 +64,11 @@ registerLocaleData(localeNl, 'nl-NL');
       multi: true
     },
     MsalGuard,
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
-      useValue: {
-        appearance: 'outline',
-        floatLabel: 'always'
-      }
-    },
     { 
       provide: LOCALE_ID,
+      useValue: 'nl-NL' 
+    },
+    { provide: MAT_DATE_LOCALE, 
       useValue: 'nl-NL' 
     },
     {

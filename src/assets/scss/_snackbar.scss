@@ -11,7 +11,7 @@
   }
   
   .warning-snackbar {
-  --mdc-snackbar-container-color: orange !important;
+  --mdc-snackbar-container-color: hsl(29, 95%, 35%) !important;
   --mdc-snackbar-supporting-text-color: white !important;
   --mat-mdc-snack-bar-button-color: white !important;
   white-space: pre-wrap
@@ -25,7 +25,7 @@
   }
   
   .success-snackbar {
-  --mdc-snackbar-container-color: green !important;
+  --mdc-snackbar-container-color: hsl(128, 84%, 20%) !important;
   --mdc-snackbar-supporting-text-color: white !important;
   --mat-mdc-snack-bar-button-color: white !important;
   }

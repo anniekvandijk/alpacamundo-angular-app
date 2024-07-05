@@ -1,0 +1,17 @@
+<h1>Over alpaca's</h1>
+<app-http-loader [componentId]="componentId">
+  @if(groupedInfopages$ | async; as groupedInfopages) {
+  <ng-container>
+    @for(category of (groupedInfopages | keyvalue); track category) {
+    <div>
+      <h2>{{ category.key }}</h2>
+      @for(infopage of category.value; track infopage) {
+      <div>
+          <app-infopage-card [infopage]="infopage"></app-infopage-card>
+      </div>
+      }
+    </div>
+    }
+  </ng-container>
+  }
+</app-http-loader>

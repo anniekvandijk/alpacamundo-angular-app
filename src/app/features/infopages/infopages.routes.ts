@@ -1,9 +1,9 @@
 import { Route } from "@angular/router";
-import { InfopagesListComponent } from "./infopages-list/infopages-list.component";
-import { InfopagesSidebarComponent } from "./infopages-sidebar/infopages-sidebar.component";
-import { InfopagesDetailsComponent } from "./infopages-details/infopages-details.component";
+import { InfopagesListComponent } from "./components/infopages-list/infopages-list.component";
+import { InfopagesSidebarComponent } from "./components/infopages-sidebar/infopages-sidebar.component";
+import { InfopagesDetailsComponent } from "./components/infopages-list/infopages-details/infopages-details.component";
 
-export default [
+export const INFOPAGE_ROUTES: Route[] = [
     {
         path: '',
         component: InfopagesListComponent,
@@ -17,4 +17,4 @@ export default [
         path: 'detail/:id',
         component: InfopagesDetailsComponent,
     }
-  ] as Route[];
+  ];
