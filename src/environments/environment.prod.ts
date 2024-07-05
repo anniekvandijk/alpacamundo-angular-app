@@ -6,8 +6,8 @@ export const environment = {
     authority: 'https://login.microsoftonline.com/0ef5acdf-6f69-4f04-af24-fa0934009a75',
     baseUri: 'https://www.alpacamundo.eu',
     loginRedirectUri: 'https://www.alpacamundo.eu',
-    postLogoutRedirectUrl: 'http://www.alpacamundo.eu',
-    apiBaseUrl: 'http://api.alpacamundo.eu',
+    postLogoutRedirectUrl: 'https://www.alpacamundo.eu',
+    apiBaseUrl: 'https://api.alpacamundo.eu',
     cacheLifetime: 360000,
     storageUrls: {
       linkImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/links/',
