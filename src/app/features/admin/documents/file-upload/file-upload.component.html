@@ -1,4 +1,5 @@
 <div id="file-upload" class="file-upload">
+  <span class="file-upload-title">{{title ? title: "Documenten"}}</span>
   <div class="existing-documents">
     @if (documents && documents.length > 0) {
     <div class="existing-documents-header">
@@ -7,17 +8,32 @@
     <div class="existing-documents-body">
         @for (currentFile of documents; track currentFile.id) {
         <div class="document">
-          <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
-        </div>
-        <div class="document-actions">
-          @if(multipleFiles) {
-          <button mat-raised-button 
-            type="button" 
-            class="button-warning-action" 
-            (click)="onExistingDocumentRemove(currentFile.id)">
-              Verwijder
-          </button>
-          }
+          <div class="document-image">
+            @switch(getDocumentType(currentFile)) {
+              @case('pdf') {
+                <mat-icon>picture_as_pdf</mat-icon>
+              }
+              @case('img') {
+                <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
+              }
+              @case('unknown') {
+                <mat-icon>unknown_document</mat-icon>
+              }
+              @default {
+                <mat-icon>unknown_document</mat-icon>
+              }
+            }
+          </div>
+          <div class="document-actions">
+            @if(multipleFiles) {
+            <button mat-raised-button 
+              type="button" 
+              class="button-warning-action" 
+              (click)="onExistingDocumentRemove(currentFile.id)">
+                Verwijder
+            </button>
+            }
+          </div>
         </div>
         }
     </div>

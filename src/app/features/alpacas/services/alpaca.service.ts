@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Alpaca } from '../models/alpaca.model';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/shared/services/http-service';
@@ -18,4 +18,14 @@ export class AlpacaService {
   getAlpaca(id : string, componentId: string): Observable<Alpaca> {
     return this.httpService.get<Alpaca>(this.url.concat('/', id), componentId);
   } 
+
+  putAlpaca(alpaca: Alpaca, componentId: string): Observable<Alpaca> {
+    console.log('putAlpaca', alpaca);
+    return of(alpaca)
+    //return this.httpService.put<Alpaca>(this.url, alpaca, componentId);
+  }
+  
+  postAlpaca(alpaca: Alpaca, componentId: string): Observable<Alpaca> {
+    return this.httpService.post<Alpaca>(this.url, alpaca, componentId);
+  }
 }

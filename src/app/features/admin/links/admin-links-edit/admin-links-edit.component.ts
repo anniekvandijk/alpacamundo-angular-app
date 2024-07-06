@@ -36,7 +36,6 @@ import { PostLinkRequest } from 'src/app/features/links/models/post-link-request
   templateUrl: './admin-links-edit.component.html',
 })
 export class AdminLinksEditComponent implements OnInit{
-  @Output() documents!: Document[];
   readonly componentId = this.constructor.name;
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
@@ -48,6 +47,7 @@ export class AdminLinksEditComponent implements OnInit{
   editmode = false;
   link!: Link;
   linkTypes!: LinkType[];
+  documents: Document[] = [];
   linksEditForm!: FormGroup;
 
   ngOnInit(): void {	
@@ -134,13 +134,15 @@ export class AdminLinksEditComponent implements OnInit{
     .subscribe(({ linkTypes, link }) => {
       this.linkTypes = linkTypes;
       this.link = link;
-      this.documents.push({
-          id: link.image.id,
-          name: link.image.name,
-          contentType: link.image.contentType,
-          documentCategory: link.image.documentCategory,
-          url: link.image.url
-        } as Document);
+      if (link.image) {
+        this.documents.push({
+            id: link.image.id,
+            name: link.image.name,
+            contentType: link.image.contentType,
+            documentCategory: link.image.documentCategory,
+            url: link.image.url
+          } as Document);
+      }
       this.updateForm(link);
     });
   }

@@ -7,7 +7,6 @@ import { Observable, switchMap } from "rxjs";
 import { Alpaca, Image } from "src/app/features/alpacas/models/alpaca.model";
 import { AlpacaService } from "src/app/features/alpacas/services/alpaca.service";
 import { DeleteConfirmationDialogComponent } from "src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
-import { MessageService } from "src/app/shared/components/messages/message.service";
 import { FormService } from "../../documents/services/form.service";
 import { Document } from '../../documents/models/document.model';
 import { MatButtonModule } from "@angular/material/button";
@@ -258,10 +257,15 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private putAlpaca(): void {
     console.log('putAlpaca', this.alpacasEditForm.value);
     //TODO: implement putAlpaca
+
+
+    this.alpacaService.putAlpaca(this.alpaca, this.componentId)
+
   }
 
   private postAlpaca(): void {
     //TODO: implement postAlpaca
+
   }
 
   private deleteAlpaca(): void {

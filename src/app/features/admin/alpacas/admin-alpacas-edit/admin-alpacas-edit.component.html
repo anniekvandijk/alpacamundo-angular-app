@@ -7,6 +7,42 @@
 >
   <div class="form-fields">
     <div class="form-row">
+      <div class="upload-component">
+        <app-file-upload
+          [title]="'Hoofdafbeelding'"   
+          [documents]="mainImage" 
+          [multipleFiles]="false"
+          [acceptedFileTypes]="['image/*']"
+          [fileRequired]="true"
+          [formComponentId]="componentId"
+        ></app-file-upload>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="upload-component">
+        <app-file-upload
+          [title]="'Andere afbeeldingen'"   
+          [documents]="images" 
+          [multipleFiles]="true"
+          [acceptedFileTypes]="['image/*']"
+          [fileRequired]="false"
+          [formComponentId]="componentId"
+        ></app-file-upload>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="upload-component">
+        <app-file-upload
+          [title]="'Stamboom'"   
+          [documents]="pedigree" 
+          [multipleFiles]="false"
+          [acceptedFileTypes]="['image/*']"
+          [fileRequired]="false"
+          [formComponentId]="componentId"
+        ></app-file-upload>
+      </div>
+    </div>
+    <div class="form-row">
       <mat-form-field class="form-field">
         <mat-label for="shortName">Korte Naam</mat-label>
         <input matInput id="shortName" formControlName="shortName" />

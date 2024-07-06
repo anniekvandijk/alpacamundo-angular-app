@@ -7,18 +7,32 @@
   height: 100%;
   background-color: var(--background-color-light);
 
-  .file-upload-header, .file-upload-preview-header, .existing-documents-header {
+  .file-upload-title {
     color: var(--secondary-color);
     font-size: 0.8em;
     border-bottom: var(--primary-color-light) 1px solid;
   }
 
+  .file-upload-header, .file-upload-preview-header, .existing-documents-header {
+    margin-top: 5px;
+    color: var(--secondary-color);
+    font-size: 0.8em;
+  }
+
   .file-upload-preview-body, .existing-documents-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .document {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    gap: 10px;
   }
 
   .file-preview-actions {

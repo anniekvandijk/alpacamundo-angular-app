@@ -8,15 +8,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
 import { PutDocumentRequest } from '../models/put-document-request';
 import { UndeleteDocumentRequest } from '../models/undelete-document-request';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-file-upload',
   standalone: true,
-  imports: [ MatButtonModule],
+  imports: [ MatButtonModule, MatIconModule],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss'
 })
 export class FileUploadComponent implements OnInit {
+  @Input() title!: string;
   @Input() documents: Document[] = [];
   @Input() formComponentId!: string;
   @Input() multipleFiles = false;
@@ -192,6 +194,10 @@ export class FileUploadComponent implements OnInit {
           console.log('delete added file after reset', newDocument);
       });
     });
+  }
+
+  getDocumentType(document: Document): string {
+    return `${this.documentService.getDocumentType(document)}`;
   }
 }    
 
