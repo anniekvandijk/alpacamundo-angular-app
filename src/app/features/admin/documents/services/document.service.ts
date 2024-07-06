@@ -7,7 +7,6 @@ import { PostDocumentRequest } from "../models/post-document-request.model";
 import { PostDocumentsRequest } from "../models/post-documents-request.model";
 import { UndeleteFileRequest } from "../models/undelete-file-request";
 import { PutDocumentRequest } from "../models/put-document-request";
-import { HttpResponse } from "@angular/common/http";
 import { DeleteFileRequest } from "../models/delete-file-request";
 import { UndeleteDocumentRequest } from "../models/undelete-document-request";
 

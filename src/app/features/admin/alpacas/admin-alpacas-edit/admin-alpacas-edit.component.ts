@@ -16,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FileUploadComponent } from "../../documents/file-upload/file-upload.component";
@@ -28,6 +29,7 @@ import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constan
   imports: [
     ReactiveFormsModule, 
     MatFormFieldModule, 
+    MatTabsModule,
     MatIconModule, 
     MatInputModule, 
     MatSelectModule,

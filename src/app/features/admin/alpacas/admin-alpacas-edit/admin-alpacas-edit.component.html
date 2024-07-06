@@ -6,155 +6,121 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="form-fields">
-    <div class="form-row">
-      <div class="upload-component">
-        <app-file-upload
-          [title]="'Hoofdafbeelding'"   
-          [documents]="mainImage" 
-          [multipleFiles]="false"
-          [acceptedFileTypes]="['image/*']"
-          [fileRequired]="true"
-          [formComponentId]="componentId"
-        ></app-file-upload>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="upload-component">
-        <app-file-upload
-          [title]="'Andere afbeeldingen'"   
-          [documents]="images" 
-          [multipleFiles]="true"
-          [acceptedFileTypes]="['image/*']"
-          [fileRequired]="false"
-          [formComponentId]="componentId"
-        ></app-file-upload>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="upload-component">
-        <app-file-upload
-          [title]="'Stamboom'"   
-          [documents]="pedigree" 
-          [multipleFiles]="false"
-          [acceptedFileTypes]="['image/*']"
-          [fileRequired]="false"
-          [formComponentId]="componentId"
-        ></app-file-upload>
-      </div>
-    </div>
-    <div class="form-row">
-      <mat-form-field class="form-field">
-        <mat-label for="shortName">Korte Naam</mat-label>
-        <input matInput id="shortName" formControlName="shortName" />
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label for="shortName">Lange Naam</mat-label>
-        <input matInput id="longName" formControlName="longName" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field class="form-field">
-        <mat-label for="damId">Moeder</mat-label>
-        <mat-select
-          id="damId"
-          formControlName="damId"
-          (selectionChange)="onChangeDamId()"
-        >
-          <mat-option [value]="null">Geen selectie</mat-option>
-          @for(alpaca of femaleAlpacas; track alpaca.id) {
-          <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-            alpaca.longName
-          }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label for="damName">Moeder</mat-label>
-        <input matInput id="damName" formControlName="damName" />
-      </mat-form-field>
-    </div>
-    <div class="form-row">
-      <mat-form-field class="form-field">
-        <mat-label for="sireId">Vader</mat-label>
-        <mat-select
-          id="sireId"
-          formControlName="sireId"
-          (selectionChange)="onChangeSireId()"
-        >
-          <mat-option [value]="null">Geen selectie</mat-option>
-          @for(alpaca of maleAlpacas; track alpaca.id) {
-          <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-            alpaca.longName
-          }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-field">
-        <mat-label for="sireName">Naam vader</mat-label>
-        <input matInput id="sireName" formControlName="sireName" />
-      </mat-form-field>
-  </div>
-  <div class="form-row">
-    <mat-form-field class="form-field">
-      <mat-label for="dateOfBirth">Geboortedatum</mat-label>
-      <input
-        matInput
-        id="dateOfBirth"
-        [matDatepicker]="picker"
-        formControlName="dateOfBirth"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      @if(alpacasEditForm.get('dateOfBirth')?.touched &&
-      alpacasEditForm.get('dateOfBirth')?.invalid) {
-      <mat-error>Voer een geldige geboortedatum in</mat-error>
-      }
-      </mat-form-field>
-      <div class="checkboxes">
-        <mat-checkbox formControlName="bornOnFarm"
-          >Bij Alpacamundo geboren</mat-checkbox
-        >
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="radio-buttons">
-        <mat-label for="breed">Soort</mat-label>
-        <mat-radio-group
-          class="radio-buttons-group"
-          formControlName="breed"
-          aria-label="Select an option"
-        >
-          <mat-radio-button class="radio-buttons-button" value="Huacaya"
-            >Huacaya</mat-radio-button
+    <mat-tab-group>
+      <mat-tab label="Algemeen">
+        <div class="form-row">
+          <mat-form-field class="form-field">
+            <mat-label for="shortName">Korte Naam</mat-label>
+            <input matInput id="shortName" formControlName="shortName" />
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label for="shortName">Lange Naam</mat-label>
+            <input matInput id="longName" formControlName="longName" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="form-field">
+            <mat-label for="damId">Moeder</mat-label>
+            <mat-select
+              id="damId"
+              formControlName="damId"
+              (selectionChange)="onChangeDamId()"
+            >
+              <mat-option [value]="null">Geen selectie</mat-option>
+              @for(alpaca of femaleAlpacas; track alpaca.id) {
+              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+                alpaca.longName
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label for="damName">Moeder</mat-label>
+            <input matInput id="damName" formControlName="damName" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="form-field">
+            <mat-label for="sireId">Vader</mat-label>
+            <mat-select
+              id="sireId"
+              formControlName="sireId"
+              (selectionChange)="onChangeSireId()"
+            >
+              <mat-option [value]="null">Geen selectie</mat-option>
+              @for(alpaca of maleAlpacas; track alpaca.id) {
+              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+                alpaca.longName
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label for="sireName">Naam vader</mat-label>
+            <input matInput id="sireName" formControlName="sireName" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="form-field">
+            <mat-label for="dateOfBirth">Geboortedatum</mat-label>
+            <input
+              matInput
+              id="dateOfBirth"
+              [matDatepicker]="picker"
+              formControlName="dateOfBirth"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            @if(alpacasEditForm.get('dateOfBirth')?.touched &&
+            alpacasEditForm.get('dateOfBirth')?.invalid) {
+            <mat-error>Voer een geldige geboortedatum in</mat-error>
+            }
+            </mat-form-field>
+            <div class="checkboxes">
+              <mat-checkbox formControlName="bornOnFarm"
+                >Bij Alpacamundo geboren</mat-checkbox
+              >
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="radio-buttons">
+          <mat-label for="breed">Soort</mat-label>
+          <mat-radio-group
+            class="radio-buttons-group"
+            formControlName="breed"
+            aria-label="Select an option"
           >
-          <mat-radio-button class="radio-buttons-button" value="Suri"
-            >Suri</mat-radio-button
+            <mat-radio-button class="radio-buttons-button" value="Huacaya"
+              >Huacaya</mat-radio-button
+            >
+            <mat-radio-button class="radio-buttons-button" value="Suri"
+              >Suri</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+        <div class="radio-buttons">
+          <mat-label for="breed">Geslacht</mat-label>
+          <mat-radio-group
+            class="radio-buttons-group"
+            formControlName="gender"
+            aria-label="Select an option"
           >
-        </mat-radio-group>
+            <mat-radio-button class="radio-buttons-button" value="Hengst"
+              >Hengst</mat-radio-button
+            >
+            <mat-radio-button class="radio-buttons-button" value="Merrie"
+              >Merrie</mat-radio-button
+            >
+            <mat-radio-button class="radio-buttons-button" value="Ruin"
+              >Ruin</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
       </div>
-      <div class="radio-buttons">
-        <mat-label for="breed">Geslacht</mat-label>
-        <mat-radio-group
-          class="radio-buttons-group"
-          formControlName="gender"
-          aria-label="Select an option"
-        >
-          <mat-radio-button class="radio-buttons-button" value="Hengst"
-            >Hengst</mat-radio-button
-          >
-          <mat-radio-button class="radio-buttons-button" value="Merrie"
-            >Merrie</mat-radio-button
-          >
-          <mat-radio-button class="radio-buttons-button" value="Ruin"
-            >Ruin</mat-radio-button
-          >
-        </mat-radio-group>
-      </div>
-    </div>
-    <div class="form-row">
+      <div class="form-row">
       <mat-form-field class="form-field">
         <mat-label for="color">Kleur</mat-label>
         <mat-select id="color" formControlName="color">
@@ -202,19 +168,57 @@
         />
       </mat-form-field>
     </div>
-    <mat-form-field class="form-field">
-      <mat-label>Beschrijving</mat-label>
-      <textarea
-        matInput
-        rows="15"
-        id="description"
-        formControlName="description"
-      ></textarea>
-    </mat-form-field>
-    @if(alpacasEditForm.get('description')?.touched &&
-    alpacasEditForm.get('description')?.invalid) {
-    <mat-error>Voer tekst in</mat-error>
-    }
+    </mat-tab>
+    <mat-tab label="Beschrijving">
+      <div class="form-row">
+        <mat-form-field class="form-field">
+          <mat-label>Beschrijving</mat-label>
+          <textarea
+            matInput
+            rows="15"
+            id="description"
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+        @if(alpacasEditForm.get('description')?.touched &&
+        alpacasEditForm.get('description')?.invalid) {
+        <mat-error>Voer tekst in</mat-error>
+        }
+      </div>
+    </mat-tab>
+      <mat-tab label="Documenten">
+        <div class="upload-component">
+          <app-file-upload
+            [title]="'Hoofdafbeelding'"   
+            [documents]="mainImage" 
+            [multipleFiles]="false"
+            [acceptedFileTypes]="['image/*']"
+            [fileRequired]="true"
+            [formComponentId]="componentId"
+          ></app-file-upload>
+        </div>
+        <div class="upload-component">
+          <app-file-upload
+            [title]="'Andere afbeeldingen'"   
+            [documents]="images" 
+            [multipleFiles]="true"
+            [acceptedFileTypes]="['image/*']"
+            [fileRequired]="false"
+            [formComponentId]="componentId"
+          ></app-file-upload>
+        </div>
+        <div class="upload-component">
+          <app-file-upload
+            [title]="'Stamboom'"   
+            [documents]="pedigree" 
+            [multipleFiles]="false"
+            [acceptedFileTypes]="['image/*']"
+            [fileRequired]="false"
+            [formComponentId]="componentId"
+          ></app-file-upload>
+        </div>
+      </mat-tab>
+  </mat-tab-group>
   </div>
   <div class="form-buttons">
     <button
