@@ -19,6 +19,11 @@
     gap: 15px;
   }
 
+  .form-field, .checkboxes, .radio-buttons {
+    flex-grow: 1;
+
+  }
+
   .checkboxes {
     display: flex;
     flex-direction: column;
@@ -49,7 +54,7 @@
     }
     mat-label {
       color: var(--secondary-color) !important;
-      padding: 10px;
+      padding: 10px 10px 0px 10px;
       font-size: 0.8em;
  
     }
