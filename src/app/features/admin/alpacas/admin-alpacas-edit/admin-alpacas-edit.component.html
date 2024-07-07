@@ -1,5 +1,8 @@
-<h1>{{ editmode ? "Alpaca wijzigen" : "Alpaca toevoegen" }}</h1>
-
+@if (editmode) {
+  <h1>Alpaca wijzigen: {{alpaca.shortName}}</h1>
+} @else {
+  <h1>Alpaca toevoegen</h1>
+}
 <form
   class="standard-form"
   [formGroup]="alpacasEditForm"
