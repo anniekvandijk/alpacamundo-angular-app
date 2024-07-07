@@ -136,10 +136,12 @@
           <mat-label>Beschrijving</mat-label>
           <textarea
             matInput
+            (input)="onDescriptionInput($event)"
             rows="15"
             id="description"
             formControlName="description"
           ></textarea>
+          <mat-hint align="end">{{descriptionValue().length}}/1000</mat-hint>
         </mat-form-field>
         @if(alpacasEditForm.get('description')?.touched &&
         alpacasEditForm.get('description')?.invalid) {

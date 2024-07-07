@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, Output, inject } from "@angular/core";
+import { Component, DestroyRef, OnInit, Output, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
@@ -66,6 +66,11 @@ export class AdminAlpacasEditComponent  implements OnInit{
   maleAlpacas!: Alpaca[];
   femaleAlpacas!: Alpaca[];
   alpacasEditForm!: FormGroup;
+  protected readonly descriptionValue = signal('');
+
+  protected onDescriptionInput(event: Event) {
+    this.descriptionValue.set((event.target as HTMLInputElement).value);
+  }
 
   ngOnInit(): void {	
     this.route.params
