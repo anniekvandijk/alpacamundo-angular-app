@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder, FormArray } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { Observable, switchMap } from "rxjs";
+import { Observable, of, switchMap } from "rxjs";
 import { Alpaca, Image } from "src/app/features/alpacas/models/alpaca.model";
 import { AlpacaService } from "src/app/features/alpacas/services/alpaca.service";
 import { DeleteConfirmationDialogComponent } from "src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
@@ -14,7 +14,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionSelectionChange } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
@@ -250,24 +250,38 @@ export class AdminAlpacasEditComponent  implements OnInit{
     return (<FormArray>this.alpacasEditForm.get('offspring')).controls;
   }
 
-  addOffspring(): void {
+  addOffspringSelect(): void {
     const offspring = this.alpacasEditForm.get('offspring') as FormArray;
     offspring.push(this.fb.group({
-      'id': '',  
+      'id': '',
+      'shortName': '',	
+      'longName': '',  
     }));
   }
 
-  getOffspring(index: number): string | undefined {
+  setOffspring(event: MatOptionSelectionChange, index: number): void {
+    if (event.isUserInput) {
+      const offspringArray = this.alpacasEditForm.get('offspring') as FormArray;
+      const ofspringFormGroup = offspringArray.at(index) as FormGroup;
+      const selectedAlpaca = this.alpacas.find(alpaca => alpaca.id.toLocaleLowerCase() === event.source.value);
+      ofspringFormGroup.patchValue({
+        id: selectedAlpaca?.id,
+        shortName: selectedAlpaca?.shortName,
+        longName: selectedAlpaca?.longName
+      });
+    }
+  }
+
+  getOffspringId(index: number): string | undefined {
     const offspring = this.alpacasEditForm.get('offspring') as FormArray;
     return (offspring.at(index) as FormGroup).value.id;
   }
-
   deleteOffspring(index: number): void {
     const offspring = this.alpacasEditForm.get('offspring') as FormArray;
     offspring.removeAt(index);
   }
 
-  public onChangeDamId(): void {
+  onChangeDamId(): void {
     if (this.alpacasEditForm.get('dam.id')?.value === null 
     || this.alpacasEditForm.get('dam.id')?.value === '') {
       this.alpacasEditForm.get('dam.longName')?.enable();
@@ -276,7 +290,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
     }
   }
 
-  public onChangeSireId(): void {
+  onChangeSireId(): void {
     if (this.alpacasEditForm.get('sire.id')?.value === null 
     || this.alpacasEditForm.get('sire.id')?.value === '') {
       this.alpacasEditForm.get('sire.longName')?.enable();

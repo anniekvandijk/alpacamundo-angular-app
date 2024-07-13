@@ -195,9 +195,12 @@
             <div class="form-row">
               <mat-form-field class="form-field">
                 <mat-label for="id">Nakomeling</mat-label>
-                <mat-select [value]="getOffspring(i)">
+                <mat-select [value]="getOffspringId(i)?.toLocaleLowerCase()">
                 @for(alpaca of alpacas; track alpaca) {
-                <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{alpaca.longName}}</mat-option>
+                <mat-option 
+                  [value]="alpaca.id.toLocaleLowerCase()"
+                  (onSelectionChange)="setOffspring($event, i)"
+                  >{{alpaca.longName}}</mat-option>
                 }
               </mat-select>
               </mat-form-field>
@@ -214,7 +217,7 @@
         <button mat-raised-button
           type="button"
           class="form-raised-button button-secondary-action"
-          (click)="addOffspring()">
+          (click)="addOffspringSelect()">
             <mat-icon>add</mat-icon>
             <span>Nieuwe nakomeling toevoegen</span>
         </button>          
