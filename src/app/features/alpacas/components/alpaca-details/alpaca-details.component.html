@@ -22,32 +22,36 @@
             <td class="label">Geboortedatum:</td>
             <td>{{ alpaca.dateOfBirth | date: 'dd-MM-yyyy' }}</td>
             </tr>
+            @if (alpaca.sire) {
             <tr>
-            <td class="label">Vader:</td>
-            <td>
-                @if (alpaca.sire.id) {
-                    <a (click)="navigateToDetails(alpaca.sire.id)" 
-                    (keydown)="navigateToDetails(alpaca.sire.id)" 
-                    tabindex="0" 
-                    style="cursor: pointer;">{{ alpaca.sire.longName }}</a>
-                } @else {
-                    {{ alpaca.sire.longName }}
-                }
-            </td>
+                <td class="label">Vader:</td>
+                <td>
+                    @if (alpaca.sire.id) {
+                        <a (click)="navigateToDetails(alpaca.sire.id)" 
+                        (keydown)="navigateToDetails(alpaca.sire.id)" 
+                        tabindex="0" 
+                        style="cursor: pointer;">{{ alpaca.sire.longName }}</a>
+                    } @else {
+                        {{ alpaca.sire.longName }}
+                    }
+                </td>
             </tr>
+            }
+            @if (alpaca.dam) {
             <tr>
-            <td class="label">Moeder:</td>
-            <td>
-                @if (alpaca.dam.id) {
-                    <a (click)="navigateToDetails(alpaca.dam.id)" 
-                    (keydown)="navigateToDetails(alpaca.dam.id)" 
-                    tabindex="0" 
-                    style="cursor: pointer;">{{ alpaca.dam.longName }}</a>
-                } @else {
-                    {{ alpaca.dam.longName }}
-                }
-            </td>
+                <td class="label">Moeder:</td>
+                <td>
+                    @if (alpaca.dam.id) {
+                        <a (click)="navigateToDetails(alpaca.dam.id)" 
+                        (keydown)="navigateToDetails(alpaca.dam.id)" 
+                        tabindex="0" 
+                        style="cursor: pointer;">{{ alpaca.dam.longName }}</a>
+                    } @else {
+                        {{ alpaca.dam.longName }}
+                    }
+                </td>
             </tr>
+            }
             @if(alpaca.pedigree) {
             <tr>
                 <td class="label">Stamboom:</td>
