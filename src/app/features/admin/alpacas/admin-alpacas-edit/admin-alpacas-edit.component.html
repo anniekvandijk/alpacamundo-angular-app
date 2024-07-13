@@ -1,4 +1,4 @@
-@if (editmode) {
+@if (editmode && alpaca) {
   <h1>Alpaca wijzigen: {{alpaca.shortName}}</h1>
 } @else {
   <h1>Alpaca toevoegen</h1>
@@ -9,7 +9,7 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="form-fields">
-    <mat-tab-group>
+    <mat-tab-group selectedIndex="2" dynamicHeight>
       <mat-tab label="Algemeen">
         <div class="form-row">
           <mat-form-field class="form-field">
@@ -136,12 +136,10 @@
           <mat-label>Beschrijving</mat-label>
           <textarea
             matInput
-            (input)="onDescriptionInput($event)"
             rows="15"
             id="description"
             formControlName="description"
           ></textarea>
-          <mat-hint align="end">{{descriptionValue().length}}/1000</mat-hint>
         </mat-form-field>
         @if(alpacasEditForm.get('description')?.touched &&
         alpacasEditForm.get('description')?.invalid) {
@@ -150,48 +148,75 @@
       </div>
     </mat-tab>
     <mat-tab label="Stamboom">
-      <div class="form-row">
-        <mat-form-field class="form-field">
-          <mat-label for="damId">Moeder</mat-label>
-          <mat-select
-            id="damId"
-            formControlName="damId"
-            (selectionChange)="onChangeDamId()"
-          >
-            <mat-option [value]="null">Geen selectie</mat-option>
-            @for(alpaca of femaleAlpacas; track alpaca.id) {
-            <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-              alpaca.longName
-            }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label for="damName">Moeder</mat-label>
-          <input matInput id="damName" formControlName="damName" />
-        </mat-form-field>
+      <div class="form-row" formGroupName="dam">
+          <mat-form-field class="form-field">
+            <mat-label for="id">Moeder</mat-label>
+            <mat-select
+              formControlName="id"
+              (selectionChange)="onChangeDamId()"
+            >
+              <mat-option [value]="null">Geen selectie</mat-option>
+              @for(alpaca of femaleAlpacas; track alpaca.id) {
+              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+                alpaca.longName
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label for="longName">Moeder</mat-label>
+            <input matInput 
+              formControlName="longName" />
+          </mat-form-field>
+      </div>
+      <div class="form-row" formGroupName="sire">
+          <mat-form-field class="form-field">
+            <mat-label for="id">Vader</mat-label>
+            <mat-select
+              formControlName="id"
+              (selectionChange)="onChangeSireId()"
+            >
+              <mat-option [value]="null">Geen selectie</mat-option>
+              @for(alpaca of maleAlpacas; track alpaca.id) {
+              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+                alpaca.longName
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-label for="longName">Naam vader</mat-label>
+            <input matInput 
+              formControlName="longName" />
+          </mat-form-field>
+      </div>
+      <div formArrayName="offspring">
+          <div *ngFor="let offspringRecord of offspringControls; let i = index" [formGroupName]="i">
+            <div class="form-row">
+              <mat-form-field class="form-field">
+                <mat-label for="id">Nakomeling</mat-label>
+                <mat-select [value]="getOffspring(i)">
+                @for(alpaca of alpacas; track alpaca) {
+                <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{alpaca.longName}}</mat-option>
+                }
+              </mat-select>
+              </mat-form-field>
+              <button mat-raised-button
+                class="button-warning-action"
+                (click)="deleteOffspring(i)">
+                  Verwijder
+              </button>
+            </div>
+          </div>
       </div>
       <div class="form-row">
-        <mat-form-field class="form-field">
-          <mat-label for="sireId">Vader</mat-label>
-          <mat-select
-            id="sireId"
-            formControlName="sireId"
-            (selectionChange)="onChangeSireId()"
-          >
-            <mat-option [value]="null">Geen selectie</mat-option>
-            @for(alpaca of maleAlpacas; track alpaca.id) {
-            <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
-              alpaca.longName
-            }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <mat-label for="sireName">Naam vader</mat-label>
-          <input matInput id="sireName" formControlName="sireName" />
-        </mat-form-field>
-      </div>      
+        <button mat-raised-button
+          class="form-raised-button button-secondary-action"
+          (click)="addOffspring()">
+            <mat-icon>add</mat-icon>
+            <span>Nieuwe nakomeling toevoegen</span>
+        </button>          
+      </div>
     </mat-tab>
       <mat-tab label="Documenten">
         <div class="upload-component">

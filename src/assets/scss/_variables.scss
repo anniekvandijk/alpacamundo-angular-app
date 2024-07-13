@@ -81,9 +81,9 @@
    --button-textcolor-standard-action--light-theme: var(--secondary-color--light-theme);
    --button-background-primary-action--light-theme: hsl(128, 84%, 20%);
    --button-textcolor-primary-action--light-theme: var(--text-color-light--light-theme);
-   --button-background-secondary-action--light-theme: hsl(29, 95%, 35%);
-   --button-textcolor-secondary-action--light-theme: var(--text-color-light--light-theme);
-   --button-background-warning-action--light-theme: hsl(0, 100%, 18%);
+   --button-background-secondary-action--light-theme:  hsl(29, 15%, 90%);
+   --button-textcolor-secondary-action--light-theme: var(--text-color-dark--light-theme);
+   --button-background-warning-action--light-theme: hsla(0, 100%, 39%, 0.743);
    --button-textcolor-warning-action--light-theme: var(--text-color-light--light-theme);
 
    // Dark theme

@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, Output, inject, signal } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder, FormArray } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Observable, switchMap } from "rxjs";
@@ -21,12 +21,14 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FileUploadComponent } from "../../documents/file-upload/file-upload.component";
 import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constants";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-admin-alpacas-edit',
   standalone: true,
   providers: [ MatDatepickerModule ],
   imports: [
+    CommonModule,
     ReactiveFormsModule, 
     MatFormFieldModule, 
     MatTabsModule,
@@ -62,15 +64,13 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private route = inject(ActivatedRoute);
   editmode = false;
   alpaca!: Alpaca;
-  alpacas!: Alpaca[];
-  maleAlpacas!: Alpaca[];
-  femaleAlpacas!: Alpaca[];
+  alpacas: Alpaca[] = [];
+  maleAlpacas: Alpaca[] = [];
+  femaleAlpacas: Alpaca[] = [];
   alpacasEditForm!: FormGroup;
-  protected readonly descriptionValue = signal('');
 
-  protected onDescriptionInput(event: Event) {
-    this.descriptionValue.set((event.target as HTMLInputElement).value);
-  }
+  constructor(private fb: FormBuilder) {}
+
 
   ngOnInit(): void {	
     this.route.params
@@ -150,23 +150,31 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   private createForm() {
-    this.alpacasEditForm = new FormGroup({
-      'shortName': new FormControl('', [Validators.required, Validators.maxLength(255)]), 
-      'longName': new FormControl('', [Validators.required, Validators.maxLength(255)]),
-      'damId': new FormControl(''),
-      'damName': new FormControl(''),
-      'sireId': new FormControl(''),
-      'sireName': new FormControl(''),
-      'gender': new FormControl('', [Validators.required]),
-      'breed': new FormControl('Huacaya', [Validators.required]),
-      'color': new FormControl('', [Validators.required]),
-      'category': new FormControl('', [Validators.required]),
-      'status': new FormControl('', [Validators.required]),
-      'dateOfBirth': new FormControl('', [Validators.required]),
-      'bornOnFarm': new FormControl(true),
-      'studFee': new FormControl(0),
-      'sellPrice': new FormControl(0),
-      'description': new FormControl('', [Validators.required, Validators.maxLength(1000)]),
+    this.alpacasEditForm = this.fb.group({
+      'shortName': ['', [Validators.required, Validators.maxLength(255)]], 
+      'longName': ['', [Validators.required, Validators.maxLength(255)]],
+      'dam': this.fb.group({
+        'id': '',  
+        'shortName': '',
+        'longName': '',
+      }),
+      'sire': this.fb.group({
+        'id': '',  
+        'shortName': '',
+        'longName': '',
+      }),
+      'offspring': this.fb.array([]),
+      'showresults': this.fb.array([]),
+      'gender': ['', [Validators.required]],
+      'breed': ['Huacaya', [Validators.required]],
+      'color': ['', [Validators.required]],
+      'category': ['', [Validators.required]],
+      'status': ['', [Validators.required]],
+      'dateOfBirth': ['', [Validators.required]],
+      'bornOnFarm': true,
+      'studFee': 0,
+      'sellPrice': 0,
+      'description': ['', [Validators.required, Validators.maxLength(1000)]],
     });
   }
 
@@ -210,7 +218,6 @@ export class AdminAlpacasEditComponent  implements OnInit{
         });
       }
       this.updateForm(alpaca);
-
     });
   }
 
@@ -220,52 +227,66 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   private updateForm(alpaca: Alpaca): void {
-    this.alpacasEditForm.patchValue({
-      'shortName': alpaca.shortName, 
-      'longName': alpaca.longName,
-      'damId': alpaca.dam.id,
-      'damName': alpaca.dam.longName,
-      'sireId': alpaca.sire.id,
-      'sireName': alpaca.sire.longName,
-      'gender': alpaca.gender,
-      'breed': alpaca.breed,
-      'color': alpaca.color,
-      'category': alpaca.category,
-      'status': alpaca.status,
-      'dateOfBirth': alpaca.dateOfBirth,
-      'bornOnFarm': alpaca.bornOnFarm,
-      'studFee': alpaca.studFee,
-      'sellPrice': alpaca.sellPrice,
-      'description': alpaca.description,
-    });
+    this.alpacasEditForm.patchValue(alpaca);
+    this.patchOffspring();
     this.onChangeDamId();
     this.onChangeSireId();
   }
 
+  
+  patchOffspring(): void {
+    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
+    offspring.clear();
+    this.alpaca.offspring.forEach((offspringAlpaca: Alpaca) => {
+      offspring.push(this.fb.group({
+        'id': offspringAlpaca.id,
+        'shortName': offspringAlpaca.shortName,
+        'longName': offspringAlpaca.longName,
+      }));
+    });
+  }
+
+  get offspringControls() {
+    return (<FormArray>this.alpacasEditForm.get('offspring')).controls;
+  }
+
+  addOffspring(): void {
+    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
+    offspring.push(this.fb.group({
+      'id': '',  
+    }));
+  }
+
+  getOffspring(index: number): string | undefined {
+    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
+    return (offspring.at(index) as FormGroup).value.id;
+  }
+
+  deleteOffspring(index: number): void {
+    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
+    offspring.removeAt(index);
+  }
+
   public onChangeDamId(): void {
-    if (this.alpacasEditForm.get('damId')?.value === null 
-    || this.alpacasEditForm.get('damId')?.value === '') {
-      this.alpacasEditForm.get('damName')?.enable();
+    if (this.alpacasEditForm.get('dam.id')?.value === null 
+    || this.alpacasEditForm.get('dam.id')?.value === '') {
+      this.alpacasEditForm.get('dam.longName')?.enable();
     } else {
-      this.alpacasEditForm.get('damName')?.disable();
+      this.alpacasEditForm.get('dam.longName')?.disable();
     }
   }
 
   public onChangeSireId(): void {
-    if (this.alpacasEditForm.get('sireId')?.value === null 
-    || this.alpacasEditForm.get('sireId')?.value === '') {
-      this.alpacasEditForm.get('sireName')?.enable();
+    if (this.alpacasEditForm.get('sire.id')?.value === null 
+    || this.alpacasEditForm.get('sire.id')?.value === '') {
+      this.alpacasEditForm.get('sire.longName')?.enable();
     } else {
-      this.alpacasEditForm.get('sireName')?.disable();
+      this.alpacasEditForm.get('sire.longName')?.disable();
     }
   }
 
-
   private putAlpaca(): void {
-    console.log('putAlpaca', this.alpacasEditForm.value);
-    //TODO: implement putAlpaca
-
-
+    console.log('putAlpacaform', this.alpacasEditForm.getRawValue());
     this.alpacaService.putAlpaca(this.alpaca, this.componentId)
 
   }
