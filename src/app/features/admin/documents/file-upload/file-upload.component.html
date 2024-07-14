@@ -11,10 +11,11 @@
           <div class="document-image">
             @switch(getDocumentType(currentFile)) {
               @case('pdf') {
-                <mat-icon>picture_as_pdf</mat-icon>
+                <a href="{{currentFile.url}}" target="_blank"><mat-icon>picture_as_pdf</mat-icon></a>
               }
               @case('img') {
                 <img src="{{currentFile.url}}" alt="{{ currentFile.name }}" />
+
               }
               @case('unknown') {
                 <mat-icon>unknown_document</mat-icon>
@@ -24,8 +25,11 @@
               }
             }
           </div>
+          <div class="document-name">
+            <span>{{ currentFile.name }}</span>
+          </div>
           <div class="document-actions">
-            @if(multipleFiles) {
+            @if(multipleFiles || !fileRequired) {
             <button mat-raised-button 
               type="button" 
               class="button-warning-action" 
@@ -78,12 +82,12 @@
         </div>
       }  
     }
-      <button mat-raised-button 
+      <!-- <button mat-raised-button 
         type="button" 
         class="button-primary-action" 
         (click)="log()">
           LOGGING
-      </button>
+      </button> -->
     </div>
     <div class="file-upload">
       <div class="file-upload-header">
@@ -92,7 +96,7 @@
       </div>
       <div class="file-upload-body">
         <div class="uploadsection">
-          <input 
+          <input
             id="file-upload-input" 
             class="file-upload-input"
             type="file"
@@ -101,5 +105,6 @@
             />
         </div>
       </div>
+      <mat-hint class="hint">Geaccepteerde file types: {{ acceptedFileTypesString }}</mat-hint>
   </div>
 </div>

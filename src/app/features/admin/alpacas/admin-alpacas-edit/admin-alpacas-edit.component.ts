@@ -1,9 +1,9 @@
-import { Component, DestroyRef, OnInit, Output, inject, signal } from "@angular/core";
+import { Component, DestroyRef, OnInit, Output, inject } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormBuilder, FormArray } from "@angular/forms";
+import { FormGroup, Validators, ReactiveFormsModule, FormBuilder, FormArray } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { Observable, of, switchMap } from "rxjs";
+import { Observable, switchMap } from "rxjs";
 import { Alpaca, Image } from "src/app/features/alpacas/models/alpaca.model";
 import { AlpacaService } from "src/app/features/alpacas/services/alpaca.service";
 import { DeleteConfirmationDialogComponent } from "src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
@@ -263,7 +263,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
     if (event.isUserInput) {
       const offspringArray = this.alpacasEditForm.get('offspring') as FormArray;
       const ofspringFormGroup = offspringArray.at(index) as FormGroup;
-      const selectedAlpaca = this.alpacas.find(alpaca => alpaca.id.toLocaleLowerCase() === event.source.value);
+      const selectedAlpaca = this.alpacas.find(alpaca => alpaca.id === event.source.value);
       ofspringFormGroup.patchValue({
         id: selectedAlpaca?.id,
         shortName: selectedAlpaca?.shortName,
@@ -301,6 +301,9 @@ export class AdminAlpacasEditComponent  implements OnInit{
 
   private putAlpaca(): void {
     console.log('putAlpacaform', this.alpacasEditForm.getRawValue());
+    console.log('mainImage', this.mainImage);
+    console.log('images', this.images);
+    console.log('pedigree', this.pedigree);
     this.alpacaService.putAlpaca(this.alpaca, this.componentId)
 
   }

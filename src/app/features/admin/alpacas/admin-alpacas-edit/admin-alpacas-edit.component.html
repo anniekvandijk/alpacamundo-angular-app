@@ -9,7 +9,7 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="form-fields">
-    <mat-tab-group selectedIndex="2" dynamicHeight>
+    <mat-tab-group selectedIndex="3" dynamicHeight>
       <mat-tab label="Algemeen">
         <div class="form-row">
           <mat-form-field class="form-field">
@@ -157,7 +157,7 @@
             >
               <mat-option [value]="null">Geen selectie</mat-option>
               @for(alpaca of femaleAlpacas; track alpaca.id) {
-              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+              <mat-option [value]="alpaca.id">{{
                 alpaca.longName
               }}</mat-option>
               }
@@ -178,7 +178,7 @@
             >
               <mat-option [value]="null">Geen selectie</mat-option>
               @for(alpaca of maleAlpacas; track alpaca.id) {
-              <mat-option [value]="alpaca.id.toLocaleLowerCase()">{{
+              <mat-option [value]="alpaca.id">{{
                 alpaca.longName
               }}</mat-option>
               }
@@ -195,10 +195,10 @@
             <div class="form-row">
               <mat-form-field class="form-field">
                 <mat-label for="id">Nakomeling</mat-label>
-                <mat-select [value]="getOffspringId(i)?.toLocaleLowerCase()">
+                <mat-select [value]="getOffspringId(i)">
                 @for(alpaca of alpacas; track alpaca) {
                 <mat-option 
-                  [value]="alpaca.id.toLocaleLowerCase()"
+                  [value]="alpaca.id"
                   (onSelectionChange)="setOffspring($event, i)"
                   >{{alpaca.longName}}</mat-option>
                 }
@@ -228,8 +228,13 @@
           <app-file-upload
             [title]="'Hoofdafbeelding'"   
             [documents]="mainImage" 
+            [documentCategory]="'alpacaImage'"
             [multipleFiles]="false"
-            [acceptedFileTypes]="['image/*']"
+            [acceptedFileTypes]="[
+              'image/jpeg', 
+              'image/png', 
+              'image/jpg', 
+              'image/gif']"
             [fileRequired]="true"
             [formComponentId]="componentId"
           ></app-file-upload>
@@ -238,8 +243,13 @@
           <app-file-upload
             [title]="'Andere afbeeldingen'"   
             [documents]="images" 
+            [documentCategory]="'alpacaImage'"
             [multipleFiles]="true"
-            [acceptedFileTypes]="['image/*']"
+            [acceptedFileTypes]="[
+              'image/jpeg', 
+              'image/png', 
+              'image/jpg', 
+              'image/gif']"
             [fileRequired]="false"
             [formComponentId]="componentId"
           ></app-file-upload>
@@ -248,8 +258,9 @@
           <app-file-upload
             [title]="'Stamboom'"   
             [documents]="pedigree" 
+            [documentCategory]="'alpacaPedigree'"
             [multipleFiles]="false"
-            [acceptedFileTypes]="['image/*']"
+            [acceptedFileTypes]="['application/pdf']"
             [fileRequired]="false"
             [formComponentId]="componentId"
           ></app-file-upload>
