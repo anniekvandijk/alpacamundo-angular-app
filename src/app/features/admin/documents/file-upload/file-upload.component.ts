@@ -26,6 +26,7 @@ export class FileUploadComponent implements OnInit {
   @Input() multipleFiles = false;
   @Input({ required: true }) acceptedFileTypes!: string[];
   @Input() fileRequired = false;
+  @Input() compactView = false;
   private destroyRef = inject(DestroyRef);
   private formService = inject(FormService);
   private documentService = inject(DocumentService);

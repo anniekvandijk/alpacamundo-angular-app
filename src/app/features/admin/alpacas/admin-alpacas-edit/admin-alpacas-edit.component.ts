@@ -22,6 +22,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FileUploadComponent } from "../../documents/file-upload/file-upload.component";
 import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constants";
 import { CommonModule } from "@angular/common";
+import { Fleece } from "src/app/features/alpacas/models/fleece.model";
 
 @Component({
   selector: 'app-admin-alpacas-edit',
@@ -50,6 +51,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
   @Output() mainImage: Document[] = [];
   @Output() images: Document[] = [];
   @Output() pedigree: Document[] = [];
+  fleeceDocuments: Document[] = [];
   readonly componentId = this.constructor.name;
   readonly colors = AlpacaConstants.colors;
   readonly breeds = AlpacaConstants.breed;
@@ -165,6 +167,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
       }),
       'offspring': this.fb.array([]),
       'showresults': this.fb.array([]),
+      'fleeceresults' : this.fb.array([]),
       'gender': ['', [Validators.required]],
       'breed': ['Huacaya', [Validators.required]],
       'color': ['', [Validators.required]],
@@ -206,6 +209,20 @@ export class AdminAlpacasEditComponent  implements OnInit{
           url: alpaca.pedigree.url
         } as Document);
       }
+      if (this.alpaca && this.alpaca.fleeceresults && this.alpaca.fleeceresults.length > 0) {
+        this.alpaca.fleeceresults.forEach((fleeceResult: Fleece) => {
+          if (fleeceResult.fleeceTestReport) {
+            const result = fleeceResult.fleeceTestReport;
+            this.fleeceDocuments.push({
+              id: result.id,
+              name: result.name,
+              contentType: result.contentType,
+              documentCategory: result.documentCategory,
+              url: result.url
+            } as Document);
+          }
+        })
+      }
       if (this.alpaca && this.alpaca.images && this.alpaca.images.length > 0) {
         this.images = alpaca.images.map((image: Image) => {
           return {
@@ -229,40 +246,40 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private updateForm(alpaca: Alpaca): void {
     this.alpacasEditForm.patchValue(alpaca);
     this.patchOffspring();
+    this.patchFleeceResults();
     this.onChangeDamId();
     this.onChangeSireId();
   }
-
   
-  patchOffspring(): void {
-    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
-    offspring.clear();
-    this.alpaca.offspring.forEach((offspringAlpaca: Alpaca) => {
-      offspring.push(this.fb.group({
-        'id': offspringAlpaca.id,
-        'shortName': offspringAlpaca.shortName,
-        'longName': offspringAlpaca.longName,
-      }));
-    });
+  get offspringArray() {
+    return this.alpacasEditForm.get('offspring') as FormArray;
   }
 
   get offspringControls() {
-    return (<FormArray>this.alpacasEditForm.get('offspring')).controls;
+    return this.offspringArray.controls;
   }
 
+  patchOffspring(): void {
+    this.offspringArray.clear();
+    this.alpaca.offspring.forEach((offspringAlpaca: Alpaca) => {
+      this.offspringArray.push(this.fb.group({
+        id: offspringAlpaca.id,
+        shortName: offspringAlpaca.shortName,
+        longName: offspringAlpaca.longName,
+      }));
+    });
+  }
   addOffspringSelect(): void {
-    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
-    offspring.push(this.fb.group({
-      'id': '',
-      'shortName': '',	
-      'longName': '',  
+    this.offspringArray.push(this.fb.group({
+      id: '',
+      shortName: '',	
+      longName: '',  
     }));
   }
 
   setOffspring(event: MatOptionSelectionChange, index: number): void {
     if (event.isUserInput) {
-      const offspringArray = this.alpacasEditForm.get('offspring') as FormArray;
-      const ofspringFormGroup = offspringArray.at(index) as FormGroup;
+      const ofspringFormGroup = this.offspringArray.at(index) as FormGroup;
       const selectedAlpaca = this.alpacas.find(alpaca => alpaca.id === event.source.value);
       ofspringFormGroup.patchValue({
         id: selectedAlpaca?.id,
@@ -273,12 +290,65 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   getOffspringId(index: number): string | undefined {
-    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
-    return (offspring.at(index) as FormGroup).value.id;
+    return (this.offspringArray.at(index) as FormGroup).value.id;
   }
   deleteOffspring(index: number): void {
-    const offspring = this.alpacasEditForm.get('offspring') as FormArray;
-    offspring.removeAt(index);
+    this.offspringArray.removeAt(index);
+  }
+
+  get fleeceresultsArray() {
+    return this.alpacasEditForm.get('fleeceresults') as FormArray;
+  }
+
+  get fleeceresultsControls() {
+    return this.fleeceresultsArray.controls;
+  }
+
+  getFleeceDocument (fleeceId : string): Document[] {
+    const docs: Document[] = [];
+    const fleece = this.alpaca.fleeceresults.find(fleece => fleece.id === fleeceId);	
+    if (!fleece) return docs;
+    const doc = this.fleeceDocuments.find(document => document.id === fleece.fleeceTestReport?.id);
+    if (!doc) return docs;
+    docs.push(doc);
+    return docs;
+  }
+
+  patchFleeceResults(): void {
+    this.fleeceresultsArray.clear();
+    const fleeceResults = this.alpaca.fleeceresults;
+    fleeceResults.sort((a, b) => b.year - a.year);
+    fleeceResults.forEach((fleeceResult: Fleece) => {
+      this.fleeceresultsArray.push(this.fb.group({
+        id: fleeceResult.id,
+        alpacaId: fleeceResult.alpacaId,
+        fleeceNumber: fleeceResult.fleeceNumber,
+        year: fleeceResult.year,
+        mfd: fleeceResult.mfd,
+        sd: fleeceResult.sd,
+        cv: fleeceResult.cv,
+        crv: fleeceResult.crv,
+        cf: fleeceResult.cf
+      }));
+    });
+  }
+
+  addFleece(): void {
+    this.fleeceresultsArray.insert(0, this.fb.group({
+      id: '',
+      alpacaId: this.alpaca.id,
+      fleeceNumber: '',
+      year: '',
+      mfd: '',
+      sd: '',
+      cv: '',
+      crv: '',
+      cf: ''
+    }));
+  }
+
+  deleteFleece(index: number): void {
+    this.fleeceresultsArray.removeAt(index);
   }
 
   onChangeDamId(): void {
@@ -304,8 +374,6 @@ export class AdminAlpacasEditComponent  implements OnInit{
     console.log('mainImage', this.mainImage);
     console.log('images', this.images);
     console.log('pedigree', this.pedigree);
-    this.alpacaService.putAlpaca(this.alpaca, this.componentId)
-
   }
 
   private postAlpaca(): void {

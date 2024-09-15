@@ -25,18 +25,29 @@
               }
             }
           </div>
+          @if (!compactView) {
           <div class="document-name">
             <span>{{ currentFile.name }}</span>
           </div>
+          }
           <div class="document-actions">
             @if(multipleFiles || !fileRequired) {
-            <button mat-raised-button 
-              type="button" 
-              class="button-warning-action" 
-              (click)="onExistingDocumentRemove(currentFile.id)">
-                Verwijder
-            </button>
+              @if (!compactView) {
+              <button mat-raised-button 
+                type="button" 
+                class="button-warning-action" 
+                (click)="onExistingDocumentRemove(currentFile.id)">
+                  Verwijder
+              </button>
+            } @else {
+              <button mat-mini-fab 
+                type="button" 
+                class="button-warning-action" 
+                (click)="onExistingDocumentRemove(currentFile.id)">
+                  <mat-icon>delete</mat-icon>
+              </button>
             }
+          }
           </div>
         </div>
         }

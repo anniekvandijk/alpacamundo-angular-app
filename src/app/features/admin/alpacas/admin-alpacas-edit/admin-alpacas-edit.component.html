@@ -9,7 +9,7 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="form-fields">
-    <mat-tab-group selectedIndex="3" dynamicHeight>
+    <mat-tab-group selectedIndex="4" dynamicHeight>
       <mat-tab label="Algemeen">
         <div class="form-row">
           <mat-form-field class="form-field">
@@ -264,6 +264,70 @@
             [fileRequired]="false"
             [formComponentId]="componentId"
           ></app-file-upload>
+        </div>
+      </mat-tab>
+      <mat-tab label="Fleece">
+        <div class="form-row">
+          <button mat-raised-button
+            type="button"
+            class="form-raised-button button-secondary-action"
+            (click)="addFleece()">
+              <mat-icon>add</mat-icon>
+              <span>Nieuwe fleece toevoegen</span>
+          </button>          
+        </div>
+        <div formArrayName="fleeceresults">
+          <div *ngFor="let fleece of fleeceresultsControls; let i = index" [formGroupName]="i">
+            <div class="form-row">
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="fleeceNumber">Nr.</mat-label>
+                <input matInput id="fleeceNumber" formControlName="fleeceNumber" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="year">Jr.</mat-label>
+                <input matInput id="year" formControlName="year" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="mfd">MFD</mat-label>
+                <input matInput id="mfd" formControlName="mfd" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="sd">SD</mat-label>
+                <input matInput id="sd" formControlName="sd" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="cv">CV</mat-label>
+                <input matInput id="cv" formControlName="cv" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="crv">CRV</mat-label>
+                <input matInput id="crv" formControlName="crv" />
+              </mat-form-field>
+              <mat-form-field class="form-field form-field-small">
+                <mat-label for="cf">CF</mat-label>
+                <input matInput id="cf" formControlName="cf" />
+              </mat-form-field>
+              <button mat-mini-fab
+              type="button"
+              class="button-warning-action"
+              (click)="deleteFleece(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+            <div class="form-row">
+              <div class="upload-component">
+                <app-file-upload
+                  [title]="'Pdf'"   
+                  [documents]="getFleeceDocument(fleece.value.id)" 
+                  [documentCategory]="'AlpacaFleeceResult'"
+                  [multipleFiles]="false"
+                  [acceptedFileTypes]="['application/pdf']"
+                  [fileRequired]="false"
+                  [formComponentId]="componentId"
+                ></app-file-upload>
+              </div>
+              </div>  
+            </div>
         </div>
       </mat-tab>
   </mat-tab-group>
