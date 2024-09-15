@@ -38,6 +38,7 @@ export class FileUploadComponent implements OnInit {
   acceptedFileTypesString = '';
 
   ngOnInit(): void {
+    console.log('fileloader created', this.formComponentId);
     this.formService.cancelAction$
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
@@ -50,13 +51,6 @@ export class FileUploadComponent implements OnInit {
       }
     });
     this.acceptedFileTypesString = this.acceptedFileTypes.join(', ');
-  }
-
-  log() {
-    console.log('documents', this.documents);
-    console.log('addedDocuments', this.addedDocuments);
-    console.log('deletedDocuments', this.deletedDocuments);
-    console.log('changedDocuments', this.changedDocuments);	
   }
 
   onFileChange(event: any) {

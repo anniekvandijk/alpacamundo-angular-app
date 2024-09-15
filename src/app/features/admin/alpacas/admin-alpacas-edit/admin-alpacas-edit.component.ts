@@ -51,7 +51,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
   @Output() mainImage: Document[] = [];
   @Output() images: Document[] = [];
   @Output() pedigree: Document[] = [];
-  fleeceDocuments: Document[] = [];
+  @Output() fleeceResults: Document[] = [];
   readonly componentId = this.constructor.name;
   readonly colors = AlpacaConstants.colors;
   readonly breeds = AlpacaConstants.breed;
@@ -210,18 +210,18 @@ export class AdminAlpacasEditComponent  implements OnInit{
         } as Document);
       }
       if (this.alpaca && this.alpaca.fleeceresults && this.alpaca.fleeceresults.length > 0) {
-        this.alpaca.fleeceresults.forEach((fleeceResult: Fleece) => {
-          if (fleeceResult.fleeceTestReport) {
-            const result = fleeceResult.fleeceTestReport;
-            this.fleeceDocuments.push({
-              id: result.id,
-              name: result.name,
-              contentType: result.contentType,
-              documentCategory: result.documentCategory,
-              url: result.url
+        const fleeceResults = this.alpaca.fleeceresults;
+        if (fleeceResults) {
+        fleeceResults.forEach((fleeceResult: Fleece) => {
+            this.fleeceResults.push({
+              id: fleeceResult.fleeceTestReport?.id,
+              name: fleeceResult.fleeceTestReport?.name,
+              contentType:fleeceResult.fleeceTestReport?.contentType,
+              documentCategory: fleeceResult.fleeceTestReport?.documentCategory,
+              url: fleeceResult.fleeceTestReport?.url
             } as Document);
-          }
-        })
+          });
+        }
       }
       if (this.alpaca && this.alpaca.images && this.alpaca.images.length > 0) {
         this.images = alpaca.images.map((image: Image) => {
@@ -260,7 +260,6 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   patchOffspring(): void {
-    this.offspringArray.clear();
     this.alpaca.offspring.forEach((offspringAlpaca: Alpaca) => {
       this.offspringArray.push(this.fb.group({
         id: offspringAlpaca.id,
@@ -305,17 +304,17 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   getFleeceDocument (fleeceId : string): Document[] {
+    console.log('fleeceId', fleeceId);
     const docs: Document[] = [];
     const fleece = this.alpaca.fleeceresults.find(fleece => fleece.id === fleeceId);	
     if (!fleece) return docs;
-    const doc = this.fleeceDocuments.find(document => document.id === fleece.fleeceTestReport?.id);
-    if (!doc) return docs;
-    docs.push(doc);
+    const result = this.fleeceResults.find(fleeceResult => fleeceResult.id === fleece.fleeceTestReport?.id);
+    if (!result) return docs;
+    docs.push(result);
     return docs;
   }
 
   patchFleeceResults(): void {
-    this.fleeceresultsArray.clear();
     const fleeceResults = this.alpaca.fleeceresults;
     fleeceResults.sort((a, b) => b.year - a.year);
     fleeceResults.forEach((fleeceResult: Fleece) => {
@@ -334,7 +333,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   addFleece(): void {
-    this.fleeceresultsArray.insert(0, this.fb.group({
+    this.fleeceresultsArray.push(this.fb.group({
       id: '',
       alpacaId: this.alpaca.id,
       fleeceNumber: '',

@@ -191,7 +191,7 @@
           </mat-form-field>
       </div>
       <div formArrayName="offspring">
-          <div *ngFor="let offspringRecord of offspringControls; let i = index" [formGroupName]="i">
+          <div *ngFor="let offspringRecord of offspringControls; track offspringRecord; let i = index" [formGroupName]="i">
             <div class="form-row">
               <mat-form-field class="form-field">
                 <mat-label for="id">Nakomeling</mat-label>
@@ -277,7 +277,8 @@
           </button>          
         </div>
         <div formArrayName="fleeceresults">
-          <div *ngFor="let fleece of fleeceresultsControls; let i = index" [formGroupName]="i">
+          @for (fleece of fleeceresultsControls; track fleece; let i = $index) {
+          <div [formGroupName]="i">
             <div class="form-row">
               <mat-form-field class="form-field form-field-small">
                 <mat-label for="fleeceNumber">Nr.</mat-label>
@@ -317,7 +318,7 @@
             <div class="form-row">
               <div class="upload-component">
                 <app-file-upload
-                  [title]="'Pdf'"   
+                  [title]="'Fleeceresults pdf'"   
                   [documents]="getFleeceDocument(fleece.value.id)" 
                   [documentCategory]="'AlpacaFleeceResult'"
                   [multipleFiles]="false"
@@ -328,6 +329,7 @@
               </div>
               </div>  
             </div>
+          }
         </div>
       </mat-tab>
   </mat-tab-group>
