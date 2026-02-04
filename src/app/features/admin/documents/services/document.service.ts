@@ -7,7 +7,6 @@ import { PostDocumentRequest } from "../models/post-document-request.model";
 import { PostDocumentsRequest } from "../models/post-documents-request.model";
 import { UndeleteFileRequest } from "../models/undelete-file-request";
 import { PutDocumentRequest } from "../models/put-document-request";
-import { HttpResponse } from "@angular/common/http";
 import { DeleteFileRequest } from "../models/delete-file-request";
 import { UndeleteDocumentRequest } from "../models/undelete-document-request";
 
@@ -47,7 +46,7 @@ export class DocumentService {
     const formData = new FormData();
     formData.append('FormFile', document.file);
     const queryUrl = this.url.concat('?FileCategory=', document.documentCategory);
-    return this.httpService.post<Document>(queryUrl, document, componentId);
+    return this.httpService.post<Document>(queryUrl, formData, componentId);
   }
 
   postDocuments(documents: PostDocumentsRequest, componentId: string): Observable<Document[]> {
@@ -55,7 +54,7 @@ export class DocumentService {
     documents.files.forEach(file => {
       formData.append('FormFile', file);
     });
-    const queryUrl = this.url.concat('?FileCategory=', documents.documentCategory);
+    const queryUrl = this.url.concat('/post-many', '?FileCategory=', documents.documentCategory);
     return this.httpService.post<Document[]>(queryUrl, formData, componentId);
   }
 

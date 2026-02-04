@@ -13,7 +13,8 @@ export interface Fleece {
 
 export interface FleeceTestReport {
     id: string;
-    oldUrl: string;
     name: string;
-    fileType: string;
+    contentType: string;
+    documentCategory: string;
+    url: string;
 }

@@ -8,20 +8,25 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PostDocumentRequest } from '../models/post-document-request.model';
 import { PutDocumentRequest } from '../models/put-document-request';
 import { UndeleteDocumentRequest } from '../models/undelete-document-request';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-file-upload',
   standalone: true,
-  imports: [ MatButtonModule],
+  imports: [ MatButtonModule, MatIconModule, MatInputModule],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss'
 })
 export class FileUploadComponent implements OnInit {
-  @Input() documents: Document[] = [];
-  @Input() formComponentId!: string;
+  @Input() title!: string;
+  @Input({ required: true }) documents: Document[] = [];
+  @Input({ required: true }) documentCategory!: string;
+  @Input({ required: true }) formComponentId!: string;
   @Input() multipleFiles = false;
-  @Input() acceptedFileTypes: string[] = [];
+  @Input({ required: true }) acceptedFileTypes!: string[];
   @Input() fileRequired = false;
+  @Input() compactView = false;
   private destroyRef = inject(DestroyRef);
   private formService = inject(FormService);
   private documentService = inject(DocumentService);
@@ -30,8 +35,10 @@ export class FileUploadComponent implements OnInit {
   private deletedDocuments: Document[] = [];
   filePreviews: {file: File, url: string}[] = [];
   filesSelected = false;
+  acceptedFileTypesString = '';
 
   ngOnInit(): void {
+    console.log('fileloader created', this.formComponentId);
     this.formService.cancelAction$
     .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
@@ -43,13 +50,7 @@ export class FileUploadComponent implements OnInit {
         this.formService.cancelActionComplete(this.formComponentId);
       }
     });
-  }
-
-  log() {
-    console.log('documents', this.documents);
-    console.log('addedDocuments', this.addedDocuments);
-    console.log('deletedDocuments', this.deletedDocuments);
-    console.log('changedDocuments', this.changedDocuments);	
+    this.acceptedFileTypesString = this.acceptedFileTypes.join(', ');
   }
 
   onFileChange(event: any) {
@@ -58,12 +59,18 @@ export class FileUploadComponent implements OnInit {
       if (!this.multipleFiles) {
         this.filePreviews = [];
       }
-      for (let i = 0; i <= fileList.length; i++) {        
-      this.filePreviews.push( 
-        {
-          file: fileList[i],
-          url: URL.createObjectURL(fileList[i])
-        });
+      for (let i = 0; i <= fileList.length; i++) {
+        const fileType = fileList[i].type;
+        console.log('fileType', fileType);
+        if (this.acceptedFileTypes.length > 0 && !this.acceptedFileTypes.includes(fileList[i].type.toString())) {
+          alert('Dit bestandstype wordt niet ondersteund');
+        } else {
+          this.filePreviews.push( 
+          {
+            file: fileList[i],
+            url: URL.createObjectURL(fileList[i])
+          });
+        }
       }
     } 
   }
@@ -80,7 +87,7 @@ export class FileUploadComponent implements OnInit {
       const putDocumentRequest: PutDocumentRequest = {
         id: this.documents[0].id,
         file: this.filePreviews[0].file,
-        documentCategory: 'link'
+        documentCategory: this.documentCategory
       };
       this.documentService.putDocument(putDocumentRequest, this.formComponentId).pipe(
         takeUntilDestroyed(this.destroyRef)
@@ -94,8 +101,9 @@ export class FileUploadComponent implements OnInit {
       // add
       const postDocumentrequest: PostDocumentRequest = {
         file: this.filePreviews[0].file,
-        documentCategory: 'link'
+        documentCategory: this.documentCategory
       };
+      console.log('postDocumentrequest', postDocumentrequest);
       this.documentService
         .postDocument(postDocumentrequest, this.formComponentId).pipe(
           takeUntilDestroyed(this.destroyRef)
@@ -111,7 +119,7 @@ export class FileUploadComponent implements OnInit {
   onDocumentsUpload() {
     const postDocumentsRequest: PostDocumentsRequest = {
       files: this.filePreviews.map(fp => fp.file),
-      documentCategory: 'link'
+      documentCategory: this.documentCategory
     };
     this.documentService
       .postDocuments(postDocumentsRequest, this.formComponentId)
@@ -192,6 +200,10 @@ export class FileUploadComponent implements OnInit {
           console.log('delete added file after reset', newDocument);
       });
     });
+  }
+
+  getDocumentType(document: Document): string {
+    return `${this.documentService.getDocumentType(document)}`;
   }
 }    
 

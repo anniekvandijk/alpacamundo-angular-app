@@ -33,4 +33,5 @@ export const status = [
   { name: 'Verkocht', value: 'Verkocht' },
   { name: 'Niet te koop', value: 'Niet te koop' },
   { name: 'Overleden', value: 'Overleden' },
+  { name: 'Nvt', value: 'Nvt' },
 ]

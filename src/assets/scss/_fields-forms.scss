@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    //background-color: var(--background-color-light) !important;
-    padding: 5px;
+    background-color: var(--background-color-light) !important;
+    padding: 10px;
   }
 
   .form-fields {
@@ -15,8 +15,17 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-content: stretch;
+    align-items: baseline;
     gap: 15px;
+  }
+
+  .form-field, .form-field-small, .checkboxes, .radio-buttons {
+    flex-grow: 1;
+
+  }
+
+  .form-field-small {
+    font-size: 75% !important;
   }
 
   .checkboxes {
@@ -49,7 +58,7 @@
     }
     mat-label {
       color: var(--secondary-color) !important;
-      padding: 10px;
+      padding: 10px 10px 0px 10px;
       font-size: 0.8em;
  
     }
@@ -60,6 +69,14 @@
       }
 
     }
+  }
+  
+  .form-mini-fab-button {
+    margin-right: 10px;
+  }
+  
+  .form-raised-button {
+    margin-bottom: 10px;
   }
 
   .mat-mdc-form-field {
@@ -92,4 +109,9 @@
 
   .form-buttons-link {
    font-size: smaller;
+  }
+
+  .hint {
+    font-size: smaller;
+    color: var(--secondary-color);
   }

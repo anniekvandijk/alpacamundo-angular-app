@@ -31,20 +31,6 @@ export class AlpacaCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.alpacaMainImageUrl = environment.storageUrls.alpacaMainImageUrl;
-    if (this.alpaca.sireId) {
-      this.alpacasService.getAlpaca(this.alpaca.sireId, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe (alpaca => {
-        this.alpaca.sire = alpaca;
-      });
-    }
-    if (this.alpaca.damId) {
-      this.alpacasService.getAlpaca(this.alpaca.damId, this.componentId)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe (alpaca => {
-        this.alpaca.dam = alpaca;
-      });
-    }
   }
 
   navigateToDetails(alpaca: Alpaca) {

@@ -4,7 +4,6 @@ import { Fleece } from 'src/app/features/alpacas/models/fleece.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSort, Sort } from '@angular/material/sort';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,7 +22,6 @@ export class AlpacaFleeceresultsComponent implements OnInit {
     this.dataSource.data = [];
     this.setFleeceResults(alpaca);
   }
-  @ViewChild(MatSort) sort: MatSort = new MatSort();
   readonly componentId = this.constructor.name;
   fleeceResultsUrl!: string;
 
@@ -45,12 +43,10 @@ export class AlpacaFleeceresultsComponent implements OnInit {
   }
 
   private setFleeceResults(alpaca: Alpaca) : void {
-      this.dataSource.data = alpaca.fleeceresults;
-      this.dataSource.sort = this.sort;
-      const sortState: Sort = {active: 'fleeceNumber', direction: 'desc'};
-      this.sort.active = sortState.active;
-      this.sort.direction = sortState.direction;
-      this.sort.sortChange.emit(sortState);
+    const hasFleeceResults = alpaca.fleeceresults && alpaca.fleeceresults.length > 0;
+    if (!hasFleeceResults) return;
+    const sortedFleeceResults = alpaca.fleeceresults.sort((a, b) => b.fleeceNumber - a.fleeceNumber);
+    this.dataSource.data = sortedFleeceResults;
   }
 }
 

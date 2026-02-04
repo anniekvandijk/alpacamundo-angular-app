@@ -1,13 +1,12 @@
 import { Component, DestroyRef, OnInit, Output, inject } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
+import { FormGroup, Validators, ReactiveFormsModule, FormBuilder, FormArray } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Observable, switchMap } from "rxjs";
 import { Alpaca, Image } from "src/app/features/alpacas/models/alpaca.model";
 import { AlpacaService } from "src/app/features/alpacas/services/alpaca.service";
 import { DeleteConfirmationDialogComponent } from "src/app/shared/components/dialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
-import { MessageService } from "src/app/shared/components/messages/message.service";
 import { FormService } from "../../documents/services/form.service";
 import { Document } from '../../documents/models/document.model';
 import { MatButtonModule } from "@angular/material/button";
@@ -15,20 +14,25 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionSelectionChange } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FileUploadComponent } from "../../documents/file-upload/file-upload.component";
 import * as AlpacaConstants from "src/app/features/alpacas/models/alpaca-constants";
+import { CommonModule } from "@angular/common";
+import { Fleece } from "src/app/features/alpacas/models/fleece.model";
 
 @Component({
   selector: 'app-admin-alpacas-edit',
   standalone: true,
   providers: [ MatDatepickerModule ],
   imports: [
+    CommonModule,
     ReactiveFormsModule, 
     MatFormFieldModule, 
+    MatTabsModule,
     MatIconModule, 
     MatInputModule, 
     MatSelectModule,
@@ -47,6 +51,7 @@ export class AdminAlpacasEditComponent  implements OnInit{
   @Output() mainImage: Document[] = [];
   @Output() images: Document[] = [];
   @Output() pedigree: Document[] = [];
+  @Output() fleeceResults: Document[] = [];
   readonly componentId = this.constructor.name;
   readonly colors = AlpacaConstants.colors;
   readonly breeds = AlpacaConstants.breed;
@@ -61,10 +66,13 @@ export class AdminAlpacasEditComponent  implements OnInit{
   private route = inject(ActivatedRoute);
   editmode = false;
   alpaca!: Alpaca;
-  alpacas!: Alpaca[];
-  maleAlpacas!: Alpaca[];
-  femaleAlpacas!: Alpaca[];
+  alpacas: Alpaca[] = [];
+  maleAlpacas: Alpaca[] = [];
+  femaleAlpacas: Alpaca[] = [];
   alpacasEditForm!: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
+
 
   ngOnInit(): void {	
     this.route.params
@@ -144,23 +152,32 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   private createForm() {
-    this.alpacasEditForm = new FormGroup({
-      'shortName': new FormControl('', [Validators.required, Validators.maxLength(255)]), 
-      'longName': new FormControl('', [Validators.required, Validators.maxLength(255)]),
-      'damId': new FormControl(''),
-      'damName': new FormControl(''),
-      'sireId': new FormControl(''),
-      'sireName': new FormControl(''),
-      'gender': new FormControl('', [Validators.required]),
-      'breed': new FormControl('Huacaya', [Validators.required]),
-      'color': new FormControl('', [Validators.required]),
-      'category': new FormControl('', [Validators.required]),
-      'status': new FormControl('', [Validators.required]),
-      'dateOfBirth': new FormControl('', [Validators.required]),
-      'bornOnFarm': new FormControl(true),
-      'studFee': new FormControl(0),
-      'sellPrice': new FormControl(0),
-      'description': new FormControl('', [Validators.required, Validators.maxLength(1000)]),
+    this.alpacasEditForm = this.fb.group({
+      'shortName': ['', [Validators.required, Validators.maxLength(255)]], 
+      'longName': ['', [Validators.required, Validators.maxLength(255)]],
+      'dam': this.fb.group({
+        'id': '',  
+        'shortName': '',
+        'longName': '',
+      }),
+      'sire': this.fb.group({
+        'id': '',  
+        'shortName': '',
+        'longName': '',
+      }),
+      'offspring': this.fb.array([]),
+      'showresults': this.fb.array([]),
+      'fleeceresults' : this.fb.array([]),
+      'gender': ['', [Validators.required]],
+      'breed': ['Huacaya', [Validators.required]],
+      'color': ['', [Validators.required]],
+      'category': ['', [Validators.required]],
+      'status': ['', [Validators.required]],
+      'dateOfBirth': ['', [Validators.required]],
+      'bornOnFarm': true,
+      'studFee': 0,
+      'sellPrice': 0,
+      'description': ['', [Validators.required, Validators.maxLength(1000)]],
     });
   }
 
@@ -192,6 +209,20 @@ export class AdminAlpacasEditComponent  implements OnInit{
           url: alpaca.pedigree.url
         } as Document);
       }
+      if (this.alpaca && this.alpaca.fleeceresults && this.alpaca.fleeceresults.length > 0) {
+        const fleeceResults = this.alpaca.fleeceresults;
+        if (fleeceResults) {
+        fleeceResults.forEach((fleeceResult: Fleece) => {
+            this.fleeceResults.push({
+              id: fleeceResult.fleeceTestReport?.id,
+              name: fleeceResult.fleeceTestReport?.name,
+              contentType:fleeceResult.fleeceTestReport?.contentType,
+              documentCategory: fleeceResult.fleeceTestReport?.documentCategory,
+              url: fleeceResult.fleeceTestReport?.url
+            } as Document);
+          });
+        }
+      }
       if (this.alpaca && this.alpaca.images && this.alpaca.images.length > 0) {
         this.images = alpaca.images.map((image: Image) => {
           return {
@@ -204,7 +235,6 @@ export class AdminAlpacasEditComponent  implements OnInit{
         });
       }
       this.updateForm(alpaca);
-
     });
   }
 
@@ -214,54 +244,140 @@ export class AdminAlpacasEditComponent  implements OnInit{
   }
 
   private updateForm(alpaca: Alpaca): void {
-    this.alpacasEditForm.patchValue({
-      'shortName': alpaca.shortName, 
-      'longName': alpaca.longName,
-      'damId': alpaca.dam.id,
-      'damName': alpaca.dam.longName,
-      'sireId': alpaca.sire.id,
-      'sireName': alpaca.sire.longName,
-      'gender': alpaca.gender,
-      'breed': alpaca.breed,
-      'color': alpaca.color,
-      'category': alpaca.category,
-      'status': alpaca.status,
-      'dateOfBirth': alpaca.dateOfBirth,
-      'bornOnFarm': alpaca.bornOnFarm,
-      'studFee': alpaca.studFee,
-      'sellPrice': alpaca.sellPrice,
-      'description': alpaca.description,
-    });
+    this.alpacasEditForm.patchValue(alpaca);
+    this.patchOffspring();
+    this.patchFleeceResults();
     this.onChangeDamId();
     this.onChangeSireId();
   }
+  
+  get offspringArray() {
+    return this.alpacasEditForm.get('offspring') as FormArray;
+  }
 
-  public onChangeDamId(): void {
-    if (this.alpacasEditForm.get('damId')?.value === null 
-    || this.alpacasEditForm.get('damId')?.value === '') {
-      this.alpacasEditForm.get('damName')?.enable();
-    } else {
-      this.alpacasEditForm.get('damName')?.disable();
+  get offspringControls() {
+    return this.offspringArray.controls;
+  }
+
+  patchOffspring(): void {
+    this.alpaca.offspring.forEach((offspringAlpaca: Alpaca) => {
+      this.offspringArray.push(this.fb.group({
+        id: offspringAlpaca.id,
+        shortName: offspringAlpaca.shortName,
+        longName: offspringAlpaca.longName,
+      }));
+    });
+  }
+  addOffspringSelect(): void {
+    this.offspringArray.push(this.fb.group({
+      id: '',
+      shortName: '',	
+      longName: '',  
+    }));
+  }
+
+  setOffspring(event: MatOptionSelectionChange, index: number): void {
+    if (event.isUserInput) {
+      const ofspringFormGroup = this.offspringArray.at(index) as FormGroup;
+      const selectedAlpaca = this.alpacas.find(alpaca => alpaca.id === event.source.value);
+      ofspringFormGroup.patchValue({
+        id: selectedAlpaca?.id,
+        shortName: selectedAlpaca?.shortName,
+        longName: selectedAlpaca?.longName
+      });
     }
   }
 
-  public onChangeSireId(): void {
-    if (this.alpacasEditForm.get('sireId')?.value === null 
-    || this.alpacasEditForm.get('sireId')?.value === '') {
-      this.alpacasEditForm.get('sireName')?.enable();
+  getOffspringId(index: number): string | undefined {
+    return (this.offspringArray.at(index) as FormGroup).value.id;
+  }
+  deleteOffspring(index: number): void {
+    this.offspringArray.removeAt(index);
+  }
+
+  get fleeceresultsArray() {
+    return this.alpacasEditForm.get('fleeceresults') as FormArray;
+  }
+
+  get fleeceresultsControls() {
+    return this.fleeceresultsArray.controls;
+  }
+
+  getFleeceDocument (fleeceId : string): Document[] {
+    console.log('fleeceId', fleeceId);
+    const docs: Document[] = [];
+    const fleece = this.alpaca.fleeceresults.find(fleece => fleece.id === fleeceId);	
+    if (!fleece) return docs;
+    const result = this.fleeceResults.find(fleeceResult => fleeceResult.id === fleece.fleeceTestReport?.id);
+    if (!result) return docs;
+    docs.push(result);
+    return docs;
+  }
+
+  patchFleeceResults(): void {
+    const fleeceResults = this.alpaca.fleeceresults;
+    fleeceResults.sort((a, b) => b.year - a.year);
+    fleeceResults.forEach((fleeceResult: Fleece) => {
+      this.fleeceresultsArray.push(this.fb.group({
+        id: fleeceResult.id,
+        alpacaId: fleeceResult.alpacaId,
+        fleeceNumber: fleeceResult.fleeceNumber,
+        year: fleeceResult.year,
+        mfd: fleeceResult.mfd,
+        sd: fleeceResult.sd,
+        cv: fleeceResult.cv,
+        crv: fleeceResult.crv,
+        cf: fleeceResult.cf
+      }));
+    });
+  }
+
+  addFleece(): void {
+    this.fleeceresultsArray.push(this.fb.group({
+      id: '',
+      alpacaId: this.alpaca.id,
+      fleeceNumber: '',
+      year: '',
+      mfd: '',
+      sd: '',
+      cv: '',
+      crv: '',
+      cf: ''
+    }));
+  }
+
+  deleteFleece(index: number): void {
+    this.fleeceresultsArray.removeAt(index);
+  }
+
+  onChangeDamId(): void {
+    if (this.alpacasEditForm.get('dam.id')?.value === null 
+    || this.alpacasEditForm.get('dam.id')?.value === '') {
+      this.alpacasEditForm.get('dam.longName')?.enable();
     } else {
-      this.alpacasEditForm.get('sireName')?.disable();
+      this.alpacasEditForm.get('dam.longName')?.disable();
     }
   }
 
+  onChangeSireId(): void {
+    if (this.alpacasEditForm.get('sire.id')?.value === null 
+    || this.alpacasEditForm.get('sire.id')?.value === '') {
+      this.alpacasEditForm.get('sire.longName')?.enable();
+    } else {
+      this.alpacasEditForm.get('sire.longName')?.disable();
+    }
+  }
 
   private putAlpaca(): void {
-    console.log('putAlpaca', this.alpacasEditForm.value);
-    //TODO: implement putAlpaca
+    console.log('putAlpacaform', this.alpacasEditForm.getRawValue());
+    console.log('mainImage', this.mainImage);
+    console.log('images', this.images);
+    console.log('pedigree', this.pedigree);
   }
 
   private postAlpaca(): void {
     //TODO: implement postAlpaca
+
   }
 
   private deleteAlpaca(): void {

@@ -17,11 +17,7 @@ export interface Alpaca {
   mainImage: Image;
   category: string;
   status: string;
-  damName: string | null;
-  damId: string | null;
   dam: Alpaca;
-  sireName: string | null;
-  sireId: string | null;
   sire: Alpaca;
   randomText: string;
   studFee: number;
