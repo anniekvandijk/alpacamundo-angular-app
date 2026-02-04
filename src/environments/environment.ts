@@ -7,7 +7,7 @@ export const environment = {
     baseUri: 'http://localhost:4200',
     loginRedirectUri: 'http://localhost:4200',
     postLogoutRedirectUrl: 'http://localhost:4200',
-    apiBaseUrl: 'https://localhost:7248',
+    apiBaseUrl: 'http://localhost:5089',
     cacheLifetime: 20000,
     storageUrls: {
       linkImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/links/',
