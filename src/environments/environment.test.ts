@@ -10,14 +10,14 @@ export const environment = {
     apiBaseUrl: 'https://api-tst.alpacamundo.eu', // /swagger/index.html
     cacheLifetime: 600000,
     storageUrls: {
-      linkImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/links-test/',
+      linkImagesUrl: 'https://alpacamundo.blob.core.windows.net/links-test/',
       staticPageImagesUrl: '',
-      infopageImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/infopages-images-test/',
-      alpacaImagesUrl: 'https://alpacamundostorage.blob.core.windows.net/alpaca-images-test/',
-      alpacaMainImageUrl: 'https://alpacamundostorage.blob.core.windows.net/alpaca-images-test/',
-      alpacaPedigreeUrl: 'https://alpacamundostorage.blob.core.windows.net/alpaca-pedigree-test/',
-      alpacaFleeceResultsUrl: 'https://alpacamundostorage.blob.core.windows.net/alpaca-fleeceresults-test/',
-      showResultsUrl: 'https://alpacamundostorage.blob.core.windows.net/alpacashow-results-test/',
-      generalUrl: 'https://alpacamundostorage.blob.core.windows.net/files-test/'
+      infopageImagesUrl: 'https://alpacamundo.blob.core.windows.net/infopages-images-test/',
+      alpacaImagesUrl: 'https://alpacamundo.blob.core.windows.net/alpaca-images-test/',
+      alpacaMainImageUrl: 'https://alpacamundo.blob.core.windows.net/alpaca-images-test/',
+      alpacaPedigreeUrl: 'https://alpacamundo.blob.core.windows.net/alpaca-pedigree-test/',
+      alpacaFleeceResultsUrl: 'https://alpacamundo.blob.core.windows.net/alpaca-fleeceresults-test/',
+      showResultsUrl: 'https://alpacamundo.blob.core.windows.net/alpacashow-results-test/',
+      generalUrl: 'https://alpacamundo.blob.core.windows.net/files-test/'
     }
   };
