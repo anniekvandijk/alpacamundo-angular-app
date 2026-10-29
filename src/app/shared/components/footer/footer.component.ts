@@ -51,6 +51,10 @@ export class FooterComponent implements OnInit {
     return project.version;
   }
 
+  getCurrentYear(): number {
+    return new Date().getFullYear();
+  }
+
   login() : void {
     if(this.msalGuardConfig.authRequest) {
       this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
