@@ -1,5 +1,11 @@
 <div id="footer">
-  <span class="footer-text">© Copyright 2024 Alpacamundo - v{{getProjectVersion()}}</span>
+  <div class="footer-line1">
+  <span class="footer-year">©2011-{{getCurrentYear()}} Alpacamundo</span>
+  <span>|</span>
+  <span class="footer-version">Version {{getProjectVersion()}}</span>
+  <span>|</span>
+  <span class="footer-kvk">KvK-nummer 02100873</span>
+  <span>|</span>
   <span class="login">  
     <ng-container *ngIf="!isUserLoggedIn; else loggedIn">
       <a role="button" (click)="login()" (keydown)="login()" title="Login" rel="login" tabindex="0" style="cursor: pointer;">login here</a>
@@ -8,4 +14,8 @@
       <a role="button" (click)="logout()" (keydown)="login()" title="Logout" rel="logout" tabindex="0" style="cursor: pointer;">logout</a>
     </ng-template> 
   </span>
+  </div>
+  <div class="footer-line2">
+    <span><i>Alpacamundo is onderdeel van Animundo</i></span>
+  </div>
 </div>
