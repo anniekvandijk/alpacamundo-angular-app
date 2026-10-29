@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular production configuration
-        run: npm run build:production
+        run: npm run build:prod
 
       - name: Read package version
         id: package-version
